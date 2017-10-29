@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $info = App\Organization::All();
+    return view('welcome', compact('info'));
+});
+
+Route::get('/about/{task}', function ($id) {
+     $info = DB::table('organizations')->find($id);
+
+     return view('task.show', compact('info'));
 });
