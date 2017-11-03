@@ -18,6 +18,7 @@ class CreateAllergiesTable extends Migration
             $table->string('type');
             $table->text('description');
             $table->string('medication')->nullable();
+            $table->string('prescription')->nullable();
             $table->timestamps();
         });
     }

@@ -20,7 +20,8 @@ class CreateChildrenTable extends Migration
             $table->date('date_of_birth');
             $table->string('national_registry_number');
             $table->string('gender');
-            $table->boolean('first_time');
+            $table->boolean('gender');
+            $table->boolean('potty_trained');
             $table->timestamps();
         });
     }
