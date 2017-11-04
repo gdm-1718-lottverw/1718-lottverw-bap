@@ -1,57 +1,71 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, { Component } from 'React';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import { TabNavigator } from 'react-navigation';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+const HomeScreen = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Home Screen</Text>
+  </View>
+);
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+const ProfileScreen = () => (
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text>Profile Screen</Text>
+  </View>
+);
+const Tabs = TabNavigator({
+    Home: {
+        screen: HomeScreen,
+        navigationOptions: {
+            //tabBarLabel: 'Home',
+            tabBarIcon: ({ tintColor, focused }) => (
+              <Ionicons
+                name={focused ? 'home' : 'home'}
+                size={26}
+                style={{ color: tintColor }}
+              />
+            ),
+          },
+          
+      },
+      Profile: {
+        screen: ProfileScreen,
+        navigationOptions: {
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ tintColor, focused }) => (
+              <Ionicons
+                name={focused ? 'ios-person' : 'ios-person-outline'}
+                size={26}
+                style={{ color: tintColor }}
+              />
+            ),
+          },
+      },
+  }, {
+    tabBarPosition: 'bottom',
+  });
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+  
 
-export default class App extends Component<{}> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native! LIVE RELOAD!! SO (H)APPY 
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+export default Tabs;
+
+
+{/*
+export default class Appy extends Component {
+    render(){
+        return(
+        <View style={styles.container}>
+            <Text>Profile</Text>
+          </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+    container: {
+        backgroundColor: '#efefef',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+}) */}
