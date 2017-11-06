@@ -8,6 +8,8 @@ class Organization extends Model
 {
     /**
      * Get all the activities
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function activities()
     {
@@ -16,6 +18,8 @@ class Organization extends Model
     
     /**
      * Get all the addresses
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function addresses()
     {
@@ -24,6 +28,8 @@ class Organization extends Model
      
     /**
      * Get all the children
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function children()
     {
@@ -32,6 +38,8 @@ class Organization extends Model
     
     /**
      * Get all the Planned Attendance
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function PlannedAttendance()
     {
@@ -39,7 +47,9 @@ class Organization extends Model
     }
 
     /**
-     * Get all the Planned Attendance
+     * Get all the parent organizations
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function parentOrganizations()
     {
@@ -48,6 +58,8 @@ class Organization extends Model
 
     /**
      * Get all the OpeningHours
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function OpeningHours()
     {
@@ -56,6 +68,8 @@ class Organization extends Model
     
     /**
      * Get all the Closed
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function Closed()
     {
@@ -64,6 +78,8 @@ class Organization extends Model
 
     /**
      * Get the auth key record associated with the organization.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function authKey()
     {
