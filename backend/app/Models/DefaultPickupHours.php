@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AuthKey extends Model
+class DefaultPickupHours extends Model
 {
     //
 }
