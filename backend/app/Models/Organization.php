@@ -39,6 +39,14 @@ class Organization extends Model
     }
 
     /**
+     * Get all the Planned Attendance
+     */
+    public function parentOrganizations()
+    {
+        return $this->hasMany('App\Models\Organizations', 'parent_id');
+    }
+
+    /**
      * Get all the OpeningHours
      */
     public function OpeningHours()

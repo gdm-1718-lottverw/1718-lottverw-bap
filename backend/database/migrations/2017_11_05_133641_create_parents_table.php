@@ -20,7 +20,7 @@ class CreateParentsTable extends Migration
             $table->string('family_type');
             $table->string('email');
             $table->text('phone_number');
-            $table->unsignedInteger('default_pickup_hours_id');  
+            $table->unsignedInteger('default_pickup_hours_id')->nullable();  
             $table->timestamps();
         });
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChilderenHasGuardian extends Migration
+class ChildGuardian extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class ChilderenHasGuardian extends Migration
      */
     public function up()
     {
-        Schema::create('children_have_guardians', function (Blueprint $table) {
-            $table->unsignedInteger('children_id');
+        Schema::create('child_guardian', function (Blueprint $table) {
+            $table->unsignedInteger('child_id');
             $table->unsignedInteger('guardian_id');
         
         });
 
-        Schema::table('children_have_guardians', function (Blueprint $table) {
+        Schema::table('child_guardian', function (Blueprint $table) {
             $table->foreign('guardian_id')->references('id')->on('guardians')->onDelete('cascade');
-            $table->foreign('children_id')->references('id')->on('children')->onDelete('cascade');
+            $table->foreign('child_id')->references('id')->on('children')->onDelete('cascade');
         });
     }
 

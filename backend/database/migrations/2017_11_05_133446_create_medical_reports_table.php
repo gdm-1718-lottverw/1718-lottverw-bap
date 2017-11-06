@@ -16,8 +16,8 @@ class CreateMedicalReportsTable extends Migration
         Schema::create('medical_attention', function (Blueprint $table) {
             $table->increments('id');
             $table->text('description');
-            $table->string('medication');
-            $table->string('prescription'); // path to source?
+            $table->string('medication')->nullable();
+            $table->string('prescription')->nullable(); // path to source?
             $table->unsignedInteger('children_id'); // path to source? 
             $table->timestamps();
         });

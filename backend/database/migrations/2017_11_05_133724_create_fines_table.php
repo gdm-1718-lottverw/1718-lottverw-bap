@@ -17,9 +17,9 @@ class CreateFinesTable extends Migration
             $table->increments('id');
             $table->text('description');
             $table->timestamp('date_issued');
-            $table->text('other_details');
+            $table->text('other_details')->nullable();
             $table->boolean('paid');
-            $table->date('date_paid');
+            $table->date('date_paid')->nullable();
             $table->string('amount');
             $table->unsignedInteger('parents_id');  
             $table->timestamps();
