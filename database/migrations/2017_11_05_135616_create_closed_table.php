@@ -16,7 +16,7 @@ class CreateClosedTable extends Migration
         Schema::create('closed', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->string('reason');
+            $table->string('reason')->nullable();
             $table->unsignedInteger('organization_id');
             $table->timestamps();
         });

@@ -20,9 +20,9 @@ class CreatePlannedAttendancesTable extends Migration
             $table->time('until');
             $table->string('type');
             $table->timestamp('registered_on');
-           // $table->string('picked_up_by'); /// GUARDIAN ID!!!
+            $table->unsignedInteger('has_been_pickup_by')->nullable(); 
             $table->time('pickup_time');
-            $table->text('other_details');
+            $table->text('other_details')->nullable();
             $table->boolean('no_show');
             $table->boolean('go_home_alone');
             $table->unsignedInteger('organization_id');
@@ -33,6 +33,7 @@ class CreatePlannedAttendancesTable extends Migration
         Schema::table('planned_attendances', function (Blueprint $table) {
             $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('children_id')->references('id')->on('children');
+            $table->foreign('has_been_pickup_by')->references('id')->on('guardians');
         });
     }
 

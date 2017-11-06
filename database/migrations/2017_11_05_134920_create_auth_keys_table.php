@@ -17,10 +17,10 @@ class CreateAuthKeysTable extends Migration
             $table->increments('id');
             $table->string('username');
             $table->string('key');
-            $table->timestamp('first_login');
-            $table->date('last_login');
+            $table->timestamp('first_login')->nullable();
+            $table->date('last_login')->nullable();
             $table->date('expire_date');
-            $table->unsignedInteger('parents_id');
+            $table->unsignedInteger('parents_id')->nullable();
             $table->unsignedInteger('roles_id');
             $table->timestamps();
         });
