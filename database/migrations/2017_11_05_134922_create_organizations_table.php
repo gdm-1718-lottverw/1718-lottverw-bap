@@ -18,17 +18,17 @@ class CreateOrganizationsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->unsignedInteger('parents_id')->nullable();
+            $table->unsignedInteger('main_organization')->nullable();
             $table->unsignedInteger('auth_key_id');
             $table->timestamps();
         });
 
         Schema::table('organizations', function (Blueprint $table) {
-            $table->foreign('parents_id')->references('id')->on('organizations');
+            $table->foreign('main_organization')->references('id')->on('organizations');
             $table->foreign('auth_key_id')->references('id')->on('auth_keys');
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *

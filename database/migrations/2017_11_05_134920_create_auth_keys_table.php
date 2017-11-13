@@ -20,14 +20,12 @@ class CreateAuthKeysTable extends Migration
             $table->timestamp('first_login')->nullable();
             $table->date('last_login')->nullable();
             $table->date('expire_date');
-            $table->unsignedInteger('parents_id')->nullable();
-            $table->unsignedInteger('roles_id');
+            $table->unsignedInteger('role_id');
             $table->timestamps();
         });
 
         Schema::table('auth_keys', function (Blueprint $table) {
-            $table->foreign('parents_id')->references('id')->on('parents');
-            $table->foreign('roles_id')->references('id')->on('roles');
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 

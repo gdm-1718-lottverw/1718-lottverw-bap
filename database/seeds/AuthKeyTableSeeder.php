@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class AuthKeyTableSeeder extends Seeder
 {
@@ -11,6 +12,7 @@ class AuthKeyTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+       
     }
-}
+} 
+
