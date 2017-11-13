@@ -79,9 +79,6 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                @foreach ($info as $i)
-                <p>{{ $i->name }}</p>
-                @endforeach
                 </div>
 
             </div>

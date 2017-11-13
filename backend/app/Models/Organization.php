@@ -53,7 +53,7 @@ class Organization extends Model
      */
     public function parentOrganizations()
     {
-        return $this->hasMany('App\Models\Organizations', 'parent_id');
+        return $this->hasMany('App\Models\Organizations', 'main_organization', 'id');
     }
 
     /**

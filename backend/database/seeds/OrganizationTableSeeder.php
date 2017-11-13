@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class OrganizationTableSeeder extends Seeder
 {
@@ -11,6 +12,8 @@ class OrganizationTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Organization::class, 100)->create()->each(function ($organization) {
+            $organization->authKey()->save(factory(App\Models\AuthKey::class)->make());
+        });
     }
 }

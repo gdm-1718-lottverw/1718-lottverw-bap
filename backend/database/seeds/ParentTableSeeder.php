@@ -11,6 +11,8 @@ class ParentTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Parents::class, 100)->create()->each(function ($parent) {
+            $parent->authKey()->save(factory(App\Models\AuthKey::class)->make());
+        });
     }
 }

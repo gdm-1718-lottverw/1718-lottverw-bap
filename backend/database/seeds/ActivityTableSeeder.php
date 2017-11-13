@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class ActivityTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class ActivityTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Activity::class, 100)->create(); 
     }
 }
