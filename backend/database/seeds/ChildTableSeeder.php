@@ -11,6 +11,12 @@ class ChildrenTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Child::class, 100)->create()->each(function($child){
+            $parents = App\Models\Parents::pluck('id');
+            $activities = App\Models\Activity::pluck('id');
+            $child->parents()->attach( $parents[ rand(1, (count($parents) -1))] );
+            $child->activities()->attach( $activities[ rand(1, (count($activities) -1))] ); 
+            $child->addresses()->save(factory(App\Models\Address::class)->make());
+        });
     }
 }

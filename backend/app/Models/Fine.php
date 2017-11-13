@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fine extends Model
 {
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'fines';
+    
     /**
      * Get the payment for a given fine
      * 

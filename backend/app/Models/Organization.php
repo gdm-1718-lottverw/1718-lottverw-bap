@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Organization extends Model
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'organizations';
+
+    protected $fillable = ['auth_key_id'];
+    /**
      * Get all the activities
      * 
      * @return Illuminate\Database\Eloquent\Relations\HasMany
@@ -23,7 +31,7 @@ class Organization extends Model
      */
     public function addresses()
     {
-        return $this->hasMany('App\Models\Address');
+        return $this->hasMany('App\Models\Address', 'organization_id');
     }
      
     /**
@@ -83,6 +91,6 @@ class Organization extends Model
      */
     public function authKey()
     {
-        return $this->hasOne('App\Models\AuthKey');
+        return $this->hasOne('App\Models\AuthKey', 'auth_key_id');
     }
 }

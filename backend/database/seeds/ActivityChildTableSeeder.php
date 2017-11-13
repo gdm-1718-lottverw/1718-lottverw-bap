@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
-class ParentTableSeeder extends Seeder
+class ActivityChildTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +12,6 @@ class ParentTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Parents::class, 100)->create();
+        factory(App\Models\ActivityChild::class, 100)->create();
     }
 }
