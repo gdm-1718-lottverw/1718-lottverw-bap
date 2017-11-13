@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder
             RoleTableSeeder::class,
             ParentTableSeeder::class,
             OrganizationTableSeeder::class,
-           
+            ActivityTableSeeder::class,
+            ChildrenTableSeeder::class,
+            ActivityChildTableSeeder::class,
+            AllergieTableSeeder::class,
          ]);
     }
 }

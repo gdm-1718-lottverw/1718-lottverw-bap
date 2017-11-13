@@ -7,13 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Child extends Model
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'children';
+    /**
      * Get the activities for a given child.
      * 
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function activities()
     {
-        return $this->belongsToMany('App\Models\Activity');
+        return $this->belongsToMany('App\Models\Activity')->using('App\Models\ActivityChild');
     }
 
     /**
@@ -33,7 +39,7 @@ class Child extends Model
      */
     public function parents()
     {
-        return $this->belongsToMany('App\Models\Parents');
+        return $this->belongsToMany('App\Models\Parents', 'child_parents',  'child_id', 'parent_id');
     }
 
     /**
@@ -53,7 +59,7 @@ class Child extends Model
      */
     public function addresses()
     {
-        return $this->hasMany('App\Models\Addres');
+        return $this->hasMany('App\Models\Address', 'children_id');
     }
 
     /**

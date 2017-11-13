@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Parents extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'parents';
+
+    protected $fillable = ['auth_key_id'];
+    
     
     /**
      * The children that belong a given parent.
@@ -14,7 +23,7 @@ class Parents extends Model
      */
     public function children()
     {
-        return $this->belongsToMany('App\Models\Child');
+        return $this->belongsToMany('App\Models\Child', 'child_parents', 'parent_id', 'child_id');
     }
 
     /**
@@ -24,7 +33,7 @@ class Parents extends Model
      */
     public function authKey()
     {
-        return $this->hasOne('App\Models\AuthKey');
+        return $this->hasOne('App\Models\AuthKey', 'auth_key_id');
     }
 
     /**

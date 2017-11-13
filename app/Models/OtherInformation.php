@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class OtherInformation extends Model
 {
-    //
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'other_information';
 }
