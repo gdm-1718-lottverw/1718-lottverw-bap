@@ -16,8 +16,6 @@ class CreatePlannedAttendancesTable extends Migration
         Schema::create('planned_attendances', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->time('from');
-            $table->time('until');
             $table->string('type');
             $table->timestamp('registered_on');
             $table->unsignedInteger('has_been_pickup_by')->nullable(); 

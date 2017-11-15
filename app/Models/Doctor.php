@@ -20,6 +20,6 @@ class Doctor extends Model
      */
     public function children()
     {
-        return $this->hasMany('App\Models\Child');
+        return $this->hasMany('App\Models\Child', 'children_id');
     }
 }
