@@ -11,6 +11,6 @@ class PlannedAttendanceTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\PlannedAttendance::class, 900)->create();
     }
 }

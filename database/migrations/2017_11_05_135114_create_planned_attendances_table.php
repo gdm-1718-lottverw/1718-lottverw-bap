@@ -24,13 +24,13 @@ class CreatePlannedAttendancesTable extends Migration
             $table->boolean('no_show');
             $table->boolean('go_home_alone');
             $table->unsignedInteger('organization_id');
-            $table->unsignedInteger('children_id');
+            $table->unsignedInteger('child_id');
             $table->timestamps();
         });
 
         Schema::table('planned_attendances', function (Blueprint $table) {
             $table->foreign('organization_id')->references('id')->on('organizations');
-            $table->foreign('children_id')->references('id')->on('children');
+            $table->foreign('child_id')->references('id')->on('children');
             $table->foreign('has_been_pickup_by')->references('id')->on('guardians');
         });
     }
