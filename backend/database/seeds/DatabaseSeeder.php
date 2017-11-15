@@ -19,6 +19,12 @@ class DatabaseSeeder extends Seeder
             ChildrenTableSeeder::class,
             ActivityChildTableSeeder::class,
             AllergieTableSeeder::class,
+            GuardianTableSeeder::class,
+            PedagogicReportTableSeeder::class,
+            MedicalReportTableSeeder::class,
+            DoctorTableSeeder::class,
+            OtherInformationTableSeeder::class,
+            PlannedAttendanceTableSeeder::class,
          ]);
     }
 }

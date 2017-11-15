@@ -43,6 +43,16 @@ class Child extends Model
     }
 
     /**
+     * Get the parents for a given child.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function doctor()
+    {
+        return $this->belongsTo('App\Models\Doctor');
+    }
+
+    /**
      * Get the allergies associated with the child.
      * 
      * @return Illuminate\Database\Eloquent\Relations\HasMany
@@ -73,7 +83,7 @@ class Child extends Model
     }
 
     /**
-     * Get the planned attendance associated with the doctor.
+     * Get the planned attendance associated with the child.
      * 
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */

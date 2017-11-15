@@ -8,11 +8,13 @@ use Faker\Generator as Faker;
 
 
 $factory->define(App\Models\Child::class, function (Faker $faker) {
+    $o = App\Models\Organization::pluck('id');
     return [
         'name' => $faker->firstName() . " " . $faker->lastName(),
         'date_of_birth' => $faker->date($format = 'Y-m-d', $max = '-3 years', $min = '-12 years'),
         'national_regestry_number' =>  generateNumber(),
-        'gender' =>  generateSex()
+        'gender' =>  generateSex(),
+        'organization_id' => rand(1, (count($o) - 1))
     ];
 });
 
