@@ -91,6 +91,7 @@ class Child extends Model
     {
         return $this->hasMany('App\Models\PlannedAttendance');
     }
+    
     /**
      * Get the pedagogic reports associated with the child.
      * 
