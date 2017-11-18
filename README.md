@@ -1,6 +1,6 @@
 > Owner: Lotte Verwerft 
 > Project name: Bachelor proef 2017 - 2018. 
-> Description: This project was made by Lotte Verwerft. Student at Artevelde College Ghent. With this project  the student will prouve if he of she is worthy of her diploma.
+> Description: This project was made by Lotte Verwerft. Student at Artevelde College Ghent. With this project the student will prouve that she is worthy of her diploma.
 
 ## Project Title
 
@@ -8,5 +8,9 @@
 - Laravel for backend development and backoffice. 
 - React native for the frontend application. 
 
-**Backend development** 
-I've added the first database migration. I've discovered that there is no such thing as ordering the migrations when running them. So every time you want to add e.g. a foreign key. You'll have to make a new migration or edit the timestamp of the current file you are working in.
+**setup the backend (laravel homestead) development**
+I've had some difficulties while setting up the backend development environnement. The Laravel installation itself was easy and well documented on there site. Setting up the virsual machine with homestead was a bit more difficult. This is where the problems occured. Even though, after a good decent search and some tutorial i managed to get everything up and running. 
+
+
+**setup the frontend (react) development**
+
