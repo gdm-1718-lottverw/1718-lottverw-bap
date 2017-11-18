@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Child;
+use App\Http\Resources\ChildResource;
 
-class Parent extends Controller
+class ChildController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class Parent extends Controller
      */
     public function index()
     {
-        //
+        return Child::All();
     }
 
     /**
@@ -45,7 +47,7 @@ class Parent extends Controller
      */
     public function show($id)
     {
-        //
+        return new ChildResource(Child::find($id));
     }
 
     /**

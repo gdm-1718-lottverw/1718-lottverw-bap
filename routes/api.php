@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Controller\ChildController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/children', 'ChildController@index');
+Route::get('/child/{id}', 'ChildController@show');
+
+Route::get('/parents', 'ParentController@index');
+Route::get('/parent/{id}', 'ParentController@show');
