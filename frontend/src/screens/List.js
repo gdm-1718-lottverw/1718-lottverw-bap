@@ -14,9 +14,6 @@ class List extends React.Component{
 const styles = StyleSheet.create({
     box: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
     }
 });
 export default List;

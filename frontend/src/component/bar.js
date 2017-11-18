@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
-
+import Colors from '../config/theme';
 export default class TopBar extends React.Component {        
   render(){
       const title = this.props.title;
       return (
-            <Text style={styles.element}>{title}</Text>
-        );
+        <View  style={styles.container}>
+            <Text style={styles.element}> {title} </Text>
+        </View>
+    );
   }
 }
 
 var width = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
+    container: {
+        alignSelf: "stretch",
+        justifyContent: 'flex-start',
+        flex: 1,
+        maxHeight: 70,
+        backgroundColor: Colors.black,
+    },
     element: {
-        width: width,
-        position: 'absolute',
-        top: 0,
-        color: '#FFFFFF',
-        paddingTop: 2,
-        marginTop: 30,
-        fontSize: 18,
-        fontWeight: '900',
+        backgroundColor: Colors.darkBlue,
+        top: 23,
         textAlign: 'center',
-        backgroundColor: 'black',
-        height: 30,
-        alignSelf: 'stretch',
+        height: 47,
+        padding: 13,
+        color: Colors.white,
+        fontWeight: '700',
+        fontFamily: "Roboto"
     },
 });
     
