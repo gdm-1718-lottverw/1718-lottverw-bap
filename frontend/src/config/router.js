@@ -25,16 +25,16 @@ const Tabs = TabNavigator({
             tabBarIcon: ({ tintColor }) => <Icon style={styles.icon} name={'home'} size={20}/>
           },
       },
-    List: {
-        screen: List,
-        navigationOptions: {
-            tabBarIcon: ({ tintColor }) => <Icon style={styles.icon} name={'list'} size={20}/>
-        },
-    },
     Calender: {
         screen: List,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => <Icon style={styles.icon} name={'calendar'} size={20}/>
+        },
+    },
+    List: {
+        screen: List,
+        navigationOptions: {
+            tabBarIcon: ({ tintColor }) => <Icon style={styles.icon} name={'history'} size={20}/>
         },
     },
     Profile: {
