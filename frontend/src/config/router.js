@@ -10,6 +10,7 @@ import  Calendar  from '../screens/Calendar';
 import  History  from '../screens/History';
 
 import practiceContainer from '../containers/practiceContainer';
+
 const styles = StyleSheet.create({
     tabBar: {
         backgroundColor:  Colors.darkBlue,

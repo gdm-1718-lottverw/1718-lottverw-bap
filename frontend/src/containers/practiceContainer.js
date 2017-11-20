@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Profile  from '../screens/Profile';
-import {updateProfile} from '../actions/index';
+import {updateProfile, recievedChild} from '../actions/index';
 
 const mapStateToProps = (state) => ({
       name: state.name
@@ -9,6 +9,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onNameUpdate: (value) => {
         dispatch(updateProfile(value))
+    },
+    onReceivedChild: (child) => {
+        dispatch(recievedChild(child));
     }
 });
 

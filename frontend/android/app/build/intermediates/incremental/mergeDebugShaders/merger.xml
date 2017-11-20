@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/src/main/shaders"/></dataSet><dataSet config="debug"><source path="/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/src/debug/shaders"/></dataSet></merger>

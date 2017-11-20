@@ -6,12 +6,10 @@ const styles = StyleSheet.create({
         alignSelf: "stretch",
         justifyContent: 'flex-start',
         flex: 1,
-        maxHeight: 70,
-        backgroundColor: Colors.black,
+        maxHeight: 47,
     },
     element: {
         backgroundColor: Colors.darkBlue,
-        top: 23,
         textAlign: 'center',
         height: 47,
         padding: 13,
