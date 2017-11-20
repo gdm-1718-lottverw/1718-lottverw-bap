@@ -5,8 +5,11 @@ import  Icon  from 'react-native-vector-icons/FontAwesome';
 
 import  Colors from './theme';
 import  Home  from '../screens/Home';
-import  List  from '../screens/List';
+import  Profile  from '../screens/Profile';
+import  Calendar  from '../screens/Calendar';
+import  History  from '../screens/History';
 
+import practiceContainer from '../containers/practiceContainer';
 const styles = StyleSheet.create({
     tabBar: {
         backgroundColor:  Colors.darkBlue,
@@ -26,19 +29,19 @@ const Tabs = TabNavigator({
           },
       },
     Calender: {
-        screen: List,
+        screen: Calendar,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => <Icon style={styles.icon} name={'calendar'} size={20}/>
         },
     },
-    List: {
-        screen: List,
+    History: {
+        screen: History,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => <Icon style={styles.icon} name={'history'} size={20}/>
         },
     },
     Profile: {
-        screen: List,
+        screen: practiceContainer,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => <Icon style={styles.icon} name={'user'} size={20}/>
         },

@@ -1,15 +1,16 @@
-import { combineReducers} from 'redux';
-function name (state = '', action){
-    switch (action.type){
-        case 'UPDATED_NAME': 
-            return action.name
+import { combineReducers } from 'redux';
+
+function name( state = '', action) {
+    switch(action.type){
+        case 'UPDATE_PROFILE':
+            return action.name;
         default:
-            return state
+            return state;
     }
 }
 
-const NowReducers = combineReducers({
+const AppReducers = combineReducers({
     name,
-})
+});
 
-export default NowReducers;
+export default AppReducers;

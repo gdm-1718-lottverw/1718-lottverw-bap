@@ -1,7 +1,6 @@
-// simpel object with a type member. 
-export function update(name){
+export function updateProfile(name) {
     return {
-        type: 'UPDATED_NAME',
-        name,
+        type: 'UPDATE_PROFILE', 
+        name
     }
 }

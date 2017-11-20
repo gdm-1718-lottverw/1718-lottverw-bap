@@ -2,10 +2,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Tabs from './src/config/router';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import AppReducers from './src/reducers/index';
+ 
+let store = createStore(AppReducers);
 export default class App extends React.Component {
   render() {
+    console.log('redux app state is:', store.getState());
     return (
+      <Provider store={store}>
       <Tabs />
+      </Provider>
     );
   }
 }
