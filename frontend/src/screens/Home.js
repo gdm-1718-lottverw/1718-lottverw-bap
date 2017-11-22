@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, ToolbarAndroid, ScrollView } from 'react-native';
 import TopBar from '../components/TopBar/index';
 import Colors from '../config/theme';
-
+import { connect } from 'react-redux';
+import { fetchChild } from '../actions/childActions';
+@connect((store) => {
+    return {
+        child: store.child.child, 
+        fetched: store.child.fetched
+    }
+})
 class Home extends React.Component{    
+    componentWillMount(){
+      this.props.dispatch(fetchChild()); 
+    }
   render(){
-    function getMoviesFromApiAsync() {
-        return fetch('https://facebook.github.io/react-native/movies.json')
-          .then((response) => response.json())
-          .then((responseJson) => {
-            return responseJson.movies;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
+      console.log(this.props.child);
       return (
             <View style={styles.box}>
                 <TopBar title={'HOME'}/>
                 <ScrollView>
-            
+                    <Text>{this.props.child != undefined ? this.props.child.name : 'No child'}</Text>
                 </ScrollView>
             </View>
       )

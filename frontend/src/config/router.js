@@ -9,8 +9,6 @@ import  Profile  from '../screens/Profile';
 import  Calendar  from '../screens/Calendar';
 import  History  from '../screens/History';
 
-import practiceContainer from '../containers/practiceContainer';
-
 const styles = StyleSheet.create({
     tabBar: {
         backgroundColor:  Colors.darkBlue,
@@ -42,7 +40,7 @@ const Tabs = TabNavigator({
         },
     },
     Profile: {
-        screen: practiceContainer,
+        screen: Profile,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => <Icon style={styles.icon} name={'user'} size={20}/>
         },

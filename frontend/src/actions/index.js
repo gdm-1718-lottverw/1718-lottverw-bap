@@ -1,4 +1,4 @@
-export function updateProfile(name) {
+/*export function updateProfile(name) {
     return {
         type: 'UPDATE_PROFILE', 
         name
@@ -21,4 +21,4 @@ export function recievedChild(child){
         type: 'RECEIVED_CHILD', 
         child, 
     }
-}
+}*/
