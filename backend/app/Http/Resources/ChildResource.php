@@ -14,12 +14,9 @@ class ChildResource extends Resource
      */
     public function toArray($request)
     {
-        return [
+        return [ 
             'name' => (string)$this->name,
-            'parent' => (object)$this->parents,
-            'parent' => ParentResource::collection($this->whenLoaded('parents')),
-            'created_at' => (string)$this->created_at,
-            'updated_at' => (string)$this->updated_at,
         ];
     }
 }
+
