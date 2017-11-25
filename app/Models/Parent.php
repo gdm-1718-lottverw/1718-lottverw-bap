@@ -26,6 +26,10 @@ class Parents extends Model
         return $this->belongsToMany('App\Models\Child', 'child_parents', 'parent_id', 'child_id');
     }
 
+    public function registry()
+    {
+        return $this->hasManyThrough('App\Models\PlannedAttendance', 'App\Models\ChildParent', 'parent_id', 'child_id', 'planned_attendance_id', 'id');
+    }
     /**
      * Get the key for a given parent
      * 

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class ParentResource extends Resource
+class PlannedAttendanceResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -14,11 +14,9 @@ class ParentResource extends Resource
      */
     public function toArray($request)
     {
-        return [
-            'name' => (string)$this->name,
-            'child' => (object)$this->children,
-            'child' => ChildResource::collection($this->whenLoaded('children')),
-            
+        return [ 
+            "date" => (string)$this->date,
+            "type" => (string)$this->type,
         ];
     }
 }

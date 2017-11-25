@@ -15,3 +15,5 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Route::get('/filter/test', 'Backoffice\FilterController@index');
+Route::post('/filter/test', 'Backoffice\FilterController@create');

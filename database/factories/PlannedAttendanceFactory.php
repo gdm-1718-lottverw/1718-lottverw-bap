@@ -9,7 +9,8 @@ $factory->define(App\Models\PlannedAttendance::class, function (Faker $faker) {
     $organizations = App\Models\Organization::pluck('id');
     $guardian = App\Models\Guardian::pluck('id');
     return [
-        'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'date' => $faker->
+        dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
         'type' => generateDay(),
         'registered_on' => $faker->dateTime($max = 'now'),
         'pickup_time' => $faker->time($format = 'H:i', $max = 'now'),

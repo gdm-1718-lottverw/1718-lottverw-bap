@@ -14,7 +14,8 @@ $factory->define(App\Models\Child::class, function (Faker $faker) {
         'date_of_birth' => $faker->date($format = 'Y-m-d', $max = '-3 years', $min = '-12 years'),
         'national_regestry_number' =>  generateNumber(),
         'gender' =>  generateSex(),
-        'organization_id' => rand(1, (count($o) - 1))
+        'organization_id' => rand(1, (count($o) - 1)),
+        'potty_trained' => $faker->boolean($chanceOfGettingTrue = 80)
     ];
 });
 
