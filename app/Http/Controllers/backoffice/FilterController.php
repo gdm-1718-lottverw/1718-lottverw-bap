@@ -9,18 +9,19 @@ use App\Models\Organization;
 
 class FilterController extends Controller
 {
-    public function index(){
-    
-        $children = Child::where('organization_id', 4)->get();
 
-        return view('filter/test', compact('children'));
+    public function index(request $request){
+        
+        $test = Child::where('organization_id', 4)->get();
+        //return $request;
+        return view('filter.test', compact('test'));
     }
     
     public function create(request $request){
-
-        $result = DB::table('children')->where('potty_trained', false)->get(['id', 'name']);
         
-        return $result;
-
+        $test = Child::where('organization_id', 4)->where('potty_trained', false)->get();
+        
+        return view('filter.children', compact('test'));
+    
     }
 }
