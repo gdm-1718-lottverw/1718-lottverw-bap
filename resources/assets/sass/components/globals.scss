@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    font-family: Roboto, "Helvetica", "Arial";
+    .header {
+        padding: 10px 15px;
+        font-size: 12px;
+        font-family: Roboto;
+        display: flex;
+        background: #3F3F3F;
+        color: #efefef;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .navigation {
+        height: 100vh;
+        background: #3F3F3F;
+        float: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        a {
+            color: #3097D1;
+            padding: 15px 22px;
+            text-decoration: none;
+            font-size: 25px;
+            background: #dfdfdf;
+            width: 70px;
+            height: 70px;
+            text-align: center;
+            border-bottom: 1px solid white;
+        }
+    }
+    section {
+        &.filter {
+            min-height: 100vh;
+            .filter-sidebar {
+                background: #f7f7f7;
+                -webkit-flex: 1 1 auto;
+                -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+                padding: 15px;
+                .part {
+                    .sub-title {
+                        font-size: 15px;
+                        border-bottom: 1px solid;
+                        margin: 13px 0;
+                        padding-bottom: 5px;
+                    }
+                    .item {
+                        padding: 10px 0;
+                        input[type="checkbox"] {
+                            border: 3px solid black;
+                        }
+                    }
+                }
+            }
+            .filter-group-content {
+                -webkit-flex: 12 1 auto;
+                -ms-flex: 12 1 auto;
+                flex: 12 0 auto;
+                .filter-topbar {
+                    .item {
+
+                    }
+                }
+                .filter-results {
+                    .filter-results-item {
+                        .child-name {}
+                        .child-care {}
+                    }
+                }
+            }
+        }
+    }   
+}
