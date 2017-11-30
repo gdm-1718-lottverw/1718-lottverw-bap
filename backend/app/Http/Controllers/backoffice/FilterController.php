@@ -10,11 +10,16 @@ use App\Models\Organization;
 class FilterController extends Controller
 {
 
-    public function index(request $request){
+    public function test(request $request){
         
         $test = Child::where('organization_id', 4)->get();
         //return $request;
         return view('filter.test', compact('test'));
+    }
+
+    public function index(request $request){
+        $children = Child::where('organization_id', 4)->get();
+        return view('filter.index', compact('children'));
     }
     
     public function create(request $request){
