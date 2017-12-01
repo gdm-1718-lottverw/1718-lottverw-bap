@@ -28,5 +28,26 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="/js/app.js"></script>
+        <script>
+        $(document).ready(function(){
+             $('.item input').change(() => {        
+                val = this.checked; 
+                var data = [];
+                $('.item input:checked').each(function(index) {
+                   data.push($(this).val());
+                });
+                $.ajax({
+                    method: "POST",
+                    url: "filter",
+                    data: {'data': data, '_token': $('input[name=_token]').val()},
+                    })
+                    .done(function( msg ) {
+                        console.log(msg);
+                        $('.filter-results-item').replaceWith(msg);
+                    });
+                });
+        });
+
+        </script>
     </body>
 </html>

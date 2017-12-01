@@ -3185,7 +3185,6 @@ body .header {
 }
 
 body .navigation {
-  height: 100vh;
   background: #3F3F3F;
   float: right;
   display: -webkit-box;
@@ -3198,22 +3197,24 @@ body .navigation {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  height: calc(100vh - 34px);
 }
 
 body .navigation a {
   color: #3097D1;
-  padding: 15px 22px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20px 22px;
   text-decoration: none;
   font-size: 25px;
   background: #dfdfdf;
   width: 70px;
-  height: 70px;
   text-align: center;
   border-bottom: 1px solid white;
 }
 
-body section.filter {
-  min-height: 100vh;
+body section {
+  height: calc(100vh - 34px);
 }
 
 body section.filter .filter-sidebar {
@@ -3221,7 +3222,8 @@ body section.filter .filter-sidebar {
   -ms-flex: 1 1 auto;
   -webkit-box-flex: 1;
           flex: 1 1 auto;
-  padding: 15px;
+  padding: 22px 15px 30px 15px;
+  overflow: scroll;
 }
 
 body section.filter .filter-sidebar .part .sub-title {
@@ -3232,16 +3234,33 @@ body section.filter .filter-sidebar .part .sub-title {
 }
 
 body section.filter .filter-sidebar .part .item {
-  padding: 10px 0;
-}
-
-body section.filter .filter-sidebar .part .item input[type="checkbox"] {
-  border: 3px solid black;
+  padding: 12px 0;
 }
 
 body section.filter .filter-group-content {
   -ms-flex: 12 1 auto;
   -webkit-box-flex: 12;
           flex: 12 0 auto;
+}
+
+body section.filter .filter-group-content .filter-topbar {
+  background: #ffe06e;
+}
+
+body section.filter .filter-group-content .filter-topbar .item {
+  padding: 20px;
+}
+
+body section.filter .filter-group-content .filter-topbar .date {
+  font-size: 17px;
+  font-family: Roboto;
+  outline: none;
+  background: #3ca1d0;
+  border: none;
+  font-weight: 900;
+  text-align: right;
+  border-right: 1px solid #3f3f3f;
+  padding: 0 0 0 14px;
+  color: white;
 }
 
