@@ -15,7 +15,8 @@ $factory->define(App\Models\Child::class, function (Faker $faker) {
         'national_regestry_number' =>  generateNumber(),
         'gender' =>  generateSex(),
         'organization_id' => rand(1, (count($o) - 1)),
-        'potty_trained' => $faker->boolean($chanceOfGettingTrue = 80)
+        'potty_trained' => $faker->boolean($chanceOfGettingTrue = 80),
+        'pictures' => $faker->boolean($chanceOfGettingTrue = 50)
     ];
 });
 
