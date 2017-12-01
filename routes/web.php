@@ -19,3 +19,5 @@ Route::get('/filter/test', 'Backoffice\FilterController@test');
 Route::post('/filter/test', 'Backoffice\FilterController@create');
 
 Route::get('/filter', 'Backoffice\FilterController@index');
+
+Route::post('/filter', 'Backoffice\FilterController@test');

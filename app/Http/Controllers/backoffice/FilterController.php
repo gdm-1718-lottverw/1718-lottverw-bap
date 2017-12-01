@@ -10,23 +10,19 @@ use App\Models\Organization;
 class FilterController extends Controller
 {
 
-    public function test(request $request){
-        
+    public function test(request $request){  
         $test = Child::where('organization_id', 4)->get();
-        //return $request;
         return view('filter.test', compact('test'));
     }
 
     public function index(request $request){
-        $children = Child::where('organization_id', 4)->get();
-        return view('filter.index', compact('children'));
+        $children = Child::where('organization_id', 1)->get();
+        $or = Organization::where('main_organization', 1)->get();
+        return view('filter.index', compact(['or', 'children']));
     }
     
     public function create(request $request){
-        
         $test = Child::where('organization_id', 4)->where('potty_trained', false)->get();
-        
         return view('filter.children', compact('test'));
-    
     }
 }
