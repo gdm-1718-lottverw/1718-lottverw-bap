@@ -17,10 +17,13 @@ class CreatePlannedAttendancesTable extends Migration
             $table->increments('id');
             $table->date('date');
             $table->string('type');
-            $table->timestamp('registered_on');
+            $table->boolean('in');
+            $table->boolean('out');
+            $table->dateTime('time_in')->nullable(); // official registered in
+            $table->dateTime('time_out')->nullable(); // official registered out
+            $table->dateTime('registered_on'); // reserved
             $table->unsignedInteger('has_been_pickup_by')->nullable(); 
-            $table->time('pickup_time');
-            $table->text('other_details')->nullable();
+            $table->time('pickup_time'); // billable time can be modified
             $table->boolean('no_show');
             $table->boolean('go_home_alone');
             $table->unsignedInteger('organization_id');

@@ -9,12 +9,14 @@ $factory->define(App\Models\PlannedAttendance::class, function (Faker $faker) {
     $organizations = App\Models\Organization::pluck('id');
     $guardian = App\Models\Guardian::pluck('id');
     return [
-        'date' => $faker->
-        dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
+        'date' => $faker->dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
         'type' => generateDay(),
         'registered_on' => $faker->dateTime($max = 'now'),
         'pickup_time' => $faker->time($format = 'H:i', $max = 'now'),
-        'other_details' => $faker->date(),
+        'in' => $faker->boolean($chanceOfGettingTrue = 80),
+        'out' => $faker->boolean($chanceOfGettingTrue = 10),
+        'time_in' => $faker->dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
+        'time_out' => $faker->dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
         'go_home_alone' => $faker->boolean($chanceOfGettingTrue = 5),
         'no_show' => $faker->boolean($chanceOfGettingTrue = 0),
         'organization_id' => rand(1, (count($organizations) - 1)),

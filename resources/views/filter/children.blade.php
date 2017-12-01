@@ -1,7 +1,12 @@
-<div class="row align-items-center" id="tesdt">
-    <div class="list-group">
-     @foreach($test as $child)
-        <li class="list-group-item">{{$child->id}} {{$child->name}}</li>
-     @endforeach
-    </div>
+<div class="filter-results">
+    @foreach($children as $child)
+        <div class="filter-results-item">
+            <span class="child-name">{{$child->id}} {{$child->name}}</span>
+            <span class="child-care">
+                @if($child->potty_trained == false)
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                @endif
+            </span>
+        </div>
+    @endforeach
 </div>

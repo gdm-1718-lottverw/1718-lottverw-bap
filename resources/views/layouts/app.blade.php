@@ -33,17 +33,17 @@
              $('.item input').change(() => {        
                 val = this.checked; 
                 var data = [];
+                var date = $('input[name=date]').val();
                 $('.item input:checked').each(function(index) {
                    data.push($(this).val());
                 });
                 $.ajax({
                     method: "POST",
                     url: "filter",
-                    data: {'data': data, '_token': $('input[name=_token]').val()},
+                    data: {'data': data, 'date': date, '_token': $('input[name=_token]').val()},
                     })
                     .done(function( msg ) {
-                        console.log(msg);
-                        $('.filter-results-item').replaceWith(msg);
+                        $('.filter-results').replaceWith(msg);
                     });
                 });
         });
