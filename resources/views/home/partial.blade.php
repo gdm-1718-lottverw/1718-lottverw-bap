@@ -1,5 +1,3 @@
-@extends('layouts.app')
-@section('content')
 
 <section class="home">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -59,5 +57,3 @@
 
  
 </section>
-     
-@endsection('content')

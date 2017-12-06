@@ -7,8 +7,11 @@
 @import "variables";
 // helpers 
 @import "/helpers/flex";
+@import "/helpers/mixin";
+
 // components
 @import "/components/globals";
+@import "/components/home";
 
 // Bootstrap
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap";

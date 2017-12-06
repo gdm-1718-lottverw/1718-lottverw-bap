@@ -1,3 +1,6 @@
+* {
+    @include box-sizing;
+}
 body {
     margin: 0;
     padding: 0;
@@ -42,6 +45,7 @@ body {
                 flex: 1 1 auto;
                 padding: 22px 15px 30px 15px;
                 overflow: scroll;
+                min-width: 150px;                
                 .part {
                     .sub-title {
                         font-size: 15px;
@@ -62,13 +66,18 @@ body {
                     background: #ffe06e;
                     .item {
                         padding: 20px;
+                        label{
+                            font-size: 0.7em;
+                        }
                     }
                     .date {
+                        margin: -20px !important;
                         font-size: 17px;
                         font-family: Roboto;
                         outline: none;
                         background: #3ca1d0;
                         border: none;
+                        height: 60px;
                         font-weight: 900;
                         text-align: right;
                         border-right: 1px solid #3f3f3f;
