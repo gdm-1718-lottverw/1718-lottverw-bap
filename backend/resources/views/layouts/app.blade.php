@@ -29,25 +29,58 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="/js/app.js"></script>
         <script>
-        $(document).ready(function(){
-             $('.item input').change(() => {        
-                val = this.checked; 
-                var data = [];
-                var date = $('input[name=date]').val();
-                $('.item input:checked').each(function(index) {
-                   data.push($(this).val());
-                });
+
+
+        $(document).ready(function(){ 
+            /* HOME */
+            $('.fa-sign-in').click((e) => {
+                console.log(e.target.id);
                 $.ajax({
                     method: "POST",
-                    url: "filter",
-                    data: {'data': data, 'date': date, '_token': $('input[name=_token]').val()},
-                    })
+                    url: "/sign-in",
+                    data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
+                })
+                .done(function( msg ) {
+                   $('.home').replaceWith(msg);
+                });
+            });
+
+            $('.fa-sign-out').click((e) => {
+                console.log(e.target.id);
+                $.ajax({
+                    method: "POST",
+                    url: "/sign-out",
+                    data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
+                })
+                .done(function( msg ) {
+                   $('.home').replaceWith(msg);
+                });
+            });
+
+            /* FILTER*/
+             $('.item input').change(() => {        
+                var data = [{}];
+                var date = $('input[name=date]').val();
+                
+                $('.item input:checked').each(function(index) {
+                    var name = $(this)[0]['name'];
+                    var value = $(this).val();
+        
+                    var O = {
+                        [name]: [value]
+                    }
+
+                });
+                    $.ajax({
+                        method: "POST",
+                        url: "filter",
+                        data: {'data': data, 'date': date, '_token': $('input[name=_token]').val()},
+                        })
                     .done(function( msg ) {
                         $('.filter-results').replaceWith(msg);
                     });
                 });
         });
-
         </script>
     </body>
 </html>
