@@ -1,19 +1,11 @@
 .home {
     #to-come, #in, #out {
-        padding: 25px;
         .child-card {
-            border: 1px solid black;
             height: 150px;
-            width: calc((100% / 3) - 30px);
-            margin: 15px;
             .btn {
                 height: 100%;
                 i, .padded {
-                    width: 90px;
-                    height: 60px;
                     text-align: center;
-                    padding: 12px 0;
-                    font-size: 29px;
                     color: white;
                     &.fa-sign-in{
                         background: lightseagreen;
@@ -27,12 +19,10 @@
                 }
             }
             .child-info {
-                padding: 15px 25px;
                 width: 100%;
                 .name {
-                    font-size: 17px;
-                    font-weight: 700;
-                    border-bottom: 1px solid black;
+                    font-size: 0.9rem;
+                    font-weight: 600;
                     width: 100%;
                 }
             }
@@ -41,32 +31,126 @@
 }
 
 @include breakpoint(xs){
-    .home{
+    #to-come, #in, #out {
         background: red;
+        padding: 0;
+        .child-card {
+            border: 1px solid lightgray;
+            height: 150px;
+            width: calc((100% / 3) - 30px);
+            margin: 15px;
+            i, .padded {
+                width: 70px;
+                height: 70px;
+                padding: 11px 0;
+                font-size: 27px;
+            }
+        }
     }
 }
 @include breakpoint(sm){
-    .home{
-        background: blue;
+    #to-come, #in, #out {
+        background: orange;
+        padding: 0;
+        .child-card {
+            border: 1px solid lightgray;
+            height: 150px;
+            width: calc((100% / 2) - 30px);
+            margin: 15px;
+            .btn {
+                i, .padded {
+                    width: 70px;
+                    height: 70px;
+                    padding: 11px 0;
+                    font-size: 27px;
+                }
+            }
+            .child-info {
+                padding: 10px;
+                .name {
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
 }
 @include breakpoint(md){
-    .home{
-        background: orange;
+    #to-come, #in, #out {
+        padding: 5px;
+        background: whitesmoke;
+        .child-card {
+            border: 1px solid lightgray;
+            height: 150px;
+            width: calc((100% / 3) - 14px);
+            margin: 7px;
+            i, .padded {
+                width: 70px;
+                height: 70px;
+                padding: 11px 0;
+                font-size: 27px;
+            }
+        }
     }
 }
 @include breakpoint(lg){
-    .home{
-        background: yellow;
+    #to-come, #in, #out {
+        padding: 0;
+        background: green;
+        .child-card {
+            border: 1px solid lightgray;
+            height: 150px;
+            width: calc((100% / 4) - 30px);
+            margin: 15px;
+            i, .padded {
+                width: 90px;
+                height: 60px;
+                padding: 12px 0;
+                font-size: 29px;
+            }
+        }
     }
 }
 @include breakpoint(xl){
-    .home{
-        background: green;
+    #to-come, #in, #out {
+        padding: 0;
+        background: lightcoral;
+        .child-card {
+            border: 1px solid lightgray;
+            height: 150px;
+            width: calc((100% / 5) - 30px);
+            margin: 15px;
+            i, .padded {
+                width: 90px;
+                height: 60px;
+                padding: 12px 0;
+                font-size: 29px;
+            }
+        }
     }
 }
 @include breakpoint(xxl){
-    .home{
-        background: lightgray;
+    #to-come, #in, #out {
+        padding: 25px;
+        background: white;
+        .child-card {
+            border: 1px solid lightgray;
+            height: 130px;
+            width: calc((100% / 6) - 10px);
+            margin: 5px;
+            .btn {
+                i, .padded {
+                    width: 60px;
+                    height: 60px;
+                    padding: 12px 0;
+                    font-size: 25px;
+                }
+            }
+            .child-info {
+                padding: 10px;
+                .name {
+
+                }
+            }
+        }
     }
 }
