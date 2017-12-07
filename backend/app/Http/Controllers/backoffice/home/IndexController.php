@@ -57,16 +57,6 @@ class IndexController extends Controller
         $child->time_in = date("Y-m-d H:i:s");
         $child->save();
         
-        $toCome = DB::table('children')
-        ->join('planned_attendances', function ($join) {
-            $join->on('children.id', '=', 'planned_attendances.child_id')
-                ->where([
-                        ['planned_attendances.date', '=', date("Y-m-d")],
-                        ['planned_attendances.organization_id', '=', 1],
-                        ['planned_attendances.in', '=', false],
-                        ['planned_attendances.out', '=', false]
-                    ]);
-        })->get();
         $in = DB::table('children')
         ->join('planned_attendances', function ($join) {
             $join->on('children.id', '=', 'planned_attendances.child_id')
@@ -77,18 +67,8 @@ class IndexController extends Controller
                         ['planned_attendances.out', '=', false]
                     ]);
         })->get();
-        $out = DB::table('children')
-        ->join('planned_attendances', function ($join) {
-            $join->on('children.id', '=', 'planned_attendances.child_id')
-                ->where([
-                        ['planned_attendances.date', '=', date("Y-m-d")],
-                        ['planned_attendances.organization_id', '=', 1],
-                        ['planned_attendances.in', '=', true],
-                        ['planned_attendances.out', '=', true]
-                    ]);
-        })->get();
+        return view('home.partials.in', compact('in'));
 
-        return view('home.partial', compact(['toCome', 'in', 'out']));
     }    
 
     public function signOut(request $request){
@@ -133,7 +113,6 @@ class IndexController extends Controller
                     ]);
         })->get();
 
-        return view('home.partial', compact(['toCome', 'in', 'out']));
     }    
 }
 

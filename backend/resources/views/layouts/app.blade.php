@@ -34,6 +34,7 @@
         $(document).ready(function(){ 
             /* HOME */
             $('.fa-sign-in').click((e) => {
+                
                 console.log(e.target.id);
                 $.ajax({
                     method: "POST",
@@ -41,7 +42,11 @@
                     data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
                 })
                 .done(function( msg ) {
-                   $('.home').replaceWith(msg);
+                 //  WERKT! $('#home').load(location.href + ' ');
+                   $('div#in').fadeOut();
+                    $('div#in').load(location.href + " #in", function() {
+                        $('div#in').fadeIn();
+                    });
                 });
             });
 
@@ -53,9 +58,11 @@
                     data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
                 })
                 .done(function( msg ) {
-                   $('.home').replaceWith(msg);
+                   $('#home').load(location.href + ' .home');
                 });
             });
+
+
 
             /* FILTER*/
              $('.item input').change(() => {        

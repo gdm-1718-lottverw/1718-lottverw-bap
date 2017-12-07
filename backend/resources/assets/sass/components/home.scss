@@ -37,5 +37,9 @@
                 }
             }
         }
+        .child-card:nth-child(3n + 1) {
+            clear: left;
+            background: blue;   
+        }
     }
 }

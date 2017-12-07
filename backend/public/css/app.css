@@ -3342,16 +3342,23 @@ body section.filter .filter-group-content .filter-topbar .date {
 .home #to-come .child-card .child-info,
 .home #in .child-card .child-info,
 .home #out .child-card .child-info {
-  padding: 15px;
+  padding: 15px 25px;
   width: 100%;
 }
 
 .home #to-come .child-card .child-info .name,
 .home #in .child-card .child-info .name,
 .home #out .child-card .child-info .name {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   border-bottom: 1px solid black;
   width: 100%;
+}
+
+.home #to-come .child-card:nth-child(3n + 1),
+.home #in .child-card:nth-child(3n + 1),
+.home #out .child-card:nth-child(3n + 1) {
+  clear: left;
+  background: blue;
 }
 
