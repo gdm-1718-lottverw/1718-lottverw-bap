@@ -22,6 +22,6 @@
         @media screen and (min-width: 70em){ @content; }
     }
     @else if $point == xxl {
-        @media screen and (min-width: 80em){ @content; }
+        @media screen and (min-width: 84em){ @content; }
     }
 }

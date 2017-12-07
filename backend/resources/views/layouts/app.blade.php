@@ -32,36 +32,33 @@
 
 
         $(document).ready(function(){ 
-            /* HOME */
-            $('.fa-sign-in').click((e) => {
-                
-                console.log(e.target.id);
-                $.ajax({
+            $('#container-future').on('click', '.fa-sign-in', (e) => {
+                 $.ajax({
                     method: "POST",
                     url: "/sign-in",
                     data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
                 })
                 .done(function( msg ) {
-                 //  WERKT! $('#home').load(location.href + ' ');
-                   $('div#in').fadeOut();
-                    $('div#in').load(location.href + " #in", function() {
-                        $('div#in').fadeIn();
+                    $('div#container-future').load(location.href + " #to-come", function() {
                     });
-                });
-            });
-
-            $('.fa-sign-out').click((e) => {
-                console.log(e.target.id);
+                     $('div#container-in').load(location.href + " #in", function() {
+                    });
+                })
+            })
+            $('#container-in').on('click', '.fa-sign-out', (e) => {
                 $.ajax({
                     method: "POST",
                     url: "/sign-out",
                     data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
                 })
                 .done(function( msg ) {
-                   $('#home').load(location.href + ' .home');
+                  $('div#container-in').load(location.href + " #in", function() {
+
+                    });
+                     $('div#container-out').load(location.href + " #out", function() {
+                    });
                 });
             });
-
 
 
             /* FILTER*/
