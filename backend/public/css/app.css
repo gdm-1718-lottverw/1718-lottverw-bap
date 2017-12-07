@@ -3288,8 +3288,8 @@ body section.filter .filter-group-content .filter-topbar .date {
 .home #out .child-card {
   border: 1px solid black;
   height: 150px;
-  width: 400px;
-  margin-right: 30px;
+  width: calc((100% / 3) - 30px);
+  margin: 15px;
 }
 
 .home #to-come .child-card .btn,
@@ -3355,10 +3355,39 @@ body section.filter .filter-group-content .filter-topbar .date {
   width: 100%;
 }
 
-.home #to-come .child-card:nth-child(3n + 1),
-.home #in .child-card:nth-child(3n + 1),
-.home #out .child-card:nth-child(3n + 1) {
-  clear: left;
-  background: blue;
+@media screen and (max-width: 37.5em) {
+  .home {
+    background: red;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .home {
+    background: blue;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .home {
+    background: orange;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .home {
+    background: yellow;
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .home {
+    background: green;
+  }
+}
+
+@media screen and (min-width: 80em) {
+  .home {
+    background: lightgray;
+  }
 }
 

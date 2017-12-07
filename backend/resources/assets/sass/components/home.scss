@@ -4,8 +4,8 @@
         .child-card {
             border: 1px solid black;
             height: 150px;
-            width: 400px;
-            margin-right: 30px;
+            width: calc((100% / 3) - 30px);
+            margin: 15px;
             .btn {
                 height: 100%;
                 i, .padded {
@@ -37,9 +37,36 @@
                 }
             }
         }
-        .child-card:nth-child(3n + 1) {
-            clear: left;
-            background: blue;   
-        }
+    }
+}
+
+@include breakpoint(xs){
+    .home{
+        background: red;
+    }
+}
+@include breakpoint(sm){
+    .home{
+        background: blue;
+    }
+}
+@include breakpoint(md){
+    .home{
+        background: orange;
+    }
+}
+@include breakpoint(lg){
+    .home{
+        background: yellow;
+    }
+}
+@include breakpoint(xl){
+    .home{
+        background: green;
+    }
+}
+@include breakpoint(xxl){
+    .home{
+        background: lightgray;
     }
 }
