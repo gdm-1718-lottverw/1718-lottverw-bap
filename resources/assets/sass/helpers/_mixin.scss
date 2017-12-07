@@ -4,3 +4,24 @@
         -ms-box-sizing: border-box;
             box-sizing: border-box;
 }
+
+@mixin breakpoint($point){
+    @if $point == xs {
+        @media screen and (max-width: 37.5em){ @content; }
+    }
+    @else if $point == sm {
+        @media screen and (min-width: 37.5em){ @content; }
+    }
+    @else if $point == md {
+        @media screen and (min-width: 50em){ @content; }
+    }
+    @else if $point == lg {
+        @media screen and (min-width: 64em){ @content; }
+    }
+    @else if $point == xl {
+        @media screen and (min-width: 70em){ @content; }
+    }
+    @else if $point == xxl {
+        @media screen and (min-width: 80em){ @content; }
+    }
+}
