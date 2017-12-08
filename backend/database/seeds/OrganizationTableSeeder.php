@@ -12,7 +12,7 @@ class OrganizationTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Organization::class, 100)->create()->each(function ($organization) {
+        factory(App\Models\Organization::class, 50)->create()->each(function ($organization) {
             $organization->addresses()->save(factory(App\Models\Address::class)->make());
         });
     }

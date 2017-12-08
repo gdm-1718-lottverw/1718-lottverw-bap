@@ -11,19 +11,13 @@ $factory->define(App\Models\PlannedAttendance::class, function (Faker $faker) {
     return [
         'date' => $faker->dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
         'type' => generateDay(),
-        'registered_on' => $faker->dateTime($max = 'now'),
-        'pickup_time' => $faker->time($format = 'H:i', $max = 'now'),
-        'in' => $faker->boolean($chanceOfGettingTrue = 80),
-        'out' => $faker->boolean($chanceOfGettingTrue = 10),
-        'time_in' => $faker->dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
-        'time_out' => $faker->dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
         'go_home_alone' => $faker->boolean($chanceOfGettingTrue = 5),
-        'no_show' => $faker->boolean($chanceOfGettingTrue = 0),
         'organization_id' => rand(1, (count($organizations) - 1)),
         'child_id' => rand(1, (count($children) - 1)),
-        'has_been_pickup_by' =>rand(1, (count($guardian) - 1)),
+        'parent_notes' => $faker->sentence($nbWords = 12, $variableNbWords = true)
     ];
 });
+
 
 function generateDay() {
     $m = 'moring'; $f = 'afternoon'; $d = 'full day';

@@ -11,6 +11,6 @@ class MedicalReportTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\MedicalReport::class, 40)->create();
+        factory(App\Models\MedicalReport::class, 10)->create();
     }
 }

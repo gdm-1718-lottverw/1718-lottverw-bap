@@ -18,7 +18,7 @@
             <span class="location">Mariaschool Grobbendonk</span>
             <span class="date">
                 <?php $mytime = Carbon\Carbon::now();
-                    echo $mytime->format('D, d M \'y, H:i');
+                    echo $mytime->format('d/m/y, H:i');
                 ?>
             </span>
         </div>
@@ -32,6 +32,12 @@
 
 
         $(document).ready(function(){ 
+            // CLOCK
+            setInterval(function() {
+                var d = new Date();
+                $('.date').text(d.getDate() + '/' + (d.getMonth() + 1 ) + '/' + d.getFullYear() + ', ' + d.getHours() + ":" + d.getMinutes());
+            }, 1000);
+
             $('#container-future').on('click', '.fa-sign-in', (e) => {
                  $.ajax({
                     method: "POST",

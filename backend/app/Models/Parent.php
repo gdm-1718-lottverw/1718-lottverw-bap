@@ -61,6 +61,16 @@ class Parents extends Model
     }
 
     /**
+     * Get the no show for a given parent
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function noShow()
+    {
+        return $this->hasMany('App\Models\NoShow');
+    }
+
+    /**
      * Get the fines for a given parent
      * 
      * @return Illuminate\Database\Eloquent\Relations\HasMany

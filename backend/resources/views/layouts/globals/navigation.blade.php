@@ -5,7 +5,7 @@
      <a href="/filter">
         <i class="fa fa-search" aria-hidden="true"></i>
     </a>
-     <a href="/history">
+     <a href="/log">
         <i class="fa fa-history" aria-hidden="true"></i>
     </a>
      <a href="/list">

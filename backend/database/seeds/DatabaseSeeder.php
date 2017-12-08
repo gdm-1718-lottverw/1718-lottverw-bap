@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
             DoctorTableSeeder::class,
             OtherInformationTableSeeder::class,
             PlannedAttendanceTableSeeder::class,
+            ActionTableSeeder::class,
+            LogTableSeeder::class,
+            DoctorTableSeeder::class,
          ]);
     }
 }
