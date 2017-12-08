@@ -17,24 +17,17 @@ class CreatePlannedAttendancesTable extends Migration
             $table->increments('id');
             $table->date('date');
             $table->string('type');
-            $table->boolean('in');
-            $table->boolean('out');
-            $table->dateTime('time_in')->nullable(); // official registered in
-            $table->dateTime('time_out')->nullable(); // official registered out
-            $table->dateTime('registered_on'); // reserved
-            $table->unsignedInteger('has_been_pickup_by')->nullable(); 
-            $table->time('pickup_time'); // billable time can be modified
-            $table->boolean('no_show');
-            $table->boolean('go_home_alone');
             $table->unsignedInteger('organization_id');
             $table->unsignedInteger('child_id');
+            $table->boolean('go_home_alone');
+            $table->text('parent_notes')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::table('planned_attendances', function (Blueprint $table) {
             $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('child_id')->references('id')->on('children');
-            $table->foreign('has_been_pickup_by')->references('id')->on('guardians');
         });
     }
 

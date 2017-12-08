@@ -10,7 +10,10 @@
 @import "/helpers/mixin";
 
 // components
-@import "/components/globals";
-@import "/components/home";
-@import "/components/filter";
+@import "/components/navigation";
+
+//pages
+@import "/pages/home";
+@import "/pages/filter";
+@import "/pages/history";
 //@import "/components/home";

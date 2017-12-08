@@ -12,6 +12,6 @@ class ActivityTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Activity::class, 100)->create();
+        factory(App\Models\Activity::class, 50)->create();
     }
 }

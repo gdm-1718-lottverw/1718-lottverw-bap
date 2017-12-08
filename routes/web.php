@@ -11,8 +11,6 @@
 |
 */
 
-//Route::get('/filter/test', 'Backoffice\FilterController@test');
-//Route::post('/filter/test', 'Backoffice\FilterController@create');
 Route::get('/', 'Backoffice\Home\IndexController@index');
 Route::post('/sign-in', 'Backoffice\Home\IndexController@signIn');
 Route::post('/sign-out', 'Backoffice\Home\IndexController@signOut');
@@ -20,3 +18,5 @@ Route::post('/edit-timestamps', 'Backoffice\Home\IndexController@editTimestamps'
 
 Route::get('/filter', 'Backoffice\FilterController@index');
 Route::post('/filter', 'Backoffice\FilterController@create');
+
+Route::get('/log', 'Backoffice\Log\IndexController@index');

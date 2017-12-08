@@ -11,6 +11,6 @@ class OtherInformationTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\OtherInformation::class, 400)->create();
+        factory(App\Models\OtherInformation::class, 25)->create();
     }
 }

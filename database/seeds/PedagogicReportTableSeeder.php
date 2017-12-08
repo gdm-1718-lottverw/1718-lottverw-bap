@@ -11,6 +11,6 @@ class PedagogicReportTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\PedagogicReport::class, 70)->create();
+        factory(App\Models\PedagogicReport::class, 15)->create();
     }
 }

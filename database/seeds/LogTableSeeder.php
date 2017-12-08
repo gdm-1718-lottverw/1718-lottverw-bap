@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ParentTableSeeder extends Seeder
+class LogTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ParentTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Parents::class, 100)->create();
+        factory(App\Models\Log::class, 100)->create();
     }
 }
