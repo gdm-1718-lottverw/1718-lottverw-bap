@@ -1,97 +1,104 @@
 * {
     @include box-sizing;
+    font-family: $main-font;
 }
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box !important;
-    font-family: Roboto, "Helvetica", "Arial";
     .header {
         padding: 10px 15px;
+        height: 35px;
         font-size: 12px;
         font-family: Roboto;
         display: flex;
-        background: #3F3F3F;
-        color: #efefef;
+        background: $darkgray;
+        color: $white;
         flex-direction: row;
         justify-content: space-between;
     }
     .navigation {
-        background: #3F3F3F;
-        float: right;
+        z-index: 1000;
+        position: absolute;
+        background: $darkgray;
         display: flex;
-        flex-direction: column;
         align-items: flex-end;
-        height: calc(100vh - 34px);
         a {
-            color: #3097D1;
+            color: $white;
             box-sizing: border-box;
-            padding: 20px 22px;
             text-decoration: none;
-            font-size: 25px;
-            background: #dfdfdf;
+            background: $darkgray;
             width: 70px;
             text-align: center;
-            border-bottom: 1px solid white;
+            &.active{
+                background: $deeppink;
+            }
+            &:hover{
+                background: $pink;
+            }
         }
+    }      
+}
+@include breakpoint(xs){
+    .header {
+        border-bottom: 1px solid $white;
     }
-    section {
-        height: calc(100vh - 34px);
-        &.filter {
-            .filter-sidebar {
-                background: #f7f7f7;
-                -webkit-flex: 1 1 auto;
-                -ms-flex: 1 1 auto;
-                flex: 1 1 auto;
-                padding: 22px 15px 30px 15px;
-                overflow: scroll;
-                min-width: 150px;                
-                .part {
-                    .sub-title {
-                        font-size: 15px;
-                        border-bottom: 1px solid;
-                        margin: 13px 0;
-                        padding-bottom: 5px;
-                    }
-                    .item {
-                        padding: 12px 0;
-                    }
-                }
-            }
-            .filter-group-content {
-                -webkit-flex: 12 1 auto;
-                -ms-flex: 12 1 auto;
-                flex: 12 0 auto;
-                .filter-topbar {
-                    background: #ffe06e;
-                    .item {
-                        padding: 20px;
-                        label{
-                            font-size: 0.7em;
-                        }
-                    }
-                    .date {
-                        margin: -20px !important;
-                        font-size: 17px;
-                        font-family: Roboto;
-                        outline: none;
-                        background: #3ca1d0;
-                        border: none;
-                        height: 60px;
-                        font-weight: 900;
-                        text-align: right;
-                        border-right: 1px solid #3f3f3f;
-                        padding: 0 0 0 14px;
-                        color: white;
-                    }
-                }
-                .filter-results {
-                    .filter-results-item {
-                        .child-name {}
-                        .child-care {}
-                    }
-                }
-            }
+    .navigation {
+        right: 0 ;
+        left: 0 ;
+        top: 35px ;
+        flex-direction: row ;
+        height: 45px ;
+        a {
+            border: none ;
+            font-size: 20px ;
+            border-right: 1px solid $white;
+            height: 100%;
+            padding: 10px;
         }
-    }   
+    }    
+}
+
+@include breakpoint(sm){
+    .header {
+        border-bottom: 1px solid $white;
+    }
+    .navigation {
+        right: 0 ;
+        left: 0 ;
+        top: 35px ;
+        flex-direction: row ;
+        height: 45px ;
+        a {
+            border: none ;
+            font-size: 20px ;
+            border-right: 1px solid $white;
+            height: 100%;
+            padding: 10px;
+        }
+    }    
+}
+
+@include breakpoint(md){
+    .navigation {
+        right: 0;
+        top: 35px;
+        flex-direction: column;
+        height: calc(100vh - 34px);
+        left: auto;
+        a {
+            border-bottom: 1px solid $white;
+            padding: 20px 22px;
+            font-size: 25px;
+            height: 70px;
+        }
+    }    
+}
+
+@include breakpoint(xl){
+  
+}
+
+@include breakpoint(xxl){
+  
 }
