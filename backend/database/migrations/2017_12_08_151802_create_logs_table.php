@@ -19,11 +19,13 @@ class CreateLogsTable extends Migration
             $table->time('action_time');
             $table->unsignedInteger('action_id');
             $table->unsignedInteger('child_id');
+            $table->unsignedInteger('organization_id');
             $table->timestamps();
         });
 
         Schema::table('logs', function (Blueprint $table) {
             $table->foreign('action_id')->references('id')->on('actions');
+            $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('child_id')->references('id')->on('children');
         });
     }

@@ -20,6 +20,8 @@ class CreatePlannedAttendancesTable extends Migration
             $table->unsignedInteger('organization_id');
             $table->unsignedInteger('child_id');
             $table->boolean('go_home_alone');
+            $table->boolean('in');
+            $table->boolean('out');
             $table->text('parent_notes')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
