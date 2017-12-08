@@ -1,29 +1,43 @@
 .home {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
     #to-come, #in, #out {
         .child-card {
-            height: 150px;
+            height: 130px;
             .btn {
                 height: 100%;
-                i, .padded {
+                margin-right: 3px;
+                i {
+                    width: 55px;
+                    min-height: 55px;
+                    padding: 12px 0;
                     text-align: center;
-                    color: white;
+                    color: $white;
+                    font-size: 2em;
                     &.fa-sign-in{
-                        background: lightseagreen;
+                        background: $green;
                     }
                     &.fa-sign-out{
-                        background: rgba(250, 130, 130, 1);
+                        background: $pink;
                     }
                     &.fa-pencil {
-                        background: rgba(180, 180, 180, 1);
+                        background: $darkgray;
                     }
                 }
             }
             .child-info {
                 width: 100%;
+                background: $lightgray;
                 .name {
-                    font-size: 0.9rem;
-                    font-weight: 600;
+                    font-size: 0.8em;
+                    font-weight: $medium;
                     width: 100%;
+                }
+                .description {
+                    font-size: 0.6em;
+                    font-weight: $thin;
+                    margin: 4px 0;
                 }
             }
         }
@@ -31,125 +45,91 @@
 }
 
 @include breakpoint(xs){
+    .home {
+        top: 90px;
+        overflow: visible ;
+        width: 100% ;
+    }
     #to-come, #in, #out {
-        background: red;
-        padding: 0;
+        padding: 10px ;
         .child-card {
-            border: 1px solid lightgray;
-            height: 150px;
-            width: calc((100% / 3) - 30px);
-            margin: 15px;
-            i, .padded {
-                width: 70px;
-                height: 70px;
-                padding: 11px 0;
-                font-size: 27px;
+            width: calc(100% - 10px) ;
+            margin: 5px 0 ;
+            .child-info{
+                padding: 5px;
             }
         }
     }
 }
 @include breakpoint(sm){
+    .home {
+        top: 90px;
+        overflow: visible;
+        width: 100% ;
+    }
     #to-come, #in, #out {
-        background: orange;
-        padding: 0;
+        padding: 5px;
         .child-card {
-            border: 1px solid lightgray;
-            height: 150px;
-            width: calc((100% / 2) - 30px);
-            margin: 15px;
-            .btn {
-                i, .padded {
-                    width: 70px;
-                    height: 70px;
-                    padding: 11px 0;
-                    font-size: 27px;
-                }
-            }
+            width: calc((100% / 2) - 6px);
+            margin: 3px;
             .child-info {
                 padding: 10px;
-                .name {
-                    text-transform: uppercase;
-                }
             }
         }
     }
 }
 @include breakpoint(md){
+    .home {
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
+    }
     #to-come, #in, #out {
         padding: 5px;
-        background: whitesmoke;
         .child-card {
-            border: 1px solid lightgray;
-            height: 150px;
             width: calc((100% / 3) - 14px);
             margin: 7px;
-            i, .padded {
-                width: 70px;
-                height: 70px;
-                padding: 11px 0;
-                font-size: 27px;
-            }
         }
     }
 }
 @include breakpoint(lg){
     #to-come, #in, #out {
-        padding: 0;
-        background: green;
+        padding: 5px;
         .child-card {
-            border: 1px solid lightgray;
-            height: 150px;
-            width: calc((100% / 4) - 30px);
-            margin: 15px;
-            i, .padded {
-                width: 90px;
-                height: 60px;
-                padding: 12px 0;
-                font-size: 29px;
-            }
+            width: calc((100% / 3) - 12px);
+            margin: 6px;
         }
     }
 }
 @include breakpoint(xl){
     #to-come, #in, #out {
-        padding: 0;
-        background: lightcoral;
+        padding: 5px;
         .child-card {
-            border: 1px solid lightgray;
-            height: 150px;
-            width: calc((100% / 5) - 30px);
-            margin: 15px;
-            i, .padded {
-                width: 90px;
-                height: 60px;
-                padding: 12px 0;
-                font-size: 29px;
-            }
+            width: calc((100% / 4) - 6px);
+            margin: 3px;
         }
     }
 }
 @include breakpoint(xxl){
     #to-come, #in, #out {
         padding: 25px;
-        background: white;
         .child-card {
-            border: 1px solid lightgray;
-            height: 130px;
-            width: calc((100% / 6) - 10px);
+            width: calc((100% / 5) - 10px);
             margin: 5px;
             .btn {
-                i, .padded {
-                    width: 60px;
-                    height: 60px;
-                    padding: 12px 0;
-                    font-size: 25px;
+                height: 100%;
+                margin-right: 1px;
+                i {
+                    width: 35px !important;
+                    min-height: 35px !important;
+                    padding: 10px 0 !important;
+                    font-size: 1.3em !important;;
                 }
             }
             .child-info {
                 padding: 10px;
-                .name {
-
-                }
             }
         }
     }

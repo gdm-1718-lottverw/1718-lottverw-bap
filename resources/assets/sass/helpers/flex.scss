@@ -20,6 +20,11 @@
       -ms-flex-pack: center;
       justify-content: center;
     }
+    &.justified-s {
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: space-between;
+      justify-content: space-between;
+    }
     &.justified-start {
       -webkit-justify-content: flex-start;
       -ms-flex-pack: start;

@@ -1,0 +1,50 @@
+.filter {
+    .filter-sidebar {
+        background: #f7f7f7;
+        -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 22px 15px 30px 15px;
+        overflow: scroll;
+        min-width: 150px;                
+        .part {
+            .sub-title {
+                font-size: 15px;
+                border-bottom: 1px solid;
+                margin: 13px 0;
+                padding-bottom: 5px;
+            }
+            .item {
+                padding: 12px 0;
+            }
+        }
+    }
+    .filter-group-content {
+        -webkit-flex: 12 1 auto;
+        -ms-flex: 12 1 auto;
+        flex: 12 0 auto;
+        .filter-topbar {
+            background: #ffe06e;
+            .item {
+                padding: 20px;
+                label{
+                    font-size: 0.7em;
+                }
+            }
+            .date {
+                margin: -20px !important;
+                font-size: 17px;
+                font-family: Roboto;
+                outline: none;
+                background: #3ca1d0;
+                border: none;
+                height: 60px;
+                font-weight: 900;
+                text-align: right;
+                border-right: 1px solid #3f3f3f;
+                padding: 0 0 0 14px;
+                color: white;
+            }
+        }
+    }
+}
