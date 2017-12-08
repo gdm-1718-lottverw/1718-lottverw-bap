@@ -12,6 +12,8 @@ $factory->define(App\Models\PlannedAttendance::class, function (Faker $faker) {
         'date' => $faker->dateTimeBetween($startDate = '-4 months', $endDate = '+3 months', $timezone = date_default_timezone_get()),
         'type' => generateDay(),
         'go_home_alone' => $faker->boolean($chanceOfGettingTrue = 5),
+        'in' => $faker->boolean($chanceOfGettingTrue = 5),
+        'out' => $faker->boolean($chanceOfGettingTrue = 0),
         'organization_id' => rand(1, (count($organizations) - 1)),
         'child_id' => rand(1, (count($children) - 1)),
         'parent_notes' => $faker->sentence($nbWords = 12, $variableNbWords = true)

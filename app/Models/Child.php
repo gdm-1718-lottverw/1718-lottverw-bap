@@ -63,6 +63,16 @@ class Child extends Model
     }
 
     /**
+     * Get the logs associated with the child.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function logs()
+    {
+        return $this->hasMany('App\Models\Log');
+    }
+
+    /**
      * Get the addresses for a given child.
      * 
      * @return Illuminate\Database\Eloquent\Relations\hasMany

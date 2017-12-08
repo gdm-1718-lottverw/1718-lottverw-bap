@@ -7,6 +7,7 @@
     </div>
     <div class="child-info flex column">
       <span class="name">{{$i->name}}</span>
+      <p class="description">{{$i->parent_notes}}</p>
     </div>
   </div>  
   @endforeach
