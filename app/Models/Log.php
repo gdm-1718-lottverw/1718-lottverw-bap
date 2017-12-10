@@ -15,4 +15,14 @@ class Log extends Model
     {
         return $this->belongsTo('App\Models\Children');
     }
+
+    /**
+     * Get the children associated with the doctor.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function actions()
+    {
+        return $this->hasMany('App\Models\Action', 'action_id');
+    }
 }
