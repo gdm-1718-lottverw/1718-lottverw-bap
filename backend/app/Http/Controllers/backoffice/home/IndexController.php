@@ -73,6 +73,7 @@ class IndexController extends Controller
         $log->child_id = $child->child_id;
         $log->organization_id = $child->organization_id;
         $log->action_time = date('H:i:s');
+        $log->deleted_at = NULL;
         $log->action_id = 1;
         $log->save();
         

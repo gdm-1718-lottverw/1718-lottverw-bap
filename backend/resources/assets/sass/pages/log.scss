@@ -1,4 +1,59 @@
-.log
- {
+.log {
+    position: absolute;
+    z-index: 0;
+    background: white;
+    bottom: 0;
+    table {
+        background: $lightgray;
+        width: 96%;
+        padding: 20px;
+        margin: 2%;
+        tbody {
+            td {
+                height: 55px;
+                &:first-child {
+                    width: 150px !important;
+                }
+                &.action {
+                    text-align: center;
+                }
     
+            }
+        }
+    }
+}
+
+
+@include breakpoint(xs){
+    .log{
+        top: 80px;
+        overflow: visible ;
+        width: 100%;
+    }
+}
+@include breakpoint(sm){
+    .log{
+        top: 90px;
+        overflow: visible;
+        width: 100% ;
+    }
+}
+@include breakpoint(md){
+    .log{
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
+    }
+
+}
+@include breakpoint(lg){
+
+}
+@include breakpoint(xl){
+
+}
+@include breakpoint(xxl){
+  
 }

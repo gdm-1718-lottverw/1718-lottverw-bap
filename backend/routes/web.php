@@ -20,3 +20,5 @@ Route::get('/filter', 'Backoffice\FilterController@index');
 Route::post('/filter', 'Backoffice\FilterController@create');
 
 Route::get('/log', 'Backoffice\Log\IndexController@index');
+Route::post('/log/{id}/delete', 'Backoffice\Log\IndexController@delete');
+Route::post('/log/{id}/edit', 'Backoffice\Log\IndexController@update');

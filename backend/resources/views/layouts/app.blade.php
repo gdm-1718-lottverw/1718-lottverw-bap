@@ -36,7 +36,7 @@
             setInterval(function() {
                 var d = new Date();
                 $('.date').text(d.getDate() + '/' + (d.getMonth() + 1 ) + '/' + d.getFullYear() + ', ' + d.getHours() + ":" + d.getMinutes());
-            }, 1000);
+            }, 30000);
 
             $('#container-future').on('click', '.fa-sign-in', (e) => {
                  $.ajax({

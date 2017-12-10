@@ -3290,6 +3290,7 @@ body .navigation a :hover {
   }
 
   .navigation a {
+    border: none;
     border-bottom: 1px solid #FFF;
     padding: 20px 22px;
     font-size: 25px;
@@ -3564,5 +3565,57 @@ body .navigation a :hover {
   border-right: 1px solid #3f3f3f;
   padding: 0 0 0 14px;
   color: white;
+}
+
+.log {
+  position: absolute;
+  z-index: 0;
+  background: white;
+  bottom: 0;
+}
+
+.log table {
+  background: #F7F7F7;
+  width: 96%;
+  padding: 20px;
+  margin: 2%;
+}
+
+.log table tbody td {
+  height: 55px;
+}
+
+.log table tbody td :first-child {
+  width: 150px !important;
+}
+
+.log table tbody td .action {
+  text-align: center;
+}
+
+@media screen and (max-width: 37.5em) {
+  .log {
+    top: 80px;
+    overflow: visible;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .log {
+    top: 90px;
+    overflow: visible;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .log {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
+  }
 }
 
