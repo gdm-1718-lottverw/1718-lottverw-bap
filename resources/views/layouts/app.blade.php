@@ -13,6 +13,7 @@
         <link href="/css/app.css" rel="stylesheet" type="text/css">
 
     </head>
+    
     <body>
         <div class="header">
             <span class="location">Mariaschool Grobbendonk</span>
@@ -37,7 +38,13 @@
                 var d = new Date();
                 $('.date').text(d.getDate() + '/' + (d.getMonth() + 1 ) + '/' + d.getFullYear() + ', ' + d.getHours() + ":" + d.getMinutes());
             }, 30000);
-
+            // LOGPAGE CHANGE EDIT FIELD
+            $('tbody').on('click', '.fa-pencil', (e) => {
+                var id = e.currentTarget.id;
+                $('.' + id).removeClass('hide');
+                e.target.parentElement.classList.add('hide');
+            })
+            // SIGN KID IN
             $('#container-future').on('click', '.fa-sign-in', (e) => {
                  $.ajax({
                     method: "POST",

@@ -9,14 +9,19 @@
         @else 
           @foreach($log as $l) 
           <tr> 
-            <td class="ua">{{ Carbon\Carbon::parse($l->updated_at)->format('d-m-\'y H:i:s') }}</td>
+           
+            <td class="ua">{{ Carbon\Carbon::parse($l->updated_at)->format('D d, H:i') }}</td>
             <td>{{$l->name}}</td>
             <td>{{$l->action}}</td>
             <td>{{ Carbon\Carbon::parse($l->time)->format('H:i') }}</td>
-            <td>
+            <td class="hide {{$l->id}}"> 
             {{ Form::open(array('url' => 'log/' . $l->id . '/edit', 'method' => 'post')) }} 
-            {{ Form::button('<i class="fa fa-pencil" aria-hidden="true"></i>', ['id' => 'edit', 'class' => 'btn', 'type' => 'submit']) }}
+            {{ Form::time('time', Carbon\Carbon::parse($l->time)->format('H:i'))}}
+            {{ Form::button('Klaar', ['class' => 'btn', 'type' => 'submit']) }}
             {{ Form::close() }}
+            </td>
+            <td>
+              <i class="fa fa-pencil" id="{{$l->id}}" aria-hidden="true"></i>
             </td>
             <td>
             {{ Form::open(array('url' => 'log/' . $l->id . '/delete', 'method' => 'post')) }} 
