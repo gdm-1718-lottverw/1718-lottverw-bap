@@ -3053,6 +3053,10 @@
   clip: auto;
 }
 
+.hide {
+  display: none;
+}
+
 /**
  *  Flex helpers. 
  **/

@@ -26,7 +26,7 @@ class IndexController extends Controller
         ])
         ->join('children', 'children.id', '=', 'logs.child_id')
         ->join('actions', 'actions.id', '=', 'logs.action_id')
-        ->orderBy('logs.created_at', 'desc')
+        ->orderBy('logs.action_time', 'desc')
         ->get(['logs.updated_at', 'logs.id as id', 'actions.name as action', 'logs.action_time as time', 'children.name']);
         
         return view('log.index', compact('log'));
@@ -84,8 +84,8 @@ class IndexController extends Controller
      */
     public function update(Request $request, $id)
     {       
-        dump($request);
         $log = Log::find($id);
+        $log->action_time = $request->time;
         $log->save();
         return redirect()->action('Backoffice\Log\IndexController@index');
     }
