@@ -44,6 +44,12 @@
                 $('.' + id).removeClass('hide');
                 e.target.parentElement.classList.add('hide');
             })
+             $('tbody').on('click', '.fa-times', (e) => {
+                var id = e.currentTarget.id.match(/\d+/)[0];
+                $('.' + id).addClass('hide');
+                var i = $('#' + id)[0].parentElement.classList.remove('hide');
+               
+            })
             // SIGN KID IN
             $('#container-future').on('click', '.fa-sign-in', (e) => {
                  $.ajax({

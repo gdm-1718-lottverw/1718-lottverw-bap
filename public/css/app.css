@@ -3053,10 +3053,6 @@
   clip: auto;
 }
 
-.hide {
-  display: none;
-}
-
 /**
  *  Flex helpers. 
  **/
@@ -3166,6 +3162,58 @@
   -ms-flex-pack: center;
   -webkit-box-pack: center;
           justify-content: center;
+}
+
+.hide {
+  display: none;
+}
+
+.text-align-c {
+  text-align: center;
+}
+
+.text-align-l {
+  text-align: left;
+}
+
+.text-align-r {
+  text-align: right;
+}
+
+.row-1 {
+  -ms-flex-order: 0;
+  -webkit-box-ordinal-group: 1;
+          order: 0;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+          flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.row-2 {
+  -ms-flex-order: 0;
+  -webkit-box-ordinal-group: 1;
+          order: 0;
+  -ms-flex: 2 1 auto;
+  -webkit-box-flex: 2;
+          flex: 2 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+}
+
+.row-3 {
+  -ms-flex-order: 0;
+  -webkit-box-ordinal-group: 1;
+          order: 0;
+  -ms-flex: 3 1 auto;
+  -webkit-box-flex: 3;
+          flex: 3 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
 }
 
 * {
@@ -3587,14 +3635,65 @@ body .navigation a :hover {
 
 .log table tbody td {
   height: 55px;
+  background: #F7F7F7;
+  padding: 0 15px;
 }
 
-.log table tbody td :first-child {
-  width: 150px !important;
+.log #btn-edit i {
+  border: none;
+  background: none;
+  font-size: 18px;
+  width: 35px;
+  height: 35px;
+  color: #FFF;
+  background: #44DEA3;
+  padding: 8px;
 }
 
-.log table tbody td .action {
-  text-align: center;
+.log #delete .btn {
+  border: none;
+  background: none;
+  font-size: 18px;
+  width: 35px;
+  height: 35px;
+  color: #FFF;
+  background: #E64E78;
+}
+
+.log #delete .btn:hover {
+  background: #9A3450;
+}
+
+.log #edit input {
+  font-size: 15px;
+  font-family: Helvetica;
+  background: red;
+  border: none;
+  background: none;
+  font-family: Raleway, "Roboto", "Helvetica", "Arial";
+}
+
+.log #edit .btn {
+  border: none;
+  background: none;
+  font-size: 18px;
+  -webkit-box-ordinal-group: none;
+      -ms-flex-order: none;
+          order: none;
+  background: none;
+  font-size: 18px;
+  width: 35px;
+  background: #44DEA3;
+  color: #FFF;
+  height: 35px;
+  border-radius: 50px;
+  padding: 0px;
+}
+
+.log #edit .btn.cancel {
+  margin: 0;
+  padding: 8px;
+  background: #9A3450;
 }
 
 @media screen and (max-width: 37.5em) {

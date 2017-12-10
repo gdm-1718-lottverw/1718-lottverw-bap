@@ -11,13 +11,60 @@
         tbody {
             td {
                 height: 55px;
-                &:first-child {
-                    width: 150px !important;
-                }
-                &.action {
-                    text-align: center;
-                }
-    
+                background: $lightgray;
+                padding: 0 15px;
+            }
+        }
+    }
+    #btn-edit i{
+        border: none;
+        background: none;
+        font-size: 18px; 
+        width: 35px;
+        height: 35px;
+        color: $white;
+        background: $green;
+        padding: 8px;
+    }
+    #delete {
+        .btn {
+            border: none;
+            background: none;
+            font-size: 18px; 
+            width: 35px;
+            height: 35px;
+            color: $white;
+            background: $pink;
+            &:hover {
+                background: $deeppink;
+            }
+        }
+    }
+    #edit{
+        input {
+            font-size: 15px;
+            font-family: Helvetica;
+            background: red;
+            border: none;
+            background: none;
+            font-family: $main-font;
+        }
+        .btn {
+            border: none;
+            background: none;
+            font-size: 18px;
+            order: none;
+            background: none;
+            font-size: 18px;
+            width: 35px;
+            background: $green;
+            color: $white;
+            height: 35px;
+            padding: 0px;
+            &.cancel {
+                margin: 0;
+                padding: 8px;
+                background: $deeppink;
             }
         }
     }
