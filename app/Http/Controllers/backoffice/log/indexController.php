@@ -8,6 +8,8 @@ use App\Models\Child;
 use App\Models\PlannedAttendance;
 use App\Models\Log;
 
+
+use App\Http\Controllers\Controller; 
 class IndexController extends Controller
 {
     /**

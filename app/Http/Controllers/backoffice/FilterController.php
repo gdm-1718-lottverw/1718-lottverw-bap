@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Child;
 use App\Models\Organization;
 use App\Models\PlannedAttendance;
-
+use App\Http\Controllers\Controller; 
 class FilterController extends Controller
 {
     private $date = "";

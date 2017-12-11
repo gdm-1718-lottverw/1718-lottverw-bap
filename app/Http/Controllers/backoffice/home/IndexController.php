@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backoffice\Home;
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 

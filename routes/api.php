@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/children', 'ChildController@index');
-Route::get('/child/{id}', 'ChildController@show');
+
+Route::get('/parents/{parent_id}/children/planning', 'API\Home\ChildController@index');
 
 Route::get('/parents', 'ParentController@index');
 Route::get('/parent/{id}', 'ParentController@show');
@@ -29,3 +29,5 @@ Route::get('/childAttendance/{id}', 'PlannedAttendanceController@show');
 Route::get('/planning', 'PlannedAttendanceController@index');
 
 //auth + /children
+
+

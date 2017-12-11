@@ -1,19 +1,38 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\Home;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class ChildController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        
+        $parent = 
+        DB::table('children')
+        ->join('child_parents', function($join)use($id){
+            $join->on('child_parents.child_id', '=', 'children.id')
+                ->where([
+                    ['child_parents.parent_id', '=', $id],
+                ]);
+            })
+        ->join('planned_attendances', function($join){
+            $join->on('children.id', '=', 'planned_attendances.child_id')
+                 ->where([
+                    ['planned_attendances.date', '>=', date("Y-m-d")],
+                 ]);
+        })->get(['planned_attendances.date as date', 'children.name as name', 'planned_attendances.type as type']);
+
+    
+        return $parent;
     }
 
     /**
