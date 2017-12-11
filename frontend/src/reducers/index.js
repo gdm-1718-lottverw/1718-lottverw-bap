@@ -1,8 +1,20 @@
-import { combineReducers } from 'redux';
-import { childReducer } from './childReducer';
+import { combineReducers, applyMiddleware, createStore, compose } from 'redux';
+import thunk from 'redux-thunk';
+
+
+import serviceReducer from './serviceReducer'
 
 const AppReducers = combineReducers({
-    child: childReducer
+    serviceReducer,
 });
 
-export default AppReducers;
+const rootReducer = (state, action) => {
+	return AppReducers(state,action);
+}
+
+
+
+let store = createStore(rootReducer, compose(applyMiddleware(thunk)));
+
+export default store;
+

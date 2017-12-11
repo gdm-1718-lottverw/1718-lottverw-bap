@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput, Platform, TouchableOpacity } from 'react-native';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
-import TopBar from '../components/TopBar/index';
-
-// Make shure the keyboard will not mess with the view.
-const spacer = Platform.OS == 'ios' ? <KeyboardSpacer/> : null;
+import TopBar from '../Components/TopBar/index';
 
 class Profile extends React.Component {
     render() {
@@ -14,7 +10,6 @@ class Profile extends React.Component {
                 <ScrollView>
 
                 </ScrollView>
-                {spacer}
             </View>
         )
     };

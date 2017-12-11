@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ToolbarAndroid, ScrollView } from 'react-native';
-import TopBar from '../components/TopBar/index';
-import Colors from '../config/theme';
-import { connect } from 'react-redux';
-import { fetchChild } from '../actions/childActions';
-@connect((store) => {
-    return {
-        child: store.child.child, 
-        fetched: store.child.fetched
-    }
-})
-class Home extends React.Component{    
-    componentWillMount(){
-      this.props.dispatch(fetchChild()); 
-    }
-  render(){
-      console.log(this.props.child);
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import Colors from '../Config/theme';
+import TopBar from '../Components/TopBar/index';
+import ChildCard from '../Components/Home/ChildCard/index';
+
+import ServiceAction from '../Actions/Home/serviceCallAction';
+class Home extends React.Component{  
+render(){  
       return (
-            <View style={styles.box}>
-                <TopBar title={'HOME'}/>
-                <ScrollView>
-                    <Text>{this.props.child != undefined ? this.props.child.name : 'No child'}</Text>
-                </ScrollView>
-            </View>
+        <View style={styles.box}>
+            <TopBar title={'HOME'}/>
+            <ServiceAction />
+        </View>
       )
+
   }
 }
 
@@ -34,3 +24,4 @@ const styles = StyleSheet.create({
 });
     
 export default Home;
+

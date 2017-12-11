@@ -1,39 +1,72 @@
+import React, { Component } from 'react';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import store from './src/Reducers/index';
 import { Provider } from 'react-redux';
 
-import store from './src/config/store';
-import Tabs from './src/config/router';
+import TabBarContainer from './src/Components/TabBar/Container';
 
+import Home from './src/Screens/Home';
+import Calendar from './src/Screens/Calendar';
+import History from './src/Screens/History';
+import Profile from './src/Screens/Profile';
 
-function checkStoreChange(){
-  store.subscribe(() => {
-    console.log("Store changed. ", store.getState());
-  })
-}
+import PropTypes from 'prop-types';
 
-export default class App extends React.Component {
+export default class App extends Component<{}> {
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedScreen: 'home',
+    }
+    this.screen = <Home />
+    this._switchScreen = this._switchScreen.bind(this);
+  }
+  _switchScreen(nextScreen){
+    switch(nextScreen){
+      case 'home':
+        this.screen = <Home />
+        break;
+      case 'calendar':
+        this.screen = <Calendar />
+        break;
+      case 'user':
+        this.screen = <Profile />
+        break;
+      case 'history':
+        this.screen = <History />
+        break;
+      default:
+        this.screen = <Home />
+        break;
+    }
+    this.setState({selectedScreen: nextScreen});
+  }
   render() {
-      checkStoreChange();
-      console.log('Current State: ', store.getState());
-      store.dispatch({type:'FETCH_CHILD'})
     return (
       <Provider store={store}>
-      <Tabs />
+        <View style={styles.container}>
+          {this.screen}
+          <TabBarContainer onTabChange={this._switchScreen} />
+        </View>
       </Provider>
     );
   }
 }
 
+App.propTypes = {
+  selectedScreen: PropTypes.string.isRequired,
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#F5FCFF',
   },
 });
-
-
-

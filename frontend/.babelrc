@@ -1,16 +1,4 @@
-{
-  "presets": [
-    "babel-preset-react-native-stage-0/decorator-support"
-  ],
-  "env": {
-    "development": {
-      "presets": [
-        "react-native",
-        "react-native-stage-0/decorator-support"
-      ],
-      "plugins": [
-        "transform-decorators-legacy"
-      ]
-    }
-  }
+{ 
+  "plugins": ["babel-plugin-transform-decorators-legacy"],
+  "presets": ["react-native"]
 }
