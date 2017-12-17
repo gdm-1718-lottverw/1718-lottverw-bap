@@ -9,5 +9,10 @@ const styles = StyleSheet.create({
         color: Colors.deeppink,
         borderTopColor: Colors.deeppink,
         borderTopWidth:2
-    }
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: '#F5FCFF',
+      },
 });

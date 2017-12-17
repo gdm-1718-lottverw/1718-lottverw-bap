@@ -9,7 +9,7 @@ import {
 import store from './src/Reducers/index';
 import { Provider } from 'react-redux';
 
-import TabBarContainer from './src/Components/TabBar/Container';
+import TabBarContainer from './src/Components/TabBar/index';
 
 import Home from './src/Screens/Home';
 import Calendar from './src/Screens/Calendar';
@@ -67,6 +67,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF'
   },
 });

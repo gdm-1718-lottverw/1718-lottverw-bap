@@ -4,7 +4,7 @@ import Colors from '../Config/theme';
 import TopBar from '../Components/TopBar/index';
 import ChildCard from '../Components/Home/ChildCard/index';
 
-import ServiceAction from '../Actions/Home/serviceCallAction';
+import ServiceAction from '../Actions/Home/ChildCallAction';
 class Home extends React.Component{  
 render(){  
       return (

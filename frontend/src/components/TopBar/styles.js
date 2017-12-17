@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flexDirection: 'row',
         flex: 1,
-        backgroundColor: Colors.darkBlue,
+        backgroundColor: Colors.darkgrey,
         maxHeight: 35,
     },
     text: {

@@ -14,7 +14,7 @@ const ServiceReducer = (state = { isLoading: false, error: undefined, data: {} }
         case Actions.SERVICE_SUCCESS:
             return Object.assign({}, state, {
                 isLoading: false,
-                data: action.data
+                data: action.data,
             }); 
         default:
             return state;
