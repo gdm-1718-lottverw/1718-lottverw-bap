@@ -5,7 +5,7 @@ import Colors from './theme';
 import Icon  from 'react-native-vector-icons/FontAwesome';
 import { View } from 'react-native';
 import Home from '../Screens/Home';
-import Calendar from '../Screens/Calendar';
+import CalendarScreen from '../Screens/Calendar';
 import History from '../Screens/History';
 import Profile from '../Screens/Profile';
 import QuickAdd from '../Screens/QuickAdd';
@@ -49,7 +49,7 @@ const reducerCreate = params => {
                 tabBarLabel=" "
                 icon={TabIcon}
                 key="calendar"
-                component={Calendar}
+                component={CalendarScreen}
             />
         <Scene
                 key="history"
