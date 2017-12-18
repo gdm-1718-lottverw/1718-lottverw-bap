@@ -10,10 +10,20 @@ import History from '../Screens/History';
 import Profile from '../Screens/Profile';
 import QuickAdd from '../Screens/QuickAdd';
 import TabIcon from '../Components/TabIcon';
-
-export const navigator = Actions.create(
-  <Scene key="root"
-    tabBarPosition={'bottom'}>
+const reducerCreate = params => {
+    const defaultReducer = new Reducer(params);
+    return (state, action) => {
+      console.log('ACTION:', action);
+      return defaultReducer(state, action);
+    };
+  };
+  
+  const navigator = () => (
+    <Router
+    createReducer={reducerCreate}
+    >
+    <Scene key="root"
+        tabBarPosition='bottom'>
     <Scene 
         key="tabbar"
         tabs={true}
@@ -23,37 +33,41 @@ export const navigator = Actions.create(
         labelStyle={{display: 'none'}}
         activeTintColor={Colors.white}
         tabBarStyle={{ backgroundColor: Colors.white }}>
-        <Scene icon={TabIcon} tabBarLabel=" " iconName="home" key="actions" navTransparent={true}>
+        <Scene icon={TabIcon} tabBarLabel=" " iconName="home" key="actions">
             <Scene
                 initial={true}
                 key="home"
-                component={Home}
-            />
-            <Scene
-                key="quickAdd"
-                component={QuickAdd}
-            />
+                    component={Home}
+                />
+                <Scene
+                    key="quickAdd"
+                    component={QuickAdd}  
+                />
         </Scene>
         <Scene
-            iconName="calendar"
-            tabBarLabel=" "
-            icon={TabIcon}
-            key="calendar"
-            component={Calendar}
-        />
+                iconName="calendar"
+                tabBarLabel=" "
+                icon={TabIcon}
+                key="calendar"
+                component={Calendar}
+            />
         <Scene
-            key="history"
-            tabBarLabel=" "
-            iconName="history"
-            icon={TabIcon}
-            component={History}
-        />
+                key="history"
+                tabBarLabel=" "
+                iconName="history"
+                icon={TabIcon}
+                component={History}
+            />
         <Scene
-            key="profile"
-            iconName="user"
-            icon={TabIcon}
-            tabBarLabel=" "
-            component={Profile}
-        />
-  </Scene>
-</Scene>);
+                key="profile"
+                iconName="user"
+                icon={TabIcon}
+                tabBarLabel=" "
+                component={Profile}
+            />
+       </Scene>
+        </Scene>
+    </Router>
+  );
+  export default navigator;
+  

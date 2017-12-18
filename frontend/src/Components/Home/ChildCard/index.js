@@ -4,10 +4,8 @@ import moment from 'moment';
 import 'moment/locale/nl-be';
 import {connect }from 'react-redux';
 import styles from './styles'
+import { Actions } from 'react-native-router-flux';
 import Icon  from 'react-native-vector-icons/FontAwesome';
-import BottomRight from '../../Button/bottomRight';
-
-
 class ChildCard extends Component {
   constructor(props) {
     super(props);

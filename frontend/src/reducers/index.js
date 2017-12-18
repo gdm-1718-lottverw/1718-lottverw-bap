@@ -2,12 +2,12 @@ import { combineReducers, applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-import routeReducer from './routes';
+import sceneReducer from './routes';
 import serviceReducer from './serviceReducer'
 
 const AppReducers = combineReducers({
     serviceReducer,
-    routeReducer
+   // sceneReducer
 });
 
 const rootReducer = (state, action) => {

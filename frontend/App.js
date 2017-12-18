@@ -10,12 +10,11 @@ import store from './src/Reducers/index';
 import { Provider, connect } from 'react-redux';
 
 import {Scene, Actions, Router} from 'react-native-router-flux';
-import { navigator } from './src/Config/router';
+import navigator from './src/Config/router';
 
 import PropTypes from 'prop-types';
 
 const ReduxRouter = connect()(Router);
-const AppReducers = require('./src/Reducers/index').default;
 
 export default class App extends Component<{}> {
   constructor(props){

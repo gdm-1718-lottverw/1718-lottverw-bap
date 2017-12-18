@@ -10,7 +10,7 @@ export default styles = StyleSheet.create({
         height: 40,
         padding: 8,
         paddingLeft: 25,
-        fontWeight: '100'
+     //   fontWeight: '100'
     },
     lightText: {
       color: Colors.white,
@@ -41,10 +41,10 @@ export default styles = StyleSheet.create({
     },
     text: {
         fontSize: 16,
-        fontWeight: '200'
+      //  fontWeight: '200'
     },
     type: {
-      fontWeight: '700'
+     // fontWeight: '700'
     },
     actions:{
         paddingTop: 5,
