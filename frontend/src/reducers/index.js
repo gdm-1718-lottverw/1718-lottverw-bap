@@ -1,11 +1,13 @@
 import { combineReducers, applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
-
+import routeReducer from './routes';
 import serviceReducer from './serviceReducer'
 
 const AppReducers = combineReducers({
     serviceReducer,
+    routeReducer
 });
 
 const rootReducer = (state, action) => {
@@ -13,8 +15,8 @@ const rootReducer = (state, action) => {
 }
 
 
-
-let store = createStore(rootReducer, compose(applyMiddleware(thunk)));
+const logger = createLogger();
+let store = createStore(rootReducer, compose(applyMiddleware(thunk, logger)));
 
 export default store;
 

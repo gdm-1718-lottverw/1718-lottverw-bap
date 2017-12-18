@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
         width: 55,
         borderRadius: 50,
         position: 'absolute',
-        bottom: 7,
-        left: 7
+        bottom: 10,
+        right: 10
     },
     icon: {
         fontSize: 27,

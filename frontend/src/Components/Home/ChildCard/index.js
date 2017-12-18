@@ -21,7 +21,7 @@ class ChildCard extends Component {
     };
   }
     componentDidMount() {
-      this.props.callService(); //call our action
+      this.props.callService(); 
     }   
 componentWillReceiveProps(nextProps) {
       if (nextProps.data.length > 0 && nextProps.error == undefined) {
@@ -51,14 +51,15 @@ componentWillReceiveProps(nextProps) {
         <View style={styles.row}>
             <Text style={styles.date}>{moment(rowData.date).format('ddd DD.MM.YYYY')}</Text>
             <View style={styles.content}>
+              <View style={styles.actions}>
+                <Icon style={styles.edit} name="pencil"  size={20}/>
+                <Icon style={styles.trash} name="trash"  size={20}/>
+               </View>
               <View style={styles.TypeContainer}>
                 <Text style={styles.type}>{rowData.type.toUpperCase()}</Text>
                 <Text style={styles.text}>{rowData.name}</Text>
               </View>
-              <View style={styles.actions}>
-                <Icon style={styles.edit} name="pencil"  size={20}/>
-                <Icon style={styles.trash} name="trash"  size={20}/>
-              </View>
+             
             </View>
         </View>
     );
@@ -66,60 +67,38 @@ componentWillReceiveProps(nextProps) {
         return (
           <View  style={styles.container}>
           <ListView
+            style={styles.list}
             enableEmptySections={true}
             dataSource={this.state.dataSource}
             renderRow={(data) => this.renderCell(data)}
             renderSectionHeader={(sectionData) => this.SectionHeader(sectionData)}
           />
-          <BottomRight name={'plus'}/>
           </View>
         );
       }
 
       formatData(data) {
-        // We're sorting by alphabetically so we need the alphabet
-        //const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
         const months = moment.months();
-        console.log("LOG 85: months", months);
-        // Need somewhere to store our data
         const dataBlob = {};
         const sectionIds = [];
         const rowIds = [];
     
-        // Each section is going to represent a letter in the alphabet so we loop over the alphabet
         for (let sectionId = 0; sectionId < months.length; sectionId++) {
-          // Get the character we're currently looking for
           const currentChar = months[sectionId];
-          // Get users whose first name starts with the current letter
           const cards = data.filter((card) => moment(card.date).format('MMMM') === currentChar);
-    
-          // If there are any users who have a first name starting with the current letter then we'll
-          // add a new section otherwise we just skip over it
+
           if (cards.length > 0) {
-            // Add a section id to our array so the listview knows that we've got a new section
             sectionIds.push(sectionId);
-            // Store any data we would want to display in the section header. In our case we want to show
-            // the current character
             dataBlob[sectionId] = { character: currentChar };
-    
-            // Setup a new array that we can store the row ids for this section
             rowIds.push([]);
-    
-            // Loop over the valid users for this section
+  
             for (let i = 0; i < cards.length; i++) {
-              // Create a unique row id for the data blob that the listview can use for reference
               const rowId = `${sectionId}:${i}`;
-    
-              // Push the row id to the row ids array. This is what listview will reference to pull
-              // data from our data blob
               rowIds[rowIds.length - 1].push(rowId);
-    
-              // Store the data we care about for this row
               dataBlob[rowId] = cards[i];
             }
           }
         }
-        console.log(dataBlob, sectionIds, rowIds );
         return { dataBlob, sectionIds, rowIds };
       }
 }

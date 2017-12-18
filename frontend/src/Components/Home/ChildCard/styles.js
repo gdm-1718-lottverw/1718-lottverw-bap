@@ -4,7 +4,6 @@ import Colors from '../../../Config/theme';
 export default styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginBottom: 50,
     },
     header: {
         backgroundColor: Colors.deeppink,
@@ -16,6 +15,9 @@ export default styles = StyleSheet.create({
     lightText: {
       color: Colors.white,
       fontSize: 17,
+    },
+    list: {
+        
     },
     row: {
         flex: 1,
@@ -35,38 +37,41 @@ export default styles = StyleSheet.create({
     TypeContainer: {
       flex: 1,
       flexDirection: 'column',
+      padding: 5,
     },
-    content: {
-        flex: 1,
-        flexDirection: 'row',
-      },
     text: {
         fontSize: 16,
         fontWeight: '200'
     },
     type: {
-      marginTop: 7,
       fontWeight: '700'
     },
+    actions:{
+        paddingTop: 5,
+        paddingRight: 10,
+        marginRight: 10,
+    },
+    content: {
+        flex: 1,
+        flexDirection: 'row',
+    },
     edit: {
-        margin: 7,
-        borderRadius: 50,
+        marginBottom: 3,
         backgroundColor: Colors.lightBlue,
-        height: 35,
-        width: 35,
+        height: 50,
+        width: 50,
         color: Colors.white,
-        paddingTop: 7,
-        paddingLeft: 9,
+        paddingTop: 13,
+        fontSize: 22,
+        paddingLeft: 16,
     },
     trash: {
-        margin: 5,
-        marginRight: 7,
-        borderRadius: 50,
         backgroundColor: Colors.pink,
-        height: 36,
-        width: 36,
+        height: 50,
+        width: 50,
         color: Colors.white,
-        paddingTop: 8,
-        paddingLeft: 10,
+        paddingTop: 13,
+        fontSize: 22,
+        paddingLeft: 16,
     }
 });

@@ -15,7 +15,6 @@ class TabBarContainer extends React.Component {
     constructor(props){
         super(props);
         this.screen = <Home />
-        console.log(this.screen)
       }   
   render(){
       return (
@@ -23,24 +22,6 @@ class TabBarContainer extends React.Component {
         { this.screen }
         <Tabs
             onSelect ={comp => {
-                console.log(comp.props.name)
-                switch(comp.props.name){
-                    case 'home':
-                      this.screen = <Home />
-                      break;
-                    case 'calendar':
-                      this.screen = <Calendar />
-                      break;
-                    case 'user':
-                      this.screen = <Profile />
-                      break;
-                    case 'history':
-                      this.screen = <History />
-                      break;
-                    default:
-                      this.screen = <Home />
-                      break;
-                  }
                 this.props.onTabChange(comp.props.name);
             }}
             selectedStyle={styles.active}
