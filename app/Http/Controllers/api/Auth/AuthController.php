@@ -35,9 +35,7 @@ class AuthController extends Controller
                 {
                     // Check if credentials are active
                     if($user['expire_date'] > new Carbon()){
-                        $token = [
-                            'token' =>  JWTAuth::fromUser($user)
-                        ];
+                        $token = JWTAuth::fromUser($user);
                         return $token;
                     } 
                     else {
