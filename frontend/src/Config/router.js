@@ -9,6 +9,7 @@ import CalendarScreen from '../Screens/Calendar';
 import History from '../Screens/History';
 import Profile from '../Screens/Profile';
 import QuickAdd from '../Screens/QuickAdd';
+import Login from '../Screens/Login';
 import TabIcon from '../Components/TabIcon';
 const reducerCreate = params => {
     const defaultReducer = new Reducer(params);
@@ -33,6 +34,13 @@ const reducerCreate = params => {
         labelStyle={{display: 'none'}}
         activeTintColor={Colors.white}
         tabBarStyle={{ backgroundColor: Colors.white }}>
+        <Scene
+            iconName="login"
+            tabBarLabel=" "
+            icon={TabIcon}
+            key="lock"
+            component={Login}
+        />
         <Scene icon={TabIcon} tabBarLabel=" " iconName="home" key="actions">
             <Scene
                 initial={true}

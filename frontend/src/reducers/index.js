@@ -3,17 +3,18 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
 import sceneReducer from './routes';
+import authReducer from './auth';
 import serviceReducer from './serviceReducer'
 
 const AppReducers = combineReducers({
     serviceReducer,
+    authReducer
    // sceneReducer
 });
 
 const rootReducer = (state, action) => {
 	return AppReducers(state,action);
 }
-
 
 const logger = createLogger();
 let store = createStore(rootReducer, compose(applyMiddleware(thunk, logger)));
