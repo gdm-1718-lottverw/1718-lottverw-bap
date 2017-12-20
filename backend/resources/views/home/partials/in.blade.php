@@ -5,10 +5,10 @@
       <i class="fa fa-sign-out" id="{{$i->child_id}}"></i>
     <a href="/log"><i class="fa fa-pencil" id="{{$i->child_id}}"></i></a>
     </div>
-    <div class="child-info flex column">
+    <a href="/child/{{$i->child_id}}"  class="child-info flex column">
       <span class="name">{{$i->name}}</span>
       <p class="description">{{$i->parent_notes}}</p>
-    </div>
+    </a>
   </div>  
   @endforeach
 </div>

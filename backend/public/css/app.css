@@ -3216,6 +3216,14 @@
   align-self: auto;
 }
 
+.bold {
+  font-weight: 700;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -3398,6 +3406,13 @@ body .navigation a :hover {
   background: #3B4250;
 }
 
+.home #to-come .child-card a,
+.home #in .child-card a,
+.home #out .child-card a {
+  text-decoration: none;
+  color: #3B4250;
+}
+
 .home #to-come .child-card .child-info,
 .home #in .child-card .child-info,
 .home #out .child-card .child-info {
@@ -3408,6 +3423,8 @@ body .navigation a :hover {
 .home #to-come .child-card .child-info .name,
 .home #in .child-card .child-info .name,
 .home #out .child-card .child-info .name {
+  color: #3B4250;
+  text-decoration: none;
   font-size: 0.8em;
   font-weight: 600;
   width: 100%;
@@ -3416,6 +3433,8 @@ body .navigation a :hover {
 .home #to-come .child-card .child-info .description,
 .home #in .child-card .child-info .description,
 .home #out .child-card .child-info .description {
+  color: #3B4250;
+  text-decoration: none;
   font-size: 0.6em;
   font-weight: 300;
   margin: 4px 0;
@@ -3686,7 +3705,6 @@ body .navigation a :hover {
   background: #44DEA3;
   color: #FFF;
   height: 35px;
-  border-radius: 50px;
   padding: 0px;
 }
 
@@ -3719,6 +3737,180 @@ body .navigation a :hover {
     top: 35px;
     height: calc(100% - 35px);
     width: calc(100vw - 70px);
+  }
+}
+
+.child {
+  min-height: 100%;
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+}
+
+.child .close {
+  background: #E64E78;
+  border-radius: 50px;
+  height: 30px;
+  width: 50px;
+  outline: none;
+  position: absolute;
+  left: 40px;
+  top: 10px;
+  padding: 0 17px;
+}
+
+.child .close i {
+  color: #FFF;
+  font-size: 1.8em;
+}
+
+.child .grid {
+  margin: 50px 40px;
+}
+
+.child .grid .column .item {
+  padding: 20px;
+}
+
+.child .grid .column .item h1 {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 600;
+  margin: -20px;
+  margin-bottom: 20px;
+  padding: 14px;
+  background: #3B4250;
+  color: #FFF;
+}
+
+.child .grid .column .item .label {
+  margin: 10px 0 5px 0;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.child .grid .column .item p {
+  margin: 0 0 7px 0;
+}
+
+.child .grid .column .item p.separation {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #afafaf;
+}
+
+.child .grid .column .item p.alert {
+  margin: 10px;
+}
+
+@media screen and (max-width: 37.5em) {
+  .child {
+    top: 90px;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .child .grid .column {
+    width: calc((100% - 60px) / 3);
+  }
+
+  .child .grid .column .item {
+    background: #F7F7F7;
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .child {
+    top: 90px;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .child .grid .column {
+    width: calc((100% - 60px) / 3);
+  }
+
+  .child .grid .column .item {
+    background: #F7F7F7;
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .child {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
+  }
+
+  .grid .column {
+    width: calc((100% - 30px) / 3);
+  }
+
+  .grid .column .item {
+    background: #F7F7F7;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .child {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
+  }
+
+  .child .grid .column {
+    width: calc((100% - 30px) / 3);
+  }
+
+  .child .grid .column .item {
+    background: #F7F7F7;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .child {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
+  }
+
+  .child .grid .column {
+    width: calc((100% - 30px) / 3);
+  }
+
+  .child .grid .column .item {
+    background: #F7F7F7;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width: 84em) {
+  .child {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
+  }
+
+  .child .grid .column {
+    width: calc((100% - 30px) / 3);
+  }
+
+  .child .grid .column .item {
+    background: #F7F7F7;
+    margin-bottom: 15px;
   }
 }
 

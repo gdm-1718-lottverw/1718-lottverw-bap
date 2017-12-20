@@ -1,0 +1,162 @@
+.child {
+    min-height: 100%;
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    .close {
+        background: $pink;
+        border-radius: 50px;
+        height: 30px;
+        width: 50px;
+        outline: none;
+        position: absolute;
+        left: 40px;
+        top: 10px;
+        padding: 0 17px;
+        i {
+            color: $white;
+            font-size: 1.8em;
+        }
+    }   
+    .grid {
+        margin: 50px 40px;
+        .column .item {
+            padding: 20px;
+            h1 {
+                text-transform: uppercase;
+                font-size: 18px;
+                font-weight: 600;
+                margin: -20px;
+                margin-bottom: 20px;
+                padding: 14px;
+                background: $darkgray;
+                color: $white;
+            }
+            .label {
+                margin: 10px 0 5px 0;
+                font-size: 10px;
+                font-weight: 800;
+                text-transform: uppercase;
+            }
+            p {
+                margin: 0 0 7px 0;
+                &.separation {
+                    padding-bottom: 5px;
+                    margin-bottom: 10px;
+                    border-bottom: 1px solid #afafaf;
+                }
+                &.alert {
+                    margin: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+@include breakpoint(xs){
+    .child{
+        top: 90px;
+        overflow: visible ;
+        width: 100% ;
+        .grid {
+            .column {
+                width: calc((100% - 60px) / 3);
+                .item {
+                    background: $lightgray;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}
+@include breakpoint(sm){
+    .child{
+        top: 90px;
+        overflow: visible;
+        width: 100% ;
+        .grid {
+            .column {
+                width: calc((100% - 60px) / 3);
+                .item {
+                    background: $lightgray;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    } 
+}
+@include breakpoint(md){
+    .child {
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
+    }
+    .grid {
+        .column {
+            width: calc((100% - 30px) / 3);
+            .item {
+                background: $lightgray;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+
+@include breakpoint(lg){
+    .child {
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
+        .grid {
+            .column {
+                width: calc((100% - 30px) / 3);
+                .item {
+                    background: $lightgray;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+}
+
+@include breakpoint(xl){
+    .child {
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
+        .grid {
+            .column {
+                width: calc((100% - 30px) / 3);
+                .item {
+                    background: $lightgray;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+}
+@include breakpoint(xxl){
+    .child {
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
+        .grid {
+            .column {
+                width: calc((100% - 30px) / 3);
+                .item {
+                    background: $lightgray;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+}
