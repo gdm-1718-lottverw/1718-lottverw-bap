@@ -16,7 +16,7 @@ class CreateAuthKeysTable extends Migration
         Schema::create('auth_keys', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username');
-            $table->string('key');
+            $table->string('password');
             $table->timestamp('first_login')->nullable();
             $table->date('last_login')->nullable();
             $table->date('expire_date');

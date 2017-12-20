@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
-class AuthKey extends Model
+class AuthKey extends Model implements Authenticatable
 {
+    use AuthenticableTrait;
     /**
      * The table associated with the model.
      *
