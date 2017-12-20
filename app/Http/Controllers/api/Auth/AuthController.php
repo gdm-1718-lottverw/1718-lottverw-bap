@@ -11,6 +11,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\JWT;
 use Tymon\JWTAuth\JWTGuard;
 use App\Models\AuthKey;
+use Carbon\Carbon;
+
 class AuthController extends Controller
 {
     
@@ -24,17 +26,32 @@ class AuthController extends Controller
     {
         // Take the credentials
         $user = AuthKey::where('username', '=', $request['username'])->first();
-        // Check is password is valid.
-        if (password_verify($request['password'], $user['password'])) {
-            $token = JWTAuth::fromUser($user);
-    
-            return $token;
-
+        
+        if($user != null){
+            // Check is password is valid.
+            if (password_verify($request['password'], $user['password'])) {
+                // Check if role is actually parent
+                if($user->role['name'] == 'parent')
+                {
+                    // Check if credentials are active
+                    if($user['expire_date'] > new Carbon()){
+                        $token = [
+                            'token' =>  JWTAuth::fromUser($user)
+                        ];
+                        return $token;
+                    } 
+                    else {
+                        return 'Credentials are expired';
+                    }
+                } else {
+                    return 'Invalid role';
+                }
+            } else {
+                return 'Invalid password.';
+            }
         } else {
-            return 'Invalid password.';
+            return 'user not found';
         }
-       
-
-       
     }
+       
 }
