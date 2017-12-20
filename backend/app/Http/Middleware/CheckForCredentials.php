@@ -16,11 +16,11 @@ class CheckForCredentials
      */
     public function handle($request, Closure $next)
     {
-        // check credentials
+
         // check role parent or organization
         // check if child id is given
             // if child id is given check if parent is actually the parent of the child.
-        dump($next);
+
         return $next($request);
     }
 }
