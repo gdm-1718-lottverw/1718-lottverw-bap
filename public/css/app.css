@@ -3914,3 +3914,73 @@ body .navigation a :hover {
   }
 }
 
+.list {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+}
+
+.list .child-item {
+  text-decoration: none;
+  color: #3B4250;
+  padding: 10px 20px;
+  height: 70px;
+  background: #F7F7F7;
+}
+
+@media screen and (max-width: 37.5em) {
+  .list {
+    top: 90px;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .list .child-item {
+    margin: 2px;
+    padding: 10px;
+    width: calc(100% - 4px);
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .list {
+    top: 90px;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .list .child-item {
+    margin: 3px;
+    width: calc((100% / 2) - 9px);
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .list {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
+  }
+
+  .list .child-item {
+    width: calc((100% / 4) - 8px);
+    margin: 2px;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .child-item {
+    width: calc((100% / 5) - 10px);
+    margin: 2px;
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .child-item {
+    width: calc((100% / 6) - 12px);
+    margin: 2px;
+  }
+}
+
