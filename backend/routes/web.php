@@ -18,6 +18,8 @@ Route::post('/edit-timestamps', 'Backoffice\Home\IndexController@editTimestamps'
 
 Route::get('/child/{id}', 'Backoffice\Child\IndexController@index');
 
+Route::get('/list', 'Backoffice\Lists\IndexController@index');
+
 Route::get('/filter', 'Backoffice\FilterController@index');
 Route::post('/filter', 'Backoffice\FilterController@create');
 
