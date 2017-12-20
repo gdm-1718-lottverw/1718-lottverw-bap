@@ -13,12 +13,11 @@ class LoginService extends Component {
     }
     error = "";
   }
-  componentDidMount() {
-    console.log("ON MOUNT SHOW DEM PROPS", this.props);
-  }   
+  componentDidMount() {}   
   componentWillReceiveProps(nextProps) {
-    console.log('NEXT PROPS: ', nextProps);  
-    this.error = nextProps.error
+    if(nextProps.error == true){
+      this.error = nextProps.error
+    } 
   }
   
       render() {

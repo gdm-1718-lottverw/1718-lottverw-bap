@@ -2,12 +2,13 @@ import * as ActionTypes from '../actionTypes';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import LoginService from '../../Components/Auth/Login/index';
+import token from '../../Config/index';
+import { Actions } from 'react-native-router-flux';
 
 const mapStateToProps = (state) => ({   
-    isLoading: state.authReducer.isLoading,
-    error: state.authReducer.error,
-    credentials: state.authReducer.credentials,
-    loggedIn: state.authReducer.loggedIn
+    isLoading: state.auth.isLoading,
+    error: state.auth.error,
+    token: state.auth.token
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,10 +23,12 @@ export const login = (credentials) => {
             credentials, 
             { headers: {'Content-type': 'application/json'}
         }) 
-        .then(response => {
-            console.log(response.data);
-            dispatch(loginSuccess(response.data))
-        })
+        .then(
+            response => { 
+                dispatch(loginSuccess(response.data)),
+                Actions.home()
+
+            })
         .catch(error => {
             dispatch(loginError(error))
         });
@@ -33,17 +36,17 @@ export const login = (credentials) => {
 }
 
 export const loginPending = () => ({
-    type: ActionTypes.SERVICE_PENDING
+    type: ActionTypes.LOGGING_IN
 })
 
-export const loginSuccess = (error) => ({
-    type: ActionTypes.SERVICE_SUCCESS,
-    error: error
-})
-
-export const loginError = (data) => ({
-    type: ActionTypes.SERVICE_ERROR,
+export const loginSuccess = (data) => ({
+    type: ActionTypes.LOGIN_SUCCESS,
     data: data
+})
+
+export const loginError = (error) => ({
+    type: ActionTypes.LOGIN_ERROR,
+    error: error
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginService);

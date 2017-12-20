@@ -14,7 +14,6 @@ import TabIcon from '../Components/TabIcon';
 const reducerCreate = params => {
     const defaultReducer = new Reducer(params);
     return (state, action) => {
-      console.log('ACTION:', action);
       return defaultReducer(state, action);
     };
   };
@@ -26,6 +25,11 @@ const reducerCreate = params => {
     <Scene key="root"
         tabBarPosition='bottom'>
     <Scene 
+        key='login' 
+        component={Login}
+        hideNavBar={true}
+    />
+    <Scene 
         key="tabbar"
         tabs={true}
         hideNavBar={true}
@@ -34,21 +38,16 @@ const reducerCreate = params => {
         labelStyle={{display: 'none'}}
         activeTintColor={Colors.white}
         tabBarStyle={{ backgroundColor: Colors.white }}>
-        <Scene
-            iconName="login"
-            tabBarLabel=" "
-            icon={TabIcon}
-            key="lock"
-            component={Login}
-        />
         <Scene icon={TabIcon} tabBarLabel=" " iconName="home" key="actions">
             <Scene
                 initial={true}
                 key="home"
-                    component={Home}
+                component={Home}
+                hideNavBar={true}
                 />
                 <Scene
                     key="quickAdd"
+                    hideNavBar={true}
                     component={QuickAdd}  
                 />
         </Scene>
@@ -57,6 +56,7 @@ const reducerCreate = params => {
                 tabBarLabel=" "
                 icon={TabIcon}
                 key="calendar"
+                hideNavBar={true}
                 component={CalendarScreen}
             />
         <Scene
@@ -64,6 +64,7 @@ const reducerCreate = params => {
                 tabBarLabel=" "
                 iconName="history"
                 icon={TabIcon}
+                hideNavBar={true}
                 component={History}
             />
         <Scene
@@ -71,6 +72,7 @@ const reducerCreate = params => {
                 iconName="user"
                 icon={TabIcon}
                 tabBarLabel=" "
+                hideNavBar={true}
                 component={Profile}
             />
        </Scene>

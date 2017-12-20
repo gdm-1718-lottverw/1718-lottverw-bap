@@ -4,9 +4,9 @@ import axios from 'axios';
 import ChildCard from '../../Components/Home/ChildCard/index';
 
 const mapStateToProps = (state) => ({
-    isLoading: state.serviceReducer.isLoading,
-    error: state.serviceReducer.error,
-    data: state.serviceReducer.data
+    isLoading: state.child.isLoading,
+    error: state.child.error,
+    data: state.child.data
 });
 
 const mapDispatchToProps = (dispatch) => ({

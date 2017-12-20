@@ -1,21 +1,21 @@
 import * as Actions from '../Actions/actionTypes'
 
-const AuthReducer = (state = { isLoading: false, error: undefined, loggedIn: false, credentials: {} }, action) => {
+const AuthReducer = (state = { isLoading: false, error: undefined, loggedIn: false, credentials: {}, token: '' }, action) => {
     switch (action.type) {
-        case Actions.SERVICE_PENDING:
+        case Actions.LOGGING_IN:
             return Object.assign({}, state, {
                 isLoading: true,
             });
-        case Actions.SERVICE_ERROR:
+        case Actions.LOGIN_ERROR:
             return Object.assign({}, state, {
                 isLoading: false,
                 error: action.error
             });
-        case Actions.SERVICE_SUCCESS:
+        case Actions.LOGIN_SUCCESS:
             return Object.assign({}, state, {
                 isLoading: false,
                 loggedIn: true,
-                credentials: action.data,
+                token: action.data,
             }); 
         default:
             return state;

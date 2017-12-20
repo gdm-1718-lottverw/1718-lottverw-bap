@@ -15,7 +15,6 @@ class ChildController extends Controller
      */
     public function index($id)
     {
-        
         $parent = 
         DB::table('children')
         ->join('child_parents', function($join)use($id){
