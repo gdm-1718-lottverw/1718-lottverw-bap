@@ -26,15 +26,23 @@
                     }
                 }
             }
+            a {
+                text-decoration: none;
+                color: $darkgray;
+            }
             .child-info {
                 width: 100%;
                 background: $lightgray;
                 .name {
+                    color: $darkgray;
+                    text-decoration: none;
                     font-size: 0.8em;
                     font-weight: $medium;
                     width: 100%;
                 }
                 .description {
+                    color: $darkgray;
+                    text-decoration: none;
                     font-size: 0.6em;
                     font-weight: $thin;
                     margin: 4px 0;
