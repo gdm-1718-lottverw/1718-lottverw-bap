@@ -30,6 +30,7 @@ class Parents extends Model
     {
         return $this->hasManyThrough('App\Models\PlannedAttendance', 'App\Models\ChildParent', 'parent_id', 'child_id', 'planned_attendance_id', 'id');
     }
+    
     /**
      * Get the key for a given parent
      * 

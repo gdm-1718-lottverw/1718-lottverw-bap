@@ -30,4 +30,20 @@ class AuthKey extends Model implements Authenticatable
     {
         return $this->belongsTo('App\Models\Role');
     }
+
+    /**
+     * Get the parent that owns the key.
+     */
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Parents');
+    }
+
+    /**
+     * Get the organization that owns the key.
+     */
+    public function organization()
+    {
+        return $this->belongsTo('App\Models\Organization');
+    }
 }
