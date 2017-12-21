@@ -11,7 +11,6 @@ class PlannedAttendanceTableSeeder extends Seeder
      */
     public function run()
     {
-        echo "BRU";
         factory(App\Models\PlannedAttendance::class, 200)->create();
     }
 }

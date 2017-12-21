@@ -17,6 +17,8 @@ class CreateAuthKeysTable extends Migration
             $table->increments('id');
             $table->string('username');
             $table->string('password');
+            $table->string('password_resets')->nullable();
+            $table->string('remember_token')->nullable();
             $table->timestamp('first_login')->nullable();
             $table->date('last_login')->nullable();
             $table->date('expire_date');
