@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
 export const callWebservice = () => {
     return dispatch => {
         dispatch(serviceActionPending())
-        axios.get('http://192.168.1.155:8000/api/parents/7/children/planning')
+        axios.get('http://192.168.1.155:8000/api/parents/6/children/planning')
         .then(response => {
             dispatch(serviceActionSuccess(response.data))
         })

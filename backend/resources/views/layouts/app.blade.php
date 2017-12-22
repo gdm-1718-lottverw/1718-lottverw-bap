@@ -38,6 +38,7 @@
                 var d = new Date();
                 $('.date').text(d.getDate() + '/' + (d.getMonth() + 1 ) + '/' + d.getFullYear() + ', ' + d.getHours() + ":" + d.getMinutes());
             }, 30000);
+
             // LOGPAGE CHANGE EDIT FIELD
             $('tbody').on('click', '.fa-pencil', (e) => {
                 var id = e.currentTarget.id;
@@ -50,6 +51,7 @@
                 var i = $('#' + id)[0].parentElement.classList.remove('hide');
                
             })
+
             // SIGN KID IN
             $('#container-future').on('click', '.fa-sign-in', (e) => {
                  $.ajax({
@@ -64,6 +66,7 @@
                     });
                 })
             })
+
             $('#container-in').on('click', '.fa-sign-out', (e) => {
                 $.ajax({
                     method: "POST",
@@ -79,20 +82,40 @@
                 });
             });
 
-
             /* FILTER*/
              $('.item input').change(() => {        
-                var data = [{}];
+                var data = [];
                 var date = $('input[name=date]').val();
-                
                 $('.item input:checked').each(function(index) {
                     var name = $(this)[0]['name'];
                     var value = $(this).val();
-        
-                    var O = {
-                        [name]: [value]
+                    var item = {[name]: [value]};
+                    if(data.length === 0){
+                        data.push(item);
+                    } else {
+                        let count = 0;
+                        data.forEach((o, i) =>{
+                          a = Object.keys(o)[0];
+                          if(a == name){
+                            data[i][name].forEach((val) => {
+                              if(data[i][name].indexOf(value) < 0){
+                                data[i][name].push(value);
+                              }
+                            })
+                           } else if( a != name ){
+                               console.log(a, ' is verschillend van ', name, 'maar is index', i, 'gelijk aan',  (data.length-1) );
+                               if(data.length == 1) {
+                                   data.push(item);
+                               }
+                               if(i == (data.length - 1) ){
+                                    data.push(item);
+                               }
+                           }
+                            count ++;
+                        });
                     }
-
+                    console.log('----------- STOP CONTROLE -------------')
+                    console.log(JSON.stringify(data, '\t'));
                 });
                     $.ajax({
                         method: "POST",

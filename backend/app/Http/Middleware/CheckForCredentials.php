@@ -18,13 +18,24 @@ class CheckForCredentials
      * @param  \Closure  $next
      * @return mixed
      */
+
+     /**
+      * 
+      * TODO aparte middelware. voor meerdere zoekopdrachten. 
+      */
     public function handle($request, Closure $next)
     {   
+        // Get the authorization header.
         $string = $request->header('Authorization');
+        // Shorten it.
         $token = substr($string, 7);
+        // set the token so we can decode it later.
         JWTAuth::setToken($token);
+        // Get the token again. 
         $token = JWTAuth::getToken();
+        // Decode the token
         $decode = JWTAuth::decode($token)->toArray();
+        // Get the auth key id from the token. aka. user identification. 
         $count = 0;
         foreach($decode as $d){
             if($count == 0){
@@ -32,8 +43,10 @@ class CheckForCredentials
             }
             $count++;
         }
+        // Get route parameters.
         $parameters = $request->route()->parameters();
         $keys = array_keys($parameters);
+        // For every route parameter check the following.
         foreach( $keys as $key){
             if($key == 'parent_id'){
                 // Check if parent id is actually the parent_id given in the token. 
@@ -44,6 +57,7 @@ class CheckForCredentials
                     if($key->expire_date < new Carbon()){
                          abort(403, 'Key expired'); 
                     }
+                    // check if role is parent.
                     if($key->role->name == 'parent'){
                         return $next($request);
                     } 
@@ -55,8 +69,6 @@ class CheckForCredentials
                 }
             }
         }
-        // check if child id is given
-        // if child id is given check if parent is actually the parent of the child.
     }
 }
 

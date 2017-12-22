@@ -27,7 +27,7 @@ class PlannedAttendance extends Model
      */
     public function child()
     {
-        return $this->belongsTo('App\Models\Child', 'children_id');
+        return $this->belongsTo('App\Models\Child', 'child_id');
     }
 
      /**
@@ -38,5 +38,47 @@ class PlannedAttendance extends Model
     public function organization()
     {
         return $this->belongsTo('App\Models\Organization', 'organization_id');
+    }
+    
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePresent($query, $date, $or_id, $presence)
+    {
+        switch($presence){
+            case 'future':
+                return $query->where([
+                    ['date','=', $date], 
+                    ['organization_id', '=', $or_id], 
+                    ['in', '=', false],
+                    ['out', '=', false]
+                ]);
+            case 'in':
+                return $query->where([
+                    ['date','=', $date], 
+                    ['organization_id', '=', $or_id], 
+                    ['in', '=', true],
+                    ['out', '=', false]
+                ]);
+            case 'out': 
+                return $query->where([
+                    ['date','=', $date], 
+                    ['organization_id', '=', $or_id], 
+                    ['in', '=', true],
+                    ['out', '=', true]
+                ]);
+            break;
+            default:
+                return $query->where([
+                    ['date','=', $date], 
+                    ['organization_id', '=', $or_id], 
+                ]);
+                break;
+        }
+        
     }
 }

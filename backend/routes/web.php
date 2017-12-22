@@ -20,13 +20,11 @@ Route::get('/child/{id}', 'Backoffice\Child\IndexController@index');
 
 Route::get('/list', 'Backoffice\Lists\IndexController@index');
 
-Route::get('/filter', 'Backoffice\FilterController@index');
-Route::post('/filter', 'Backoffice\FilterController@create');
+Route::get('/filter', 'Backoffice\Filter\IndexController@index');
+Route::post('/filter', 'Backoffice\Filter\IndexController@create');
 
 Route::get('/log', 'Backoffice\Log\IndexController@index');
 Route::post('/log/{id}/delete', 'Backoffice\Log\IndexController@delete');
 Route::post('/log/{id}/edit', 'Backoffice\Log\IndexController@update');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

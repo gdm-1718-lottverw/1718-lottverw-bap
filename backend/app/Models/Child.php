@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
 
 class Child extends Model
 {
@@ -102,6 +104,7 @@ class Child extends Model
         return $this->hasMany('App\Models\PlannedAttendance');
     }
     
+    
     /**
      * Get the pedagogic reports associated with the child.
      * 
@@ -121,4 +124,6 @@ class Child extends Model
     {
         return $this->hasMany('App\Models\OtherInformation');
     }
+    
+    
 }
