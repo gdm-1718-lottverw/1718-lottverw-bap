@@ -23,18 +23,54 @@ class IndexController extends Controller
 
     public function index(){
         $or = Organization::where('id', 1);
-        $planned = 
-            PlannedAttendance::with('child')
-                ->present(Carbon::today(), 1, 'in')
-                ->get();
+        $conditions = [
+            'organization_id' => 1, 
+            'date' => Carbon::today()
+        ];
+        $planned = [];
 
         return view('filter.index', compact(['planned', 'or']));
     }
     
     public function create(request $request){       
-        dump($request);
-        return ;
-    }
+        $data = $request->data;
+        $date = $request->date;
+        $general_conditions = [
+            'organization_id' => 1, 
+            'date' => $date
+        ];
+        $type_conditions = [];
+        $child_conditions = [];
+        $allerie_conditions = [];
+        $present = '';
+        foreach($data as $d){
+            $key = array_keys($d)[0];
+            $value = array_values($d)[0];
+            switch($key){
+                case 'present':
+                    $present = $value[0];
+                    break;
+                case 'allergie':
+                     $allerie_conditions[$key] = $value;
+                     break; 
+                case 'age':
+                     $child_conditions[$key] = $value;
+                     break; 
+                case 'type':
+                    $type_conditions[$key] = $value;
+                    break; 
+            }
+            
+        }
+        $children = PlannedAttendance::where(function($q) use($general_conditions, $type_conditions, $child_conditions){
+                $q->general($general_conditions)
+                ->where(function($q)use($type_conditions){
+                    $q->type($type_conditions);
+                })->with('child')->whereHas('child', function($q) use($child_conditions){
+                    $q->child($child_conditions);
+                });
+        })->get();
 
-    
+        return view('filter.children', compact('children'));
+    }
 }

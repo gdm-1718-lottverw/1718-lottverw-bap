@@ -83,39 +83,51 @@
             });
 
             /* FILTER*/
-             $('.item input').change(() => {        
+             $('.item input').change(() => {    
+                // Init new data array     
                 var data = [];
+                // Get the selected date.
                 var date = $('input[name=date]').val();
                 $('.item input:checked').each(function(index) {
+                    // Get the input name
                     var name = $(this)[0]['name'];
+                    // Get the input value
                     var value = $(this).val();
+                    // a new object with name as key value als value.
                     var item = {[name]: [value]};
+                    // When the data array is empty
+                    // add the first selected item.
                     if(data.length === 0){
                         data.push(item);
                     } else {
+                        // We need to keep track of the already looped items.
                         let count = 0;
+                        // For each data object we need the index. 
                         data.forEach((o, i) =>{
-                          a = Object.keys(o)[0];
-                          if(a == name){
-                            data[i][name].forEach((val) => {
-                              if(data[i][name].indexOf(value) < 0){
-                                data[i][name].push(value);
-                              }
-                            })
-                           } else if( a != name ){
-                               console.log(a, ' is verschillend van ', name, 'maar is index', i, 'gelijk aan',  (data.length-1) );
-                               if(data.length == 1) {
-                                   data.push(item);
-                               }
-                               if(i == (data.length - 1) ){
-                                    data.push(item);
-                               }
-                           }
-                            count ++;
-                        });
-                    }
-                    console.log('----------- STOP CONTROLE -------------')
-                    console.log(JSON.stringify(data, '\t'));
+                            // Let's take the key of the object. 
+                            a = Object.keys(o)[0];
+                            // Check if the name of the input field exists in the data array.
+                            if(a == name){
+                                // If it does we need to check each value. 
+                                data[i][name].forEach((val) => {
+                                    // When a value is not present in the current data object
+                                    // push it. 
+                                    if(data[i][name].indexOf(value) < 0){
+                                        data[i][name].push(value);
+                                    }
+                                })
+                            } 
+                            // If the key is different from the curren name we need to add it. 
+                            else if( a != name ){
+                                // But we do not want to add it before the whole array has been looped. 
+                                // That is why we check if the current index is equal to the length of an array. 
+                                if(i == (data.length - 1) ){
+                                        data.push(item);
+                                }
+                            }
+                                count ++;
+                            });
+                        }
                 });
                     $.ajax({
                         method: "POST",

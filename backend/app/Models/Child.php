@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
-
+use Carbon\Carbon;
 class Child extends Model
 {
     /**
@@ -125,5 +125,29 @@ class Child extends Model
         return $this->hasMany('App\Models\OtherInformation');
     }
     
-    
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeChild($query, $conditions)
+    {
+        foreach($conditions as $column => $value)
+        {
+         
+            if(is_array($value)){
+                foreach($value as $val){
+                    $max = Carbon::now()->subYear((int)$val)->format('Y');
+                    $min = Carbon::now()->subYear(((int)$val) + 2)->format('Y');
+                    $query->where([
+                       ['date_of_birth', '>=', $min], 
+                       ['date_of_birth', '<=', $max], 
+                   ]);
+                }
+            }
+           
+        }
+    }
 }

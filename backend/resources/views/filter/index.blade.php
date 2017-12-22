@@ -6,16 +6,15 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="part flex column">
             <h4 class="sub-title">Aanwezig</h4>
-            <span class="item"> {{Form::radio('present', 'present_present', true, ['class' => 'checko'])}} {{ Form::label('present', 'Aanwezig')}} </span>
+            <span class="item"> {{Form::radio('present', 'present_present', null, ['class' => 'checko'])}} {{ Form::label('present', 'Aanwezig')}} </span>
             <span class="item"> {{Form::radio('present', 'present_registered', null, ['class' => 'checko'])}} {{ Form::label('registered', 'Reservatie')}} </span>
             <span class="item"> {{Form::radio('present', 'present_all')}} {{ Form::label('all', 'Alle')}} </span>
         </div>
          <div class="part flex column">
             <h4 class="sub-title">Opvang type</h4>
-            <span class="item"> {{Form::checkbox('type', 'type_moring', null, ['class' => 'checko'])}} {{ Form::label('type', 'Ochtend')}} </span>
-            <span class="item"> {{Form::checkbox('type', 'type_evening', null, ['class' => 'checko'])}} {{ Form::label('type', 'Avond')}} </span>
-            <span class="item"> {{Form::checkbox('type', 'type_long')}} {{ Form::label('type', 'Opvang lang')}} </span>
-            <span class="item"> {{Form::checkbox('type', 'type_full_day')}} {{ Form::label('type', 'Volledige dag')}} </span>
+            <span class="item"> {{Form::checkbox('type', 'morning', null, ['class' => 'checko'])}} {{ Form::label('type', 'Ochtend')}} </span>
+            <span class="item"> {{Form::checkbox('type', 'evening', null, ['class' => 'checko'])}} {{ Form::label('type', 'Avond')}} </span>
+            <span class="item"> {{Form::checkbox('type', 'full_day')}} {{ Form::label('type', 'Volledige dag')}} </span>
         </div>
         <div class="part flex column">
             <h4 class="sub-title">Organizaties</h4>
@@ -25,19 +24,19 @@
         </div>
         <div class="part flex column">
             <h4 class="sub-title">Leeftijd</h4>
-            <span class="item"> {{Form::checkbox('age', 'age_3_4')}} {{ Form::label('age', '3 - 4')}} </span>
-            <span class="item"> {{Form::checkbox('age', 'age_5_7')}} {{ Form::label('age', '5 - 7')}} </span>
-            <span class="item"> {{Form::checkbox('age', 'age_8_10')}} {{ Form::label('age', '8 - 10')}} </span>
-            <span class="item"> {{Form::checkbox('age', 'age_10_12')}} {{ Form::label('age', '10 - 12')}} </span>
-            <span class="item"> {{Form::checkbox('age', 'age_+12')}} {{ Form::label('age', '+12')}} </span>
+            <span class="item"> {{Form::checkbox('age', '3')}}  {{ Form::label('age', '3 - 4')}} </span>
+            <span class="item"> {{Form::checkbox('age', '5')}}  {{ Form::label('age', '5 - 6')}} </span>
+            <span class="item"> {{Form::checkbox('age', '7')}}  {{ Form::label('age', '7 - 8')}} </span>
+            <span class="item"> {{Form::checkbox('age', '9')}}  {{ Form::label('age', '9 - 11')}} </span>
+            <span class="item"> {{Form::checkbox('age', '12')}} {{ Form::label('age', '+12')}} </span>
         </div>
        <div class="part flex column">
             <h4 class="sub-title">Allergie</h4>
-            <span class="item"> {{Form::checkbox('allergie', 'allergie_food')}} {{ Form::label('allergie', 'Voedsel')}} </span>
-            <span class="item"> {{Form::checkbox('allergie', 'allergie_insect')}} {{ Form::label('allergie', 'Insecten')}} </span>
-            <span class="item"> {{Form::checkbox('allergie', 'allergie_allergene')}}  {{ Form::label('allergie', 'Allergenen')}} </span>
-            <span class="item"> {{Form::checkbox('allergie', 'allergie_pet')}} {{ Form::label('allergie', 'Dieren')}} </span>
-            <span class="item"> {{Form::checkbox('allergie', 'allergie_latex')}} {{ Form::label('allergie', 'Latex')}} </span>
+            <span class="item"> {{Form::checkbox('allergie', 'food')}} {{ Form::label('allergie', 'Voedsel')}} </span>
+            <span class="item"> {{Form::checkbox('allergie', 'insect')}} {{ Form::label('allergie', 'Insecten')}} </span>
+            <span class="item"> {{Form::checkbox('allergie', 'allergene')}}  {{ Form::label('allergie', 'Allergenen')}} </span>
+            <span class="item"> {{Form::checkbox('allergie', 'pet')}} {{ Form::label('allergie', 'Dieren')}} </span>
+            <span class="item"> {{Form::checkbox('allergie', 'latex')}} {{ Form::label('allergie', 'Latex')}} </span>
         </div>
 
     {{ Form::close() }}
