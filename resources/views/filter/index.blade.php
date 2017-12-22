@@ -2,7 +2,7 @@
 @section('content')
  <section class="filter flex start align-stretch justified-start">
   <div class="filter-sidebar flex-child stretch">
-   {{ Form::open(array('class' => 'flex column', 'action' => 'Backoffice\FilterController@create')) }}
+   {{ Form::open(array('class' => 'flex column', 'action' => 'Backoffice\Filter\IndexController@create')) }}
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="part flex column">
             <h4 class="sub-title">Aanwezig</h4>
@@ -44,7 +44,7 @@
   </div> 
   <div class="filter-group-content">
     <div class="filter-topbar">
-        {{ Form::open(array('class' => 'flex row', 'action' => 'Backoffice\FilterController@create'))  }}
+        {{ Form::open(array('class' => 'flex row', 'action' => 'Backoffice\Filter\IndexController@create')) }}
         <span class="item"> {{ Form::input('date', 'date', $value = \Carbon\Carbon::now()->format('Y-m-d'), $options = array('class'=>'date')) }}</span>
         <span class="item"> {{Form::checkbox('birthday', 'birthday')}} {{ Form::label('birthday', 'Deze maand jarig')}} </span>
         <span class="item"> {{Form::checkbox('activity', 'activity')}}  {{ Form::label('activity', 'Deelname aan activiteit')}} </span>
@@ -53,9 +53,9 @@
         {{ Form::close() }}
     </div> 
     <div class="filter-results">
-     @foreach($children as $child)
+     @foreach($planned as $child)
         <div class="filter-results-item">
-            <span class="child-name">{{$child->child_id}} {{$child->name}}</span>
+            <span class="child-name">{{$child->child_id}} {{$child->child->name}}</span>
             <span class="child-care">
                 @if($child->potty_trained == false)
                     <i class="fa fa-tint" aria-hidden="true"></i>
