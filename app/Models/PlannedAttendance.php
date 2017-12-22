@@ -47,38 +47,54 @@ class PlannedAttendance extends Model
      * @param mixed $date
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePresent($query, $date, $or_id, $presence)
+    public function scopePresent($query, $presence)
     {
         switch($presence){
-            case 'future':
-                return $query->where([
-                    ['date','=', $date], 
-                    ['organization_id', '=', $or_id], 
+            case 'present_registered':
+                 $query->where([
                     ['in', '=', false],
                     ['out', '=', false]
                 ]);
-            case 'in':
-                return $query->where([
-                    ['date','=', $date], 
-                    ['organization_id', '=', $or_id], 
+                break;
+            case 'present_present':
+                 $query->where([
                     ['in', '=', true],
                     ['out', '=', false]
                 ]);
-            case 'out': 
-                return $query->where([
-                    ['date','=', $date], 
-                    ['organization_id', '=', $or_id], 
-                    ['in', '=', true],
-                    ['out', '=', true]
-                ]);
             break;
-            default:
-                return $query->where([
-                    ['date','=', $date], 
-                    ['organization_id', '=', $or_id], 
-                ]);
-                break;
         }
         
+    }
+      /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGeneral($query, $conditions)
+    {
+        foreach($conditions as $column => $value)
+        {
+            $query->where($column, '=', $value);
+        }
+    }
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeType($query, $conditions)
+    {
+        foreach($conditions as $column => $value)
+        {
+            if(is_array($value)){
+                foreach($value as $val){
+                    $query->orWhere($column, '=', $val);
+                }
+            }
+        }
     }
 }
