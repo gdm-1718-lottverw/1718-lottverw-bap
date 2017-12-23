@@ -41,7 +41,7 @@ class IndexController extends Controller
         ];
         $type_conditions = [];
         $child_conditions = [];
-        $allerie_conditions = [];
+        $allergie_conditions = [];
         $present = '';
         foreach($data as $d){
             $key = array_keys($d)[0];
@@ -50,27 +50,44 @@ class IndexController extends Controller
                 case 'present':
                     $present = $value[0];
                     break;
-                case 'allergie':
-                     $allerie_conditions[$key] = $value;
-                     break; 
                 case 'age':
                      $child_conditions[$key] = $value;
                      break; 
                 case 'type':
                     $type_conditions[$key] = $value;
                     break; 
+                case 'allergie':
+                    $allergie_conditions[$key] = $value;
+                    break; 
             }
             
         }
-        $children = PlannedAttendance::where(function($q) use($general_conditions, $type_conditions, $child_conditions){
-                $q->general($general_conditions)
-                ->where(function($q)use($type_conditions){
-                    $q->type($type_conditions);
-                })->with('child')->whereHas('child', function($q) use($child_conditions){
-                    $q->child($child_conditions);
-                });
-        })->get();
 
+           /* $children = PlannedAttendance::where(
+                function($q) use($general_conditions, $type_conditions, $child_conditions, $present, $allergie_conditions){
+                    $q->general($general_conditions)
+                    ->where(function($q)use($type_conditions){
+                        $q->type($type_conditions);
+                    })
+                    ->where(function($q)use($present){
+                        $q->present($present);
+                    });
+                })->where(function($q)use($child_conditions){
+                    $q->test($child_conditions);
+                })
+                
+        /*                ->where(function($subQ) use($allergie_conditions){
+                            $subQ->whereHas('child.allergies', function($q) use($allergie_conditions){
+                                $q->allergie($allergie_conditions);
+                            });
+                        })
+            ->get();*/
+
+        $children = 
+            Child::general($general_conditions)
+            ->get();
+        dump($children);
         return view('filter.children', compact('children'));
     }
+
 }

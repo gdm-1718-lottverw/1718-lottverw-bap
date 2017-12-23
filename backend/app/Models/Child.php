@@ -61,7 +61,7 @@ class Child extends Model
      */
     public function allergies()
     {
-        return $this->hasMany('App\Models\Allergie');
+        return $this->hasMany('App\Models\Allergie', 'children_id');
     }
 
     /**
@@ -132,22 +132,78 @@ class Child extends Model
      * @param mixed $date
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeChild($query, $conditions)
+    public function scopeAge($query, $conditions)
     {
         foreach($conditions as $column => $value)
         {
-         
             if(is_array($value)){
                 foreach($value as $val){
                     $max = Carbon::now()->subYear((int)$val)->format('Y');
                     $min = Carbon::now()->subYear(((int)$val) + 2)->format('Y');
-                    $query->where([
-                       ['date_of_birth', '>=', $min], 
-                       ['date_of_birth', '<=', $max], 
-                   ]);
-                }
+                    $query->orWhere([
+                        ['date_of_birth', '>=', $min], 
+                        ['date_of_birth', '<=', $max], 
+                    ]);
+                } 
+            } else {
+                $max = Carbon::now()->subYear((int)$value[0])->format('Y');
+                $min = Carbon::now()->subYear(((int)$value[0]) + 2)->format('Y');
+                $query->where([
+                   ['date_of_birth', '>=', $min], 
+                   ['date_of_birth', '<=', $max], 
+               ]);
             }
            
         }
     }
+    public function scopeAllergieJoin($query, $conditions)
+    {
+        $query->join('allergies', 'allergies.children_id', 'children.id', 'chlidren');
+        foreach($conditions as $column => $value)
+        {
+            if(Count($value > 1)){
+                foreach($value as $val){
+                    $query->where(function($q)use($val){
+                        [
+                            ['allergies.type', '=', $val]
+                        ];
+                    });
+                }
+            } 
+            else {
+                $query->where(function($q)use($value){
+                    [
+                        ['allergies.type', '=', $value[0]]
+                    ];
+                });
+            }
+        }
+    }    
+    
+    public function scopeGeneral($query, $conditions)
+    {
+
+        $query->join('planned_attendances', 'planned_attendances.child_id', 'children.id', 'chlidren');
+        foreach($conditions as $column => $value)
+        {
+            if(is_array($value)){
+                foreach($value as $val){
+                    $query->where(function($q)use($val){
+                        [
+                            ['allergies.type', '=', $val]
+                        ];
+                    });
+                }
+            } 
+            else {
+                $query->where(function($q)use($value,$column){
+                    [
+                        ['planned_attendances.' . $column, '=', $value]
+                    ];
+                });
+            }
+            
+        }
+
+    }  
 }
