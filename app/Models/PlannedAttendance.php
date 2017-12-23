@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class PlannedAttendance extends Model
 {
     /**
@@ -61,7 +61,9 @@ class PlannedAttendance extends Model
                     ['in', '=', true],
                     ['out', '=', false]
                 ]);
-            break;
+                break;
+            default:
+                break;
         }
         
     }
@@ -77,8 +79,10 @@ class PlannedAttendance extends Model
         foreach($conditions as $column => $value)
         {
             $query->where($column, '=', $value);
+            
         }
     }
+    
     /**
      * Scope a query to only include users of a given type.
      *
@@ -97,4 +101,40 @@ class PlannedAttendance extends Model
             }
         }
     }
+     /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeTest($query, $conditions)
+    {
+        foreach($conditions as $column => $value)
+        {
+            $query->whereHas('child', function ($sub) use($value){
+                if(Count($value) > 1){
+                    for($i = 0; Count($value) > $i ; $i++){
+                        $val = $value[$i];
+                        echo ' oh y ' . $val;
+                        $max = Carbon::now()->subYear((int)$val)->format('Y');
+                        $min = Carbon::now()->subYear(((int)$val) + 2)->format('Y');
+                        $sub->orhere([
+                            ['date_of_birth', '>', $min], 
+                            ['date_of_birth', '<', $max], 
+                        ]);
+                    }
+                } else {
+                    echo 'oh no ' . $value[0];
+                    $max = Carbon::now()->subYear((int)$value[0])->format('Y');
+                    $min = Carbon::now()->subYear(((int)$value[0]) + 2)->format('Y');
+                    $sub->where([
+                       ['date_of_birth', '>', $min], 
+                       ['date_of_birth', '<', $max], 
+                   ]);
+                }
+            });
+        }
+    }
+
 }
