@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 class Child extends Model
 {
     /**
@@ -136,74 +137,132 @@ class Child extends Model
     {
         foreach($conditions as $column => $value)
         {
-            if(is_array($value)){
-                foreach($value as $val){
-                    $max = Carbon::now()->subYear((int)$val)->format('Y');
-                    $min = Carbon::now()->subYear(((int)$val) + 2)->format('Y');
-                    $query->orWhere([
-                        ['date_of_birth', '>=', $min], 
-                        ['date_of_birth', '<=', $max], 
-                    ]);
-                } 
+            // instatiate a min / max container
+            $array_min = []; $array_max = [];
+            // Loop over every min / max
+            foreach($value as $val){
+                $max = Carbon::now()->subYear((int)$val)->format('Y-m-d'); array_push($array_max, $max); 
+                $min = Carbon::now()->subYear(((int)$val) + 2)->format('Y-m-d'); array_push($array_min, $min);
+                echo '</br> '.'</br> '. $min . '  ---  ' . $max;
+            }  
+            // sort the min array 
+            sort($array_min);
+            sort($array_max);
+            $min = $array_min[0]; 
+            $max = $array_max[0];
+            // ALS MAX > 12
+            if(Carbon::parse($array_min[0])->format('Y') == Carbon::now()->subYear('14')->format('Y')){
+                $query->whereDate('children.date_of_birth', '>', $min);
+            }
+            // ALS ER EEN GAT IS ZORG DAN DAT ER NIETS UIT WORDT GENOMEN
+            if( $array_max[0] < array_pop($array_min)){
+                echo '</br> ' . '</br> ' . $array_max[0]  .  ' < '  . array_pop($array_min);
+                $query
+                    ->whereBetween('children.date_of_birth', [$min, $max])
+                    ->whereNotBetween('children.date_of_birth', [$array_max[0], array_pop($array_min)]);
             } else {
-                $max = Carbon::now()->subYear((int)$value[0])->format('Y');
-                $min = Carbon::now()->subYear(((int)$value[0]) + 2)->format('Y');
-                $query->where([
-                   ['date_of_birth', '>=', $min], 
-                   ['date_of_birth', '<=', $max], 
-               ]);
+                $query
+                    ->whereDate('children.date_of_birth', '>', $min)
+                    ->whereDate('children.date_of_birth', '<', $max);
             }
            
         }
     }
-    public function scopeAllergieJoin($query, $conditions)
-    {
-        $query->join('allergies', 'allergies.children_id', 'children.id', 'chlidren');
-        foreach($conditions as $column => $value)
-        {
-            if(Count($value > 1)){
-                foreach($value as $val){
-                    $query->where(function($q)use($val){
-                        [
-                            ['allergies.type', '=', $val]
-                        ];
-                    });
-                }
-            } 
-            else {
-                $query->where(function($q)use($value){
-                    [
-                        ['allergies.type', '=', $value[0]]
-                    ];
-                });
-            }
-        }
-    }    
-    
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeGeneral($query, $conditions)
-    {
-
-        $query->join('planned_attendances', 'planned_attendances.child_id', 'children.id', 'chlidren');
-        foreach($conditions as $column => $value)
-        {
-            if(is_array($value)){
-                foreach($value as $val){
-                    $query->where(function($q)use($val){
-                        [
-                            ['allergies.type', '=', $val]
-                        ];
-                    });
-                }
-            } 
-            else {
-                $query->where(function($q)use($value,$column){
-                    [
-                        ['planned_attendances.' . $column, '=', $value]
-                    ];
-                });
-            }
-            
+    { 
+        // we use this scope first so the join will be global and can be used in the
+        // following scopes.
+        $query = $query->leftJoin('planned_attendances As pa', 'children.id', '=', 'pa.child_id');
+        foreach($conditions as $column => $value){
+                $query->where([
+                    ['pa.'.$column,'=', $value]
+                ]);
         }
+    }
+   /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePresent($query, $presence)
+    {          
+        switch($presence){
+            case 'present_registered':
+                $query->where([
+                    ['pa.in', '=', false],
+                    ['pa.out', '=', false]
+                ]);
+                break;
+            case 'present_present':
+                $query->where([
+                    ['pa.in', '=', true],
+                    ['pa.out', '=', false]
+                ]);
+                break;
+            case 'present_out':
+                $query->where([
+                    ['pa.in', '=', true],
+                    ['pa.out', '=', true]
+                ]);
+                break;
+            default:
+                break;
+                
+            }
+    }
 
-    }  
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date   
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeType($query, $conditions)
+    { 
+        if(Count($conditions) >= 1){
+            foreach($conditions as $column => $value){
+                $query->whereIn('pa.'.$column, $value);
+            }
+        }
+        
+    }
+     /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date   
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePicture($query, $bool)
+    { 
+        $query->where('children.picture', $bool);
+    }
+     /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date   
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAllergies($query, $conditions)
+    {  
+        $query = $query->leftJoin('allergies As al', 'children.id', '=', 'al.children_id');
+        foreach($conditions as $column => $value){
+            $query->whereIn('al.type', $value);
+        }
+        
+    }
+
+    
+   
 }

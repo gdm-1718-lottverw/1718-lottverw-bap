@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backoffice\Filter;
 
 
 use App\Models\Child;
+use App\Models\Allergie;
 use App\Models\Organization;
 use App\Models\PlannedAttendance;
 use App\Http\Controllers\Controller; 
@@ -39,10 +40,8 @@ class IndexController extends Controller
             'organization_id' => 1, 
             'date' => $date
         ];
-        $type_conditions = [];
-        $child_conditions = [];
-        $allergie_conditions = [];
-        $present = '';
+        
+        $type_conditions = []; $child_conditions = []; $allergie_conditions = []; $present = '';
         foreach($data as $d){
             $key = array_keys($d)[0];
             $value = array_values($d)[0];
@@ -56,37 +55,23 @@ class IndexController extends Controller
                 case 'type':
                     $type_conditions[$key] = $value;
                     break; 
+                case 'picture':
+                    $picture = $value;
+                    break; 
                 case 'allergie':
                     $allergie_conditions[$key] = $value;
                     break; 
             }
-            
         }
 
-           /* $children = PlannedAttendance::where(
-                function($q) use($general_conditions, $type_conditions, $child_conditions, $present, $allergie_conditions){
-                    $q->general($general_conditions)
-                    ->where(function($q)use($type_conditions){
-                        $q->type($type_conditions);
-                    })
-                    ->where(function($q)use($present){
-                        $q->present($present);
-                    });
-                })->where(function($q)use($child_conditions){
-                    $q->test($child_conditions);
-                })
-                
-        /*                ->where(function($subQ) use($allergie_conditions){
-                            $subQ->whereHas('child.allergies', function($q) use($allergie_conditions){
-                                $q->allergie($allergie_conditions);
-                            });
-                        })
-            ->get();*/
-
-        $children = 
-            Child::general($general_conditions)
+        $children = Child::general($general_conditions)
+            ->type($type_conditions)
+            ->present($present)
+            ->allergies($allergie_conditions)
+            ->age($child_conditions)
             ->get();
-        dump($children);
+
+       // dump($children);
         return view('filter.children', compact('children'));
     }
 

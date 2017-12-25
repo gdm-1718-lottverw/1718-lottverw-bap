@@ -8,7 +8,7 @@
             <h4 class="sub-title">Aanwezig</h4>
             <span class="item"> {{Form::radio('present', 'present_present', null, ['class' => 'checko'])}} {{ Form::label('present', 'Aanwezig')}} </span>
             <span class="item"> {{Form::radio('present', 'present_registered', null, ['class' => 'checko'])}} {{ Form::label('registered', 'Reservatie')}} </span>
-            <span class="item"> {{Form::radio('present', 'present_all')}} {{ Form::label('all', 'Alle')}} </span>
+            <span class="item"> {{Form::radio('present', 'present_out')}} {{ Form::label('all', 'Uit')}} </span>
         </div>
          <div class="part flex column">
             <h4 class="sub-title">Opvang type</h4>
@@ -47,7 +47,7 @@
         <span class="item"> {{ Form::input('date', 'date', $value = \Carbon\Carbon::now()->format('Y-m-d'), $options = array('class'=>'date')) }}</span>
         <span class="item"> {{Form::checkbox('birthday', 'birthday')}} {{ Form::label('birthday', 'Deze maand jarig')}} </span>
         <span class="item"> {{Form::checkbox('activity', 'activity')}}  {{ Form::label('activity', 'Deelname aan activiteit')}} </span>
-        <span class="item"> {{Form::checkbox('picture', 'picture')}} {{ Form::label('picture', 'Geen foto\'s')}} </span>
+        <span class="item"> {{Form::checkbox('picture', 'true')}} {{ Form::label('picture', 'Geen foto\'s')}} </span>
         <span class="item"> {{Form::checkbox('potty_trained', 'potty_trained')}} {{ Form::label('potty_trained', 'Zindelijkheidstraining')}} </span>
         {{ Form::close() }}
     </div> 
