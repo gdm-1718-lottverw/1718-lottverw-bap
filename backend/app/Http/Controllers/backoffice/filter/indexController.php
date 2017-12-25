@@ -28,20 +28,20 @@ class IndexController extends Controller
             'organization_id' => 1, 
             'date' => Carbon::today()
         ];
-        $planned = [];
+
+        $planned = Child::general($conditions)->presence('present_present')->get();
 
         return view('filter.index', compact(['planned', 'or']));
     }
     
     public function create(request $request){       
-        $data = $request->data;
-        $date = $request->date;
+        $data = $request->data; $date = $request->date;
         $general_conditions = [
             'organization_id' => 1, 
             'date' => $date
         ];
-        
-        $type_conditions = []; $child_conditions = []; $allergie_conditions = []; $present = '';
+        $type_conditions = []; $age_range = []; $allergie_conditions = [];
+        $present = ''; $picture = ''; $potty_trained = '';
         foreach($data as $d){
             $key = array_keys($d)[0];
             $value = array_values($d)[0];
@@ -50,7 +50,7 @@ class IndexController extends Controller
                     $present = $value[0];
                     break;
                 case 'age':
-                     $child_conditions[$key] = $value;
+                    $age_range = $value;
                      break; 
                 case 'type':
                     $type_conditions[$key] = $value;
@@ -58,20 +58,23 @@ class IndexController extends Controller
                 case 'picture':
                     $picture = $value;
                     break; 
+                case 'potty_trained':
+                    $potty_trained = $value;
+                    break; 
                 case 'allergie':
                     $allergie_conditions[$key] = $value;
                     break; 
             }
         }
-
         $children = Child::general($general_conditions)
             ->type($type_conditions)
-            ->present($present)
+            ->presence($present)
+            ->pictures($picture)
+            ->pottyTrained($potty_trained)
             ->allergies($allergie_conditions)
-            ->age($child_conditions)
+            ->age($age_range)
             ->get();
-
-       // dump($children);
+        
         return view('filter.children', compact('children'));
     }
 
