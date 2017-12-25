@@ -3605,6 +3605,11 @@ body .navigation a :hover {
   padding: 12px 0;
 }
 
+.filter .filter-sidebar #slider {
+  height: 200px;
+  margin-left: 40px;
+}
+
 .filter .filter-group-content {
   -ms-flex: 12 1 auto;
   -webkit-box-flex: 12;

@@ -133,41 +133,14 @@ class Child extends Model
      * @param mixed $date
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAge($query, $conditions)
+    public function scopeAge($query, $range)
     {
-        foreach($conditions as $column => $value)
-        {
-            // instatiate a min / max container
-            $array_min = []; $array_max = [];
-            // Loop over every min / max
-            foreach($value as $val){
-                $max = Carbon::now()->subYear((int)$val)->format('Y-m-d'); array_push($array_max, $max); 
-                $min = Carbon::now()->subYear(((int)$val) + 2)->format('Y-m-d'); array_push($array_min, $min);
-                echo '</br> '.'</br> '. $min . '  ---  ' . $max;
-            }  
-            // sort the min array 
-            sort($array_min);
-            sort($array_max);
-            $min = $array_min[0]; 
-            $max = $array_max[0];
-            // ALS MAX > 12
-            if(Carbon::parse($array_min[0])->format('Y') == Carbon::now()->subYear('14')->format('Y')){
-                $query->whereDate('children.date_of_birth', '>', $min);
-            }
-            // ALS ER EEN GAT IS ZORG DAN DAT ER NIETS UIT WORDT GENOMEN
-            if( $array_max[0] < array_pop($array_min)){
-                echo '</br> ' . '</br> ' . $array_max[0]  .  ' < '  . array_pop($array_min);
-                $query
-                    ->whereBetween('children.date_of_birth', [$min, $max])
-                    ->whereNotBetween('children.date_of_birth', [$array_max[0], array_pop($array_min)]);
-            } else {
-                $query
-                    ->whereDate('children.date_of_birth', '>', $min)
-                    ->whereDate('children.date_of_birth', '<', $max);
-            }
-           
-        }
+        // Calculate the min and max for each checkbox.
+        $min = Carbon::now()->subYear((int)$range[0])->format('Y-m-d'); // go back at least x years
+        $max = Carbon::now()->subYear(((int)$range[1]))->format('Y-m-d'); // go back until x years
+        $query->whereBetween('date_of_birth', [$max, $min]);
     }
+
     /**
      * Scope a query to only include users of a given type.
      *
@@ -181,9 +154,9 @@ class Child extends Model
         // following scopes.
         $query = $query->leftJoin('planned_attendances As pa', 'children.id', '=', 'pa.child_id');
         foreach($conditions as $column => $value){
-                $query->where([
-                    ['pa.'.$column,'=', $value]
-                ]);
+            $query->where([
+                ['pa.'.$column,'=', $value]
+            ]);
         }
     }
    /**
@@ -193,7 +166,7 @@ class Child extends Model
      * @param mixed $date
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePresent($query, $presence)
+    public function scopePresence($query, $presence)
     {          
         switch($presence){
             case 'present_registered':
@@ -236,16 +209,27 @@ class Child extends Model
         }
         
     }
-     /**
+    /**
      * Scope a query to only include users of a given type.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param mixed $date   
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePicture($query, $bool)
+    public function scopePictures($query, $bool)
     { 
-        $query->where('children.picture', $bool);
+        $bool == true ? $query->where('children.pictures', $bool): null; 
+    }
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date   
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePottyTrained($query, $bool)
+    { 
+        $bool == true ? $query->where('children.potty_trained', $bool): null; 
     }
      /**
      * Scope a query to only include users of a given type.
