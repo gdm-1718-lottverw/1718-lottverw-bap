@@ -19,8 +19,7 @@ class ChildCard extends Component {
     };
   }
     componentDidMount() {
-      console.log(this.props)
-      this.props.getTokens();
+          this.props.getTokens();
 
     }   
 componentWillReceiveProps(nextProps) {

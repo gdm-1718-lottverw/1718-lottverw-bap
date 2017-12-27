@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export const callWebservice = () => {
+    console.log(`${URL}parents/${this.ID}/children/planning`, this.TOKEN);
     return dispatch => {
         dispatch(serviceActionPending())
         axios.get(`${URL}parents/${this.ID}/children/planning`, {headers: {'Authorization': `Bearer ${this.TOKEN}`}})
@@ -37,6 +38,7 @@ const getToken = async (dispatch) => {
         this.TOKEN = parent.token;
         this.ID = parent.parent_id;
         dispatch(callWebservice());
+        console.log('TOKEN AND PAREND STK', this.TOKEN, this.ID);
     }
     catch (error){console.log(error)}
 }

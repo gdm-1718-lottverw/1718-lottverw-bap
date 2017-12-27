@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import Colors from '../Config/theme';
 import LoginService from '../Actions/Login/AuthAction';
@@ -11,6 +11,7 @@ class Login extends React.Component{
 render(){  
       return (
         <View style={styles.box}>
+            <Image style={styles.logo} source={require('../Assets/logo.png')} />
             <LoginService />
         </View>
       )
@@ -20,7 +21,12 @@ render(){
 const styles = StyleSheet.create({
     box: {
         flex: 1,
+        padding: 30,
+        alignItems: 'center'
     },
+    logo: {
+      marginBottom: 15
+    }
 });
     
 export default Login;
