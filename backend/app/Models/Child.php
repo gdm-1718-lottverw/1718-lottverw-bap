@@ -141,6 +141,19 @@ class Child extends Model
         $query->whereBetween('date_of_birth', [$max, $min]);
     }
 
+
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeBirthday($query, $active)
+    {
+        $active == true? $query->whereMonth('date_of_birth', Carbon::now()->month): null;
+    }
+
     /**
      * Scope a query to only include users of a given type.
      *

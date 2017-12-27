@@ -70,12 +70,12 @@
                 });
                 slider.noUiSlider.on('end', function(){
                     var date = $('input[name=date]').val();
-                    var age_data = [{age: slider.noUiSlider.get()}];
-                    console.log(age_data, date);
+                    var age = {age: slider.noUiSlider.get()};
+                    console.log(age, date);
                    $.ajax({
                         method: "POST",
                         url: "filter",
-                        data: {'data': age_data, 'date': date, '_token': $('input[name=_token]').val()},
+                        data: {'data': age, 'age': age, 'date': date, '_token': $('input[name=_token]').val()},
                     })
                     .done(function( msg ) {
                         $('.filter-results').replaceWith(msg);
@@ -86,7 +86,7 @@
             $('.item input').change(() => {    
                 // Init new data array     
                 var data = [];
-                var age = [{age: slider.noUiSlider.get()}];
+                var age = {age: slider.noUiSlider.get()};
                 // Get the selected date.
                 var date = $('input[name=date]').val();
                 $('.item input:checked').each(function(index) {
