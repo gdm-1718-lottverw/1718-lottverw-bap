@@ -13,7 +13,6 @@ class CalendarScreen extends React.Component{
         return (
             <View style={styles.box}>
                 <TopBar title={'CALENDAR'}/>
-      
             </View>
         );
         

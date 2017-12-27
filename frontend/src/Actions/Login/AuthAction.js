@@ -3,6 +3,7 @@ import axios from 'axios';
 import LoginService from '../../Components/Auth/Login/index';
 import token from '../../Config/index';
 import { Actions } from 'react-native-router-flux';
+import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { URL } from '../../Config/index';
 
@@ -16,14 +17,8 @@ const mapDispatchToProps = (dispatch) => ({
     login: (credentials) => dispatch(login(credentials))
 })
 
-export const login = (credentials) => {
-    console.log(         
-        URL + 'auth', 
-        credentials, 
-        { headers: {'Content-Type': 'application/json'}}
-    );
+export const login =(credentials) => { 
     return dispatch => {
-        console.log(URL + 'auth');
         dispatch(loginPending());
         axios.post(
             URL + 'auth', 
@@ -32,16 +27,25 @@ export const login = (credentials) => {
         ) 
         .then(
             response => { 
-                dispatch(loginSuccess(response.data)),
-                Actions.home(),
-                console.log('SUCCESS');
-
+                if(response.data != 'Invalid password'){
+                    dispatch(loginSuccess(response.data)),
+                    this.saveCredentials(credentials.username, credentials.password, response.data.token, response.data.parent).then(Actions.home()); 
+                }
             })
         .catch(error => {c
-            console.log(error);
+            console.log("ERROR: ", error);
             dispatch(loginError(error))
         });
     }
+}
+saveCredentials = (username, password, token, parent_id) => {
+        let parent = {
+            username: username, 
+            password: password, 
+            token: token, 
+            parent_id: parent_id
+        } 
+        return AsyncStorage.setItem('parent', JSON.stringify(parent)); 
 }
 
 export const loginPending = () => ({
