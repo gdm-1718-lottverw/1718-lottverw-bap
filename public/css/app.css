@@ -3228,7 +3228,7 @@
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: Raleway, "Roboto", "Helvetica", "Arial";
+  font-family: Ubuntu, "Helvetica", "Arial";
 }
 
 body {
@@ -3694,7 +3694,7 @@ body .navigation a :hover {
   background: red;
   border: none;
   background: none;
-  font-family: Raleway, "Roboto", "Helvetica", "Arial";
+  font-family: Ubuntu, "Helvetica", "Arial";
 }
 
 .log #edit .btn {

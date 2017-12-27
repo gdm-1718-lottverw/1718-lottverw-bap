@@ -56,16 +56,16 @@ class AuthController extends Controller
                         return $response;
                     } 
                     else {
-                        return 'Credentials are expired';
+                        abort(403, 'Credentials are expired'); 
                     }
                 } else {
-                    return 'Invalid role';
+                    abort(403, 'Invalid role'); 
                 }
             } else {
-                return 'Invalid password.';
+                abort(403, 'Invalid password'); 
             }
         } else {
-            return 'user not found';
+            abort(403, 'User not found'); 
         }
     }
        

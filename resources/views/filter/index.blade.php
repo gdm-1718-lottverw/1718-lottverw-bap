@@ -42,8 +42,8 @@
     <div class="filter-topbar">
         {{ Form::open(array('class' => 'flex row', 'action' => 'Backoffice\Filter\IndexController@create')) }}
         <span class="item"> {{ Form::input('date', 'date', $value = \Carbon\Carbon::now()->format('Y-m-d'), $options = array('class'=>'date')) }}</span>
-        <span class="item"> {{Form::checkbox('birthday', 'birthday')}} {{ Form::label('birthday', 'Deze maand jarig')}} </span>
-        <span class="item"> {{Form::checkbox('activity', 'activity')}}  {{ Form::label('activity', 'Deelname aan activiteit')}} </span>
+        <span class="item"> {{Form::checkbox('birthday', 'true')}} {{ Form::label('birthday', 'Deze maand jarig')}} </span>
+        <span class="item"> {{Form::checkbox('activity', 'true')}}  {{ Form::label('activity', 'Deelname aan activiteit')}} </span>
         <span class="item"> {{Form::checkbox('picture', 'true')}} {{ Form::label('picture', 'Geen foto\'s')}} </span>
         <span class="item"> {{Form::checkbox('potty_trained', 'false')}} {{ Form::label('potty_trained', 'Zindelijkheidstraining')}} </span>
         {{ Form::close() }}

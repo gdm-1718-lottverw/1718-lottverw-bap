@@ -35,13 +35,13 @@ class IndexController extends Controller
     }
     
     public function create(request $request){       
-        $data = $request->data; $date = $request->date;
+        $data = $request->data; $date = $request->date; $age = $request->age['age'];
         $general_conditions = [
             'organization_id' => 1, 
             'date' => $date
         ];
-        $type_conditions = []; $age_range = []; $allergie_conditions = [];
-        $present = ''; $picture = ''; $potty_trained = '';
+        $type_conditions = []; $allergie_conditions = [];
+        $present = ''; $birthday = false; $picture = ''; $potty_trained = '';
         foreach($data as $d){
             $key = array_keys($d)[0];
             $value = array_values($d)[0];
@@ -49,9 +49,9 @@ class IndexController extends Controller
                 case 'present':
                     $present = $value[0];
                     break;
-                case 'age':
-                    $age_range = $value;
-                     break; 
+                case 'birthday':
+                    $birthday = $value[0];
+                    break;
                 case 'type':
                     $type_conditions[$key] = $value;
                     break; 
@@ -72,7 +72,8 @@ class IndexController extends Controller
             ->pictures($picture)
             ->pottyTrained($potty_trained)
             ->allergies($allergie_conditions)
-            ->age($age_range)
+            ->age($age)
+            ->birthday($birthday)
             ->get();
         
         return view('filter.children', compact('children'));
