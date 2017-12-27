@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Child;
+use App\Models\Parents;
+
 
 class ChildController extends Controller
 {
@@ -15,23 +18,20 @@ class ChildController extends Controller
      */
     public function index($id)
     {
-        $parent = 
-        DB::table('children')
-        ->join('child_parents', function($join)use($id){
-            $join->on('child_parents.child_id', '=', 'children.id')
-                ->where([
-                    ['child_parents.parent_id', '=', $id],
-                ]);
-            })
-        ->join('planned_attendances', function($join){
-            $join->on('children.id', '=', 'planned_attendances.child_id')
-                 ->where([
-                    ['planned_attendances.date', '>=', date("Y-m-d")],
-                 ]);
-        })->get(['planned_attendances.date as date', 'children.name as name', 'planned_attendances.type as type']);
-
-    
-        return $parent;
+        $children = Parents::with('children')->where('id', $id)->first()->children;
+        $id = [];
+       
+        foreach($children as $child){
+           /* $p = Child::where('children.id', $child->id)->futureAttendance()->get(
+                ['pa.date as date', 'children.name as name', 'pa.type as type']
+            );*/
+            array_push($id, $child->id);
+        }
+        $p = Child::whereIn('children.id', $id)->futureAttendance()->get(
+            ['pa.date as date', 'children.name as name', 'pa.type as type']
+        );
+        return $p;
+        
     }
 
     /**

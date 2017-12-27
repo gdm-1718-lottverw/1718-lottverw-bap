@@ -172,6 +172,22 @@ class Child extends Model
             ]);
         }
     }
+     /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFutureAttendance($query)
+    { 
+        // we use this scope first so the join will be global and can be used in the
+        // following scopes.
+        $query = $query->leftJoin('planned_attendances As pa', 'children.id', '=', 'pa.child_id');
+        $query->where([
+                ['pa.date','>=', date('Y-m-d')]
+            ]);
+    }
    /**
      * Scope a query to only include users of a given type.
      *
