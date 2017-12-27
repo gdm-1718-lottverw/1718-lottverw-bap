@@ -38,7 +38,6 @@ class LoginService extends Component {
             />
             <TouchableOpacity
                 onPress={() => {
-                  console.log('STATE: ', JSON.stringify(this.state));
                   this.props.login(JSON.stringify(this.state)); 
                 }}>
                 <Text>Log in</Text>

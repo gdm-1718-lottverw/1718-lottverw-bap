@@ -17,20 +17,28 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export const login = (credentials) => {
+    console.log(         
+        URL + 'auth', 
+        credentials, 
+        { headers: {'Content-Type': 'application/json'}}
+    );
     return dispatch => {
-        dispatch(loginPending())
+        console.log(URL + 'auth');
+        dispatch(loginPending());
         axios.post(
-            URL + 'api/auth', 
+            URL + 'auth', 
             credentials, 
-            { headers: {'Content-type': 'application/json'}
-        }) 
+            { headers: {'Content-Type': 'application/json'}}
+        ) 
         .then(
             response => { 
                 dispatch(loginSuccess(response.data)),
-                Actions.home()
+                Actions.home(),
+                console.log('SUCCESS');
 
             })
-        .catch(error => {
+        .catch(error => {c
+            console.log(error);
             dispatch(loginError(error))
         });
     }

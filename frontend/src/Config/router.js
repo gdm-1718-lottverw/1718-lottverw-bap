@@ -24,7 +24,12 @@ const reducerCreate = params => {
     >
     <Scene key="root"
         tabBarPosition='bottom'>
-   
+    <Scene
+        initial={true}
+        key="login"
+        component={Login}
+        hideNavBar={true}
+        />
     <Scene 
         key="tabbar"
         tabs={true}
