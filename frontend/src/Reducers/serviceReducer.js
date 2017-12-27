@@ -1,4 +1,4 @@
-import * as Actions from '../Actions/actionTypes'
+import * as Actions from '../Actions/ActionTypes'
 
 const ServiceReducer = (state = { isLoading: false, error: undefined, data: {} }, action) => {
     switch (action.type) {

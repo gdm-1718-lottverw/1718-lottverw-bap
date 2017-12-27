@@ -1,9 +1,10 @@
-import * as ActionTypes from '../actionTypes';
-import { connect } from 'react-redux';
+import * as ActionTypes from '../ActionTypes';
 import axios from 'axios';
 import LoginService from '../../Components/Auth/Login/index';
 import token from '../../Config/index';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { URL } from '../../Config/index';
 
 const mapStateToProps = (state) => ({   
     isLoading: state.auth.isLoading,
@@ -19,7 +20,7 @@ export const login = (credentials) => {
     return dispatch => {
         dispatch(loginPending())
         axios.post(
-            'http://192.168.43.16:8000/api/auth', 
+            URL + 'api/auth', 
             credentials, 
             { headers: {'Content-type': 'application/json'}
         }) 
