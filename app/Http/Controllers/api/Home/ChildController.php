@@ -75,20 +75,22 @@ class ChildController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function newAttendance($id, Request $request){
+        foreach ($request->child_id as $child => $id) {
+            $organization = Child::where('id', $id)->with('organization')->first()->organization;
+            
+            $plannedAttendance = new PlannedAttendance;
+            $plannedAttendance->date = $request->date;
+            $plannedAttendance->type = $request->type;
+            $plannedAttendance->parent_notes = $request->parent_notes;
+            $plannedAttendance->go_home_alone = $request->go_home_alone;
+            $plannedAttendance->child_id = $id;
+            $plannedAttendance->organization_id = $organization->id;
 
-        $organization = Child::where('id', $request->child_id)->with('organization')->first()->organization;
-        
-        $plannedAttendance = new PlannedAttendance;
-        $plannedAttendance->date = $request->date;
-        $plannedAttendance->type = $request->type;
-        $plannedAttendance->parent_notes = $request->parent_notes;
-        $plannedAttendance->go_home_alone = $request->go_home_alone;
-        $plannedAttendance->child_id = $request->child_id;
-        $plannedAttendance->organization_id = $organization->id;
+            $plannedAttendance->save();
 
-        $plannedAttendance->save();
-
-        return $plannedAttendance;
+        }
+       
+        return 'SUCCES';
     }
 
 }
