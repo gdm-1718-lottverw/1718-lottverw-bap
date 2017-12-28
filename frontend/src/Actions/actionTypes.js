@@ -13,3 +13,8 @@ export const CALENDAR_SUCCESS   = 'calendar_success'
 export const CHILDREN_PENDING   = 'children_pending'
 export const CHILDREN_ERROR     = 'children_error'
 export const CHILDREN_SUCCESS   = 'children_success'
+
+
+export const SUBMIT_PENDING   = 'submit_pending'
+export const SUBMIT_ERROR     = 'submit_error'
+export const SUBMIT_SUCCESS   = 'submit_success'

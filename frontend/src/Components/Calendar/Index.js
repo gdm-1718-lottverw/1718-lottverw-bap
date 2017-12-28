@@ -64,6 +64,7 @@ class CalendarService extends Component {
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
         selected={moment().format()  }
+        onDayPress={(date) => {Actions.quickAdd({'date': date.dateString})}}
         renderItem={this.renderItem.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
         markingType={'multi-dot'}
@@ -76,18 +77,12 @@ class CalendarService extends Component {
 
   loadItems(day) {
      setTimeout(() => {
-      const newItems = {};
-      Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
-      this.setState({
-        items: newItems
-      });
       }, 1000);
   }
 
-  renderItem(item, i) {
-    console.log(item, i, a);
+  renderItem(item) {
     return (
-      <View style={[styles.item]}><Text>{item.name}</Text></View>
+      <View><Text>{item.name}</Text></View>
     );
   }
 

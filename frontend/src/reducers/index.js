@@ -6,12 +6,14 @@ import authReducer from './auth';
 import serviceReducer from './serviceReducer';
 import calendarReducer from './calendar';
 import childrendReducer from './children';
+import SubmitAttendanceReducer from './submitAttendance';
 
 const AppReducers = combineReducers({
     child: serviceReducer,
     auth: authReducer,
     calendar: calendarReducer,
-    children: childrendReducer
+    children: childrendReducer,
+    submitAttendance: SubmitAttendanceReducer,
 });
 
 const rootReducer = (state, action) => {
