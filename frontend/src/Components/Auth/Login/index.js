@@ -14,18 +14,22 @@ class LoginService extends Component {
       password: '',
     }
     error = "";
+    errorActive = false;
   }
   componentDidMount() {}   
   componentWillReceiveProps(nextProps) {
-    if(nextProps.error == true){
-      this.error = nextProps.error
+    console.log('NEXSJFDDF', nextProps);
+    if(nextProps.error != undefined){
+      console.log('ERROOORR: ', nextProps.error);
+      this.error = nextProps.error;
+      this.errorActive = true;
     } 
   }
   
       render() {
         return (
           <View  style={styles.container}>
-          <Text>{this.error}</Text>
+          {this.errorActive == true ? <Text style={styles.error}>{this.error}</Text> : null}
             <Text style={styles.label}>username</Text>
             <TextInput
                 style={styles.textInput}

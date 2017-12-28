@@ -22,6 +22,15 @@ const styles = StyleSheet.create({
     }, 
     btnText: {
         color: '#FFF'
+    }, 
+    error: {
+        color: '#efefef',
+        textAlign: 'center',
+        fontWeight: '800',
+        marginTop: 10,
+        marginBottom: 10,
+        backgroundColor: 'red',
+        padding: 5
     }
 });
 export default styles;

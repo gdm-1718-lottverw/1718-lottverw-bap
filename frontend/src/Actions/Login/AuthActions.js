@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
 export const login =(credentials) => { 
     return dispatch => {
         dispatch(loginPending());
+        console.log(URL + 'auth',  credentials);
         axios.post(
             URL + 'auth', 
             credentials, 
@@ -27,14 +28,15 @@ export const login =(credentials) => {
         ) 
         .then(
             response => { 
+                console.log('RESPONSE: ', response);
                 if(response.data != 'Invalid password'){
                     dispatch(loginSuccess(response.data)),
                     this.saveCredentials(credentials.username, credentials.password, response.data.token, response.data.parent).then(Actions.home()); 
                 }
             })
         .catch(error => {
-            console.log("ERROR: ", error);
-            dispatch(loginError(error))
+            console.log("ERROR: ", error.response.data.message);
+            dispatch(loginError(error.response.data.message))
         });
     }
 }
