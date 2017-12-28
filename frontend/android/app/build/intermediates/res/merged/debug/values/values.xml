@@ -1364,6 +1364,14 @@
     <style name="RtlOverlay.Widget.AppCompat.SearchView.MagIcon" parent="android:Widget">
         <item name="android:layout_marginLeft">@dimen/abc_dropdownitem_text_padding_left</item>
     </style>
+    <style name="ShimoAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/prompt_color</item>
+    </style>
+    <style name="ShimoEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="colorControlNormal">@color/prompt_color</item>
+        <item name="colorControlActivated">@color/prompt_color</item>
+        <item name="colorControlHighlight">@color/prompt_color</item>
+    </style>
     <style name="SpinnerDatePickerDialog" ns1:targetApi="lollipop" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:datePickerStyle">@style/SpinnerDatePickerStyle</item>
     </style>

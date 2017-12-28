@@ -5,43 +5,32 @@ import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { URL } from '../../Config/index';
 
-let TOKEN; let ID;
 const mapStateToProps = (state) => ({
     isLoading: state.child.isLoading,
     error: state.child.error,
-    data: state.child.data
+    data: state.child.data, 
+    token: state.auth.token,
+    id: state.auth.id
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getTokens: () => getToken(dispatch),
-    callService: () => dispatch(callWebservice())
+    callService: (token, id) => dispatch(callWebservice(token, id))
 })
 
-export const callWebservice = () => {
-    console.log(`${URL}parents/${this.ID}/children/planning`, this.TOKEN);
+export const callWebservice = (token, id) => {
     return dispatch => {
         dispatch(serviceActionPending())
-        axios.get(`${URL}parents/${this.ID}/children/planning`, {headers: {'Authorization': `Bearer ${this.TOKEN}`}})
+        axios.get(`${URL}parents/${id}/children/planning`, {headers: {'Authorization': `Bearer ${token}`}})
         .then(response => {
-            dispatch(serviceActionSuccess(response.data))
-            
+             dispatch(serviceActionSuccess(response.data))
         })
         .catch(error => {
             dispatch(serviceActionError(error))
         });
     }
 }
-const getToken = async (dispatch) => {
-    try {
-        let cre = await AsyncStorage.getItem('parent');
-        let parent = JSON.parse(cre);
-        this.TOKEN = parent.token;
-        this.ID = parent.parent_id;
-        dispatch(callWebservice());
-        console.log('TOKEN AND PAREND STK', this.TOKEN, this.ID);
-    }
-    catch (error){console.log(error)}
-}
+    
+
 export const serviceActionPending = () => ({
     type: ActionTypes.SERVICE_PENDING
 })

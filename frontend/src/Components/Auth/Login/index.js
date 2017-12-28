@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ListView, ActivityIndicator, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ListView, ActivityIndicator, TextInput, TouchableOpacity } from 'react-native';
 import { connect }from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Icon  from 'react-native-vector-icons/FontAwesome';

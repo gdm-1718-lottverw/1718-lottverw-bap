@@ -26,6 +26,16 @@ class Child extends Model
     }
 
     /**
+     * Get all the children
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function organization()
+    {
+        return $this->belongsTo('App\Models\Organization');
+    }
+    
+    /**
      * Get the guardians for a given child.
      * 
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany

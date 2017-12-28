@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import TopBar from '../Components/TopBar/index';
-import { Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
+import CalendarSevice from '../Actions/Calendar/CalendarActions';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+
 class CalendarScreen extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {
-          items: {}
-        };
+        this.state = {}
     }    
     render(){
+
         return (
             <View style={styles.box}>
                 <TopBar title={'CALENDAR'}/>
+                <CalendarSevice />
             </View>
         );
         
@@ -23,9 +25,6 @@ class CalendarScreen extends React.Component{
 const styles = StyleSheet.create({
     box: {
         flex: 1,
-    },
-    calendar: {
-        marginTop: 90
     }
 });
 export default CalendarScreen;

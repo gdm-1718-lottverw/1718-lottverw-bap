@@ -102,6 +102,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/frontend/react-native-prompt-android/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="74caa7f7c9d9f0d9c3baee5236acc8b06a1a3880">
+        <dex dex="/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/pre-dexed/debug/frontend-react-native-prompt-android-unspecified_607d8c169ea6c7734e63d0da0b3a0bf9991e5c30.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"

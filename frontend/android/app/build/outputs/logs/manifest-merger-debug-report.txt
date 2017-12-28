@@ -26,6 +26,7 @@ MERGED from [com.facebook.react:react-native:0.51.0] /Users/lotte/Code/1718-lott
 		ADDED from /Users/lotte/Code/1718-lottverw-bap/frontend/android/app/src/main/AndroidManifest.xml:7:22-75
 uses-sdk
 ADDED from /Users/lotte/Code/1718-lottverw-bap/frontend/android/app/src/main/AndroidManifest.xml:9:5-11:41
+MERGED from [frontend:react-native-prompt-android:unspecified] /Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/frontend/react-native-prompt-android/unspecified/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.51.0] /Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.51.0/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.0.1] /Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/AndroidManifest.xml:20:5-43

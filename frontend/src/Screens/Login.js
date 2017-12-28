@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import Colors from '../Config/theme';
-import LoginService from '../Actions/Login/AuthAction';
+import LoginService from '../Actions/Login/AuthActions';
 class Login extends React.Component{  
     constructor(props){
         super(props);

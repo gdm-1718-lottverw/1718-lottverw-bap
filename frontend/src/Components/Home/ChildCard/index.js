@@ -6,6 +6,7 @@ import {connect }from 'react-redux';
 import styles from './styles'
 import { Actions } from 'react-native-router-flux';
 import Icon  from 'react-native-vector-icons/FontAwesome';
+
 class ChildCard extends Component {
   constructor(props) {
     super(props);
@@ -19,10 +20,11 @@ class ChildCard extends Component {
     };
   }
     componentDidMount() {
-          this.props.getTokens();
+      this.props.callService(this.props.token, this.props.id)
 
     }   
-componentWillReceiveProps(nextProps) {
+
+    componentWillReceiveProps(nextProps) {
       if (nextProps.data.length > 0 && nextProps.error == undefined) {
         const getSectionData = (dataBlob, sectionId) => dataBlob[sectionId];
         const getRowData = (dataBlob, sectionId, rowId) => dataBlob[`${rowId}`];

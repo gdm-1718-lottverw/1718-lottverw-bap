@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
 import Colors from '../Config/theme';
 import TopBar from '../Components/TopBar/index';
-import ChildCard from '../Components/Home/ChildCard/index';
-import store from '../Reducers/index';
 import { Actions } from 'react-native-router-flux';
-import ServiceAction from '../Actions/Home/ChildCallAction';
+import QuickAddService from '../Actions/QuickAdd/ChildActions';
+import PropTypes from 'prop-types';
+
 class QuickAdd extends React.Component{  
     constructor(props){
         super(props);
-        console.log('STATE: ',store.getState());
+        this.state = {
+          children: [],
+        }
     }
 
-render(){  
-      return (
-        <View style={styles.box}>
-            <TopBar title={'Inschrijving'}/>
-        </View>
-      )
+  render(){  
+    return (
+      <View style={styles.box}>
+          <TopBar title={'Inschrijving'}/>
+          <QuickAddService date={this.props.date} />
+      </View>
+    )
 
   }
+}
+
+QuickAdd.propTypes = {
+  date: PropTypes.string
 }
 
 const styles = StyleSheet.create({
     box: {
         flex: 1,
-    },
+    }
 });
     
 export default QuickAdd;

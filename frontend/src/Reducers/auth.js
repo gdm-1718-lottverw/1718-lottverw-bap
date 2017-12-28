@@ -1,6 +1,6 @@
 import * as Actions from '../Actions/ActionTypes'
 
-const AuthReducer = (state = { isLoading: false, error: undefined, loggedIn: false, credentials: {}, token: '' }, action) => {
+const AuthReducer = (state = { isLoading: false, error: undefined, loggedIn: false, credentials: {}, token: '', id: '' }, action) => {
     switch (action.type) {
         case Actions.LOGGING_IN:
             return Object.assign({}, state, {
@@ -15,7 +15,8 @@ const AuthReducer = (state = { isLoading: false, error: undefined, loggedIn: fal
             return Object.assign({}, state, {
                 isLoading: false,
                 loggedIn: true,
-                token: action.data,
+                token: action.data.token,
+                id: action.data.parent,
             }); 
         default:
             return state;

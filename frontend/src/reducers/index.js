@@ -3,11 +3,15 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
 import authReducer from './auth';
-import serviceReducer from './serviceReducer'
+import serviceReducer from './serviceReducer';
+import calendarReducer from './calendar';
+import childrendReducer from './children';
 
 const AppReducers = combineReducers({
     child: serviceReducer,
-    auth: authReducer
+    auth: authReducer,
+    calendar: calendarReducer,
+    children: childrendReducer
 });
 
 const rootReducer = (state, action) => {

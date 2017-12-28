@@ -8,6 +8,10 @@
         "source": "/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/switch_thumb_material_light.xml"
     },
     {
+        "merged": "/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/res/merged/debug/color/prompt_color.xml",
+        "source": "/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/frontend/react-native-prompt-android/unspecified/res/color/prompt_color.xml"
+    },
+    {
         "merged": "/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
         "source": "/Users/lotte/Code/1718-lottverw-bap/frontend/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color/abc_primary_text_material_dark.xml"
     },

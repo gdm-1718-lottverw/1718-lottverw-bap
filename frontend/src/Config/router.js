@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactNativeRouter, { Actions, Router, Scene, Reducer } from 'react-native-router-flux';
+import ReactNativeRouter, { Actions, Router, Scene, Reducer, Modal } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import Colors from './theme';
 import Icon  from 'react-native-vector-icons/FontAwesome';
@@ -22,61 +22,57 @@ const reducerCreate = params => {
     <Router
     createReducer={reducerCreate}
     >
-    <Scene key="root"
-        tabBarPosition='bottom'>
-    <Scene
-        initial={true}
-        key="login"
-        component={Login}
-        hideNavBar={true}
-        />
-    <Scene 
-        key="tabbar"
-        tabs={true}
-        hideNavBar={true}
-        swipeEnabled={false}
-        activeBackgroundColor={Colors.deeppink}
-        labelStyle={{display: 'none'}}
-        activeTintColor={Colors.white}
-        tabBarStyle={{ backgroundColor: Colors.white }}>
-        <Scene icon={TabIcon} tabBarLabel=" " iconName="home" key="actions">
-            <Scene
-                initial={true}
-                key="home"
-                component={Home}
+        <Scene key="root"
+            tabBarPosition='bottom'>
+        <Modal key="quickAdd">
+            <Scene   
+                key="quickAdd"
                 hideNavBar={true}
-                />
+                component={QuickAdd}  />
+         </Modal>
+        <Scene
+            initial={true}
+            key="login"
+            component={Login}
+            hideNavBar={true}/>
+        <Scene 
+            key="tabbar"
+            tabs={true}
+            hideNavBar={true}
+            swipeEnabled={false}
+            activeBackgroundColor={Colors.deeppink}
+            labelStyle={{display: 'none'}}
+            activeTintColor={Colors.white}
+            tabBarStyle={{ backgroundColor: Colors.white }}>
+            <Scene icon={TabIcon} tabBarLabel=" " iconName="home" key="actions">
                 <Scene
-                    key="quickAdd"
+                    initial={true}
+                    key="home"
+                    component={Home}
+                    hideNavBar={true}/>
+                </Scene>
+                <Scene
+                    iconName="calendar"
+                    tabBarLabel=" "
+                    icon={TabIcon}
+                    key="calendar"
                     hideNavBar={true}
-                    component={QuickAdd}  
-                />
-        </Scene>
-        <Scene
-                iconName="calendar"
-                tabBarLabel=" "
-                icon={TabIcon}
-                key="calendar"
-                hideNavBar={true}
-                component={CalendarScreen}
-            />
-        <Scene
-                key="history"
-                tabBarLabel=" "
-                iconName="history"
-                icon={TabIcon}
-                hideNavBar={true}
-                component={History}
-            />
-        <Scene
-                key="profile"
-                iconName="user"
-                icon={TabIcon}
-                tabBarLabel=" "
-                hideNavBar={true}
-                component={Profile}
-            />
-       </Scene>
+                    component={CalendarScreen}/>
+                <Scene
+                    key="history"
+                    tabBarLabel=" "
+                    iconName="history"
+                    icon={TabIcon}
+                    hideNavBar={true}
+                    component={History}/>
+                <Scene
+                    key="profile"
+                    iconName="user"
+                    icon={TabIcon}
+                    tabBarLabel=" "
+                    hideNavBar={true}
+                    component={Profile}/>
+            </Scene>
         </Scene>
     </Router>
   );
