@@ -22,11 +22,14 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     // Check for other data. e.g. if a parent has a child etc. 
     Route::group(['middleware' => ['check.for.credentials']], function () {
         Route::get('/parents/{parent_id}/children/planning', 'API\Home\ChildController@index');
-        Route::get('/parents', 'ParentController@index');
-        Route::get('/parent/{id}', 'ParentController@show');
+        Route::get('/parents/{parent_id}/children/calendar', 'API\Home\ChildController@calendar');
+    	Route::get('/parents/{parent_id}/children', 'API\Home\ChildController@children');
+		
+		Route::post('/parents/{parent_id}/children/new', 'API\Home\ChildController@newAttendance');
     });
+    
 });
-
+ 
 Route::post('/auth', 'API\Auth\AuthController@authenticate');
 
 
