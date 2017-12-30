@@ -78,12 +78,12 @@ module.exports = __webpack_require__(2);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 $(document).ready(function () {
-    console.log('UPDATED');
     // CLOCK
     setInterval(function () {
         var d = new Date();
         $('.date').text(d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear() + ', ' + d.getHours() + ":" + d.getMinutes());
     }, 30000);
+
     // LOGPAGE CHANGE EDIT FIELD
     $('tbody').on('click', '.fa-pencil', function (e) {
         var id = e.currentTarget.id;
@@ -95,6 +95,7 @@ $(document).ready(function () {
         $('.' + id).addClass('hide');
         var i = $('#' + id)[0].parentElement.classList.remove('hide');
     });
+    // HOME SIGN IN OR OUT
     function signInOut(action, oldContainer, newContainer, oldId, newId, e) {
         $.ajax({
             method: "POST",
@@ -113,19 +114,7 @@ $(document).ready(function () {
     $('#container-in').on('click', '.fa-sign-out', function (e) {
         signInOut('sign-out', 'container-in', 'container-out', 'in', 'out', e);
     });
-    /*
-    $('#container-in').on('click', '.fa-sign-out', (e) => {
-      $.ajax({
-          method: "POST",
-          url: "/sign-out",
-          data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
-      })
-      .done(function( msg ) {
-        $('div#container-in').load(location.href + " #in", function() {
-          });
-           $('div#container-out').load(location.href + " #out", function() {
-          });
-      });*/
+
     /* FILTER*/
     var slider = document.getElementById('slider');
     if (slider != null || slider != undefined) {
@@ -151,7 +140,6 @@ $(document).ready(function () {
         slider.noUiSlider.on('end', function () {
             var date = $('input[name=date]').val();
             var age_data = [{ age: slider.noUiSlider.get() }];
-            console.log(age_data, date);
             $.ajax({
                 method: "POST",
                 url: "filter",
