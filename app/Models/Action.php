@@ -13,6 +13,6 @@ class Action extends Model
      */
     public function logs()
     {
-        return $this->belongsTo('App\Models\Log');
+        return $this->hasMany('App\Models\Log');
     }
 }

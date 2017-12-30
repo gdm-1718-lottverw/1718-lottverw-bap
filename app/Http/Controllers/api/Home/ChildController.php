@@ -85,12 +85,10 @@ class ChildController extends Controller
             $plannedAttendance->go_home_alone = $request->go_home_alone;
             $plannedAttendance->child_id = $id;
             $plannedAttendance->organization_id = $organization->id;
-
             $plannedAttendance->save();
-
+            return 'SUCCES';
         }
        
-        return 'SUCCES';
     }
 
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backoffice\Child;
 
 
 use App\Models\Child;
+use App\Models\Allegie;
+use App\Models\Address;
 use App\Models\Parents as Parents;
 use App\Http\Controllers\Controller; 
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,7 @@ class IndexController extends Controller
                   'children.gender',
                   'children.potty_trained',
                 ]);
-            
+        
         $addresses = DB::table('addresses')->where('addresses.children_id', '=', $this->child_id)->get();
         $allergies = DB::table('allergies')->where('allergies.children_id', '=', $this->child_id)->get();
         $pedagogic = DB::table('pedagogic_reports')->where('pedagogic_reports.children_id', '=', $this->child_id)->get();

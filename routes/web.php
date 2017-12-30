@@ -13,7 +13,7 @@
 
 Route::get('/', 'Backoffice\Home\IndexController@index');
 Route::post('/sign-in', 'Backoffice\Home\IndexController@signIn');
-Route::post('/leftover/sign-in', 'Backoffice\Home\IndexController@signIn');
+Route::post('/leftover/sign-in', 'Backoffice\Home\IndexController@LeftOverIn');
 Route::post('/sign-out', 'Backoffice\Home\IndexController@signOut');
 Route::post('/edit-timestamps', 'Backoffice\Home\IndexController@editTimestamps');
 

@@ -23,6 +23,6 @@ class Log extends Model
      */
     public function actions()
     {
-        return $this->hasMany('App\Models\Action', 'action_id');
+        return $this->belongsTo('App\Models\Action', 'action_id');
     }
 }
