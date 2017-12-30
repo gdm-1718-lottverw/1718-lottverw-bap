@@ -4,6 +4,9 @@
 
   <section class="home" id="home">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div id="container-leftover">
+      @include('home.partials.leftOvers')
+    </div> 
     <div id="container-future">
       @include('home.partials.future')
     </div>  

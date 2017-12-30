@@ -3366,20 +3366,23 @@ body .navigation a :hover {
 
 .home #to-come .child-card,
 .home #in .child-card,
-.home #out .child-card {
+.home #out .child-card,
+.home #leftover .child-card {
   height: 130px;
 }
 
 .home #to-come .child-card .btn,
 .home #in .child-card .btn,
-.home #out .child-card .btn {
+.home #out .child-card .btn,
+.home #leftover .child-card .btn {
   height: 100%;
   margin-right: 3px;
 }
 
 .home #to-come .child-card .btn i,
 .home #in .child-card .btn i,
-.home #out .child-card .btn i {
+.home #out .child-card .btn i,
+.home #leftover .child-card .btn i {
   width: 55px;
   min-height: 55px;
   padding: 12px 0;
@@ -3390,39 +3393,45 @@ body .navigation a :hover {
 
 .home #to-come .child-card .btn i.fa-sign-in,
 .home #in .child-card .btn i.fa-sign-in,
-.home #out .child-card .btn i.fa-sign-in {
+.home #out .child-card .btn i.fa-sign-in,
+.home #leftover .child-card .btn i.fa-sign-in {
   background: #44DEA3;
 }
 
 .home #to-come .child-card .btn i.fa-sign-out,
 .home #in .child-card .btn i.fa-sign-out,
-.home #out .child-card .btn i.fa-sign-out {
+.home #out .child-card .btn i.fa-sign-out,
+.home #leftover .child-card .btn i.fa-sign-out {
   background: #E64E78;
 }
 
 .home #to-come .child-card .btn i.fa-pencil,
 .home #in .child-card .btn i.fa-pencil,
-.home #out .child-card .btn i.fa-pencil {
+.home #out .child-card .btn i.fa-pencil,
+.home #leftover .child-card .btn i.fa-pencil {
   background: #3B4250;
 }
 
 .home #to-come .child-card a,
 .home #in .child-card a,
-.home #out .child-card a {
+.home #out .child-card a,
+.home #leftover .child-card a {
   text-decoration: none;
   color: #3B4250;
 }
 
 .home #to-come .child-card .child-info,
 .home #in .child-card .child-info,
-.home #out .child-card .child-info {
+.home #out .child-card .child-info,
+.home #leftover .child-card .child-info {
   width: 100%;
   background: #F7F7F7;
 }
 
 .home #to-come .child-card .child-info .name,
 .home #in .child-card .child-info .name,
-.home #out .child-card .child-info .name {
+.home #out .child-card .child-info .name,
+.home #leftover .child-card .child-info .name {
   color: #3B4250;
   text-decoration: none;
   font-size: 0.8em;
@@ -3432,12 +3441,29 @@ body .navigation a :hover {
 
 .home #to-come .child-card .child-info .description,
 .home #in .child-card .child-info .description,
-.home #out .child-card .child-info .description {
+.home #out .child-card .child-info .description,
+.home #leftover .child-card .child-info .description {
   color: #3B4250;
   text-decoration: none;
   font-size: 0.6em;
   font-weight: 300;
   margin: 4px 0;
+}
+
+.home #container-leftover {
+  background: #F7F7F7;
+}
+
+.home #container-leftover .title {
+  margin: 0 30px;
+  border-bottom: 1px solid black;
+  padding: 16px 0 3px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.home #container-leftover #leftover .child-card .child-info {
+  background: white;
 }
 
 @media screen and (max-width: 37.5em) {
@@ -3449,20 +3475,23 @@ body .navigation a :hover {
 
   #to-come,
   #in,
-  #out {
+  #out,
+  #leftover {
     padding: 10px;
   }
 
   #to-come .child-card,
   #in .child-card,
-  #out .child-card {
+  #out .child-card,
+  #leftover .child-card {
     width: calc(100% - 10px);
     margin: 5px 0;
   }
 
   #to-come .child-card .child-info,
   #in .child-card .child-info,
-  #out .child-card .child-info {
+  #out .child-card .child-info,
+  #leftover .child-card .child-info {
     padding: 5px;
   }
 }
@@ -3476,20 +3505,23 @@ body .navigation a :hover {
 
   #to-come,
   #in,
-  #out {
+  #out,
+  #leftover {
     padding: 5px;
   }
 
   #to-come .child-card,
   #in .child-card,
-  #out .child-card {
+  #out .child-card,
+  #leftover .child-card {
     width: calc((100% / 2) - 6px);
     margin: 3px;
   }
 
   #to-come .child-card .child-info,
   #in .child-card .child-info,
-  #out .child-card .child-info {
+  #out .child-card .child-info,
+  #leftover .child-card .child-info {
     padding: 10px;
   }
 }
@@ -3505,13 +3537,15 @@ body .navigation a :hover {
 
   #to-come,
   #in,
-  #out {
+  #out,
+  #leftover {
     padding: 5px;
   }
 
   #to-come .child-card,
   #in .child-card,
-  #out .child-card {
+  #out .child-card,
+  #leftover .child-card {
     width: calc((100% / 3) - 14px);
     margin: 7px;
   }
@@ -3520,13 +3554,15 @@ body .navigation a :hover {
 @media screen and (min-width: 64em) {
   #to-come,
   #in,
-  #out {
+  #out,
+  #leftover {
     padding: 5px;
   }
 
   #to-come .child-card,
   #in .child-card,
-  #out .child-card {
+  #out .child-card,
+  #leftover .child-card {
     width: calc((100% / 3) - 12px);
     margin: 6px;
   }
@@ -3535,13 +3571,15 @@ body .navigation a :hover {
 @media screen and (min-width: 70em) {
   #to-come,
   #in,
-  #out {
+  #out,
+  #leftover {
     padding: 5px;
   }
 
   #to-come .child-card,
   #in .child-card,
-  #out .child-card {
+  #out .child-card,
+  #leftover .child-card {
     width: calc((100% / 4) - 6px);
     margin: 3px;
   }
@@ -3550,27 +3588,31 @@ body .navigation a :hover {
 @media screen and (min-width: 84em) {
   #to-come,
   #in,
-  #out {
+  #out,
+  #leftover {
     padding: 25px;
   }
 
   #to-come .child-card,
   #in .child-card,
-  #out .child-card {
+  #out .child-card,
+  #leftover .child-card {
     width: calc((100% / 5) - 10px);
     margin: 5px;
   }
 
   #to-come .child-card .btn,
   #in .child-card .btn,
-  #out .child-card .btn {
+  #out .child-card .btn,
+  #leftover .child-card .btn {
     height: 100%;
     margin-right: 1px;
   }
 
   #to-come .child-card .btn i,
   #in .child-card .btn i,
-  #out .child-card .btn i {
+  #out .child-card .btn i,
+  #leftover .child-card .btn i {
     width: 35px !important;
     min-height: 35px !important;
     padding: 10px 0 !important;
@@ -3579,7 +3621,8 @@ body .navigation a :hover {
 
   #to-come .child-card .child-info,
   #in .child-card .child-info,
-  #out .child-card .child-info {
+  #out .child-card .child-info,
+  #leftover .child-card .child-info {
     padding: 10px;
   }
 }

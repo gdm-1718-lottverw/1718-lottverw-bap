@@ -18,22 +18,26 @@
                 var i = $('#' + id)[0].parentElement.classList.remove('hide');
                
             })
-            // SIGN KID IN
-            $('#container-future').on('click', '.fa-sign-in', (e) => {
-                 $.ajax({
+             function signInOut(action, oldContainer, newContainer, oldId, newId, e){
+                $.ajax({
                     method: "POST",
-                    url: "/sign-in",
+                    url: "/"+action,
                     data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
+                }).done(function( msg ) {
+                    $('div#'+oldContainer).load(location.href + " #"+oldId, function() {})
+                    $('div#'+newContainer).load(location.href + " #"+newId, function() {})
                 })
-                .done(function( msg ) {
-                    $('div#container-future').load(location.href + " #to-come", function() {
-                    });
-                     $('div#container-in').load(location.href + " #in", function() {
-                    });
-                })
-            })
+            }
+            
+            $('#container-future').on('click', '.fa-sign-in', (e) => {
+                signInOut('sign-in', 'container-future', 'container-in', 'to-come', 'in', e);
+            });
+
             $('#container-in').on('click', '.fa-sign-out', (e) => {
-                
+                signInOut('sign-out', 'container-in', 'container-out', 'in', 'out', e);
+            });
+              /*
+            $('#container-in').on('click', '.fa-sign-out', (e) => {
                 $.ajax({
                     method: "POST",
                     url: "/sign-out",
@@ -44,8 +48,7 @@
                     });
                      $('div#container-out').load(location.href + " #out", function() {
                     });
-                });
-            });
+                });*/
             /* FILTER*/
             var slider = document.getElementById('slider');
             if(slider != null || slider != undefined){

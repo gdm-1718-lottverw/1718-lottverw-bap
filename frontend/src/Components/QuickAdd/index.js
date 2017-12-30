@@ -3,7 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, TextInput, Picker, Button } f
 import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import styles from './styles';
-import ChildrenService from './children';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class QuickAddService extends React.Component{  
   constructor(props){
@@ -23,33 +23,29 @@ class QuickAddService extends React.Component{
   }   
 
   componentWillReceiveProps(nextProps) {
-          console.log('NEXT PROPS', nextProps.data);
-
    if (nextProps.data.length > 0 && nextProps.error == undefined) {
-      console.log('NEXT PROPS', nextProps.data);
       this.state.children = nextProps.data;
     } 
   }
   addChild = (id) => {
-    console.log('ADD CHILD', id);
     this.state.child_id.push(id);
   }
 
   renderChild = (children) => {
-    console.log('IN RENDER CHILD', children);
     return children.map((child, i) => {
-      return (<TouchableOpacity key={i} onPress={() => {this.addChild(child.id)}}>
-                <Text>{ child.name}</Text>
+      return (<TouchableOpacity key={i} style={styles.checkbox} onPress={() => {this.addChild(child.id)}}>
+              <Text style={styles.checkboxText}>{child.name}</Text>
+              {this.state.children.indexOf(child.id) > 0 ? <Icon style={styles.checkboxIcon} name="check-square-o" size={20}/> : <Icon style={styles.checkboxIcon} name="square-o" size={20}/>}
               </TouchableOpacity>);
     })
   }
   
 renderCheckbox = () => {
     const options = [{key: 'ja', value: true},{key: 'neen', value: false}];
-    console.log(options);
     return  options.map((option, i) => {
       return (<TouchableOpacity 
                 key={i} 
+                style={styles.checkbox}
                 onPress={() => {
                   this.setState({go_home_alone: option.value})
                 }}>
@@ -70,9 +66,13 @@ renderCheckbox = () => {
 
   render(){  
     return (
-      <View>
-        <View><Button onPress={() =>{Actions.pop()}} title='Back'/></View>
-        <View style={styles.container}>
+      <View  style={styles.container}>
+        <View>
+          <TouchableOpacity onPress={() =>{Actions.pop()}} style={styles.btnBack}>
+            <Icon style={styles.btnIcon} name={"times"} size={20}/>
+          </TouchableOpacity>
+        </View>
+        <View>
           <Text style={styles.label}>{'Datum'.toUpperCase()}</Text>
           <Text>{this.props.date}</Text>
           <Text style={styles.label}>{'Dag type'.toUpperCase()}</Text>
@@ -85,7 +85,7 @@ renderCheckbox = () => {
             <Picker.Item label="Volledige dag" value="full day" />
           </Picker>
           <Text style={styles.label}>{'Kind(eren)'.toUpperCase()}</Text>
-          {this.state.children !== undefined && this.state.children.length > 0 ? this.renderChild(this.state.children) : console.log('UNDEFINED CHILDREN', this.state.children)}
+          {this.state.children !== undefined && this.state.children.length > 0 ? this.renderChild(this.state.children) : null}
 
             <Text style={styles.label}>{'Opmerkingen'.toUpperCase()}</Text>
             <TextInput

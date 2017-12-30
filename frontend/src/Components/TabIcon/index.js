@@ -14,7 +14,7 @@ const propTypes = {
 
 const TabIcon = (props) => {
   return (
-  <View style={{marginTop: 8, flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
+  <View style={{marginTop: 5, flex: 1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
     <Icon style={{color: props.focused ? Colors.white : Colors.darkgrey }} name={props.iconName || "circle"} size={20}/>
   </View>
   );

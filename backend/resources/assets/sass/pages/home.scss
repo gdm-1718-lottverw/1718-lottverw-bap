@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 0;
     bottom: 0;
-    #to-come, #in, #out {
+    #to-come, #in, #out, #leftover {
         .child-card {
             height: 130px;
             .btn {
@@ -50,6 +50,20 @@
             }
         }
     }
+
+    #container-leftover {
+      .title {
+            margin: 0 30px;
+            border-bottom: 1px solid black;
+            padding: 16px 0 3px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        background: $lightgray;
+        #leftover .child-card .child-info {
+            background: white;
+        }
+    }
 }
 
 @include breakpoint(xs){
@@ -58,7 +72,7 @@
         overflow: visible ;
         width: 100% ;
     }
-    #to-come, #in, #out {
+    #to-come, #in, #out, #leftover {
         padding: 10px ;
         .child-card {
             width: calc(100% - 10px) ;
@@ -75,7 +89,7 @@
         overflow: visible;
         width: 100% ;
     }
-    #to-come, #in, #out {
+    #to-come, #in, #out, #leftover {
         padding: 5px;
         .child-card {
             width: calc((100% / 2) - 6px);
@@ -94,7 +108,7 @@
         height: calc(100% - 35px);
         width: calc(100vw - 70px);
     }
-    #to-come, #in, #out {
+    #to-come, #in, #out, #leftover {
         padding: 5px;
         .child-card {
             width: calc((100% / 3) - 14px);
@@ -103,7 +117,7 @@
     }
 }
 @include breakpoint(lg){
-    #to-come, #in, #out {
+    #to-come, #in, #out, #leftover {
         padding: 5px;
         .child-card {
             width: calc((100% / 3) - 12px);
@@ -112,7 +126,7 @@
     }
 }
 @include breakpoint(xl){
-    #to-come, #in, #out {
+    #to-come, #in, #out, #leftover {
         padding: 5px;
         .child-card {
             width: calc((100% / 4) - 6px);
@@ -121,7 +135,7 @@
     }
 }
 @include breakpoint(xxl){
-    #to-come, #in, #out {
+    #to-come, #in, #out, #leftover {
         padding: 25px;
         .child-card {
             width: calc((100% / 5) - 10px);
