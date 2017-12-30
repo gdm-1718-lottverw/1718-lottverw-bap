@@ -11,19 +11,44 @@ use App\Models\Child;
 use App\Models\Organization;
 use App\Models\PlannedAttendance;
 use App\Models\Log;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
     public function index(){
-        $in = 
-        DB::table('children')->join('planned_attendances', function($join){
-            $join->on('children.id', '=', 'planned_attendances.child_id')
+        $time = Carbon::now()->format('h:i:s'); 
+        $middag  = Carbon::create(2017, 12, 23, 12, 00, 00)->format('h:i:s');
+        $type = ''; $type_inverse = '';
+        if($time > $middag){
+            $type = 'morning';
+            $type_inverse = 'evening';
+        } else {
+            $type = 'evening';
+            $type_inverse = 'morning';
+        }
+
+        $leftOver =  
+            DB::table('children')->join('planned_attendances as pa', function($join) use($type, $type_inverse){
+                $join->on('children.id', '=', 'pa.child_id')
                 ->where([
-                    ['planned_attendances.date', '=', date("Y-m-d")],
-                    ['planned_attendances.organization_id', '=', 1],
-                    ['planned_attendances.in', '=', true],
-                    ['planned_attendances.out', '=', false],
+                    ['pa.date', '=', date("Y-m-d")],
+                    ['pa.organization_id', '=', 1],
+                    ['pa.in', '=', false],
+                    ['pa.out', '=', false],
+                    ['pa.type', '=', $type_inverse]
                 ]);
+        })->get();
+
+        $in = 
+        DB::table('children')->join('planned_attendances as pa', function($join) use($type){
+            $join->on('children.id', '=', 'pa.child_id')
+                ->where([
+                    ['pa.date', '=', date("Y-m-d")],
+                    ['pa.organization_id', '=', 1],
+                    ['pa.in', '=', true],
+                    ['pa.out', '=', false],
+                ])
+                ->whereIn('pa.type', [$type, 'full day']);
         })
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
@@ -33,14 +58,14 @@ class IndexController extends Controller
         ->get();
 
         $out = 
-        DB::table('children')->join('planned_attendances', function($join){
-            $join->on('children.id', '=', 'planned_attendances.child_id')
+        DB::table('children')->join('planned_attendances as pa', function($join) use($type){
+            $join->on('children.id', '=', 'pa.child_id')
                 ->where([
-                    ['planned_attendances.date', '=', date("Y-m-d")],
-                    ['planned_attendances.organization_id', '=', 1],
-                    ['planned_attendances.in', '=', true],
-                    ['planned_attendances.out', '=', true],
-                ]);
+                    ['pa.date', '=', date("Y-m-d")],
+                    ['pa.organization_id', '=', 1],
+                    ['pa.in', '=', true],
+                    ['pa.out', '=', true],
+                ])->whereIn('pa.type', [$type, 'full day']);
         })
         ->whereExists(function ($query) {
             $query->select(DB::raw(1))
@@ -50,17 +75,17 @@ class IndexController extends Controller
         ->get();
         
         $toCome = 
-        DB::table('children')->join('planned_attendances', function($join){
+        DB::table('children')->join('planned_attendances', function($join)  use($type){
             $join->on('children.id', '=', 'planned_attendances.child_id')
                 ->where([
                     ['planned_attendances.date', '=', date("Y-m-d")],
                     ['planned_attendances.organization_id', '=', 1],
                     ['planned_attendances.in', '=', false],
-                ]);
+                ])->whereIn('planned_attendances.type', [$type, 'full day']);
         })
         ->get();
         
-        return view('home.index', compact(['toCome', 'in', 'out']));
+        return view('home.index', compact(['toCome', 'in', 'out', 'leftOver']));
     }    
 
     public function signIn(request $request){
@@ -79,6 +104,7 @@ class IndexController extends Controller
         $log->action_id = 1;
         $log->save();
         
+
         $in = 
         DB::table('children')->join('planned_attendances', function($join){
             $join->on('children.id', '=', 'planned_attendances.child_id')
