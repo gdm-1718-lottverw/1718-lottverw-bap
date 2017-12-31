@@ -63,8 +63,13 @@ class CalendarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($parent_id, $item_id){
-        $calendar_item = PlannedAttendance::where('id', $item_id)->with('child:name,id')->first(['date', 'id', 'type', 'parent_notes', 'go_home_alone', 'child_id']);
-        return $calendar_item;
+        $calendar_item = PlannedAttendance::where('id', $item_id)->first(['date', 'id', 'type', 'parent_notes', 'go_home_alone', 'child_id']);
+        $children = Parents::with('children')->where('id', $parent_id)->first()->children()->get(['children.name as name', 'children.id as id']);
+        $response = [
+            'item' => $calendar_item,
+            'children' => $children
+        ];
+        return $response;
     }
 
 
