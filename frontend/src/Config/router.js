@@ -5,10 +5,11 @@ import Colors from './theme';
 import Icon  from 'react-native-vector-icons/FontAwesome';
 import { View } from 'react-native';
 
-import CalendarScreen from '../Screens/Calendar';
+import CalendarScreen from '../Screens/Calendar/Calendar';
 import History from '../Screens/History';
 import Profile from '../Screens/Profile';
-import QuickAdd from '../Screens/QuickAdd';
+import NewCalendarScreen from '../Screens/Calendar/NewCalendarScreen';
+import UpdateCalendarScreen from '../Screens/Calendar/UpdateCalendarScreen';
 import Login from '../Screens/Login';
 import TabIcon from '../Components/TabIcon';
 const reducerCreate = params => {
@@ -25,7 +26,13 @@ const reducerCreate = params => {
                 <Scene   
                     key="quickAdd"
                     hideNavBar={true}
-                    component={QuickAdd}  />
+                    component={NewCalendarScreen}  />
+            </Modal>
+            <Modal key="updateCalendar">
+                <Scene   
+                    key="updateCalendar"
+                    hideNavBar={true}
+                    component={UpdateCalendarScreen}  />
              </Modal>
             <Scene
                 initial={true}

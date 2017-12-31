@@ -47,7 +47,7 @@ class CalendarService extends Component {
 
       dot = { key: i, color: children[e.child], marked: true };
       marker[e.date] == undefined? marker[e.date] = {dots: [dot]} : marker[e.date]['dots'].push(dot);
-      let item = {child: e.child, description: 'Ingeschreven voor de ' + e.type, id: e.id, color: children[e.child], note: e.note}
+      let item = {child: e.child, description: 'Ingeschreven voor de ' + e.type, id: e.id, color: children[e.child], note: e.note, date: e.date}
       if(items[e.date] == undefined){
         items[e.date] = [];
         items[e.date].push(item);
@@ -100,7 +100,7 @@ class CalendarService extends Component {
             <Text style={styles.description}>{item.description}</Text>
           </View>
           <View style={styles.actions}>
-            <TouchableOpacity style={styles.action} onPress={() => {}}>
+            <TouchableOpacity style={styles.action} onPress={() => {Actions.updateCalendar({'itemId': item.id, 'date': item.date})}}>
               <Icon name='pencil' size={20}/>
             </TouchableOpacity>
              <TouchableOpacity style={styles.action} onPress={() => {this.props.deleteDate(this.props.token, this.props.id, item.id)}}>

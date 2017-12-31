@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     }, 
     data: {	
 		position: 'absolute',
-		top: 0;
+		top: 0,
     }
 });
 export default styles;

@@ -53,8 +53,8 @@ class HistoryService extends Component {
     );
     renderNoShow = (rowData) => (
       <View style={styles.noShow}>
-        <Text>{rowData.date}: No show</Text>
-        <Text>{rowData.name} werd ingeschreven voor een {rowData.type} </Text>
+        <Text style={styles.error}>{rowData.date}: No show</Text>
+        <Text style={styles.data}>{rowData.name} werd ingeschreven voor een {rowData.type} </Text>
       </View>
     );
      renderShow = (rowData) => (

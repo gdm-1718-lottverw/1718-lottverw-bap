@@ -26,12 +26,14 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     	Route::get('/parents/{parent_id}/calendar/children', 'API\Calendar\ChildController@index');
 		Route::post('/parents/{parent_id}/calendar/create', 'API\Calendar\CalendarController@create');
 		Route::get('/parents/{parent_id}/calendar/delete/{item_id}', 'API\Calendar\CalendarController@delete');
+        Route::patch('/parents/{parent_id}/calendar/update/{item}', 'API\Calendar\CalendarController@update');
+        Route::get('/parents/{parent_id}/calendar/show/{item_id}', 'API\Calendar\CalendarController@show');
+
         // HISTORY
         Route::get('/parents/{parent_id}/history', 'API\History\HistoryController@index');
     });
     
 });
-
 
 Route::post('/auth', 'API\Auth\AuthController@authenticate');
 
