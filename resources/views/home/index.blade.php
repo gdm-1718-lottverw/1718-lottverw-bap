@@ -4,9 +4,11 @@
 
   <section class="home" id="home">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    @if(Count($leftOver)>0)
     <div id="container-leftover">
       @include('home.partials.leftOvers')
     </div> 
+    @endif
     <div id="container-future">
       @include('home.partials.future')
     </div>  
