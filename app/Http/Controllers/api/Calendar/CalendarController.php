@@ -45,17 +45,42 @@ class CalendarController extends Controller
         foreach ($request->child_id as $child => $id) {
             $organization = Child::where('id', $id)->with('organization')->first()->organization;
             
-            $plannedAttendance = new PlannedAttendance;
-            $plannedAttendance->date = $request->date;
-            $plannedAttendance->type = $request->type;
-            $plannedAttendance->parent_notes = $request->parent_notes;
-            $plannedAttendance->go_home_alone = $request->go_home_alone;
-            $plannedAttendance->child_id = $id;
-            $plannedAttendance->organization_id = $organization->id;
-            $plannedAttendance->save();
+            $calendar_item = new PlannedAttendance;
+            $calendar_item->date = $request->date;
+            $calendar_item->type = $request->type;
+            $calendar_item->parent_notes = $request->parent_notes;
+            $calendar_item->go_home_alone = $request->go_home_alone;
+            $calendar_item->child_id = $id;
+            $calendar_item->organization_id = $organization->id;
+            $calendar_item->save();
         }
        
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($parent_id, $item_id){
+        $calendar_item = PlannedAttendance::where('id', $item_id)->with('child:name,id')->first(['date', 'id', 'type', 'parent_notes', 'go_home_alone', 'child_id']);
+        return $calendar_item;
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update($parent_id, $item_id, Request $request){
+        $calendar_item = PlannedAttendance::find($item_id);
+        $calendar_item->fill($request->only(['type', 'child_id', 'parent_notes', 'date', 'go_home_alone']));
+        $calendar_item->save();  
+
+        return $calendar_item;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -63,9 +88,9 @@ class CalendarController extends Controller
      */
     public function delete($parent_id, $pa_id){
             
-        $plannedAttendance = PlannedAttendance::where('id', $pa_id)->first();
-        $plannedAttendance->deleted_at = Carbon::now();
-        $plannedAttendance->save();
+        $calendar_item = PlannedAttendance::where('id', $pa_id)->first();
+        $calendar_item->deleted_at = Carbon::now();
+        $calendar_item->save();
         
         $children = Parents::with('children')->where('id', $parent_id)->first()->children;
         $id = [];

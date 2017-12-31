@@ -13,6 +13,13 @@ class PlannedAttendance extends Model
      * @var string
      */
     protected $table = 'planned_attendances';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['date', 'type', 'child_id', 'go_home_alone', 'parent_notes'];
     
     /**
      * Get all of the posts for the country.
