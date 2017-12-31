@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Colors from './theme';
 import Icon  from 'react-native-vector-icons/FontAwesome';
 import { View } from 'react-native';
-import Home from '../Screens/Home';
+
 import CalendarScreen from '../Screens/Calendar';
 import History from '../Screens/History';
 import Profile from '../Screens/Profile';
@@ -19,38 +19,28 @@ const reducerCreate = params => {
   };
   
   const navigator = () => (
-    <Router
-    createReducer={reducerCreate}
-    >
-        <Scene key="root"
-            tabBarPosition='bottom'>
-        <Modal key="quickAdd">
-            <Scene   
-                key="quickAdd"
+    <Router createReducer={reducerCreate} >
+        <Scene key="root" tabBarPosition='bottom'>
+            <Modal key="quickAdd">
+                <Scene   
+                    key="quickAdd"
+                    hideNavBar={true}
+                    component={QuickAdd}  />
+             </Modal>
+            <Scene
+                initial={true}
+                key="login"
+                component={Login}
+                hideNavBar={true}/>
+            <Scene 
+                key="tabbar"
+                tabs={true}
                 hideNavBar={true}
-                component={QuickAdd}  />
-         </Modal>
-        <Scene
-            initial={true}
-            key="login"
-            component={Login}
-            hideNavBar={true}/>
-        <Scene 
-            key="tabbar"
-            tabs={true}
-            hideNavBar={true}
-            swipeEnabled={false}
-            activeBackgroundColor={Colors.deeppink}
-            labelStyle={{display: 'none'}}
-            activeTintColor={Colors.white}
-            tabBarStyle={{ backgroundColor: Colors.white }}>
-            <Scene icon={TabIcon} tabBarLabel=" " iconName="home" key="actions">
-                <Scene
-                    initial={true}
-                    key="home"
-                    component={Home}
-                    hideNavBar={true}/>
-                </Scene>
+                swipeEnabled={false}
+                activeBackgroundColor={Colors.deeppink}
+                labelStyle={{display: 'none'}}
+                activeTintColor={Colors.white}
+                tabBarStyle={{ backgroundColor: Colors.white }}>
                 <Scene
                     iconName="calendar"
                     tabBarLabel=" "

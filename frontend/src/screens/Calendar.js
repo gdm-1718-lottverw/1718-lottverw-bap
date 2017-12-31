@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import TopBar from '../Components/TopBar/index';
 import CalendarSevice from '../Actions/Calendar/CalendarActions';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 class CalendarScreen extends React.Component{
     constructor(props) {
@@ -10,7 +9,6 @@ class CalendarScreen extends React.Component{
         this.state = {}
     }    
     render(){
-
         return (
             <View style={styles.box}>
                 <TopBar title={'CALENDAR'}/>

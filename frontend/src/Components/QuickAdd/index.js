@@ -33,9 +33,10 @@ class QuickAddService extends React.Component{
 
   renderChild = (children) => {
     return children.map((child, i) => {
-      return (<TouchableOpacity key={i} style={styles.checkbox} onPress={() => {this.addChild(child.id)}}>
+      var icon = 'square-o';
+      return (<TouchableOpacity key={i} style={styles.checkbox} onPress={() => {icon = "check-square-o", this.addChild(child.id)}}>
               <Text style={styles.checkboxText}>{child.name}</Text>
-              {this.state.children.indexOf(child.id) > 0 ? <Icon style={styles.checkboxIcon} name="check-square-o" size={20}/> : <Icon style={styles.checkboxIcon} name="square-o" size={20}/>}
+              <Icon style={styles.checkboxIcon} name={icon} size={20}/>
               </TouchableOpacity>);
     })
   }
@@ -60,7 +61,7 @@ renderCheckbox = () => {
       parent_notes: this.state.parent_notes,
       type: this.state.type, 
       go_home_alone: this.state.go_home_alone
-    }
+    };
     this.props.submitNewAttendance(this.props.token, this.props.id, JSON.stringify(data));
   }
 
@@ -74,7 +75,7 @@ renderCheckbox = () => {
         </View>
         <View>
           <Text style={styles.label}>{'Datum'.toUpperCase()}</Text>
-          <Text>{this.props.date}</Text>
+          <Text style={styles.date}>{this.props.date}</Text>
           <Text style={styles.label}>{'Dag type'.toUpperCase()}</Text>
           <Picker
             selectedValue={this.state.type}

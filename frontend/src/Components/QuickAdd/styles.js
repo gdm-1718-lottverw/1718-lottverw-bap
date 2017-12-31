@@ -15,10 +15,15 @@ export default styles = StyleSheet.create({
         paddingLeft: 0,
         paddingRight: 0,
     },
+    date: {
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.gray,
+        marginBottom: 5
+    },
     textInput: {
-        marginBottom: 15,
-        borderWidth: 1, 
-        borderColor: Colors.darkgrey
+      borderBottomWidth: 1,
+        borderBottomColor: Colors.gray,
+        marginBottom: 5
     },
     btn: {
         backgroundColor: Colors.green,
@@ -44,8 +49,6 @@ export default styles = StyleSheet.create({
         color: Colors.darkgrey,
     }, 
     checkbox: {
-        backgroundColor: Colors.yellow,
-
     }
 
 });

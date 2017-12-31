@@ -9,26 +9,15 @@ const mapStateToProps = (state) => ({
     error: state.calendar.error,
     data: state.calendar.data,
     token: state.auth.token,
-    id: state.auth.id
+    id: state.auth.id,
+    deleted: state.calendar.deleted,
+    deleting: state.calendar.deleting
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchDates: (token, id) => dispatch(fetchDates(token, id))
+    fetchDates: (token, id) => dispatch(fetchDates(token, id)),
+    deleteDate: (token, id, date) => dispatch(deleteDate(token, id, date))
 })
-
-export const fetchDates = (token, id) => {
-    return dispatch => {
-        dispatch(calendarPending())
-        axios.get(`${URL}parents/${id}/children/calendar`, {headers: {'Authorization': `Bearer ${token}`}})
-        .then(response => {
-            dispatch(calendarSuccess(response.data))
-            
-        })
-        .catch(error => {
-            dispatch(calendarError(error))
-        });
-    }
-}
 
 export const calendarPending = () => ({
     type: ActionTypes.CALENDAR_PENDING
@@ -44,6 +33,48 @@ export const calendarError = (error) => ({
     error: error
 })
 
+export const deleteCalendar = () => ({
+    type: ActionTypes.DELETE_PENDING
+})
+
+export const deleteSuccess = (data) => ({
+    type: ActionTypes.DELETE_SUCCESS,
+    data: data
+})
+
+export const deleteError = (error) => ({
+    type: ActionTypes.DELETE_ERROR,
+    error: error
+})
+
+export const fetchDates = (token, id) => {
+    return dispatch => {
+        dispatch(calendarPending())
+        axios.get(`${URL}parents/${id}/calendar`, {headers: {'Authorization': `Bearer ${token}`}})
+        .then(response => {
+            dispatch(calendarSuccess(response.data))
+            
+        })
+        .catch(error => {
+            dispatch(calendarError(error))
+        });
+    }
+}
+
+export const deleteDate = (token, id, date) => {
+    return dispatch => {
+        dispatch(deleteCalendar())
+        axios.get(`${URL}parents/${id}/calendar/delete/${date}`, {headers: {'Authorization': `Bearer ${token}`}})
+        .then(response => {
+            dispatch(deleteSuccess(response.data)),
+            dispatch(calendarSuccess(response.data))
+            
+        })
+        .catch(error => {
+            dispatch(deleteError(error))
+        });
+    }
+}
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarService);
 
 

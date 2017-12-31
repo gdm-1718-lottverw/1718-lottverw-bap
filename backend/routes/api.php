@@ -21,15 +21,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['jwt.auth']], function () {
     // Check for other data. e.g. if a parent has a child etc. 
     Route::group(['middleware' => ['check.for.credentials']], function () {
-        Route::get('/parents/{parent_id}/children/planning', 'API\Home\ChildController@index');
-        Route::get('/parents/{parent_id}/children/calendar', 'API\Home\ChildController@calendar');
-    	Route::get('/parents/{parent_id}/children', 'API\Home\ChildController@children');
-		
-		Route::post('/parents/{parent_id}/children/new', 'API\Home\ChildController@newAttendance');
+        // CALENDAR
+        Route::get('/parents/{parent_id}/calendar', 'API\Calendar\CalendarController@index');
+    	Route::get('/parents/{parent_id}/calendar/children', 'API\Calendar\ChildController@index');
+		Route::post('/parents/{parent_id}/calendar/create', 'API\Calendar\CalendarController@create');
+		Route::get('/parents/{parent_id}/calendar/delete/{item_id}', 'API\Calendar\CalendarController@delete');
+        // HISTORY
+        Route::get('/parents/{parent_id}/history', 'API\History\HistoryController@index');
     });
     
 });
- 
-Route::post('/auth', 'API\Auth\AuthController@authenticate');
 
+
+Route::post('/auth', 'API\Auth\AuthController@authenticate');
 

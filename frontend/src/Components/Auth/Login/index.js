@@ -18,9 +18,7 @@ class LoginService extends Component {
   }
   componentDidMount() {}   
   componentWillReceiveProps(nextProps) {
-    console.log('NEXSJFDDF', nextProps);
     if(nextProps.error != undefined){
-      console.log('ERROOORR: ', nextProps.error);
       this.error = nextProps.error;
       this.errorActive = true;
     } 

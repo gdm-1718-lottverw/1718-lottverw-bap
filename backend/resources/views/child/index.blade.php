@@ -94,6 +94,9 @@
 
         <div class="item">
         <h1>Pedagogische aandacht</h1>
+        @if(count($pedagogic) == 0 )
+        <p class='alert text-align-c'>Dit kind heeft <span class="bold underline">geen</span> pedagogische problemen</p>
+        @endif
         @foreach($pedagogic as $peda)
           <p class='label'>omschrijving</p>
           @if($peda->medication != null) 

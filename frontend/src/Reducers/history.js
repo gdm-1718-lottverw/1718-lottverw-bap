@@ -1,19 +1,20 @@
 import * as Actions from '../Actions/ActionTypes'
 
-const ServiceReducer = (state = { isLoading: false, error: undefined, data: {} }, action) => {
+const HistoryReducer = (state = { isLoading: false, error: undefined, data: {} }, action) => {
     switch (action.type) {
-        case Actions.SERVICE_PENDING:
+        case Actions.HISTORY_PENDING:
             return Object.assign({}, state, {
                 isLoading: true,
             });
-        case Actions.SERVICE_ERROR:
+        case Actions.HISTORY_ERROR:
             return Object.assign({}, state, {
                 isLoading: false,
                 error: action.error
             });
-        case Actions.SERVICE_SUCCESS:
+        case Actions.HISTORY_SUCCESS:
             return Object.assign({}, state, {
                 isLoading: false,
+                loggedIn: true,
                 data: action.data,
             }); 
         default:
@@ -21,4 +22,4 @@ const ServiceReducer = (state = { isLoading: false, error: undefined, data: {} }
     }
 }
 
-export default ServiceReducer;
+export default HistoryReducer;

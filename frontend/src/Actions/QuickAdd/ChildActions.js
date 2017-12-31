@@ -18,18 +18,6 @@ const mapDispatchToProps = (dispatch) => ({
     submitNewAttendance: (token, id, data) => dispatch(submitNewAttendance(token, id, data))
 })
 
-export const fetchChildren = (token, id) => {
-    return dispatch => {
-        dispatch(childrenPending())
-        axios.get(`${URL}parents/${id}/children`, {headers: {'Authorization': `Bearer ${token}`}})
-        .then(response => {
-            dispatch(childrenSuccess(response.data))
-        })
-        .catch(error => {
-            dispatch(childrenError(error))
-        });
-    }
-}
 
 export const childrenPending = () => ({
     type: ActionTypes.CHILDREN_PENDING
@@ -45,20 +33,6 @@ export const childrenError = (error) => ({
     error: error
 })
 
-export const submitNewAttendance = (token, id, data) => {
-    return dispatch => {
-        dispatch(submitPending())
-        axios.post( `${URL}parents/${id}/children/new`, data, {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
-        .then(response => {
-            dispatch(submitSuccess(response.data));
-            Actions.pop()
-        })
-        .catch(error => {
-            dispatch(submitError(error))
-        });
-    }
-}
-
 export const submitPending = () => ({
     type: ActionTypes.SUBMIT_PENDING
 })
@@ -73,4 +47,30 @@ export const submitError = (error) => ({
     error: error
 })
 
+export const fetchChildren = (token, id) => {
+    return dispatch => {
+        dispatch(childrenPending())
+        axios.get(`${URL}parents/${id}/calendar/children`, {headers: {'Authorization': `Bearer ${token}`}})
+        .then(response => {
+            dispatch(childrenSuccess(response.data))
+        })
+        .catch(error => {
+            dispatch(childrenError(error))
+        });
+    }
+}
+
+export const submitNewAttendance = (token, id, data) => {
+    return dispatch => {
+        dispatch(submitPending())
+        axios.post( `${URL}parents/${id}/calendar/create`, data, {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
+        .then(response => {
+            dispatch(submitSuccess(response.data));
+            Actions.pop()
+        })
+        .catch(error => {
+            dispatch(submitError(error))
+        });
+    }
+}
 export default connect(mapStateToProps, mapDispatchToProps)(QuickAddService);

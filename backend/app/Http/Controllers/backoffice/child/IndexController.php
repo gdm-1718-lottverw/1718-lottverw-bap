@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
-    private $child_id;
     public function index(int $child_id){
         $this->child_id = $child_id;
         /**
@@ -20,11 +19,6 @@ class IndexController extends Controller
          */
         $child = DB::table('children')
             ->join('doctors', 'children.id', '=', 'doctors.children_id')
-                    ->where([
-                        ['doctors.children_id', '=', $this->child_id],
-                        ['children.id', '=', $this->child_id]
-                        ])
-            ->join('addresses', 'children.id', '=', 'addresses.children_id')
             ->first(
                 [ 'doctors.name as doctor', 
                   'doctors.phone_number as doctor_phone',
@@ -33,7 +27,7 @@ class IndexController extends Controller
                   'children.gender',
                   'children.potty_trained',
                 ]);
-        
+
         $addresses = DB::table('addresses')->where('addresses.children_id', '=', $this->child_id)->get();
         $allergies = DB::table('allergies')->where('allergies.children_id', '=', $this->child_id)->get();
         $pedagogic = DB::table('pedagogic_reports')->where('pedagogic_reports.children_id', '=', $this->child_id)->get();

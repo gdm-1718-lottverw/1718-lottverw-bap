@@ -178,7 +178,8 @@ class Child extends Model
         $query = $query->leftJoin('planned_attendances As pa', 'children.id', '=', 'pa.child_id');
         foreach($conditions as $column => $value){
             $query->where([
-                ['pa.'.$column,'=', $value]
+                ['pa.'.$column,'=', $value],
+                ['pa.deleted_at', '=', null]
             ]);
         }
     }
@@ -195,7 +196,27 @@ class Child extends Model
         // following scopes.
         $query = $query->leftJoin('planned_attendances As pa', 'children.id', '=', 'pa.child_id');
         $query->where([
-                ['pa.date','>=', date('Y-m-d')]
+                ['pa.date','>=', date('Y-m-d')], 
+                ['pa.deleted_at', '=', null]
+            ]);
+    }
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeHistoryAttendance($query)
+    { 
+        echo Carbon::now()->subMonth(3);
+        // we use this scope first so the join will be global and can be used in the
+        // following scopes.
+        $query = $query->leftJoin('planned_attendances As pa', 'children.id', '=', 'pa.child_id');
+        $query->where([
+                ['pa.date','<=', Carbon::today()],
+                ['pa.date', '>=', Carbon::now()->subMonth(3)],
+                ['pa.deleted_at', '=', null]
             ]);
     }
    /**

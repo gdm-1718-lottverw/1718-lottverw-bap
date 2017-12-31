@@ -3,16 +3,16 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
 import authReducer from './auth';
-import serviceReducer from './serviceReducer';
 import calendarReducer from './calendar';
-import childrendReducer from './children';
+import historyReducer from './history';
+import childrenReducer from './children';
 import SubmitAttendanceReducer from './submitAttendance';
 
 const AppReducers = combineReducers({
-    child: serviceReducer,
     auth: authReducer,
     calendar: calendarReducer,
-    children: childrendReducer,
+    children: childrenReducer,
+    history: historyReducer,
     submitAttendance: SubmitAttendanceReducer,
 });
 
