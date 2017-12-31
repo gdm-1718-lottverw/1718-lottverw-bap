@@ -33,10 +33,12 @@ export const historyError = (error) => ({
 })
 
 export const fetchHistory = (token, id) => {
+    console.log(`${URL}parents/${id}/history`);
     return dispatch => {
         dispatch(historyPending())
         axios.get(`${URL}parents/${id}/history`, {headers: {'Authorization': `Bearer ${token}`}})
         .then(response => {
+            console.log('RESPONSE', response);
             dispatch(historySuccess(response.data))
         })
         .catch(error => {

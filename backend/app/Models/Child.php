@@ -209,7 +209,6 @@ class Child extends Model
      */
     public function scopeHistoryAttendance($query)
     { 
-        echo Carbon::now()->subMonth(3);
         // we use this scope first so the join will be global and can be used in the
         // following scopes.
         $query = $query->leftJoin('planned_attendances As pa', 'children.id', '=', 'pa.child_id');
