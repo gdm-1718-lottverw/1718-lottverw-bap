@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'moment/locale/nl-be';
 import Icon  from 'react-native-vector-icons/FontAwesome';
 import Colors from '../../../Config/theme';
+import { RadioButtons } from 'react-native-radio-buttons'
 
 class UpdateCalendarService extends Component {
   constructor(props) {
@@ -15,6 +16,9 @@ class UpdateCalendarService extends Component {
       item: {},
       children: [],
       child: '', 
+      child_id: '',
+      type:'', 
+      go_home_alone:'',
     }
 
     this.updateFollowing = {};
@@ -28,8 +32,11 @@ class UpdateCalendarService extends Component {
    if (nextProps.item != null && nextProps.children.length > 0 && nextProps.error == undefined) {
       this.state.item = nextProps.item;
       this.state.children = nextProps.children;
+      this.setState({type: nextProps.item.type});
+      console.log(nextProps.item.go_home_alone, nextProps.item.type);
+      this.setState({go_home_alone: nextProps.item.go_home_alone});
       // give the new state the old value for placeholder.
-      this.getChild(this.state.children, this.state.item.child_id)
+        this.getChild(this.state.children, this.state.item.child_id)
       } 
   }
 
@@ -41,8 +48,11 @@ class UpdateCalendarService extends Component {
   getChild = (children, id) => {
     children.forEach((child) => {
       if(child.id == id){
-        this.state.child = child.name;
+         console.log('CHILD: ', child)
+        
         this.state.new_child = child.id;
+        this.setState({child: child.name})      
+        this.setState({child_id: child.name})      
       }
     })
   }
@@ -53,29 +63,50 @@ class UpdateCalendarService extends Component {
   );
   
   toPatch = (key, value) => {
-    console.log(this.updateFollowing);
       if(this.updateFollowing[key] == undefined){
           this.updateFollowing[key] = value;
-          console.log(this.updateFollowing);
       } else {
         this.updateFollowing[key] = value;
       }
   }
-  changeIcon = (icon) => {
-   
-    switch(icon) {
-      case 'circle-o':
-       console.log(icon);
-      return 'check-circle-o';
-      break;
+
+  
+    
+  renderChecklist = (obj, patch) => {
+    setCheck = (item, patcho) => {
+       var a = {backgroundColor: '#000000', height: 10, width:10, borderRadius: 7,  marginTop: 5, marginRight: 5};
+       var b = {backgroundColor: '#FFFFFF', borderColor: '#000', borderWidth: 1, height: 10, width:10, borderRadius: 7, marginTop: 5, marginRight: 5};
+       switch(patcho){
+        case item.name: 
+          return a;
+          break;
+        default: 
+          return b;
+          break;
+       }
     }
+                                                  
+    return obj.map((item, i) => {
+      if(this.updateFollowing.patch == undefined){
+        if(obj.patch == item.id){
+         this.setState({[patch]: item.name});
+        }
+      } else if(this.updateFollowing.patch == item.id){
+        this.setState({[patch]: item.name});
+      }
+      return (
+        <TouchableOpacity style={styles.check} key={i} onPress={() => {this.toPatch(patch, item.id); this.setState({[patch]: item.name})}}>
+         <View style={setCheck(item, this.state[patch])}></View>
+         <Text style={styles.checkText}>{item.name}</Text>
+        </TouchableOpacity>)
+      })
   }
 
   render() {
-    const types = [{name: 'voormiddag', value: 'morning'}, {name: 'namiddag', value: 'evening'}, {name: 'hele dag', value: 'full day'}];
-    const bool = [{name: 'Mag alleen naar huis', value: true}, {name: 'Wordt opgehaald', value: false}];
+    const types = [{name: 'voormiddag', id: 'morning', checked: false}, {name: 'namiddag', id: 'evening', checked: false}, {name: 'hele dag', id: 'full day', checked: false}];
+    const bool = [{name: 'Mag alleen naar huis', id: true, checked: false}, {name: 'Wordt opgehaald', id: false, checked: false}];
     return (
-     <ScrollView style={styles.container}>
+     <ScrollView style={styles.container} keyboardShouldPersistTaps='always' >
       <View style={styles.item}>
         {this.generateIcon('calendar', 15)}
         <Text style={[styles.label, styles.single ]}>Ingeschreven op: {this.state.item.date}</Text>            
@@ -83,50 +114,24 @@ class UpdateCalendarService extends Component {
 
       <View style={styles.item}>
         {this.generateIcon('user-circle-o', 15)}
-        <Text style={styles.label}>{this.state.child}</Text>
+        <Text style={styles.label}>{this.state.child_id}</Text>
         <View style={styles.description}>
-          {this.state.children.map((child, i) => {
-            let name ='circle-o';
-             if(this.updateFollowing.child_id == undefined){
-                if(this.state.item.child_id == child.id){
-                  name = "check-circle-o";
-                }
-            } else {
-              if(this.updateFollowing.child_id == child.id){
-                 name = "check-circle-o";
-              }
-            }
-            return (
-              <TouchableOpacity style={styles.check} key={i} onPress={() => {this.toPatch('child_id', child.id), this.getChild(this.state.children, child.id)}}>
-                <Icon style={styles.checkIcon} name={name} size={12}/><Text style={styles.checkText}>{child.name}</Text>
-              </TouchableOpacity>)
-          })}
+         {this.renderChecklist(this.state.children, 'child_id', 'id')}
         </View>              
       </View>
       
       <View style={styles.item}>
         {this.generateIcon('sun-o', 15)}
-        <Text style={styles.label}>Ingeschreven voor {this.updateFollowing.type != undefined ?  this.updateFollowing.type : this.state.item.type}</Text>
+        <Text style={styles.label}>Ingeschreven voor {this.state.type}</Text>
         <View style={styles.description}>
-          {types.map((type, i) => {
-             let name = "circle-o";
-             if(this.updateFollowing.types == undefined){
-                if(this.state.item.type == type.value){
-                  name = "check-circle-o";
-                }
-            } else {
-              if(this.updateFollowing.type == type.value){
-                 name = "check-circle-o";
-              }
-            }
-            return (<TouchableOpacity style={styles.check} key={i} onPress={() => {this.toPatch('type', type.value), this.changeIcon(name)}}><Icon style={styles.checkIcon} name={name} size={12}/><Text style={styles.checkText}>{type.name}</Text></TouchableOpacity>)
-          })}
+        {this.renderChecklist(types, 'type', 'value')}
         </View>              
       </View>
       <View style={styles.item}>
         {this.generateIcon('bicycle', 14)}
         <Text style={styles.label}>{this.state.go_home_alone == true ? 'Kind mag alleen naar huis': 'kind wordt opgehaald'}</Text>
         <View style={styles.description}>
+         {this.renderChecklist(bool, 'go_home_alone')}
           {bool.map((b, i) => {
             let conditionalStyles = [styles.check];
             let name = "circle-o";
@@ -139,9 +144,6 @@ class UpdateCalendarService extends Component {
                  name = "check-circle-o";
               }
             }
-            return ( <TouchableOpacity style={styles.check} key={i} onPress={() => {this.toPatch('go_home_alone', b.value)}}>
-              <Icon  style={styles.checkIcon} name={name} size={12}/><Text style={styles.checkText}>{b.name}</Text>
-              </TouchableOpacity>)
          })}
         </View>              
       </View>

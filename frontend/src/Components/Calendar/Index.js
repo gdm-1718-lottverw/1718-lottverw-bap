@@ -70,8 +70,8 @@ class CalendarService extends Component {
           selectedDayBackgroundColor: Colors.gray,
           selectedDayTextColor: Colors.darkgrey
         }}
-        pastScrollRange={0}
-        selected={moment().format()}
+        pastScrollRange={1}
+        current={moment().format()}
         onDayPress={(date) => {Actions.quickAdd({'date': date.dateString})}}
         renderItem={this.renderItem.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}

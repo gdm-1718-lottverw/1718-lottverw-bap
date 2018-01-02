@@ -67,7 +67,7 @@ renderCheckbox = () => {
 
   render(){  
     return (
-      <View  style={styles.container}>
+      <ScrollView  style={styles.container}>
         <View>
           <Text style={styles.label}>{'Datum'.toUpperCase()}</Text>
           <Text style={styles.date}>{this.props.date}</Text>
@@ -96,7 +96,7 @@ renderCheckbox = () => {
               <Text style={styles.btnText}>BEWAREN</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </ScrollView>
       );
 
   }

@@ -23,11 +23,11 @@ class IndexController extends Controller
         $middag  = Carbon::create(2017, 12, 23, 12, 00, 00)->format('h:i:s');
         
         if($time > $middag){
-            $this->type = 'morning';
-            $this->type_inverse = 'evening';
+            $this->type = 'voormiddag';
+            $this->type_inverse = 'namiddag';
         } else {
-            $this->type = 'evening';
-            $this->type_inverse = 'morning';
+            $this->type = 'voormiddag';
+            $this->type_inverse = 'namiddag';
         }
     }
 
@@ -68,7 +68,7 @@ class IndexController extends Controller
         ];
 
         $type_conditions = [
-            'type' => [$this->type, 'full day']
+            'type' => [$this->type, 'hele dag']
         ];
 
         $leftOver = Child::general($general_conditions)
@@ -111,7 +111,7 @@ class IndexController extends Controller
             'date' => Carbon::today()
         ];
         $type_conditions = [
-            'type' => [$this->type, 'full day']
+            'type' => [$this->type, 'hele dag']
         ];
 
         $in = Child::whereHas('logs.actions', function($query){
@@ -135,7 +135,7 @@ class IndexController extends Controller
             'date' => Carbon::today()
         ];
         $type_conditions = [
-            'type' => [$this->type, 'full day']
+            'type' => [$this->type, 'hele dag']
         ];
         $out = Child::whereHas('logs.actions', function($query){
                 $query->where('actions.name','=', 'out');

@@ -22,7 +22,7 @@ $factory->define(App\Models\PlannedAttendance::class, function (Faker $faker) {
 
 
 function generateDay() {
-    $m = 'moring'; $f = 'afternoon'; $d = 'full day';
+    $m = 'voormiddag'; $f = 'namiddag'; $d = 'hele dag';
     $x = rand(1, 3);
     switch($x){
         case $x == 1:
