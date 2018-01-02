@@ -14,7 +14,13 @@ class NewCalendarService extends React.Component{
       parent_notes: '',
       date: this.props.date,
       children: [],
-      child_id: []
+      child_id: [],
+      
+      check_child_id: '',
+      check_type: '',
+      check_go_home_alone: false,
+      check_child_id: '',
+
     }
   }
 
@@ -27,33 +33,51 @@ class NewCalendarService extends React.Component{
       this.state.children = nextProps.data;
     } 
   }
+
   addChild = (id) => {
     this.state.child_id.push(id);
   }
 
-  renderChild = (children) => {
-    return children.map((child, i) => {
-      var icon = 'square-o';
-      return (<TouchableOpacity key={i} style={styles.checkbox} onPress={() => {icon = "check-square-o", this.addChild(child.id)}}>
-              <Text style={styles.checkboxText}>{child.name}</Text>
-              <Icon style={styles.checkboxIcon} name={icon} size={20}/>
-              </TouchableOpacity>);
-    })
+  setCheck = (item, patcho) => {
+       var a = {backgroundColor: '#000000', height: 10, width:10, borderRadius: 7,  marginTop: 5, marginRight: 5};
+       var b = {backgroundColor: '#FFFFFF', borderColor: '#000', borderWidth: 1, height: 10, width:10, borderRadius: 7, marginTop: 5, marginRight: 5};
+       switch('check_'+patcho){
+        case item.name: 
+          return a;
+          break;
+        default: 
+          return b;
+          break;
+       }
   }
-  
-renderCheckbox = () => {
-    const options = [{key: 'ja', value: true},{key: 'neen', value: false}];
-    return  options.map((option, i) => {
-      return (<TouchableOpacity 
-                key={i} 
-                style={styles.checkbox}
-                onPress={() => {
-                  this.setState({go_home_alone: option.value})
-                }}>
-                <Text>{option.key}</Text>
-              </TouchableOpacity>);
-    })
+
+  renderChecklist = (obj, patch) => {             
+    return obj.map((item, i) => {
+      if(this.state[patch] == item.id){
+        this.state['check_'+patch] = item.name;
+      }
+      return (
+        <TouchableOpacity style={styles.check} key={i} onPress={() => {this.setState({[patch]: item.id}); this.setState({['check_'+patch]: item.name})}}>
+         <View style={this.setCheck(item, this.state[patch])}></View>
+         <Text style={styles.checkText}>{item.name}</Text>
+        </TouchableOpacity>)
+      })
   }
+
+    renderChildren = (obj, patch) => {             
+    return obj.map((item, i) => {
+      if(this.state[patch] == item.id){
+        this.state['check_'+patch] = item.name;
+      }
+      return (
+        <TouchableOpacity style={styles.check} key={i} onPress={() => {this.state.child_id.push(item.id)}}>
+         <View style={this.setCheck(item, this.state[patch])}></View>
+         <Text style={styles.checkText}>{item.name}</Text>
+        </TouchableOpacity>)
+      })
+  }
+
+
   submit = () => {
     let data = {
       child_id: this.state.child_id,
@@ -62,41 +86,39 @@ renderCheckbox = () => {
       type: this.state.type, 
       go_home_alone: this.state.go_home_alone
     };
+    console.log(data);
     this.props.submitNewAttendance(this.props.token, this.props.id, JSON.stringify(data));
   }
 
   render(){  
-    return (
-      <ScrollView  style={styles.container}>
-        <View>
-          <Text style={styles.label}>{'Datum'.toUpperCase()}</Text>
-          <Text style={styles.date}>{this.props.date}</Text>
-          <Text style={styles.label}>{'Dag type'.toUpperCase()}</Text>
-          <Picker
-            selectedValue={this.state.type}
-            onValueChange={(value, index) => {this.setState({type: value})}}>
-            <Picker.Item label="Kies een item" />
-            <Picker.Item label="Voormiddag" value="morning" />
-            <Picker.Item label="Namiddag" value="evening" />
-            <Picker.Item label="Volledige dag" value="full day" />
-          </Picker>
-          <Text style={styles.label}>{'Kind(eren)'.toUpperCase()}</Text>
-          {this.state.children !== undefined && this.state.children.length > 0 ? this.renderChild(this.state.children) : null}
+    const types = [{name: 'voormiddag', id: 'voormiddag'}, {name: 'namiddag', id: 'namiddag'}, {name: 'hele dag', id: 'hele dag'}];
+    const bool = [{name: 'Mag alleen naar huis', id: true}, {name: 'Wordt opgehaald', id: false}];
 
-            <Text style={styles.label}>{'Opmerkingen'.toUpperCase()}</Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(parent_notes) => {this.setState({parent_notes})}}
-              value={this.state.parent_notes}/>
-            <Text style={styles.label}>Mag zelfstandig naar huis</Text>
-             {this.renderCheckbox()}
-          </View>
-          <View>
-            <TouchableOpacity style={styles.btn} onPress={() => {this.submit()}}>
-              <Text style={styles.btnText}>BEWAREN</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
+    return (
+      <ScrollView style={styles.container}>
+        <View>
+          <Text style={styles.label}>Datum</Text>
+          <Text style={styles.date}>{this.props.date}</Text>
+          <Text style={styles.label}>Dag type</Text>
+          {this.renderChecklist(types, 'type')}
+          <Text style={styles.label}>Kind(eren</Text>
+          {this.state.children !== undefined && this.state.children.length > 0 ? this.renderChildren(this.state.children, 'child_id') : null}
+          
+          <Text style={styles.label}>Mag zelfstandig naar huis</Text>
+          {this.renderChecklist(bool, 'go_home_alone')}
+        
+          <Text style={styles.label}>{'Opmerkingen'}</Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={(parent_notes) => {this.setState({parent_notes})}}
+            value={this.state.parent_notes}/>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.btn} onPress={() => {this.submit()}}>
+            <Text style={styles.btnText}>BEWAREN</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
       );
 
   }

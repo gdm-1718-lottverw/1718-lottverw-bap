@@ -3,7 +3,6 @@ import Colors from '../../../Config/theme';
 
 export default styles = StyleSheet.create({
     container: {
-      backgroundColor: Colors.white,
       padding: 20,
       paddingTop: 15,
     },
