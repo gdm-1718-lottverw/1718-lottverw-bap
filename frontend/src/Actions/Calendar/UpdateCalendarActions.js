@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchItem: (token, parentId, itemId) => dispatch(fetchItem(token, parentId, itemId)),
-    updateItem: (token, parentId, itemId) => dispatch(updateItem(token, parentId, itemId))
+    updateItem: (token, parentId, itemId, data) => dispatch(updateItem(token, parentId, itemId, data))
 })
 
 export const calendarItemPending = () => ({
@@ -64,10 +64,15 @@ export const fetchItem = (token, parentId, itemId) => {
     }
 }
 
-export const updateItem = (token, parentId, itemId) => {
+export const updateItem = (token, parentId, itemId, data) => {
+    console.log('TOKEN, ', token);
+    console.log('PARENT ID', parentId );
+    console.log('ITEMID', itemId);
+    console.log('DATA:', JSON.stringify(data));
+    console.log('URL', `${URL}parents/${parentId}/calendar/update/${itemId}`);
     return dispatch => {
         dispatch(editCalendar())
-        axios.patch(`${URL}parents/${parentId}/calendar/update/${itemId}`, {headers: {'Authorization': `Bearer ${token}`}})
+        axios.patch(`${URL}parents/${parentId}/calendar/update/${itemId}`, JSON.stringify(data), {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
         .then(response => {
             dispatch(editCalendarSuccess(response.data));
         })
