@@ -34,47 +34,51 @@ class NewCalendarService extends React.Component{
     } 
   }
 
-  addChild = (id) => {
-    this.state.child_id.push(id);
-  }
-
   setCheck = (item, patcho) => {
        var a = {backgroundColor: '#000000', height: 10, width:10, borderRadius: 7,  marginTop: 5, marginRight: 5};
        var b = {backgroundColor: '#FFFFFF', borderColor: '#000', borderWidth: 1, height: 10, width:10, borderRadius: 7, marginTop: 5, marginRight: 5};
-       switch('check_'+patcho){
-        case item.name: 
+       if(Array.isArray(patcho)){
+         console.log('PATCH', patcho, patcho.indexOf(item.id) > 0);
+        if(patcho.indexOf(item.id) > 0){
+
           return a;
-          break;
-        default: 
+        } else {
           return b;
-          break;
-       }
+        }
+       } else {
+        switch(patcho){
+          case item.name: 
+            return a;
+            break;
+          default: 
+            return b;
+            break;
+        }
+    }
   }
 
   generateIcon = (name, size) => (
       <Icon style={styles.icon} name={name} size={size}/>
   );
 
-  renderChecklist = (obj, patch) => {             
+  renderChecklist = (obj, patch) => {      
+    const state_item = 'check_' + patch;      
     return obj.map((item, i) => {
-      if(this.state[patch] == item.id){
-        this.state['check_'+patch] = item.name;
-      }
       return (
-        <TouchableOpacity style={styles.check} key={i} onPress={() => {this.setState({[patch]: item.id}); this.setState({['check_'+patch]: item.name})}}>
-         <View style={this.setCheck(item, this.state[patch])}></View>
+        <TouchableOpacity style={styles.check} key={i} onPress={() => {this.setState({[patch]: item.id}); this.setState({[state_item]: item.name})}}>
+         <View style={this.setCheck(item, this.state[state_item])}></View>
          <Text style={styles.checkText}>{item.name}</Text>
         </TouchableOpacity>)
       })
   }
 
-    renderChildren = (obj, patch) => {             
+  renderChildren = (obj, patch) => {             
     return obj.map((item, i) => {
-      if(this.state[patch] == item.id){
-        this.state['check_'+patch] = item.name;
-      }
+     
+      var index = this.state.child_id.indexOf(item.id) ;
+       console.log('DGF= ', index)
       return (
-        <TouchableOpacity style={styles.check} key={i} onPress={() => {this.state.child_id.push(item.id)}}>
+        <TouchableOpacity style={styles.check} key={i} onPress={() => {index < 0? this.state.child_id.push(item.id): this.state.child.splice(index)}}>
          <View style={this.setCheck(item, this.state[patch])}></View>
          <Text style={styles.checkText}>{item.name}</Text>
         </TouchableOpacity>)
