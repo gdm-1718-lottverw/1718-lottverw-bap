@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class QuickAddService extends React.Component{  
+class NewCalendarService extends React.Component{  
   constructor(props){
     super(props);
     this.state = {
@@ -69,11 +69,6 @@ renderCheckbox = () => {
     return (
       <View  style={styles.container}>
         <View>
-          <TouchableOpacity onPress={() =>{Actions.pop()}} style={styles.btnBack}>
-            <Icon style={styles.btnIcon} name={"times"} size={20}/>
-          </TouchableOpacity>
-        </View>
-        <View>
           <Text style={styles.label}>{'Datum'.toUpperCase()}</Text>
           <Text style={styles.date}>{this.props.date}</Text>
           <Text style={styles.label}>{'Dag type'.toUpperCase()}</Text>
@@ -107,10 +102,10 @@ renderCheckbox = () => {
   }
 }
 
-QuickAddService.propTypes = {
+NewCalendarService.propTypes = {
   date: PropTypes.string,
 }
 
     
-export default QuickAddService;
+export default NewCalendarService;
 

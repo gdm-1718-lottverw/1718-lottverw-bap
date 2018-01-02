@@ -3,6 +3,7 @@ import axios from 'axios';
 import  UpdateCalendarService from '../../Components/Calendar/Update/index';
 import { connect } from 'react-redux';
 import { URL } from '../../Config/index';
+import { Actions } from 'react-native-router-flux';
 
 const mapStateToProps = (state) => ({   
     isLoading: state.calendar.isLoading,
@@ -32,7 +33,7 @@ export const calendarItemSuccess = (data, children) => ({
 })
 
 export const calendarItemError = (error) => ({
-    type: ActionTypes.CALENDAR_ITEM_PERROR,
+    type: ActionTypes.CALENDAR_ITEM_ERROR,
     error: error
 })
 
@@ -75,6 +76,7 @@ export const updateItem = (token, parentId, itemId, data) => {
         axios.patch(`${URL}parents/${parentId}/calendar/update/${itemId}`, JSON.stringify(data), {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
         .then(response => {
             dispatch(editCalendarSuccess(response.data));
+            Actions.pop();
         })
         .catch(error => {
             dispatch(editCalendarError(error))

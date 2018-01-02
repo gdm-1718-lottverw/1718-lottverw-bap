@@ -6,7 +6,7 @@ class Profile extends React.Component {
     render() {
         return (
             <View style={styles.box}>
-                <TopBar title={'PROFILE'}/>
+                <TopBar title={'PROFILE'} icon={'power-off'} pop={false}/>
                 <ScrollView>
 
                 </ScrollView>

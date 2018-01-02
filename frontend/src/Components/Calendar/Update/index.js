@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { connect }from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from './styles';
@@ -48,8 +48,8 @@ class UpdateCalendarService extends Component {
   }
 
   
-  generateIcon = (name) => (
-      <Icon style={styles.checkboxIcon} name={name} size={20}/>
+  generateIcon = (name, size) => (
+      <Icon style={styles.icon} name={name} size={size}/>
   );
   
   toPatch = (key, value) => {
@@ -61,68 +61,106 @@ class UpdateCalendarService extends Component {
         this.updateFollowing[key] = value;
       }
   }
-
+  changeIcon = (icon) => {
+   
+    switch(icon) {
+      case 'circle-o':
+       console.log(icon);
+      return 'check-circle-o';
+      break;
+    }
+  }
 
   render() {
     const types = [{name: 'voormiddag', value: 'morning'}, {name: 'namiddag', value: 'evening'}, {name: 'hele dag', value: 'full day'}];
     const bool = [{name: 'Mag alleen naar huis', value: true}, {name: 'Wordt opgehaald', value: false}];
     return (
-     <View>
+     <ScrollView style={styles.container}>
       <View style={styles.item}>
-        {this.generateIcon('calendar')}
-        <View style={styles.description}>
-          <Text style={styles.label}>Ingeschreven op: {this.state.item.date}</Text>
-        </View>              
+        {this.generateIcon('calendar', 15)}
+        <Text style={[styles.label, styles.single ]}>Ingeschreven op: {this.state.item.date}</Text>            
       </View>
 
       <View style={styles.item}>
-        {this.generateIcon('user-circle-o')}
+        {this.generateIcon('user-circle-o', 15)}
+        <Text style={styles.label}>{this.state.child}</Text>
         <View style={styles.description}>
-          <Text style={styles.label}>{this.state.child}</Text>
           {this.state.children.map((child, i) => {
+            let name ='circle-o';
+             if(this.updateFollowing.child_id == undefined){
+                if(this.state.item.child_id == child.id){
+                  name = "check-circle-o";
+                }
+            } else {
+              if(this.updateFollowing.child_id == child.id){
+                 name = "check-circle-o";
+              }
+            }
             return (
-              <TouchableOpacity key={i} onPress={() => {this.toPatch('child_id', child.id), this.getChild(this.state.children, child.id)}}>
-                <Text>{child.name}</Text>
+              <TouchableOpacity style={styles.check} key={i} onPress={() => {this.toPatch('child_id', child.id), this.getChild(this.state.children, child.id)}}>
+                <Icon style={styles.checkIcon} name={name} size={12}/><Text style={styles.checkText}>{child.name}</Text>
               </TouchableOpacity>)
           })}
         </View>              
       </View>
       
       <View style={styles.item}>
-        {this.generateIcon('sun-o')}
+        {this.generateIcon('sun-o', 15)}
+        <Text style={styles.label}>Ingeschreven voor {this.updateFollowing.type != undefined ?  this.updateFollowing.type : this.state.item.type}</Text>
         <View style={styles.description}>
-          <Text style={styles.label}>Ingeschreven voor {this.updateFollowing == undefined ?  this.updateFollowing.type : this.state.item.type}</Text>
           {types.map((type, i) => {
-            return (<TouchableOpacity key={i} onPress={() => {this.toPatch('type', type.value)}}><Text>{type.name}</Text></TouchableOpacity>)
+             let name = "circle-o";
+             if(this.updateFollowing.types == undefined){
+                if(this.state.item.type == type.value){
+                  name = "check-circle-o";
+                }
+            } else {
+              if(this.updateFollowing.type == type.value){
+                 name = "check-circle-o";
+              }
+            }
+            return (<TouchableOpacity style={styles.check} key={i} onPress={() => {this.toPatch('type', type.value), this.changeIcon(name)}}><Icon style={styles.checkIcon} name={name} size={12}/><Text style={styles.checkText}>{type.name}</Text></TouchableOpacity>)
           })}
         </View>              
       </View>
       <View style={styles.item}>
-        {this.generateIcon('bicycle')}
+        {this.generateIcon('bicycle', 14)}
+        <Text style={styles.label}>{this.state.go_home_alone == true ? 'Kind mag alleen naar huis': 'kind wordt opgehaald'}</Text>
         <View style={styles.description}>
-          <Text style={styles.label}>{this.state.go_home_alone == true ? 'Kind mag alleen naar huis': 'kind wordt opgehaald'}</Text>
           {bool.map((b, i) => {
-            return (<TouchableOpacity key={i} onPress={() => {this.toPatch('go_home_alone', b.value)}}>
-              <Text>{b.name}</Text>
+            let conditionalStyles = [styles.check];
+            let name = "circle-o";
+            if(this.updateFollowing.go_home_alone == undefined){
+                if(this.state.item.go_home_alone == b.value){
+                  name = "check-circle-o";
+                }
+            } else {
+              if(this.updateFollowing.go_home_alone == b.value){
+                 name = "check-circle-o";
+              }
+            }
+            return ( <TouchableOpacity style={styles.check} key={i} onPress={() => {this.toPatch('go_home_alone', b.value)}}>
+              <Icon  style={styles.checkIcon} name={name} size={12}/><Text style={styles.checkText}>{b.name}</Text>
               </TouchableOpacity>)
          })}
         </View>              
       </View>
+
       <View style={styles.item}>
-        {this.generateIcon('comment-o')}
+        {this.generateIcon('comment-o', 15)}
+        <Text style={styles.label}>Opmerking:</Text>
         <View style={styles.description}>
-          <Text style={styles.label}>Opmerking:</Text>
           <TextInput
             style={styles.textInput}
-            onChangeText={(note) => {this.setState({new_parent_note: note})}}
-            value={this.state.new_parent_note}/>
+            onChangeText={(note) => {this.toPatch('parent_notes', note)}}
+            placeholder={this.updateFollowing.parent_notes == undefined? this.state.item.parent_notes: this.updateFollowing.parent_notes} />
         </View>              
       </View>
       <TouchableOpacity style={styles.btn} onPress={() => {this.submit()}}>
         <Text style={styles.btnText}>BEWAREN</Text>
       </TouchableOpacity>     
-    </View>
-    );
+    </ScrollView>
+  );
   }
 }
 

@@ -16,10 +16,7 @@ class UpdateCalendarScreen extends React.Component{
   render(){  
     return (
       <View style={styles.box}>
-          <TopBar title={'Pas inschrijving aan'}/>
-            <TouchableOpacity onPress={() =>{Actions.pop()}} style={styles.btnBack}>
-              <Icon style={styles.btnIcon} name={"times"} size={20}/>
-            </TouchableOpacity>
+          <TopBar title={'Pas inschrijving aan'} icon={'times'} pop={true}/>
           <UpdateCalendarService itemId={this.props.itemId} date={this.props.date} />
       </View>
     )
@@ -35,7 +32,7 @@ UpdateCalendarScreen.propTypes = {
 const styles = StyleSheet.create({
     box: {
         flex: 1,
-    }
+    },
 });
     
 export default UpdateCalendarScreen;

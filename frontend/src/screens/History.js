@@ -6,7 +6,7 @@ class History extends React.Component{
     render(){
         return (
             <View style={styles.box}>
-                <TopBar title={'HISTORY'}/>
+                <TopBar title={'HISTORY'} icon={'power-off'} pop={false}/>
                 <HistorySevice />
             </View>
         );

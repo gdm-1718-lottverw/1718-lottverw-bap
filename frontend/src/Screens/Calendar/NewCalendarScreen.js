@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Colors from '../../Config/theme';
 import TopBar from '../../Components/TopBar/index';
 import { Actions } from 'react-native-router-flux';
-import QuickAddService from '../../Actions/QuickAdd/ChildActions';
+import NewCalendarService from '../../Actions/Calendar/NewCalendarActions';
 import PropTypes from 'prop-types';
 
 class NewCalendarScreen extends React.Component{  
@@ -18,8 +18,8 @@ class NewCalendarScreen extends React.Component{
   render(){  
     return (
       <View style={styles.box}>
-          <TopBar title={'Inschrijving'}/>
-          <QuickAddService date={this.props.date} />
+          <TopBar title={'Inschrijving'} icon={'times'} pop={true}/>
+          <NewCalendarService date={this.props.date} />
       </View>
     )
 

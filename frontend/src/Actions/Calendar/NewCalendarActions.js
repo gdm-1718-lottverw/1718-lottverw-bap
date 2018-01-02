@@ -1,6 +1,6 @@
 import * as ActionTypes from '../ActionTypes';
 import axios from 'axios';
-import  QuickAddService from '../../Components/QuickAdd/index';
+import  NewCalendarSevice from '../../Components/Calendar/New/index';
 import { connect } from 'react-redux';
 import { URL } from '../../Config/index';
 import { Actions } from 'react-native-router-flux';
@@ -73,4 +73,4 @@ export const submitNewAttendance = (token, id, data) => {
         });
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(QuickAddService);
+export default connect(mapStateToProps, mapDispatchToProps)(NewCalendarSevice);

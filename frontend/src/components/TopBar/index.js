@@ -7,12 +7,13 @@ import { Actions } from 'react-native-router-flux';
 export default class TopBar extends React.Component {        
   render(){
       const title = this.props.title;
-      console.log(this.state)
+      const icon = this.props.icon; 
+      const pop = this.props.pop;
       return (
         <View  style={styles.container}>
             <Text style={styles.text}> {title} </Text>
-            <TouchableOpacity  onPress={() => { Actions.login() }}>
-            	<Icon style={styles.icon} name={'power-off'} size={20}/>
+            <TouchableOpacity  onPress={() => {pop == false? Actions.login(): Actions.pop()}}>
+              <Icon style={styles.icon} name={icon} size={20}/>
             </TouchableOpacity>
         </View>
     );
