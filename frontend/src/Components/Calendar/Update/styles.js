@@ -4,19 +4,6 @@ import Colors from '../../../Config/theme';
 const styles = StyleSheet.create({
 	container: {
 	},
-	 btnBack: {
-        width: 30, 
-        height: 30, 
-        alignSelf: 'flex-end',
-        backgroundColor: Colors.deeppink,
-        borderRadius: 30,
-        paddingTop: 3,
-        paddingLeft: 6,
-        margin: 4
-    }, 
-   	btnBackText: {
-   		color: Colors.white,
-   	},
 	iconTest: {
 		color: Colors.lightBlue,
 		backgroundColor: Colors.white,

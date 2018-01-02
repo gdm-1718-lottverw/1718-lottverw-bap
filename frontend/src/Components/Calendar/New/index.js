@@ -51,6 +51,10 @@ class NewCalendarService extends React.Component{
        }
   }
 
+  generateIcon = (name, size) => (
+      <Icon style={styles.icon} name={name} size={size}/>
+  );
+
   renderChecklist = (obj, patch) => {             
     return obj.map((item, i) => {
       if(this.state[patch] == item.id){
@@ -96,22 +100,43 @@ class NewCalendarService extends React.Component{
 
     return (
       <ScrollView style={styles.container}>
+        <View style={styles.item}>
+          {this.generateIcon('calendar', 15)}
+          <Text style={[styles.label, styles.single ]}>Ingeschreven voor: {this.props.date}</Text>            
+        </View>
         <View>
-          <Text style={styles.label}>Datum</Text>
-          <Text style={styles.date}>{this.props.date}</Text>
+        <View style={styles.item}>
+          {this.generateIcon('user-circle-o', 15)}
+          <Text style={styles.label}>Kind(eren)</Text>
+          <View style={styles.description}>
+           {this.state.children !== undefined && this.state.children.length > 0 ? this.renderChildren(this.state.children, 'child_id') : null}
+          </View>              
+        </View>
+        <View style={styles.item}>
+          {this.generateIcon('sun-o', 15)}
           <Text style={styles.label}>Dag type</Text>
-          {this.renderChecklist(types, 'type')}
-          <Text style={styles.label}>Kind(eren</Text>
-          {this.state.children !== undefined && this.state.children.length > 0 ? this.renderChildren(this.state.children, 'child_id') : null}
-          
-          <Text style={styles.label}>Mag zelfstandig naar huis</Text>
-          {this.renderChecklist(bool, 'go_home_alone')}
-        
-          <Text style={styles.label}>{'Opmerkingen'}</Text>
-          <TextInput
+          <View style={styles.description}>
+            {this.renderChecklist(types, 'type')}
+          </View>              
+        </View> 
+        <View style={styles.item}>
+          {this.generateIcon('sun-o', 15)}
+          <Text style={styles.label}>Mag alleen naar huis.</Text>
+          <View style={styles.description}>
+            {this.renderChecklist(bool, 'go_home_alone')}
+          </View>              
+        </View>      
+        <View style={styles.item}>
+          {this.generateIcon('comment-o', 15)}
+          <Text style={styles.label}>Opmerkingen</Text>
+          <View style={styles.description}>
+            <TextInput
             style={styles.textInput}
             onChangeText={(parent_notes) => {this.setState({parent_notes})}}
             value={this.state.parent_notes}/>
+          </View>              
+        </View>            
+         
         </View>
         <View>
           <TouchableOpacity style={styles.btn} onPress={() => {this.submit()}}>
