@@ -7,15 +7,21 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
 
-                <div>
-                    <form method="POST" action="{{ route('login') }}">
+                <div class="panel-body">
+                    {{ Form::open(array('route' => 'authenticate'))}}
                         {{ csrf_field() }}
 
-                        <div>
-                            <label for="username">Username</label>
+                       <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="username" class="col-md-4 control-label">Gebruikersnaam</label>
 
-                            <div>
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}">
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required>
+
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -54,7 +60,7 @@
                                 </a>
                             </div>
                         </div>
-                    </form>
+                    {{Form::close()}}
                 </div>
             </div>
         </div>

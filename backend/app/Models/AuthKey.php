@@ -15,7 +15,8 @@ class AuthKey extends Model implements Authenticatable
      * @var string
      */
     protected $table = 'auth_keys';
-   
+    
+    protected $fillable = ['username', 'password', 'role_id'];
     /**
      * The attributes that should be hidden for arrays.
      *

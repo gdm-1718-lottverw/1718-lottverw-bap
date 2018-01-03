@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Child;
 use App\Models\Organization;
@@ -55,6 +56,9 @@ class IndexController extends Controller
     }
 
     public function index(){
+        $key = Auth::user();
+        dump($key->organization);
+
         // Check the time.
         $this->helper_CheckTime();
 
@@ -62,8 +66,7 @@ class IndexController extends Controller
             'organization_id' => 1, 
             'date' => Carbon::today()
         ];
-
-        $type_conditions_leftover = [
+                $type_conditions_leftover = [
             'type' => [$this->type_inverse]
         ];
 
