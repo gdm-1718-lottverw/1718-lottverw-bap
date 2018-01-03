@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\AuthKey;
+
 
 class Organization extends Model
 {
@@ -93,4 +95,6 @@ class Organization extends Model
     {
         return $this->hasOne('App\Models\AuthKey', 'auth_key_id');
     }
+
+    
 }

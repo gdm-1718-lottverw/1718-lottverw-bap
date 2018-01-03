@@ -306,6 +306,6 @@ class Child extends Model
         
     }
 
-    
+       
    
 }

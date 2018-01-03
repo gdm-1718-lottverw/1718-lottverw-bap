@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -37,13 +38,18 @@ class LoginController extends Controller
     {   
         $this->validate($request, [
             'username' => 'required',
-            // If you are logging in the user via email, change the username to email
             'password'  => 'required'
         ]);
-    
+        
+        $role = Role::where([['name','=', 'organization'], ['active','=', true]])->first();
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
-            // Authentication passed...
-            return redirect()->intended('home');
+            if(Auth::user()->role_id == $role->id){
+                return redirect()->intended('/');
+            } else {
+                abort(404, 'user not found');
+            }  
+        } else {
+            abort(404, 'user not found');
         }
     }
      /**
