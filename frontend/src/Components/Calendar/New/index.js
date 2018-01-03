@@ -13,9 +13,11 @@ class NewCalendarService extends React.Component{
       go_home_alone: false,
       parent_notes: '',
       date: this.props.date,
+      // All parent childen.
       children: [],
+      // For adding to db.
       child_id: [],
-      
+      // Just for radiubutton 
       check_child_id: '',
       check_type: '',
       check_go_home_alone: false,
@@ -37,14 +39,15 @@ class NewCalendarService extends React.Component{
   setCheck = (item, patcho) => {
        var a = {backgroundColor: '#000000', height: 10, width:10, borderRadius: 7,  marginTop: 5, marginRight: 5};
        var b = {backgroundColor: '#FFFFFF', borderColor: '#000', borderWidth: 1, height: 10, width:10, borderRadius: 7, marginTop: 5, marginRight: 5};
+       
        if(Array.isArray(patcho)){
-         console.log('PATCH', patcho, patcho.indexOf(item.id) > 0);
-        if(patcho.indexOf(item.id) > 0){
-
-          return a;
-        } else {
-          return b;
-        }
+          for(var i = 0; i < patcho.length; i++){
+           if(patcho[i] == item.id){
+             console.log('.SAME.', patcho[i], item.id)
+             return a;
+           }
+         }
+         return b;
        } else {
         switch(patcho){
           case item.name: 
@@ -72,13 +75,22 @@ class NewCalendarService extends React.Component{
       })
   }
 
-  renderChildren = (obj, patch) => {             
+  renderChildren = (obj, patch) => {   
+    spliceState =(index) => {
+      let a = this.state.child_id.splice(index, 1);
+      this.setState([patch]: a);
+    }          
     return obj.map((item, i) => {
-     
-      var index = this.state.child_id.indexOf(item.id) ;
-       console.log('DGF= ', index)
+      i*3;
+      var index; var active = false;
+     for(var o=0; o<this.state[patch].length; o++){
+        if(this.state[patch][o] == item.id){
+         var active = true;
+         var index = this.state[patch].indexOf(item.id);
+        }
+     }
       return (
-        <TouchableOpacity style={styles.check} key={i} onPress={() => {index < 0? this.state.child_id.push(item.id): this.state.child.splice(index)}}>
+        <TouchableOpacity style={styles.check} key={i} onPress={() => {!active? this.setState({[patch]: [...this.state[patch], item.id]}): spliceState(index)}}>
          <View style={this.setCheck(item, this.state[patch])}></View>
          <Text style={styles.checkText}>{item.name}</Text>
         </TouchableOpacity>)
