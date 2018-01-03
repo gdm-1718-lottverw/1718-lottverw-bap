@@ -10,6 +10,7 @@ use App\Models\PlannedAttendance;
 use App\Http\Controllers\Controller; 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -20,12 +21,18 @@ class IndexController extends Controller
      * Vervolgens kijk je naar het post object of een waarde geselecteerd is met isset(). 
      * 
      */
-    private $date = "";
+    private $date = "";  private $organization_id;
+
+    function helper_loggedInOrganization(){
+        $key = Auth::id();
+        $this->organization_id = Organization::where('auth_key_id', $key)->first(['id']);
+    }
 
     public function index(){
-        $or = Organization::where('id', 1);
+        $or = Organization::where('id',  $this->organization_id );
+        $this->helper_loggedInOrganization();
         $conditions = [
-            'organization_id' => 1, 
+            'organization_id' =>  $this->organization_id, 
             'date' => Carbon::today()
         ];
 
@@ -37,7 +44,7 @@ class IndexController extends Controller
     public function create(request $request){       
         $data = $request->data; $date = $request->date; $age = $request->age['age'];
         $general_conditions = [
-            'organization_id' => 1, 
+            'organization_id' => $this->organization_id,  
             'date' => $date
         ];
         $type_conditions = []; $allergie_conditions = [];

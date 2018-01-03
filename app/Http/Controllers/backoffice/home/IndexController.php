@@ -17,7 +17,7 @@ use Carbon\Carbon;
 
 class IndexController extends Controller
 {
-    private $type; private $type_inverse;
+    private $type; private $type_inverse; private $organization_id;
 
     function helper_CheckTime(){
         $time = Carbon::now()->format('h:i:s'); 
@@ -42,12 +42,17 @@ class IndexController extends Controller
         return $child;
     }
 
+    function helper_loggedInOrganization(){
+        $key = Auth::id();
+        $this->organization_id = Organization::where('auth_key_id', $key)->first(['id']);
+    }
+    
     function helper_NewLog($child, $action){
         $action = Action::where('name', $action)->first();
 
         $log = new Log;
         $log->child_id = $child->child_id;
-        $log->organization_id = $child->organization_id;
+        $log->organization_id = $this->organization_id;
         $log->action_time = date('H:i:s');
         $log->deleted_at = NULL;
         $log->action_id = $action->id;
@@ -56,14 +61,12 @@ class IndexController extends Controller
     }
 
     public function index(){
-        $key = Auth::user();
-        dump($key->organization);
-
         // Check the time.
         $this->helper_CheckTime();
+        $this->helper_loggedInOrganization();
 
         $general_conditions = [
-            'organization_id' => 1, 
+            'organization_id' => $this->organization_id, 
             'date' => Carbon::today()
         ];
                 $type_conditions_leftover = [
@@ -110,7 +113,7 @@ class IndexController extends Controller
         $this->helper_NewLog($child, 'in');
         // DEFINE GENERAL CONDITIONS
         $general_conditions = [
-            'organization_id' => 1, 
+            'organization_id' => $this->organization_id, 
             'date' => Carbon::today()
         ];
         $type_conditions = [
@@ -134,7 +137,7 @@ class IndexController extends Controller
         $this->helper_NewLog($child, 'out');
 
         $general_conditions = [
-            'organization_id' => 1, 
+            'organization_id' => $this->organization_id, 
             'date' => Carbon::today()
         ];
         $type_conditions = [

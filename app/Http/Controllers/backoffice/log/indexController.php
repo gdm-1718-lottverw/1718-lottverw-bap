@@ -5,13 +5,21 @@ namespace App\Http\Controllers\Backoffice\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Child;
+
+use App\Models\Organization;
 use App\Models\PlannedAttendance;
 use App\Models\Log;
-
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller; 
 class IndexController extends Controller
 {
+    private $organization_id;
+
+    function helper_loggedInOrganization(){
+         $key = Auth::id();
+         $this->organization_id = Organization::where('auth_key_id', $key)->first(['id']);
+   }
     /**
      * Display a listing of the resource.
      *
@@ -19,11 +27,12 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $this->helper_loggedInOrganization();
         $log = 
         DB::table('logs')
         ->where([
             [DB::raw('date(logs.created_at)'), '=',\Carbon\Carbon::today()],
-            ['logs.organization_id', '=', 1],
+            ['logs.organization_id', '=', $this->organization_id],
             ['logs.deleted_at', '=', null]
         ])
         ->join('children', 'children.id', '=', 'logs.child_id')
