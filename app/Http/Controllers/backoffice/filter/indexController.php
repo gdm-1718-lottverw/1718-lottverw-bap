@@ -25,7 +25,8 @@ class IndexController extends Controller
 
     function helper_loggedInOrganization(){
         $key = Auth::id();
-        $this->organization_id = Organization::where('auth_key_id', $key)->first(['id']);
+        $o= Organization::where('auth_key_id', $key)->first();
+        $this->organization_id = $o->id;  
     }
 
     public function index(){

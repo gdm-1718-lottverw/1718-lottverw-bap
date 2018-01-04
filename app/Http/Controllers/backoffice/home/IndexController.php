@@ -44,7 +44,8 @@ class IndexController extends Controller
 
     function helper_loggedInOrganization(){
         $key = Auth::id();
-        $this->organization_id = Organization::where('auth_key_id', $key)->first(['id']);
+        $o= Organization::where('auth_key_id', $key)->first();
+        $this->organization_id = $o->id;
     }
     
     function helper_NewLog($child, $action){
@@ -64,7 +65,7 @@ class IndexController extends Controller
         // Check the time.
         $this->helper_CheckTime();
         $this->helper_loggedInOrganization();
-
+    
         $general_conditions = [
             'organization_id' => $this->organization_id, 
             'date' => Carbon::today()
@@ -103,7 +104,7 @@ class IndexController extends Controller
             ->type($type_conditions)
             ->get();
 
-        return view('home.index', compact(['toCome', 'in', 'out', 'leftOver']));
+        return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'name']));
     }    
 
     public function signIn(request $request){

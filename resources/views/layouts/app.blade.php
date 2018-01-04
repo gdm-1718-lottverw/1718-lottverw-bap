@@ -20,7 +20,7 @@
             <li><a href="{{ route('register') }}">Register</a></li>
         @else
              <div class="header">
-                <span class="location">{{ Auth::id() }}</span>
+                <span class="location">{{ Auth::user()->username }}</span>
                 <span class="date">
                     <?php $mytime = Carbon\Carbon::now();
                         echo $mytime->format('d/m/y, H:i');
