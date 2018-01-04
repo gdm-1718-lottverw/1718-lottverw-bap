@@ -33,7 +33,6 @@ class UpdateCalendarService extends Component {
       this.state.item = nextProps.item;
       this.state.children = nextProps.children;
       this.setState({type: nextProps.item.type});
-      console.log(nextProps.item.go_home_alone, nextProps.item.type);
       this.setState({go_home_alone: nextProps.item.go_home_alone});
       // give the new state the old value for placeholder.
         this.getChild(this.state.children, this.state.item.child_id)
@@ -41,15 +40,12 @@ class UpdateCalendarService extends Component {
   }
 
   submit = () => {
-    console.log(this.props.token, this.props.id);
     this.props.updateItem(this.props.token, this.props.id, this.props.itemId, this.updateFollowing);
   }
 
   getChild = (children, id) => {
     children.forEach((child) => {
       if(child.id == id){
-         console.log('CHILD: ', child)
-        
         this.state.new_child = child.id;
         this.setState({child: child.name})      
         this.setState({child_id: child.name})      
@@ -70,8 +66,6 @@ class UpdateCalendarService extends Component {
       }
   }
 
-  
-    
   renderChecklist = (obj, patch) => {
     setCheck = (item, patcho) => {
        var a = {backgroundColor: '#000000', height: 10, width:10, borderRadius: 7,  marginTop: 5, marginRight: 5};

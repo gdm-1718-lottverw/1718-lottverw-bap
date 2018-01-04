@@ -20,15 +20,16 @@ class IndexController extends Controller
     private $type; private $type_inverse; private $organization_id;
 
     function helper_CheckTime(){
-        $time = Carbon::now()->format('h:i:s'); 
-        $middag  = Carbon::create(2017, 12, 23, 12, 00, 00)->format('h:i:s');
-        
-        if($time > $middag){
+       // echo Carbon::now()->format('H:i:s');
+        $now = Carbon::now()->format('H:i:s'); 
+        $middag  = Carbon::create(2017, 12, 23, 12, 01, 00)->format('H:i:s');
+    
+        if($now < $middag){
             $this->type = 'voormiddag';
             $this->type_inverse = 'namiddag';
         } else {
-            $this->type = 'voormiddag';
-            $this->type_inverse = 'namiddag';
+            $this->type = 'namiddag';
+            $this->type_inverse = 'voormiddag';
         }
     }
 
@@ -108,6 +109,7 @@ class IndexController extends Controller
     }    
 
     public function signIn(request $request){
+        $this->helper_loggedInOrganization();
         // UPDATE CHILD
         $child = $this->helper_SaveChild('in', $request->id);
         // SAVE NEW LOG
@@ -134,9 +136,11 @@ class IndexController extends Controller
     }    
 
     public function signOut(request $request){
+        $this->helper_loggedInOrganization();
         $child = $this->helper_SaveChild('out', $request->id);
         $this->helper_NewLog($child, 'out');
-
+        
+        
         $general_conditions = [
             'organization_id' => $this->organization_id, 
             'date' => Carbon::today()

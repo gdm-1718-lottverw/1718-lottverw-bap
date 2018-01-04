@@ -3231,6 +3231,31 @@
   font-family: Ubuntu, "Helvetica", "Arial";
 }
 
+.active {
+  background: #9A3450;
+}
+
+.admin {
+  background: #6B7891;
+}
+
+.admin.active {
+  background: #9A3450;
+}
+
+.padded {
+  -ms-flex-order: 0;
+  -webkit-box-ordinal-group: 1;
+          order: 0;
+  -ms-flex: 1 1 auto;
+  -webkit-box-flex: 1;
+          flex: 1 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  border-bottom: 1px solid white;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -3274,7 +3299,6 @@ body .navigation a {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-decoration: none;
-  background: #3B4250;
   width: 70px;
   text-align: center;
 }
