@@ -54,5 +54,16 @@ class IndexController extends Controller
     
         return view('child.index', compact(['child', 'addresses', 'allergies', 'pedagogic', 'medical', 'other_information', 'parents', 'guardians']));
     }
-    
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        
+    }
+
 }

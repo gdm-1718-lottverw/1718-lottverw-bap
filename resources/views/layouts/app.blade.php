@@ -40,4 +40,18 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="/js/vendor/nouislider.min.js"></script>
         <script src="/js/main/app.js"></script>
+                <script>
+                    $( document ).ready(function() {
+                       var node;
+                       $( "#family_type" ).change(function(e) {
+                          var selected = e.target.selectedOptions[0].value;
+                            if(selected == "alleenstaande ouder"){
+                                console.log('selected:', selected);
+                                node = $('#parent-1').detach();
+                            } else {
+                                $('.section').append(node);
+                            }
+                        });
+                    });
+                </script>
 </html>

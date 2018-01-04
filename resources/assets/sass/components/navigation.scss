@@ -2,6 +2,27 @@
     @include box-sizing;
     font-family: $main-font;
 }
+.active {
+    background: $deeppink;
+}
+.admin {
+    background: #6B7891;
+    &.active {
+        background: $deeppink;
+    }
+}
+.padded {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    border-bottom: 1px solid white;
+}
 body {
     margin: 0;
     padding: 0;
@@ -27,13 +48,12 @@ body {
             color: $white;
             box-sizing: border-box;
             text-decoration: none;
-            background: $darkgray;
             width: 70px;
             text-align: center;
             &.active{
                 background: $deeppink;
             }
-            &:hover{
+            &:hover {
                 background: $pink;
             }
         }
