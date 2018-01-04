@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class LoginController extends Controller
 {
     /*
@@ -40,16 +40,28 @@ class LoginController extends Controller
             'username' => 'required',
             'password'  => 'required'
         ]);
-        
-        $role = Role::where([['name','=', 'organization'], ['active','=', true]])->first();
+    
+        // Check is password is valid.
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
-            if(Auth::user()->role_id == $role->id){
+            $role = Role::where([['name','=', 'organization'], ['active','=', true]])->first();
+            $user = Auth::user();
+            // Check if role is actually parent
+            if($user->role_id == $role->id)
+            {
+                // Check if this was the first login.
+                if($user->last_login == null){
+                    $user->first_login = new Carbon();
+                }
+                $user->last_login = new Carbon();
+                $user->save();
+                // redirect
                 return redirect()->intended('/');
-            } else {
-                abort(404, 'user not found');
-            }  
+            } 
+            else {
+                abort(403, 'Invalid role'); 
+            } 
         } else {
-            abort(404, 'user not found');
+            abort(403, 'User not found'); 
         }
     }
      /**

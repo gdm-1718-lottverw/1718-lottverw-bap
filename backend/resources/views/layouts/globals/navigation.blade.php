@@ -11,6 +11,12 @@
      <a href="/list">
         <i class="fa fa-list" aria-hidden="true"></i>
     </a>
+    <a href="/add/parents">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+    </a>
+    <a href="/settings">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+    </a>
     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
     </a>
