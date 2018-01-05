@@ -83,7 +83,7 @@ class IndexController extends Controller
         $data = session('data');
         $parents = $data['parents'];
         $guards = $data['guard'];
-   
+
         return view('child.new', compact('parents', 'guards'));
     }
     /**
@@ -97,7 +97,6 @@ class IndexController extends Controller
         $this->helper_loggedInOrganization();
         
         $validatedData = $request->validate([
-            '_id' => 'required|int|',
             'doctor' => 'required|string',
             'doctor_phone' => 'required|string',
             'child_name' => 'required|string',
@@ -108,7 +107,6 @@ class IndexController extends Controller
             'picture' => 'required|bool',
         ]);
 
-        $parents = Parents::where('auth_key_id', $request['_id'])->get(['id']);
 
         $child = new Child;
         $child->name = $request['child_name'];
@@ -120,11 +118,16 @@ class IndexController extends Controller
         $child->organization_id = $this->organization_id;
         $child->save();
         
-        foreach ($parents as $parent => $id) {
+        //add parents and guards.
+        for($i = 0; $i < 3; $i++){
+            $id = $request['parent_'.$i];
             $child->parents()->attach($id);
         }
-
-
+        for($i = 0; $i < 4; $i++){
+            $id = $request['guard_'.$i];
+            $child->guardians()->attach($id);
+        }
+            
         if($request['pedagogic_care_0'] != null && $request['pedagogic_care_0'] != 'undefined'){
             for($i = 0; $i < 5; $i++){
                 $description = $request['pedagogic_care_'.$i];
@@ -186,7 +189,7 @@ class IndexController extends Controller
             $oi->save();
         }
         if($request['another_child'] == false){
-            return redirect()->route('createGeneralInfo', ['auth_key_id' => $request->_id]);
+            return redirect()->route('home');
         } else {
              return redirect()->route('createChild', ['auth_key_id' => $request->_id]);
         }
