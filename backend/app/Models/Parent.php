@@ -30,6 +30,16 @@ class Parents extends Model
     {
         return $this->hasManyThrough('App\Models\PlannedAttendance', 'App\Models\ChildParent', 'parent_id', 'child_id', 'planned_attendance_id', 'id');
     }
+     /**
+     * Get the addresses for a given child.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function addresses()
+    {
+        return $this->hasMany('App\Models\Address', 'parent_id');
+    }
+
     
     /**
      * Get the key for a given parent

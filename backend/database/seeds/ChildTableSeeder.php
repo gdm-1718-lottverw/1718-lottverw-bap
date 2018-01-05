@@ -16,7 +16,6 @@ class ChildrenTableSeeder extends Seeder
             $activities = App\Models\Activity::pluck('id');
             $child->parents()->attach( $parents[ rand(1, (count($parents) -1))] );
             $child->activities()->attach( $activities[ rand(1, (count($activities) -1))] ); 
-            $child->addresses()->save(factory(App\Models\Address::class)->make());
         });
     }
 }

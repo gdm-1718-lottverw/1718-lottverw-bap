@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\AuthKey;
 use App\Models\Organization;
 use App\Models\Parents;
+use App\Models\Guardian;
+use App\Models\Address;
 use App\Models\Role;
 
 use Carbon\Carbon;
@@ -45,6 +47,16 @@ class IndexController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createGeneralInfo($id)
+    {
+           return view('parents.general', compact(['id']));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,7 +64,7 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-         $validatedData = $request->validate([
+        $validatedData = $request->validate([
             'username' => 'required|string|unique:auth_keys|max:255',
             'password' => 'required|string|min:6|confirmed',
             'family_type' => 'required|string',
@@ -64,6 +76,11 @@ class IndexController extends Controller
             'parent_2_relation' => 'string',
             'parent_2_email' => 'email|max:255',
             'parent_2_phone_number' => 'string|max:60',
+            'street' => 'required|string',
+            'postal_code' => 'required|string',
+            'number' => 'required|string',
+            'city' => 'required|string',
+            'country' => 'required|string',
         ]);
          
         $role = Role::where('name', 'parent')->first();
@@ -84,7 +101,7 @@ class IndexController extends Controller
         $parent->save();
         // check if there are multiple parents
         $parentCount = $request->family_type == "alleenstaande ouder"? 1 : 2;
-        echo $parentCount;
+        $parent2;
         if($parentCount == 2){
             $parent2 = new Parents;
             $parent2->name = $request->parent_2_name;
@@ -95,9 +112,47 @@ class IndexController extends Controller
             $parent2->family_type = $request->family_type;
             $parent2->save();
         }
-        return redirect()->route('createChild', ['auth_key_id' => $key->id]);
+        
+        $address = new Address;
+        $address->city = $request['city'];
+        $address->street = $request['street'];
+        $address->postal_code = $request['postal_code'];
+        $address->number = $request['number'];
+        $address->country = $request['country'];
+        $address->parent_id = $parent->id;
+        $address->save();
+        if($parentCount > 1){
+            $address->parent_id = $parent2->id;
+            $address->save();
+        }
+       
+        $guards = null;
+        if($request['guardian_name_0'] != null && $request['guardian_name_0'] != 'undefined'){
+            for($i = 0; $i < 4; $i++){
+                $name = $request['guardian_name_'.$i];
+                $phone =  $request['guardian_phone_number_'.$i];
+                if($name != null){
+                    $guard = new Guardian;
+                    $guard->name = $name;
+                    $guard->phonenumber = $phone;
+                    $guard->save();
+                    $guards[$i] = $guard->id;          
+                } else { $i = 5;}
+            }    
+        }
+        $parentCount > 1? null: $parent2->id = null;
+       
+        $parent_data = array(
+            'guard' => $guards, 
+            'auth_key' => $key->id,
+            'parents' => array(
+                0 => $parent->id, 
+                1 => $parent2->id,
+            )
+        );
+        return redirect('add/parents/new/child')->with('data', $parent_data);
     }
-
+   
     /**
      * Display the specified resource.
      *

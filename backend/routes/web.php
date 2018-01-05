@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/add/parents', 'Backoffice\Parents\IndexController@create')->name('parents');
 	Route::post('/add/parents/new', 'Backoffice\Parents\IndexController@store')->name('addParent');
-	Route::get('/add/parents/{auth_key_id}/new/child', 'Backoffice\Child\IndexController@create')->name('createChild');
+	Route::get('/add/parents/new/child', 'Backoffice\Child\IndexController@create')->name('createChild');
 	Route::post('/add/parents/new/child', 'Backoffice\Child\IndexController@store')->name('addChild');
 	
 	Route::post('/log/{id}/delete', 'Backoffice\Log\IndexController@delete');
