@@ -25,3 +25,18 @@
         @media screen and (min-width: 84em){ @content; }
     }
 }
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin placeholder {
+   ::-webkit-input-placeholder { @content;}
+   :-moz-placeholder           { @content;}
+   ::-moz-placeholder          { @content;}
+   :-ms-input-placeholder      { @content;}
+}

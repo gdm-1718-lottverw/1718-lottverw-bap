@@ -1,0 +1,93 @@
+.form {
+	border: 1px solid $darkgray;
+	padding: 30px 50px;
+	.form-group {
+		margin: 30px 0;
+  		position: relative;
+		label {
+			color: $darkgray;
+			font-family: $main-font;
+			font-size: 13px;
+			font-weight: $bold;
+		}
+		input{
+			margin-top: 10px;
+			padding: 6px 0;
+			border: none;
+			outline: none;
+			width: 100%;
+			font-family: $main-font;
+			border-bottom: 1px solid #D8D8D8;
+			&:focus {
+				border: none;
+			}
+		}
+		.border {
+		  display: block;
+		  position: absolute;
+		  height: 2px;
+		  width: 100%;
+		  top: 100%;
+		  border-radius: 30px;
+		  background: $darkgray;
+		  transform: scaleX(0);
+		  transition: transform 0.4s;
+		  transform-origin:  0% 50%;
+		}
+		input:focus + .border, .expand:focus .border {
+		  transform: scaleX(1);
+		  border: none;
+		}
+		.checkbox {
+			label{
+				font-size: 15px;
+				position: relative;
+				bottom: 5px;
+				font-weight: $regular;
+			}
+			input {
+				width: 25px;
+				margin: 0 8px 0 0;
+				height: 25px
+			}
+			
+		}
+		button {
+			border-radius: 7px;
+			border: none;
+			height: 30px;
+			background: $green;
+			padding: 2px 15px;
+			color: white;
+			font-family: $main-font;
+			display: block;
+		}
+	}
+}
+
+@include placeholder{
+	color: $darkgray;
+	font-style: italic;
+	opacity: 0.7;
+	font-weight: $thin;
+			
+}
+@include breakpoint(xs){
+
+}
+
+@include breakpoint(sm){
+ 
+}
+
+@include breakpoint(md){
+ 
+}
+
+@include breakpoint(xl){
+  
+}
+
+@include breakpoint(xxl){
+  
+}

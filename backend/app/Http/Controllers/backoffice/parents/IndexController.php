@@ -95,7 +95,7 @@ class IndexController extends Controller
             $parent2->family_type = $request->family_type;
             $parent2->save();
         }
-        return 'Okay';
+        return redirect()->route('createChild', ['auth_key_id' => $key->id]);
     }
 
     /**

@@ -10,7 +10,7 @@
 		        </ul>
 		    </div>
 		@endif
-		{{Form::open(['action' => 'Backoffice\Parents\IndexController@store'])}}
+		{{Form::open(array('action' => 'Backoffice\Parents\IndexController@store', 'class' => 'form'))}}
 			{{-- TOKEN --}}
 			{{ Form::hidden('_token', csrf_token() )}}
 			{{-- USERNAME --}}
@@ -20,18 +20,21 @@
 				<div class="form-group flex column">
 					{{ Form::label('username', 'Gebruikersnaam')}}
 					{{ Form::text('username')}} 
+					<div class="border"></div>
 				</div>
 				<div class="form-group flex column">
 					{{-- PASSWORD AND PASSWORD CONFIMATION --}}
 					{{ Form::label('password', 'wachtwoord')}}
 					{{ Form::password('password')}} 
+					<div class="border"></div>
 				</div>
 			</div>
 
 			<div class="flex row">
 				<div class="form-group flex column">
 					{{ Form::label('password_confirmation', 'herhaal wachtwoord')}}
-					{{ Form::password('password_confirmation')}} 
+					{{ Form::password('password_confirmation')}}
+					<div class="border"></div> 
 				</div>
 				<div class="form-group flex column">
 					{{-- FAMILY TYPE --}}
@@ -50,6 +53,7 @@
 						{{-- NAME --}}
 						{{ Form::label('parent_1_name', 'Naam')}}
 						{{ Form::text('parent_1_name')}} 
+						<div class="border"></div>
 					</div>
 					<div class="form-group flex column">
 						{{-- PARENT CHILD RELATIONSHIP --}}
@@ -66,11 +70,13 @@
 						{{-- EMAIL --}}
 						{{ Form::label('parent_1_email', 'Email adres')}}
 						{{ Form::email('parent_1_email')}} 
+						<div class="border"></div>
 				</div>
 					<div class="form-group flex column">
 						{{-- PHONE NUMBER --}}
 						{{ Form::label('parent_1_phone_number', 'Telefoon nummer')}}
 						{{ Form::text('parent_1_phone_number')}} 
+						<div class="border"></div>
 					</div>
 				</div>
 			</div>
@@ -81,6 +87,7 @@
 						{{-- NAME --}}
 						{{ Form::label('parent_2_name', 'Naam')}}
 						{{ Form::text('parent_2_name')}} 
+						<div class="border"></div>
 					</div>
 					<div class="form-group flex column">
 						{{-- PARENT CHILD RELATIONSHIP --}}
@@ -97,11 +104,13 @@
 						{{-- EMAIL --}}
 						{{ Form::label('parent_2_email', 'Email adres')}}
 						{{ Form::email('parent_2_email')}} 
+						<div class="border"></div>
 					</div>
 					<div class="form-group flex column">
 						{{-- PHONE NUMBER --}}
 						{{ Form::label('parent_2_phone_number', 'Telefoon nummer')}}
 						{{ Form::text('parent_2_phone_number')}} 
+						<div class="border"></div>
 					</div>
 				</div>
 			</div>
