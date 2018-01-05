@@ -3406,6 +3406,47 @@ body .guest-navigation li a {
   padding: 30px 50px;
 }
 
+.form i {
+  padding: 10px;
+  background: #9A3450;
+  border-radius: 100%;
+  color: white;
+  margin: 0px -20px;
+}
+
+.form .section {
+  padding: 20px;
+  margin: -20px 0px;
+  margin-bottom: 20px;
+  background: #F7F7F7;
+}
+
+.form .section .form-group {
+  margin: 20px;
+  width: 100%;
+}
+
+.form .section .form-group input {
+  background: #F7F7F7;
+}
+
+.form .btn-plus {
+  border-radius: 7px;
+  background: #3B4250;
+  padding: 5px 10px;
+  font-size: 10px;
+  margin: -10px 20px 10px 20px;
+  display: block;
+  color: white;
+  opacity: 0.8;
+  width: 15%;
+  text-align: center;
+}
+
+.form .btn-plus:hover {
+  opacity: 0.5;
+}
+
 .form .form-group {
   margin: 30px 0;
   position: relative;
@@ -3457,6 +3498,10 @@ body .guest-navigation li a {
   border: none;
 }
 
+.form .form-group .checkbox {
+  margin-right: 10px;
+}
+
 .form .form-group .checkbox label {
   font-size: 15px;
   position: relative;
@@ -3470,7 +3515,76 @@ body .guest-navigation li a {
   height: 25px;
 }
 
-.form .form-group button {
+.form .form-group .select-dropdown {
+  position: relative;
+  width: auto;
+  float: left;
+  max-width: 100%;
+  border-bottom: 1px solid #D8D8D8;
+  height: 35px;
+}
+
+.form .form-group .select-dropdown select {
+  font-family: "helvetica neue", helvetica;
+  font-size: 1rem;
+  font-weight: 200;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px 24px 8px 0;
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form .form-group .select-dropdown select:active,
+.form .form-group .select-dropdown select:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.form .form-group .select-dropdown select .border {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  top: 100%;
+  border-radius: 30px;
+  background: #3B4250;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+  -webkit-transform-origin: 0% 50%;
+          transform-origin: 0% 50%;
+}
+
+.form .form-group .select-dropdown select:focus + .border,
+.form .form-group .select-dropdown select .expand:focus .border {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  border: none;
+}
+
+.form .form-group .select-dropdown:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-top: -2px;
+  right: 8px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #3B4250;
+}
+
+.form button,
+.form .btn {
   border-radius: 7px;
   border: none;
   height: 30px;
@@ -4003,6 +4117,16 @@ body .guest-navigation li a {
   margin: 10px;
 }
 
+.add-child {
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+}
+
+.add-child form {
+  border: none;
+}
+
 @media screen and (max-width: 37.5em) {
   .child {
     top: 90px;
@@ -4017,6 +4141,12 @@ body .guest-navigation li a {
   .child .grid .column .item {
     background: #F7F7F7;
     margin-bottom: 5px;
+  }
+
+  .addChild {
+    top: 90px;
+    overflow: visible;
+    width: 100%;
   }
 }
 
@@ -4054,6 +4184,14 @@ body .guest-navigation li a {
     background: #F7F7F7;
     margin-bottom: 15px;
   }
+
+  .add-child {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
+  }
 }
 
 @media screen and (min-width: 64em) {
@@ -4072,6 +4210,14 @@ body .guest-navigation li a {
   .child .grid .column .item {
     background: #F7F7F7;
     margin-bottom: 15px;
+  }
+
+  .add-child {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
   }
 }
 
@@ -4092,6 +4238,14 @@ body .guest-navigation li a {
     background: #F7F7F7;
     margin-bottom: 15px;
   }
+
+  .add-child {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
+  }
 }
 
 @media screen and (min-width: 84em) {
@@ -4110,6 +4264,14 @@ body .guest-navigation li a {
   .child .grid .column .item {
     background: #F7F7F7;
     margin-bottom: 15px;
+  }
+
+  .add-child {
+    overflow: scroll;
+    z-index: 0;
+    top: 35px;
+    height: calc(100% - 35px);
+    width: calc(100vw - 70px);
   }
 }
 

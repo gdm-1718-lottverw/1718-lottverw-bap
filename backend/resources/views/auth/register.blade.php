@@ -61,7 +61,7 @@
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                  @endif
-            </div>        
+            </div>''        
             <div class="form-group">
                 <label for="password-confirm" class="col-md-4 control-label">Herhaal wachtwoord</label>
                 <input id="password-confirm" placeholder="Wachtwoord" type="Herhaal wachtwoord" class="form-control" name="password_confirmation">

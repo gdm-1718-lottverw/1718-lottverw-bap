@@ -40,7 +40,7 @@
                 <script>
                     $( document ).ready(function() {
                         var node;
-                        var count = {medical: 0, pedagogic: 0, allergie: 0};
+                        var count = {medical: 0, pedagogic: 0, allergies: 0, guardian: 0};
 
                         // ADD PARENT DEPENDING ON SELECTED FAMILY TYPE
                         $( "#family_type" ).change(function(e) {
@@ -55,12 +55,34 @@
 
                         // ADD CONDITION WHEN CLICKED
                         addNode = (condition) => {
-                            console.log('#container_' + condition);
-                            node =  $('#container_' + condition);
-                            var new_node = node;
                             count[condition]++;
-                            new_node.id = "container_"+count[condition] + '_' + condition;
-                            new_node.clone().insertBefore('#' + condition);
+
+                            // Node we want to clone
+                            node =  $('#container_' + condition);
+                            console.log('node: ', node);
+                            // We need to change the values for each input item
+                            var updated_node = node.clone();
+                            // Let's change the id for clean code.
+                            console.log('count[condition].toString()', count[condition], count);
+                            updated_node.id = "container_" + count[condition] + '_' + condition;
+                            updated_node.attr("id", updated_node.id);
+                            var inputs = updated_node.find('input');
+                            var selects = updated_node.find('select');
+                            var labels = updated_node.find('label');
+                            $.each(inputs,(i, e) => {
+                                name = $(e).prop('name');
+                                $(e).attr("name", name + '_' + count[condition]);
+                            })
+                            $.each(labels,(i, e) => {
+                                name = $(e).prop('for');
+                                $(e).attr("for", name + '_' + count[condition]);
+                            })
+                            $.each(selects,(i, e) => {
+                                name = $(e).prop('name');
+                                $(e).attr("name", name + '_' + count[condition]);
+                            })
+                            // Insert the new node in the dom.
+                            updated_node.insertBefore('#' + condition);
                         }
 
 

@@ -5,14 +5,24 @@ namespace App\Http\Controllers\Backoffice\Child;
 
 use App\Models\Child;
 use App\Models\Allegie;
+use App\Models\AuthKey;
+use App\Models\Organization;
 use App\Models\Address;
 use App\Models\Parents as Parents;
 use App\Http\Controllers\Controller; 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
+    private $organization_id;
+    function helper_loggedInOrganization(){
+        $key = Auth::id();
+        $o= Organization::where('auth_key_id', $key)->first();
+        $this->organization_id = $o->id;  
+    }
+
     public function index(int $child_id){
         $this->child_id = $child_id;
         /**
@@ -74,6 +84,35 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     { 
+        $this->helper_loggedInOrganization();
+        $validatedData = $request->validate([
+            '_id' => 'required|int|',
+            'doctor' => 'required|string',
+            'doctor_phone' => 'required|string',
+            'child_name' => 'required|string',
+            'national_regestry_number' => 'required|string|min:11',
+            'gender' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'potty_trained' => 'required|bool',
+            'picture' => 'required|bool',
+        ]);
+
+        $parents = Parents::where('auth_key_id', $request['_id'])->get(['id']);
+       // return $parents;
+
+        $child = new Child;
+        $child->name = $request['child_name'];
+        $child->potty_trained = $request['potty_trained'];
+        $child->pictures = $request['picture'];
+        $child->national_regestry_number = $request['national_regestry_number'];
+        $child->gender = $request['gender'];
+        $child->date_of_birth = $request['date_of_birth'];
+        $child->organization_id = $this->organization_id;
+        $child->save();
+        
+        foreach ($parents as $parent => $id) {
+            $child->parents()->attach($id);
+        }
         return $request;
         
     }
