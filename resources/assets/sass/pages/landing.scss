@@ -1,0 +1,59 @@
+.login {
+    min-height: calc(100vh - 35px);
+    .intro {
+        background: $green;
+    }
+    .content {
+        .form {
+            width: 100%;
+        }
+    }
+}
+
+
+@include breakpoint(xs){
+    .intro {
+        display: none;
+    }
+    .content {
+        padding: 20px;
+        width: 100%;
+        margin: 5px;
+    }
+}
+
+@include breakpoint(sm){
+    .intro {
+        display: none;
+    }
+    .content {
+        width: 100%;
+        margin: 0 50px;
+    }
+}
+
+@include breakpoint(md){
+    .intro {
+        width: 50%;
+        display: block;
+    }
+    .content {
+        padding: 30px;
+        width: 50%;
+    }
+}
+
+@include breakpoint(xl){
+   .intro {
+        width: 60%;
+        display: block;
+    }
+    .content {
+        padding: 40px;
+        width: 40%;
+    }
+}
+
+@include breakpoint(xxl){
+  
+}

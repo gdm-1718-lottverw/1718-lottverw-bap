@@ -9,6 +9,7 @@ use App\Models\Address;
 use App\Models\Parents as Parents;
 use App\Http\Controllers\Controller; 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
@@ -61,8 +62,19 @@ class IndexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function create($id)
+    {   
+        return view('child.new', compact(['id']));
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
-    {
+    { 
+        return $request;
         
     }
 

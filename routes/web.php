@@ -29,7 +29,9 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/add/parents', 'Backoffice\Parents\IndexController@create')->name('parents');
 	Route::post('/add/parents/new', 'Backoffice\Parents\IndexController@store')->name('addParent');
-	Route::post('/add/parents/{parent_id}/new/child', 'Backoffice\Child\IndexController@store')->name('addChild');
+	Route::get('/add/parents/{auth_key_id}/new/child', 'Backoffice\Child\IndexController@create')->name('createChild');
+	Route::post('/add/parents/new/child', 'Backoffice\Child\IndexController@store')->name('addChild');
+	
 	Route::post('/log/{id}/delete', 'Backoffice\Log\IndexController@delete');
 	Route::post('/log/{id}/edit', 'Backoffice\Log\IndexController@update');
 

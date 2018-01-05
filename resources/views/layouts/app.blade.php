@@ -16,8 +16,10 @@
     
     <body>
         @guest
-            <li><a href="{{ route('login') }}">Login</a></li>
-            <li><a href="{{ route('register') }}">Register</a></li>
+            <ul class="guest-navigation flex justified-end">
+                <li class="flex-child center"><a href="{{ route('login') }}">Login</a></li>
+                <li class="flex-child center"><a href="{{ route('register') }}">Register</a></li>
+            </ul>
         @else
              <div class="header">
                 <span class="location">{{ Auth::user()->username }}</span>
@@ -28,11 +30,6 @@
                 </span>
             </div>
             @include('layouts.globals.navigation')
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                     <span class="caret"></span>
-                </a>
-            </li>
         @endguest
         @yield('content')
         <!-- Scripts -->
@@ -42,8 +39,11 @@
         <script src="/js/main/app.js"></script>
                 <script>
                     $( document ).ready(function() {
-                       var node;
-                       $( "#family_type" ).change(function(e) {
+                        var node;
+                        var count = {medical: 0, pedagogic: 0, allergie: 0};
+
+                        // ADD PARENT DEPENDING ON SELECTED FAMILY TYPE
+                        $( "#family_type" ).change(function(e) {
                           var selected = e.target.selectedOptions[0].value;
                             if(selected == "alleenstaande ouder"){
                                 console.log('selected:', selected);
@@ -52,6 +52,19 @@
                                 $('.section').append(node);
                             }
                         });
+
+                        // ADD CONDITION WHEN CLICKED
+                        addNode = (condition) => {
+                            console.log('#container_' + condition);
+                            node =  $('#container_' + condition);
+                            var new_node = node;
+                            count[condition]++;
+                            new_node.id = "container_"+count[condition] + '_' + condition;
+                            new_node.clone().insertBefore('#' + condition);
+                        }
+
+
+
                     });
                 </script>
 </html>

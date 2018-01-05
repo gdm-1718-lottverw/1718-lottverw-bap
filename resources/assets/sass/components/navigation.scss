@@ -57,7 +57,23 @@ body {
                 background: $pink;
             }
         }
-    }      
+    } 
+    .guest-navigation {
+        margin: 0;
+        padding: 10px 15px;
+        height: 35px;
+        background: $darkgray;
+        li {
+            list-style: none;
+            margin: 0 10px;
+            a {
+                text-decoration: none;
+                color: $white;
+                font-size: 15px;
+                font-family: $main-font;
+            }
+        }
+    }     
 }
 @include breakpoint(xs){
     .header {
