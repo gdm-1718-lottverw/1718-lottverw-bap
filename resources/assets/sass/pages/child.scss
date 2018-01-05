@@ -52,7 +52,14 @@
         }
     }
 }
-
+.add-child {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    form {
+        border: none;
+    }
+}
 
 @include breakpoint(xs){
     .child{
@@ -69,7 +76,13 @@
             }
         }
     }
+    .addChild{
+        top: 90px;
+        overflow: visible ;
+        width: 100% ;
+    }
 }
+
 @include breakpoint(sm){
     .child{
         top: 90px;
@@ -103,6 +116,13 @@
             }
         }
     }
+    .add-child{
+       overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
+    }
 }
 
 @include breakpoint(lg){
@@ -121,6 +141,13 @@
                 }
             }
         }
+    }
+    .add-child{
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
     }
 }
 
@@ -141,6 +168,13 @@
             }
         }
     }
+    .add-child {
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
+    }
 }
 @include breakpoint(xxl){
     .child {
@@ -158,5 +192,12 @@
                 }
             }
         }
+    }
+    .add-child {
+        overflow: scroll;
+        z-index: 0;
+        top: 35px;
+        height: calc(100% - 35px);
+        width: calc(100vw - 70px);
     }
 }
