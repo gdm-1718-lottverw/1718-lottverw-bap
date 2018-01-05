@@ -14,7 +14,7 @@
 			{{-- TOKEN --}}
 			{{ Form::hidden('_token', csrf_token() )}}
 			{{-- USERNAME --}}
-		<i class="fa fa-unlock-alt"></i>
+		<i class="fa fa-user"></i>
 		<div class="section">
 			<div class="flex row">
 				<div class="form-group flex column">
@@ -39,13 +39,15 @@
 				<div class="form-group flex column">
 					{{-- FAMILY TYPE --}}
 					{{ Form::label('family_type', 'Familie type')}}
+					<div class="select-dropdown">
 					{{ Form::select('family_type', array(
 						'kerngezin' => 'kerngezin', 
 						'nieuw samengesteld gezin' => 'nieuw samengesteld gezin',
 						'alleenstaande ouder' => 'alleenstaande ouder',
 						'adoptie gezin' => 'adoptie gezin',
 					))}} 
-				</div>
+					<div class="border"></div> 
+				</div>	</div>
 			</div>
 			<div id="parent">
 				<div class="flex row">
@@ -56,13 +58,16 @@
 						<div class="border"></div>
 					</div>
 					<div class="form-group flex column">
-						{{-- PARENT CHILD RELATIONSHIP --}}
 						{{ Form::label('parent_1_relation', 'Relatie tot het kind')}}
+						<div class="select-dropdown">
 						{{ Form::select( 'parent_1_relation', array(
 							'mama' => 'mama', 
 							'papa' => 'papa',
+							'plus mama' => 'plus mama', 
+							'plus papa' => 'plus papa',
 							'voogd' => 'voogd',
 						))}} 
+						<div class="border"></div></div>
 					</div>
 				</div>
 				<div class="flex row">
@@ -81,42 +86,103 @@
 				</div>
 			</div>
 		</div>
-		<div id="parent-1">
-				<div class="flex row">
-					<div class="form-group flex column">
-						{{-- NAME --}}
-						{{ Form::label('parent_2_name', 'Naam')}}
-						{{ Form::text('parent_2_name')}} 
-						<div class="border"></div>
+		<div class="section">
+			<div id="parent-1">
+					<div class="flex row">
+						<div class="form-group flex column">
+							{{-- NAME --}}
+							{{ Form::label('parent_2_name', 'Naam')}}
+							{{ Form::text('parent_2_name')}} 
+							<div class="border"></div>
+						</div>
+						<div class="form-group flex column">
+							{{-- PARENT CHILD RELATIONSHIP --}}
+							{{ Form::label('parent_2_relation', 'Relatie tot het kind')}}
+								<div class="select-dropdown">
+								{{ Form::select( 'parent_2_relation', array(
+									'mama' => 'mama', 
+									'papa' => 'papa',
+									'plus mama' => 'plus mama', 
+									'plus papa' => 'plus papa',
+									'voogd' => 'voogd',
+								))}} 
+							<div class="border"></div></div>
+						</div>
 					</div>
-					<div class="form-group flex column">
-						{{-- PARENT CHILD RELATIONSHIP --}}
-						{{ Form::label('parent_2_relation', 'Relatie tot het kind')}}
-						{{ Form::select('parent_2_relation', array(
-							'mama' => 'mama', 
-							'papa' => 'papa',
-							'voogd' => 'voogd',
-						))}} 
-					</div>
-				</div>
-				<div class="flex row">
-					<div class="form-group flex column">
-						{{-- EMAIL --}}
-						{{ Form::label('parent_2_email', 'Email adres')}}
-						{{ Form::email('parent_2_email')}} 
-						<div class="border"></div>
-					</div>
-					<div class="form-group flex column">
-						{{-- PHONE NUMBER --}}
-						{{ Form::label('parent_2_phone_number', 'Telefoon nummer')}}
-						{{ Form::text('parent_2_phone_number')}} 
-						<div class="border"></div>
+					<div class="flex row">
+						<div class="form-group flex column">
+							{{-- EMAIL --}}
+							{{ Form::label('parent_2_email', 'Email adres')}}
+							{{ Form::email('parent_2_email')}} 
+							<div class="border"></div>
+						</div>
+						<div class="form-group flex column">
+							{{-- PHONE NUMBER --}}
+							{{ Form::label('parent_2_phone_number', 'Telefoon nummer')}}
+							{{ Form::text('parent_2_phone_number')}} 
+							<div class="border"></div>
+						</div>
 					</div>
 				</div>
 			</div>
+		<i class="fa fa-globe" aria-hidden="true"></i>
+		<div id="general" class="section">
+			<div class="flex row">
+				<div class="form-group flex column">
+					{{-- ADDRESS --}}
+					{{ Form::label('street', 'Straat')}}
+					{{ Form::text('street')}} 
+					<div class="border"></div>
+				</div>
+				<div class="form-group flex column">
+					{{-- ADDRESS --}}
+					{{ Form::label('number', 'Huisnummer')}}
+					{{ Form::text('number')}} 
+					<div class="border"></div>
+				</div>
+			</div>
+			<div class="flex row">
+				<div class="form-group flex column">
+					{{-- ADDRESS --}}
+					{{ Form::label('city', 'Gemeente')}}
+					{{ Form::text('city')}} 
+					<div class="border"></div>
+				</div>
+				<div class="form-group flex column">
+					{{-- ADDRESS --}}
+					{{ Form::label('postal_code', 'Postcode')}}
+					{{ Form::text('postal_code')}} 
+					<div class="border"></div>
+				</div>
+			</div>
+			<div class="flex row">
+				<div class="form-group flex column">
+					{{-- ADDRESS --}}
+					{{ Form::label('country', 'Land')}}
+					{{ Form::text('country')}} 
+					<div class="border"></div>
+				</div>
+			</div>
+		</div>
+		<i class="fa fa-users"></i>
+		<div class="section">
+			<div id="container_guardian" class="flex row">
+				<div class="form-group flex column">
+					{{-- GUARDIAN --}}
+					{{ Form::label('guardian_name_0', 'Kind mag ook opgehaald worden door:')}}
+					{{ Form::text('guardian_name_0')}} 
+					<div class="border"></div>
+				</div>
+				<div class="form-group flex column">
+					{{-- PHONE NUMBER --}}
+					{{ Form::label('guardian_phone_number_0', 'Telefoon nummer')}}
+					{{ Form::text('guardian_phone_number_0')}} 
+					<div class="border"></div>
+				</div>
+			</div>
+			<a id="guardian" onClick="addNode('guardian')" class="btn-plus">+ voeg persoon toe</a>
 		</div>
 		{!! Form::submit('Volgende', array('class'=>'btn')) !!}
-
 		{{Form::close()}}
 	</div>
 	

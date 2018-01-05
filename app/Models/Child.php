@@ -86,16 +86,6 @@ class Child extends Model
     }
 
     /**
-     * Get the addresses for a given child.
-     * 
-     * @return Illuminate\Database\Eloquent\Relations\hasMany
-     */
-    public function addresses()
-    {
-        return $this->hasMany('App\Models\Address', 'children_id');
-    }
-
-    /**
      * Get the medical reports associated with the child.
      * 
      * @return Illuminate\Database\Eloquent\Relations\HasMany

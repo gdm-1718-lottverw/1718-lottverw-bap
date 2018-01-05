@@ -6,8 +6,14 @@ namespace App\Http\Controllers\Backoffice\Child;
 use App\Models\Child;
 use App\Models\Allegie;
 use App\Models\AuthKey;
+use App\Models\Guardian;
 use App\Models\Organization;
+use App\Models\PedagogicReport;
+use App\Models\MedicalReport;
+use App\Models\Allergie;
 use App\Models\Address;
+use App\Models\Doctor;
+use App\Models\OtherInformation;
 use App\Models\Parents as Parents;
 use App\Http\Controllers\Controller; 
 use Illuminate\Support\Facades\DB;
@@ -72,9 +78,13 @@ class IndexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {   
-        return view('child.new', compact(['id']));
+        $data = session('data');
+        $parents = $data['parents'];
+        $guards = $data['guard'];
+   
+        return view('child.new', compact('parents', 'guards'));
     }
     /**
      * Store a newly created resource in storage.
@@ -85,6 +95,7 @@ class IndexController extends Controller
     public function store(Request $request)
     { 
         $this->helper_loggedInOrganization();
+        
         $validatedData = $request->validate([
             '_id' => 'required|int|',
             'doctor' => 'required|string',
@@ -98,7 +109,6 @@ class IndexController extends Controller
         ]);
 
         $parents = Parents::where('auth_key_id', $request['_id'])->get(['id']);
-       // return $parents;
 
         $child = new Child;
         $child->name = $request['child_name'];
@@ -113,7 +123,73 @@ class IndexController extends Controller
         foreach ($parents as $parent => $id) {
             $child->parents()->attach($id);
         }
-        return $request;
+
+
+        if($request['pedagogic_care_0'] != null && $request['pedagogic_care_0'] != 'undefined'){
+            for($i = 0; $i < 5; $i++){
+                $description = $request['pedagogic_care_'.$i];
+                if($description != null){
+                    $care = new PedagogicReport;
+                    $care->description = $description;
+                    $care->children_id = $child->id;
+                    $care->save();
+                } else { $i = 6;}
+            }
+            
+        }
+
+        if($request['medical_care_0'] != null && $request['medical_care_0'] != 'undefined'){
+            for($i = 0; $i < 4; $i++){
+                $description = $request['medical_care_'.$i];
+                if($description != null){
+                    $care = new MedicalReport;
+                    $care->description = $description;
+                    $care->children_id = $child->id;
+                    $care->save();
+                } else { $i = 5;}
+            }
+        }
+
+        if($request['allergie_0'] != null && $request['allergie_0'] != 'undefined'){
+            for($i = 0; $i < 4; $i++){
+                $description = $request['allergie_'.$i];
+                if($description != null){
+                    $gravity = $request['allergie_gravity_'.$i];
+                    $type = $request['allergie_type_'.$i];
+                    
+                    $care = new Allergie;
+                    $care->description = $description;
+                    $care->gravity = $gravity;
+                    $care->type = $type;
+                    $care->children_id = $child->id;
+                    $care->save();
+
+                } else { $i = 5;}
+            }
+        }
+
+
+
+
+        if($request['doctor'] != null){
+            $doctor = new Doctor; 
+            $doctor->name = $request['doctor'];
+            $doctor->phone_number = $request['doctor_phone'];
+            $doctor->children_id = $child->id;
+            $doctor->save();
+        }
+       
+       if($request['other_info'] != null){
+            $oi = new OtherInformation; 
+            $oi->description = $request['other_info'];
+            $oi->children_id = $child->id;
+            $oi->save();
+        }
+        if($request['another_child'] == false){
+            return redirect()->route('createGeneralInfo', ['auth_key_id' => $request->_id]);
+        } else {
+             return redirect()->route('createChild', ['auth_key_id' => $request->_id]);
+        }
         
     }
 

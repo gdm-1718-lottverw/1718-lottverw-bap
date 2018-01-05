@@ -21,7 +21,7 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('country');
             $table->unsignedInteger('organization_id')->nullable();
-            $table->unsignedInteger('children_id')->nullable();
+            $table->unsignedInteger('parent_id')->nullable();
             $table->timestamps();
         });
     }

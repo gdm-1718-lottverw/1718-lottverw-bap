@@ -13,9 +13,20 @@
 		{{Form::open(array('action' => 'Backoffice\Child\IndexController@store', 'class' => 'form'))}}
 			{{-- TOKEN --}}
 			{{ Form::hidden('_token', csrf_token() )}}
-			{{ Form::hidden('_id', $id )}}
+			@for ($i = 0; Count($parents) > $i; $i++)
+				{{ Form::hidden('parent_' . $i, $parents[$i] )}}
+			@endfor
+			@if($guards != null)
+				@for ($i = 0; Count($guards) > $i; $i++)
+					{{ Form::hidden('guard_' . $i, $guards[$i] )}}
+				@endfor
+			@endif
+			
 			<i class="fa fa-vcard"></i>
 			<div id="child" class="section">
+				<div class="flex row">
+					<h6 class="section-header">Algemene info</h6>
+				</div>
 				<div class="flex row">
 					<div class="form-group flex column">
 						{{-- Child Name --}}
@@ -37,8 +48,8 @@
 						<div class="select-dropdown">
 						{{ Form::select('gender', array(
 							null => 'selecteer een geslacht...', 
-							'man' => 'meisje', 
-							'vrouw' => 'jongen',
+							'man' => 'man', 
+							'vrouw' => 'vrouw',
 						))}} 
 						<div class="border"></div>
 					</div>
@@ -56,10 +67,10 @@
 						{{ Form::label('potty_trained', 'Zindelijk')}}
 						<div class="row flex">
 							<div class="checkbox flex centered">
-								{{ Form::radio('potty_trained', true, true)}} <p>Ja</p>
+								{{ Form::radio('potty_trained', 1, true)}} <p>Ja</p>
 							</div>
 							<div class="checkbox flex centered">
-								{{ Form::radio('potty_trained', false)}} <p>Nee</p>
+								{{ Form::radio('potty_trained', 0, false)}} <p>Nee</p>
 							</div>
 						</div>
 					</div>
@@ -68,36 +79,20 @@
 						{{ Form::label('picture', 'Foto')}}
 						<div class="row flex">
 						<div class="checkbox flex centered">
-							{{ Form::radio('picture', true)}} <p>Ja</p>
+							{{ Form::radio('picture', 1, false)}} <p>Ja</p>
 						</div>
 						<div class='checkbox flex centered'>
-							{{ Form::radio('picture', false, true)}} <p>Nee</p>
+							{{ Form::radio('picture', 0, true)}} <p>Nee</p>
 						</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<i class="fa fa-users"></i>
+		<i class="fa fa-user-md"></i>
 			<div class="section">
-				<div id="container_guardian" class="flex row">
-					<div class="form-group flex column">
-						{{-- GUARDIAN --}}
-						{{ Form::label('guardian_name', 'Kind mag ook opgehaald worden door:')}}
-						{{ Form::text('guardian_name')}} 
-						<div class="border"></div>
-					</div>
-					<div class="form-group flex column">
-						{{-- PHONE NUMBER --}}
-						{{ Form::label('guardian_phone_number', 'Telefoon nummer')}}
-						{{ Form::text('guardian_phone_number')}} 
-						<div class="border"></div>
-					</div>
+				<div class="flex row">
+					<h6 class="section-header">Arts</h6>
 				</div>
-				<a id="guardian" onClick="addNode('guardian')" class="btn-plus">+ voeg persoon toe</a>
-			</div>
-				<i class="fa fa-user-md"></i>
-			<div class="section">
 				<div class="flex row">
 					<div class="form-group flex column">
 						{{-- CHILD DOCTOR --}}
@@ -116,12 +111,16 @@
 			<i class="fa fa-medkit"></i>
 			<div id="doctor" class="section">
 				<div id="container_allergies">
-					<div class="flex row">
+					
+						<div class="flex row">
+							<h6 class="section-header">Allergieën</h6>
+						</div>
+						<div class="flex row">
 						<div class="form-group flex column">
 							{{-- ALLERGIE --}}
-							{{ Form::label('allergie_type', 'Type')}}
+							{{ Form::label('allergie_type_0', 'Type')}}
 							<div class="select-dropdown">
-							{{ Form::select('allergie_type', array(
+							{{ Form::select('allergie_type_0', array(
 								null => 'selecteer een type...', 
 								'insect' => 'insecten', 
 								'food' => 'voedsel',
@@ -134,9 +133,9 @@
 						</div>
 						<div class="form-group flex column">
 							{{-- ALLERGIE --}}
-							{{ Form::label('allergie_severe', 'Ernst')}}
+							{{ Form::label('allergie_gravity_0', 'Ernst')}}
 							<div class="select-dropdown">
-								{{ Form::select('allergie_severe', array(
+								{{ Form::select('allergie_gravity_0', array(
 									null => 'selecteer een ernst...', 
 									'light' => 'heel oppervlakkig', 
 									'medium' => 'matig',
@@ -150,30 +149,34 @@
 					<div class="flex row">
 						<div class="form-group flex column">
 							{{-- ALLERGIE --}}
-							{{ Form::label('allergie', 'Bescrijving allergie')}}
-							{{ Form::text('allergie')}} 
+							{{ Form::label('allergie_0', 'Beschrijving allergie')}}
+							{{ Form::text('allergie_0')}} 
 							<div class="border"></div>
 						</div>
 					</div>
 				</div>
 				<a id="allergies" class="btn-plus" onClick="addNode('allergies')">+ allergie</a>
-
-				<div class="flex row"  id='container_pedagogic'>
+				<div class="flex row">
+					<h6 class="section-header">Pedagogische aandacht</h6>
+				</div>
+				<div class="flex row"  id='container_pedagogic'>		
 					<div class="form-group flex column">
 						{{-- PEDAGOGIC CARE --}}
-						{{ Form::label('pedagogic_care', 'Beschrijving padagogische aandacht')}}
-						{{ Form::text('pedagogic_care')}} 
+						{{ Form::label('pedagogic_care_0', 'Beschrijving padagogische aandacht')}}
+						{{ Form::text('pedagogic_care_0')}} 
 						<div class="border"></div>
 						
 					</div>
 				</div>
 				<a id="pedagogic" class="btn-plus" onClick="addNode('pedagogic')">+ pedagogische aandacht</a>
-				
+				<div class="flex row">
+							<h6 class="section-header">Medische info</h6>
+						</div>
 				<div class="flex row" id='container_medical'>
 					<div class="form-group flex column">
 						{{-- MEDICAL CARE --}}
-						{{ Form::label('pedagogic_care', 'Beschrijving medische aandacht')}}
-						{{ Form::text('pedagogic_care')}} 
+						{{ Form::label('medical_care_0', 'Beschrijving medische aandacht')}}
+						{{ Form::text('medical_care_0')}} 
 						<div class="border"></div>
 					</div>
 				</div>
@@ -183,7 +186,7 @@
 		<i class="fa fa-comment-o"></i>
 		<div class="section">
 			<div class="flex row">
-					<div class="form-group flex column">
+				<div class="form-group flex column">
 					{{-- OTHER INFO --}}
 					{{ Form::label('other_info', 'Andere opmerkingen.')}}
 					{{ Form::text('other_info')}} 
@@ -191,9 +194,28 @@
 				</div>
 			</div>
 		</div>
-		{!! Form::submit('Volgende', array('class'=>'btn')) !!}
-
+		<i class="fa fa-plus"></i>
+		<div class="section">
+			<div class="row flex">
+				<div class="form-group flex column">
+					{{ Form::label('another_child', 'Nog een kind toevoegen.')}}
+					<div class="row flex">
+						<div class="checkbox flex centered">
+							{{ Form::radio('another_child', 1, true)}} <p>Ja</p>
+						</div>
+						<div class="checkbox flex centered">
+							{{ Form::radio('another_child', 0, false)}} <p>Nee</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row flex justified-end">
+		{!! Form::submit('Opslaan', array('class'=>'btn', 'id' => 'submit'))!!}
+		</div>
 		{{Form::close()}}
+
+
 	</div>
 	
 @endsection('content')

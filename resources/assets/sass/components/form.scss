@@ -22,6 +22,13 @@
 		}
 
 	}
+	.disabled{
+		padding: 0;
+		margin: 0 20px 20px 20px;
+		font-size: 10px;
+		font-style: italic;
+		opacity: 0.8;
+	}
 	.btn-plus {
 		border-radius: 7px;
 		background: $darkgray;
@@ -36,6 +43,13 @@
 		&:hover {
 			opacity: 0.5;
 		}
+	}
+	.section-header {
+		border-bottom: 1px solid $darkgray;
+		font-size: 15px;
+		margin: 25px 20px 0 20px;
+		width: 100%;
+		padding-bottom: 3px;
 	}
 	.form-group {
 		margin: 30px 0;
@@ -125,7 +139,7 @@
 		  transition: transform 0.4s;
 		  transform-origin:  0% 50%;
 		}
-		    &:focus + .border, .expand:focus .border {
+		 &:focus + .border, .expand:focus .border {
 			  transform: scaleX(1);
 			  border: none;
 			}
@@ -149,10 +163,29 @@
 		border: none;
 		height: 30px;
 		background: $green;
+		font-size: 10px;
 		padding: 2px 15px;
 		color: white;
 		font-family: $main-font;
 		display: block;
+		opacity: 0.7;
+		&:hover {
+			opacity: 1;
+		}
+	}
+	.btn-link{
+		background: $deeppink;
+		padding: 9px 15px;
+		border-radius: 7px;
+		font-size: 10px;
+		height: 30px;
+		text-decoration: none;
+		color: white;
+		margin-left: 5px;
+		opacity: 0.7;
+		&:hover {
+			opacity: 1;
+		}
 	}
 }
 
