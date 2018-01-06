@@ -9,6 +9,9 @@
       @include('home.partials.leftOvers')
     </div> 
     @endif
+    <div class="flex justified-end">
+      <i onClick="showHide('show', '#overlay')" class="fa fa-plus btn-fab yellow flex-child center" aria-hidden="true"></i>
+    </div>
     <div id="container-future">
       @include('home.partials.future')
     </div>  
@@ -19,6 +22,9 @@
       @include('home.partials.out')
     </div>
     <div id="overlay" class="hide">
+      <div class="flex justified-end">
+        <i onClick="showHide('hide', '#overlay')" class="fa fa-times btn-fab pink flex-child center" aria-hidden="true"></i>
+      </div>
       {{Form::open(array('action' => 'Backoffice\Home\IndexController@storeChild', 'class' => 'form'))}}
         {{-- TOKEN --}}
         {{ Form::hidden('_token', csrf_token() )}}
