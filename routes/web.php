@@ -18,6 +18,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/sign-out', 'Backoffice\Home\IndexController@signOut');
 	Route::post('/edit-timestamps', 'Backoffice\Home\IndexController@editTimestamps');
 	Route::post('/new/child', 'Backoffice\Home\IndexController@storeChild');
+	Route::post('/delete/child', 'Backoffice\Home\IndexController@destroy');
 
 	Route::get('/child/{id}', 'Backoffice\Child\IndexController@index');
 

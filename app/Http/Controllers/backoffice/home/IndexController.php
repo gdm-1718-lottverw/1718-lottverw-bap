@@ -106,7 +106,6 @@ class IndexController extends Controller
             ->type($type_conditions)
             ->get();
 
-
         return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children']));
     }    
 
@@ -132,7 +131,6 @@ class IndexController extends Controller
             ->presence('present_present')
             ->type($type_conditions)
             ->get();
-
 
         return view('home.partials.in', compact('in'));
     }    
@@ -179,6 +177,29 @@ class IndexController extends Controller
         $this->helper_NewLog($data, 'in');
 
         
+        return redirect()->route('home');
+    }
+
+    /**
+     * Soft delete.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(request $request)
+    {   
+        $pa = PlannedAttendance::where('id', $request['_id'])->first();
+        $pa->deleted_at = Carbon::now();
+        $pa->save();
+
+        $log = Log::where(
+            [
+                ['child_id', '=' ,$pa->child_id],
+                ['created_at', '=' ,$pa->created_at],
+            ])->first();
+        $log->deleted_at = Carbon::now();
+        $log->save();
+
         return redirect()->route('home');
     }
 }
