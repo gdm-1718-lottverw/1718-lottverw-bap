@@ -3224,6 +3224,37 @@
   text-decoration: underline;
 }
 
+.btn-fab {
+  border-radius: 100%;
+  font-size: 27px;
+  width: 45px;
+  height: 45px;
+  padding: 10px 12px;
+  color: white;
+  margin: 10px;
+}
+
+.btn-fab.yellow {
+  background: #FFED67;
+  color: #3B4250;
+}
+
+.btn-fab.darkgray {
+  background: #3B4250;
+}
+
+.btn-fab.pink {
+  background: #E64E78;
+}
+
+.btn-fab.deeppink {
+  background: #9A3450;
+}
+
+.btn-fab.green {
+  background: #44DEA3;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -3796,7 +3827,7 @@ body .guest-navigation li a {
 
 @media screen and (max-width: 37.5em) {
   .home {
-    top: 90px;
+    top: 80px;
     overflow: visible;
     width: 100%;
   }

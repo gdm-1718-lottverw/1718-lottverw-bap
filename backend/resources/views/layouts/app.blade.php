@@ -39,6 +39,10 @@
         <script src="/js/main/app.js"></script>
                 <script>
                     $( document ).ready(function() {
+                        // SHOW FORM ON HOMEPAGE
+                        showHide = (action, target) => {
+                            action == 'show'? $(target).removeClass('hide') : $(target).addClass('hide');
+                        }
                         var node;
                         var count = {medical: 0, pedagogic: 0, allergies: 0, guardian: 0};
                         var stop = "<p class='disabled'>Er kunnen maar 3 extra items worden toegevoegd</p>";

@@ -51,3 +51,30 @@
 .underline {
     text-decoration: underline;
 }
+
+// BUTTONS
+.btn-fab {
+    border-radius: 100%;
+    font-size: 27px;
+    width: 45px;
+    height: 45px;
+    padding: 10px 12px;
+    color: white;
+    margin: 10px;
+    &.yellow {
+        background: $yellow;
+        color: $darkgray;
+    }
+    &.darkgray {
+        background: $darkgray;
+    }
+     &.pink {
+        background: $pink;
+    }
+    &.deeppink {
+        background: $deeppink;
+    }
+    &.green {
+        background: $green;
+    }
+}
