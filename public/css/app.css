@@ -3224,16 +3224,6 @@
   text-decoration: underline;
 }
 
-.btn {
-  border-radius: 7px;
-  border: none;
-  height: 30px;
-  background: #44DEA3;
-  padding: 2px 15px;
-  color: white;
-  font-family: Ubuntu, "Helvetica", "Arial";
-}
-
 * {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -3263,7 +3253,6 @@
   -webkit-align-self: auto;
   -ms-flex-item-align: auto;
   align-self: auto;
-  border-bottom: 1px solid white;
 }
 
 body {
@@ -3363,6 +3352,10 @@ body .guest-navigation li a {
     height: 100%;
     padding: 10px;
   }
+
+  .navigation .padded {
+    border: none;
+  }
 }
 
 @media screen and (min-width: 37.5em) {
@@ -3388,6 +3381,10 @@ body .guest-navigation li a {
     height: 100%;
     padding: 10px;
   }
+
+  .navigation .padded {
+    border: none;
+  }
 }
 
 @media screen and (min-width: 50em) {
@@ -3408,6 +3405,10 @@ body .guest-navigation li a {
     padding: 20px 22px;
     font-size: 25px;
     height: 70px;
+  }
+
+  .navigation .padded {
+    border-bottom: 1px solid white;
   }
 }
 
@@ -3780,6 +3781,19 @@ body .guest-navigation li a {
   background: white;
 }
 
+.home #overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: red;
+  right: 0;
+  left: 0;
+}
+
+.home #overlay.hide {
+  display: none;
+}
+
 @media screen and (max-width: 37.5em) {
   .home {
     top: 90px;
@@ -3812,7 +3826,7 @@ body .guest-navigation li a {
 
 @media screen and (min-width: 37.5em) {
   .home {
-    top: 90px;
+    top: 80px;
     overflow: visible;
     width: 100%;
   }

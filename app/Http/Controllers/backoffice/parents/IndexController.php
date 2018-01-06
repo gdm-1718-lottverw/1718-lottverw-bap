@@ -45,17 +45,6 @@ class IndexController extends Controller
     {
         return view('parents.new');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createGeneralInfo($id)
-    {
-           return view('parents.general', compact(['id']));
-    }
-
     /**
      * Store a newly created resource in storage.
      *

@@ -64,11 +64,22 @@
             background: white;
         }
     }
+    #overlay{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: red;
+        right: 0;
+        left: 0;
+        &.hide{
+            display: none;
+        }
+    }
 }
 
 @include breakpoint(xs){
     .home {
-        top: 90px;
+        top: 80px;
         overflow: visible ;
         width: 100% ;
     }
@@ -85,7 +96,7 @@
 }
 @include breakpoint(sm){
     .home {
-        top: 90px;
+        top: 80px;
         overflow: visible;
         width: 100% ;
     }

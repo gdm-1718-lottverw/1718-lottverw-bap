@@ -17,6 +17,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/leftover/sign-in', 'Backoffice\Home\IndexController@LeftOverIn');
 	Route::post('/sign-out', 'Backoffice\Home\IndexController@signOut');
 	Route::post('/edit-timestamps', 'Backoffice\Home\IndexController@editTimestamps');
+	Route::post('/new/child', 'Backoffice\Home\IndexController@storeChild');
 
 	Route::get('/child/{id}', 'Backoffice\Child\IndexController@index');
 
