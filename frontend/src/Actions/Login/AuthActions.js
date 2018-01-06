@@ -28,7 +28,6 @@ export const login =(credentials) => {
         ) 
         .then(
             response => { 
-                console.log("RESPONSE",response);
                 if(response.data != 'Invalid password' && response != undefined){
                     dispatch(loginSuccess(response.data)),
                     this.saveCredentials(credentials.username, credentials.password, response.data.token, response.data.parent).then(Actions.calendar()); 

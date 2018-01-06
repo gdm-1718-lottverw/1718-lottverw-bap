@@ -19,10 +19,10 @@ class IndexController extends Controller
 
     public function index(){
     	$this->helper_loggedInOrganization();
-        $children = DB::table('children')
-                ->where([
-                    ['children.organization_id', '=', $this->organization_id],
-                ])->get(['children.id', 'children.name']);
+        $general_conditions = [
+            'organization_id' => $this->organization_id,
+        ];
+        $children = Child::general($general_conditions)->get(['children.id', 'children.name']);
         
         return view('list.index', compact('children'));
     }

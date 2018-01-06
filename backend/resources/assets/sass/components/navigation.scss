@@ -21,7 +21,6 @@
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
-    border-bottom: 1px solid white;
 }
 body {
     margin: 0;
@@ -92,6 +91,9 @@ body {
             height: 100%;
             padding: 10px;
         }
+        .padded {
+            border: none;
+        }
     }    
 }
 
@@ -112,6 +114,10 @@ body {
             height: 100%;
             padding: 10px;
         }
+        .padded {
+            border: none;
+        }
+
     }    
 }
 
@@ -128,6 +134,9 @@ body {
             padding: 20px 22px;
             font-size: 25px;
             height: 70px;
+        }
+        .padded {
+            border-bottom: 1px solid white;
         }
     }    
 }

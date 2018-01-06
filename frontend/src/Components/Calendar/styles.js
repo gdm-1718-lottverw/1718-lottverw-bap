@@ -19,9 +19,6 @@ const styles = StyleSheet.create({
 	action: {
 		margin: 4,
 	}, 
-	agenda: {
-		zIndex: 3,
-	},
 	child: {
 		fontWeight: '900',
 		marginBottom: 3,

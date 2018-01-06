@@ -59,19 +59,18 @@ class IndexController extends Controller
         $log->deleted_at = NULL;
         $log->action_id = $action->id;
         $log->save();
-
     }
 
     public function index(){
         // Check the time.
         $this->helper_CheckTime();
         $this->helper_loggedInOrganization();
-    
+        
         $general_conditions = [
             'organization_id' => $this->organization_id, 
             'date' => Carbon::today()
         ];
-                $type_conditions_leftover = [
+        $type_conditions_leftover = [
             'type' => [$this->type_inverse]
         ];
 
@@ -79,6 +78,8 @@ class IndexController extends Controller
             'type' => [$this->type, 'hele dag']
         ];
 
+        $children = Child::where('organization_id', $this->organization_id)->get(['name', 'id']);
+        
         $leftOver = Child::general($general_conditions)
             ->presence('present_registered')
             ->type($type_conditions_leftover)
@@ -105,7 +106,8 @@ class IndexController extends Controller
             ->type($type_conditions)
             ->get();
 
-        return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'name']));
+
+        return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children']));
     }    
 
     public function signIn(request $request){
@@ -158,6 +160,27 @@ class IndexController extends Controller
 
        return view('home.partials.out', compact('out'));
     }    
+
+    public function storeChild(request $request){
+        // request = data
+        $data = $request;
+        // Get the or_id
+        $this->helper_loggedInOrganization();   
+        // New Entry
+        $pa = new PlannedAttendance;
+        $pa->organization_id = $this->organization_id;
+        $pa->date = Carbon::now()->format('Y-m-d'); 
+        $pa->out = false;
+        $pa->in = $data['_in'];
+        $pa->type = $data['type'];
+        $pa->child_id = $data['child_id'];
+        $pa->save();
+        // New log entry
+        $this->helper_NewLog($data, 'in');
+
+        
+        return redirect()->route('home');
+    }
 }
 
 

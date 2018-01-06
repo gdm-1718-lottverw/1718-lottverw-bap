@@ -26,7 +26,7 @@ class LoginService extends Component {
   
       render() {
         return (
-          <View  style={styles.container}>
+          <View style={styles.container}>
           {this.errorActive == true ? <Text style={styles.error}>{this.error}</Text> : null}
             <Text style={styles.label}>username</Text>
             <TextInput
