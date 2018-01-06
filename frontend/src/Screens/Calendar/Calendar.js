@@ -12,7 +12,7 @@ class CalendarScreen extends React.Component{
         return (
             <View style={styles.box}>
                 <TopBar title={'CALENDAR'} icon={'power-off'} pop={false}/>
-                <CalendarSevice />
+                <CalendarSevice  />
             </View>
         );
         

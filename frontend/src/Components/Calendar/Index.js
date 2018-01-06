@@ -31,6 +31,23 @@ class CalendarService extends Component {
     } 
   }
 
+ getDaysBetweenDates = (start, end, dayName) => {
+  var result = []; var marker = {};
+  var days = {sat:6, sun:0, mon:1, tue:2, wed:3, thu:4, fri:5};
+  var day = days[dayName.toLowerCase().substr(0,3)];
+  console.log(day);
+  // Copy start date
+  var current = new Date(start);
+  // Shift to next of required days
+  current.setDate(current.getDate() + (day - current.getDay() + 7) % 7);
+  // While less than end date, add dates to result array
+  while (current < end) {
+    marker[moment(new Date(+current)).format('YYYY-MM-DD')] = {disabled: true}
+    current.setDate(current.getDate() + 7);
+  }
+  return marker;  
+}
+
   getMarkedDates = (data) => {
     let items = {}
     let marker = {};
@@ -39,6 +56,10 @@ class CalendarService extends Component {
     let children = {};
     colors = [ Colors.lightBlue, Colors.darkBlue, Colors.green, Colors.yellow, Colors.pink, Colors.purple];
     a = 0;
+    //disable the weekends
+    let sat = this.getDaysBetweenDates( new Date(), moment(new Date()).add(1,'Y'), 'sat');
+    let sun = this.getDaysBetweenDates( new Date(), moment(new Date()).add(1,'Y'), 'sun');
+    let weekend = Object.assign(sat, sun);
     data.forEach((e, i) => {
       if(children[e.child] == undefined){
         children[e.child] = colors[a];
@@ -55,6 +76,7 @@ class CalendarService extends Component {
         items[e.date].push(item);
       }
     });    
+    Object.assign(marker, weekend);
     this.state.items = items;
     this.state.dates = marker;
   }
@@ -62,14 +84,15 @@ class CalendarService extends Component {
     return (
       <Agenda
         items={this.state.items}
-        minDate={moment().format()}
+        minDate={moment(new Date()).add(1,'days').format()}
         loadItemsForMonth={this.loadItems.bind(this)}
         theme={{  
           agendaTodayColor: Colors.deeppink,
           agendaKnobColor: Colors.deeppink, 
           selectedDayBackgroundColor: Colors.gray,
-          selectedDayTextColor: Colors.darkgrey
+          selectedDayTextColor: Colors.darkgrey,
         }}
+        futureScrollRange={12}
         pastScrollRange={1}
         current={moment().format()}
         onDayPress={(date) => {Actions.quickAdd({'date': date.dateString})}}

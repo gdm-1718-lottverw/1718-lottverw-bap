@@ -41,6 +41,7 @@ const reducerCreate = params => {
                 hideNavBar={true}/>
             <Scene 
                 key="tabbar"
+                lazy={true}
                 tabs={true}
                 hideNavBar={true}
                 swipeEnabled={false}
@@ -54,6 +55,7 @@ const reducerCreate = params => {
                     icon={TabIcon}
                     key="calendar"
                     hideNavBar={true}
+                    backToInitial={Actions.refresh()}
                     component={CalendarScreen}/>
                 <Scene
                     key="history"
@@ -61,6 +63,7 @@ const reducerCreate = params => {
                     iconName="history"
                     icon={TabIcon}
                     hideNavBar={true}
+                    backToInitial={Actions.refresh()}
                     component={History}/>
                 <Scene
                     key="profile"
@@ -68,6 +71,7 @@ const reducerCreate = params => {
                     icon={TabIcon}
                     tabBarLabel=" "
                     hideNavBar={true}
+                    backToInitial={Actions.refresh()}
                     component={Profile}/>
             </Scene>
         </Scene>
