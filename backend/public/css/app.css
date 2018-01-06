@@ -3710,11 +3710,27 @@ body .guest-navigation li a {
   bottom: 0;
 }
 
+.home .ban {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 30px;
+  width: 45px;
+}
+
+.home .ban button {
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+}
+
 .home #to-come .child-card,
 .home #in .child-card,
 .home #out .child-card,
 .home #leftover .child-card {
   height: 130px;
+  position: relative;
 }
 
 .home #to-come .child-card .btn,
@@ -3810,6 +3826,7 @@ body .guest-navigation li a {
 
 .home #container-leftover #leftover .child-card .child-info {
   background: white;
+  position: relative;
 }
 
 .home #overlay {
