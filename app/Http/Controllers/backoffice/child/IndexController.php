@@ -45,7 +45,6 @@ class IndexController extends Controller
                   'children.potty_trained',
                 ]);
 
-        $addresses = DB::table('addresses')->where('addresses.children_id', '=', $this->child_id)->get();
         $allergies = DB::table('allergies')->where('allergies.children_id', '=', $this->child_id)->get();
         $pedagogic = DB::table('pedagogic_reports')->where('pedagogic_reports.children_id', '=', $this->child_id)->get();
         $medical = DB::table('medical_attention')->where('medical_attention.children_id', '=', $this->child_id)->get();
@@ -58,8 +57,10 @@ class IndexController extends Controller
                     ['child_parents.child_id', '=', $this->child_id],
                 ]);
             })
-            ->get(['parents.name as name', 'parents.relation as relation', 'parents.phone_number as phone']);
-        
+            ->get(['parents.name as name', 'parents.relation as relation', 'parents.phone_number as phone', 'parents.id as id']);
+
+        $addresses = DB::table('addresses')->where('addresses.parent_id', '=', $parents[0]->id)->get();
+
         $guardians = DB::table('guardians')
             ->join('child_guardian', function($join){
                 $join->on('child_guardian.guardian_id', '=', 'guardians.id')
@@ -170,9 +171,6 @@ class IndexController extends Controller
                 } else { $i = 5;}
             }
         }
-
-
-
 
         if($request['doctor'] != null){
             $doctor = new Doctor; 

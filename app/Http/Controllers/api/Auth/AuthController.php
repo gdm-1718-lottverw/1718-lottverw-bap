@@ -49,6 +49,7 @@ class AuthController extends Controller
 
                         // return token and parent id for later use.  
                         $parent = Parents::where('auth_key_id', '=', $user->id)->first();
+                       
                         $response = [
                             "token" => $token,
                             "parent" => $parent->id

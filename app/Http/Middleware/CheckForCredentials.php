@@ -49,8 +49,9 @@ class CheckForCredentials
         // For every route parameter check the following.
         foreach( $keys as $key){
             if($key == 'parent_id'){
+                $parents = Parents::where('auth_key_id', $this->id)->first();
                 // Check if parent id is actually the parent_id given in the token. 
-                if($request->route('parent_id') == $this->id){
+                if($request->route('parent_id') == $parents->id){
                     // check the role of the user.
                     $key = AuthKey::where('id', '=', $this->id)->first();
                     // check if key is expired.
