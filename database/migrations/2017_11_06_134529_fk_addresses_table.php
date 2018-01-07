@@ -14,7 +14,6 @@ class FkAddressesTable extends Migration
     public function up()
     { 
         Schema::table('addresses', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('parents');
             $table->foreign('organization_id')->references('id')->on('organizations');
         });
         

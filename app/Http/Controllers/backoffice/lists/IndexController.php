@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backoffice\Lists;
 
-
+use App\Models\Child;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;use App\Models\Organization;

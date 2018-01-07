@@ -12,7 +12,7 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        $roles = ['admin', 'parent', 'guardian'];
+        $roles = ['organization', 'parent'];
         foreach($roles as $r){
             DB::table('roles')->insert([
                 'name' => $r,

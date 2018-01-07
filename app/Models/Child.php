@@ -62,7 +62,7 @@ class Child extends Model
      */
     public function doctor()
     {
-        return $this->belongsTo('App\Models\Doctor');
+        return $this->belongsTo('App\Models\Doctor', 'children_id');
     }
 
     /**
@@ -92,7 +92,7 @@ class Child extends Model
      */
     public function medicalReport()
     {
-        return $this->hasMany('App\Models\MedicalReport');
+        return $this->hasMany('App\Models\MedicalReport', 'children_id');
     }
 
     /**
@@ -113,7 +113,7 @@ class Child extends Model
      */
     public function pedagogicReport()
     {
-        return $this->hasMany('App\Models\PedagogicReport');
+        return $this->hasMany('App\Models\PedagogicReport', 'children_id');
     }
 
     /**
@@ -123,7 +123,7 @@ class Child extends Model
      */
     public function addidionalInformation()
     {
-        return $this->hasMany('App\Models\OtherInformation');
+        return $this->hasMany('App\Models\OtherInformation', 'children_id');
     }
     
     /**

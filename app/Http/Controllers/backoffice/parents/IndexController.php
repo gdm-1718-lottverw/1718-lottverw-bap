@@ -79,29 +79,6 @@ class IndexController extends Controller
             $key->username = $request->username;
             $key->password = bcrypt($request->password);
         $key->save(); 
-
-        $parent = new Parents;
-        $parent->name = $request->parent_1_name;
-        $parent->email = $request->parent_1_email;
-        $parent->relation = $request->parent_1_relation;
-        $parent->phone_number = $request->parent_1_phone_number;
-        $parent->auth_key_id = $key->id;
-        $parent->family_type = $request->family_type;
-        $parent->save();
-        // check if there are multiple parents
-        $parentCount = $request->family_type == "alleenstaande ouder"? 1 : 2;
-        $parent2;
-        if($parentCount == 2){
-            $parent2 = new Parents;
-            $parent2->name = $request->parent_2_name;
-            $parent2->email = $request->parent_2_email;
-            $parent2->relation = $request->parent_2_relation;
-            $parent2->phone_number = $request->parent_2_phone_number;
-            $parent2->auth_key_id = $key->id;
-            $parent2->family_type = $request->family_type;
-            $parent2->save();
-        }
-        
         $address = new Address;
         $address->city = $request['city'];
         $address->street = $request['street'];
@@ -110,10 +87,33 @@ class IndexController extends Controller
         $address->country = $request['country'];
         $address->parent_id = $parent->id;
         $address->save();
-        if($parentCount > 1){
-            $address->parent_id = $parent2->id;
-            $address->save();
+       
+        $parent = new Parents;
+        $parent->name = $request->parent_1_name;
+        $parent->email = $request->parent_1_email;
+        $parent->relation = $request->parent_1_relation;
+        $parent->phone_number = $request->parent_1_phone_number;
+        $parent->auth_key_id = $key->id;
+        $parent->family_type = $request->family_type;
+        $parent->address_id = $address->id
+        $parent->save();
+        // check if there are multiple parents
+        $parentCount = $request->family_type == "alleenstaande ouder"? 1 : 2;
+        $parent2;
+        
+        if($parentCount == 2){
+            $parent2 = new Parents;
+            $parent2->name = $request->parent_2_name;
+            $parent2->email = $request->parent_2_email;
+            $parent2->relation = $request->parent_2_relation;
+            $parent2->phone_number = $request->parent_2_phone_number;
+            $parent2->auth_key_id = $key->id;
+            $parent2->family_type = $request->family_type;
+            $parent2->address_id = $address->id
+            $parent2->save();
         }
+        
+       
        
         $guards = null;
         if($request['guardian_name_0'] != null && $request['guardian_name_0'] != 'undefined'){
