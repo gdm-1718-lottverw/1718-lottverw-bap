@@ -9,8 +9,14 @@ use Illuminate\Support\Facades\DB;
 use JWTAuth;
 
 use App\Models\Parents;
+use App\Models\Address;
 use App\Models\Child;
-
+use App\Models\Allergie;
+use App\Models\MedicalReport;
+use App\Models\Doctor;
+use App\Models\PedagogicReport;
+use App\Models\OtherInformation;
+use App\Models\Guardian;
 
 class IndexController extends Controller
 {
@@ -110,16 +116,61 @@ class IndexController extends Controller
             }
             $count++;
         }
-        // 2. Retreive all parents from the auth_key_id
-        $parent_info = Parents::where('auth_key_id', $id)->get(['id','name', 'phone_number as tel', 'relation', 'email']);
+        // 2. Retreive all info
+        $parent = Parents::where('auth_key_id', $id)->get(['address_id as address', 'id','name', 'phone_number as tel', 'relation', 'email']);
         $family_type = Parents::where('auth_key_id', $id)->first(['family_type']);
-        $address = Address::where('parent_id', $parent_info->id)->first();
-        $data['parents'] =  $parent_info;
+        // We can use $parent[0] because when parents are added to the database they are assigned the same address.
+        $address = Address::where('id', $parent[0]->address)->first(); 
+        $children = []; $ids = [];
+        // Get all children
+        foreach ($parent as $p) {
+            $child = $p->children()->get(['id', 'name', 'date_of_birth', 'gender', 'potty_trained', 'pictures']);
+            
+            if(Count($child) > 0){
+                $children = $child;
+                
+                for($i = 0; Count($child) > $i; $i++) {
+                    $ids[$i] = $child[$i]['id'];
+                    $a = Allergie::where('children_id', $child[$i]->id)->get(['id', 'type', 'gravity', 'description', 'medication', 'prescription']);
+                    if(Count($a) > 0){
+                        Count($children[$i]['allergie']) == 0? $children[$i]['allergies'] = $a: null;
+                    }
+
+                    $d = Doctor::where('children_id','=', $child[$i]->id)->first(['id', 'name', 'phone_number as tel']);
+                    if(Count($d) > 0){
+                        Count($children[$i]['doctors']) == 0? $children[$i]['doctor'] = $d: null;
+                    }
+
+                    $o = OtherInformation::where('children_id', $child[$i]->id)->get(['id', 'description']);
+                    if(Count($o) > 0){
+                        Count($children[$i]['comment']) == 0? $children[$i]['comments'] = $o: null;
+                    }
+
+                    $m = MedicalReport::where('children_id', $child[$i]->id)->get(['id', 'description', 'medication', 'prescription']);
+
+                    if(Count($m) > 0){
+                        Count($children[$i]['medial']) == 0? $children[$i]['medical'] =  $m: null;
+                    }
+
+                    $p = PedagogicReport::where('children_id', $child[$i]->id)->get(['id', 'description', 'medication', 'prescription']);
+                    if(Count($p) > 0){
+                        Count($children[$i]['pedagogic']) == 0? $children[$i]['pedagogic'] = $p : null;
+                    }
+                }
+            }
+        }
+
+        $guardians = Guardian::whereHas('children', function($q) use($ids) {
+            $q->whereIn('child_id', $ids);
+        })->get();
+
+        // Merge all info into one pretty object.
+        $data['parents'] =  $parent;
+        $data['guardians'] =  $guardians;
+        $data['address'] =  $address;
+        $data['children'] =  $children;
         $data['family_type'] = $family_type->family_type;
+
         return $data;
-        // 3. Retreive the address
-        // 4. Retreive all children for the parents.
-        // 5. retreive the guardians
-        // §. Retreive all doctors, other info, allergies, medical en pedagogic care for each child.
     }
 }
