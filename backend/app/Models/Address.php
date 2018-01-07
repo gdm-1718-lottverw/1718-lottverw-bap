@@ -12,4 +12,14 @@ class Address extends Model
      * @var string
      */
     protected $table = 'addresses';
+ 	
+ 	/**
+     * Get the addresses for a given child.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function parents()
+    {
+        return $this->hasMany('App\Models\Parents', 'address_id');
+    }
 }

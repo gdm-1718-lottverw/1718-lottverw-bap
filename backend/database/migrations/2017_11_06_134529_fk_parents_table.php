@@ -16,7 +16,7 @@ class FkParentsTable extends Migration
     
         Schema::table('parents', function (Blueprint $table) {
             $table->foreign('auth_key_id')->references('id')->on('auth_keys');
-            $table->foreign('default_pickup_hours_id')->references('id')->on('default_pickup_hours');
+            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 

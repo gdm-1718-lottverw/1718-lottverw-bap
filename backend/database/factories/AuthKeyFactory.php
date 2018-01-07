@@ -9,9 +9,9 @@ $factory->define(App\Models\AuthKey::class, function (Faker $faker) {
     return [
         'username' => $faker->unique()->userName(),
         'password' => bcrypt('secret'),
-        'first_login' => $faker->date($format = 'Y-m-d', $max = '-2 months'),
-        'last_login' =>  $faker->date($format = 'Y-m-d', $max = 'now'),
-        'expire_date' => $faker->date($format = 'Y-m-d', $max = '+1 year'),
-        'role_id' => rand(1, (count($roles) -1))
+        'first_login' => $faker->dateTimeThisYear($max = 'now', $timezone = null),
+        'last_login' =>  $faker->dateTimeThisYear($max = 'now', $timezone = null),
+        'expire_date' => $faker->dateTimeThisYear($max = 'now', $timezone = null),
+        'role_id' => rand(1, (count($roles)))
     ];
 });

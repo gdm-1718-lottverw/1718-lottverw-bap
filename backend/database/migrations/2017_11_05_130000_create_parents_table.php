@@ -21,7 +21,7 @@ class CreateParentsTable extends Migration
             $table->string('email');
             $table->text('phone_number');
             $table->unsignedInteger('auth_key_id');
-            $table->unsignedInteger('default_pickup_hours_id')->nullable();  
+            $table->unsignedInteger('address_id'); 
             $table->timestamps();
         });
 
