@@ -12,7 +12,7 @@ class Guardian extends Model
      * @var string
      */
     protected $table = 'guardians';
-    
+    protected $fillable = ['name', 'phone_number'];
     /**
      * The children that belong a given guardian.
      * 

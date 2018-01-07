@@ -12,4 +12,5 @@ class Allergie extends Model
      * @var string
      */
     protected $table = 'allergies';
+    protected $fillable = ['type', 'gravity', 'description', 'medication', 'prescription'];
 }

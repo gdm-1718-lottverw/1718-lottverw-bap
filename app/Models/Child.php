@@ -15,6 +15,7 @@ class Child extends Model
      * @var string
      */
     protected $table = 'children';
+    protected $fillable = ['potty_trained', 'pictures'];
     /**
      * Get the activities for a given child.
      * 
