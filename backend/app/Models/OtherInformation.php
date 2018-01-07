@@ -12,4 +12,6 @@ class OtherInformation extends Model
      * @var string
      */
     protected $table = 'other_information';
+
+    protected $fillable = ['description'];
 }

@@ -12,4 +12,5 @@ class PedagogicReport extends Model
      * @var string
      */
     protected $table = 'pedagogic_reports';
+    protected $fillable = ['description', 'medication', 'prescription'];
 }

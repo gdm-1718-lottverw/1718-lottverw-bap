@@ -27,22 +27,21 @@ class CalendarService extends Component {
   componentWillReceiveProps(nextProps) {
    if (nextProps.data.length > 0 && nextProps.error == undefined) {
       this.state.data = nextProps.data;
-      this.getMarkedDates(nextProps.data);
+      this.getMarkedDates(this.state.data);
     } 
   }
-
+ 
  getDaysBetweenDates = (start, end, dayName) => {
   var result = []; var marker = {};
   var days = {sat:6, sun:0, mon:1, tue:2, wed:3, thu:4, fri:5};
   var day = days[dayName.toLowerCase().substr(0,3)];
-  console.log(day);
   // Copy start date
   var current = new Date(start);
   // Shift to next of required days
   current.setDate(current.getDate() + (day - current.getDay() + 7) % 7);
   // While less than end date, add dates to result array
   while (current < end) {
-    marker[moment(new Date(+current)).format('YYYY-MM-DD')] = {disabled: true}
+    marker[moment(new Date(+current)).format('YYYY-MM-DD')] = {disabled: true};
     current.setDate(current.getDate() + 7);
   }
   return marker;  
@@ -60,12 +59,12 @@ class CalendarService extends Component {
     let sat = this.getDaysBetweenDates( new Date(), moment(new Date()).add(1,'Y'), 'sat');
     let sun = this.getDaysBetweenDates( new Date(), moment(new Date()).add(1,'Y'), 'sun');
     let weekend = Object.assign(sat, sun);
+
     data.forEach((e, i) => {
       if(children[e.child] == undefined){
         children[e.child] = colors[a];
         a++;
       }
-
       dot = { key: i, color: children[e.child], marked: true };
       marker[e.date] == undefined? marker[e.date] = {dots: [dot]} : marker[e.date]['dots'].push(dot);
       let item = {child: e.child, description: 'Ingeschreven voor de ' + e.type, id: e.id, color: children[e.child], note: e.note, date: e.date}
@@ -79,12 +78,19 @@ class CalendarService extends Component {
     Object.assign(marker, weekend);
     this.state.items = items;
     this.state.dates = marker;
+    console.log('CURRENT DATES:', this.state.dates);
+  }
+
+  renderEmptyDate() {
+    return (
+      <View style={styles.emptyDate}></View>
+    );
   }
   render() {
     return (
       <Agenda
         items={this.state.items}
-        minDate={moment(new Date()).add(1,'days').format()}
+        minDate={moment(new Date()).format()}
         loadItemsForMonth={this.loadItems.bind(this)}
         theme={{  
           agendaTodayColor: Colors.deeppink,
@@ -97,17 +103,25 @@ class CalendarService extends Component {
         current={moment().format()}
         onDayPress={(date) => {Actions.quickAdd({'date': date.dateString})}}
         renderItem={this.renderItem.bind(this)}
+        renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
         markingType={'multi-dot'}
         markedDates={this.state.dates} />
-
     );
-
   }
 
 
   loadItems(day) {
      setTimeout(() => {
+     
+      for (let i = 0; i < 356; i++) {
+        var date = moment(new Date()).add(i,'days').format('Y-MM-DD');
+        if (this.state.items[date] == undefined) {     
+          this.state.items[date] = [];
+          console.log('BESTAAT NIET', this.state.items[date].length);
+        } 
+      }
+      console.log(this.state.items);
       }, 1000);
   }
 

@@ -12,6 +12,7 @@ import NewCalendarScreen from '../Screens/Calendar/NewCalendarScreen';
 import UpdateCalendarScreen from '../Screens/Calendar/UpdateCalendarScreen';
 import Login from '../Screens/Login';
 import TabIcon from '../Components/TabIcon';
+
 const reducerCreate = params => {
     const defaultReducer = new Reducer(params);
     return (state, action) => {
@@ -55,7 +56,6 @@ const reducerCreate = params => {
                     icon={TabIcon}
                     key="calendar"
                     hideNavBar={true}
-                    backToInitial={Actions.refresh()}
                     component={CalendarScreen}/>
                 <Scene
                     key="history"
@@ -63,7 +63,6 @@ const reducerCreate = params => {
                     iconName="history"
                     icon={TabIcon}
                     hideNavBar={true}
-                    backToInitial={Actions.refresh()}
                     component={History}/>
                 <Scene
                     key="profile"
@@ -71,7 +70,6 @@ const reducerCreate = params => {
                     icon={TabIcon}
                     tabBarLabel=" "
                     hideNavBar={true}
-                    backToInitial={Actions.refresh()}
                     component={Profile}/>
             </Scene>
         </Scene>

@@ -36,6 +36,9 @@ const styles = StyleSheet.create({
 		paddingRight: 5,
 		marginBottom: 8,
 		fontStyle: 'italic'
+	},
+	emptyDate: {
+		height: 130,
 	}
 });
 export default styles;

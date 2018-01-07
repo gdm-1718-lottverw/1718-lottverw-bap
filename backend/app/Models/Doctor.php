@@ -13,6 +13,7 @@ class Doctor extends Model
      */
     protected $table = 'doctors';
 
+    protected $fillable = ['name', 'phone_number'];
     /**
      * Get the children associated with the doctor.
      * 

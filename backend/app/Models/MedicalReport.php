@@ -12,5 +12,6 @@ class MedicalReport extends Model
      * @var string
      */
     protected $table = 'medical_attention';
+    protected $fillable = ['description', 'medication', 'prescription'];
     
 }

@@ -18,8 +18,7 @@ class ChildController extends Controller
      */
     public function index($id)
     {
-        $children = Parents::with('children')->where('id', $id)->first()->children()->get();
-       
+        $children = Parents::with('children')->where('id', $id)->first()->children()->get();  
         return $children;
         
     }

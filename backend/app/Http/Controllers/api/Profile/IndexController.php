@@ -173,4 +173,20 @@ class IndexController extends Controller
 
         return $data;
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $calendar_item = PlannedAttendance::find($item_id);
+        $calendar_item->fill($request->only(['type', 'child_id', 'parent_notes', 'date', 'go_home_alone']));
+        $calendar_item->save();  
+
+        return $calendar_item;
+
+    }
 }
