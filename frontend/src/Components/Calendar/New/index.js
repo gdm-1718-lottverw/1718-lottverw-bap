@@ -3,7 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, TextInput, Picker, Button } f
 import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import styles from './styles';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import GenerateIcon from '../../Icon/index';
 
 class NewCalendarService extends React.Component{  
   constructor(props){
@@ -60,10 +60,6 @@ class NewCalendarService extends React.Component{
     }
   }
 
-  generateIcon = (name, size) => (
-      <Icon style={styles.icon} name={name} size={size}/>
-  );
-
   renderChecklist = (obj, patch) => {      
     const state_item = 'check_' + patch;      
     return obj.map((item, i) => {
@@ -117,33 +113,33 @@ class NewCalendarService extends React.Component{
     return (
       <ScrollView style={styles.container}>
         <View style={styles.item}>
-          {this.generateIcon('calendar', 15)}
+          <GenerateIcon name={'calendar'} size={15} />
           <Text style={[styles.label, styles.single ]}>Ingeschreven voor: {this.props.date}</Text>            
         </View>
         <View>
         <View style={styles.item}>
-          {this.generateIcon('user-circle-o', 15)}
+         <GenerateIcon name={'user-circle-o'} size={15} />
           <Text style={styles.label}>Kind(eren)</Text>
           <View style={styles.description}>
            {this.state.children !== undefined && this.state.children.length > 0 ? this.renderChildren(this.state.children, 'child_id') : null}
           </View>              
         </View>
         <View style={styles.item}>
-          {this.generateIcon('sun-o', 15)}
+         <GenerateIcon name={'sun-o'} size={15} />
           <Text style={styles.label}>Dag type</Text>
           <View style={styles.description}>
             {this.renderChecklist(types, 'type')}
           </View>              
         </View> 
         <View style={styles.item}>
-          {this.generateIcon('sun-o', 15)}
+         <GenerateIcon name={'bicycle'} size={15} />
           <Text style={styles.label}>Mag alleen naar huis.</Text>
           <View style={styles.description}>
             {this.renderChecklist(bool, 'go_home_alone')}
           </View>              
         </View>      
         <View style={styles.item}>
-          {this.generateIcon('comment-o', 15)}
+         <GenerateIcon name={'comment-o'} size={15} />
           <Text style={styles.label}>Opmerkingen</Text>
           <View style={styles.description}>
             <TextInput

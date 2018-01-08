@@ -5,6 +5,7 @@ import createLogger from 'redux-logger';
 import authReducer from './auth';
 import calendarReducer from './calendar';
 import HistoryReducer from './history';
+import ProfileReducer from './profile';
 import childrenReducer from './children';
 import SubmitAttendanceReducer from './submitAttendance';
 
@@ -13,6 +14,7 @@ const AppReducers = combineReducers({
     calendar: calendarReducer,
     children: childrenReducer,
     history: HistoryReducer,
+    profile: ProfileReducer,
     submitAttendance: SubmitAttendanceReducer,
 });
 

@@ -1,17 +1,17 @@
 import * as Actions from '../Actions/ActionTypes'
 
-const HistoryReducer = (state = { isLoading: false, error: undefined, data: {} }, action) => {
+const ProfileReducer = (state = { isLoading: false, error: undefined, data: {} }, action) => {
     switch (action.type) {
-        case Actions.HISTORY_PENDING:
+        case Actions.PROFILE_PENDING:
             return Object.assign({}, state, {
                 isLoading: true,
             });
-        case Actions.HISTORY_ERROR:
+        case Actions.PROFILE_ERROR:
             return Object.assign({}, state, {
                 isLoading: false,
                 error: action.error
             });
-        case Actions.HISTORY_SUCCESS:
+        case Actions.PROFILE_SUCCESS:
             return Object.assign({}, state, {
                 isLoading: false,
                 data: action.data,
@@ -21,4 +21,4 @@ const HistoryReducer = (state = { isLoading: false, error: undefined, data: {} }
     }
 }
 
-export default HistoryReducer;
+export default ProfileReducer;

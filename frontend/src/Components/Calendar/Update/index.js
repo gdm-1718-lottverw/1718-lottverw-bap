@@ -5,9 +5,9 @@ import { Actions } from 'react-native-router-flux';
 import styles from './styles';
 import moment from 'moment';
 import 'moment/locale/nl-be';
-import Icon  from 'react-native-vector-icons/FontAwesome';
 import Colors from '../../../Config/theme';
 import { RadioButtons } from 'react-native-radio-buttons'
+import GenerateIcon from '../../Icon/index';
 
 class UpdateCalendarService extends Component {
   constructor(props) {
@@ -52,11 +52,6 @@ class UpdateCalendarService extends Component {
       }
     })
   }
-
-  
-  generateIcon = (name, size) => (
-      <Icon style={styles.icon} name={name} size={size}/>
-  );
   
   toPatch = (key, value) => {
       if(this.updateFollowing[key] == undefined){
@@ -102,12 +97,12 @@ class UpdateCalendarService extends Component {
     return (
      <ScrollView style={styles.container} keyboardShouldPersistTaps='always' >
       <View style={styles.item}>
-        {this.generateIcon('calendar', 15)}
+        <GenerateIcon name={'calendar'} size={15} />
         <Text style={[styles.label, styles.single ]}>Ingeschreven op: {this.state.item.date}</Text>            
       </View>
 
       <View style={styles.item}>
-        {this.generateIcon('user-circle-o', 15)}
+        <GenerateIcon name={'user-circle-o'} size={15} />
         <Text style={styles.label}>{this.state.child_id}</Text>
         <View style={styles.description}>
          {this.renderChecklist(this.state.children, 'child_id', 'id')}
@@ -115,14 +110,14 @@ class UpdateCalendarService extends Component {
       </View>
       
       <View style={styles.item}>
-        {this.generateIcon('sun-o', 15)}
+        <GenerateIcon name={'sun-o'} size={15} />
         <Text style={styles.label}>Ingeschreven voor {this.state.type}</Text>
         <View style={styles.description}>
         {this.renderChecklist(types, 'type', 'value')}
         </View>              
       </View>
       <View style={styles.item}>
-        {this.generateIcon('bicycle', 14)}
+        <GenerateIcon name={'bicycle'} size={14} />
         <Text style={styles.label}>{this.state.go_home_alone == true ? 'Kind mag alleen naar huis': 'kind wordt opgehaald'}</Text>
         <View style={styles.description}>
          {this.renderChecklist(bool, 'go_home_alone')}
@@ -143,7 +138,7 @@ class UpdateCalendarService extends Component {
       </View>
 
       <View style={styles.item}>
-        {this.generateIcon('comment-o', 15)}
+        <GenerateIcon name={'comment-o'} size={15} />
         <Text style={styles.label}>Opmerking:</Text>
         <View style={styles.description}>
           <TextInput

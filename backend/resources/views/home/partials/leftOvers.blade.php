@@ -10,6 +10,12 @@
       <span class="name">{{$lo->name}}</span>
       <p class="description">{{$lo->parent_notes}}</p>
     </a>
+    @if(\Carbon\Carbon::parse($lo->created_at)->format('Y-m-d') == \Carbon\Carbon::now()->format('Y-m-d'))
+        {{ Form::open(array('action' => 'Backoffice\Home\IndexController@destroy', 'class' => 'ban')) }} 
+        {{ Form::hidden('_id', $lo->id )}}
+        {{ Form::button('<i class="fa fa-ban" aria-hidden="true"></i>', ['type' => 'submit']) }}
+        {{ Form::close()}}
+      @endif
   </div>  
   @endforeach
 </div>

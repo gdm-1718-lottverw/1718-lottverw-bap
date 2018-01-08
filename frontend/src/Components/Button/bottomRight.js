@@ -3,6 +3,7 @@ import {TouchableOpacity} from 'react-native';
 import styles from './styles';
 import Icon  from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
+
 const BottomRight = (props) => (
     <TouchableOpacity
         style={styles.container}

@@ -90,7 +90,7 @@ class CalendarService extends Component {
     return (
       <Agenda
         items={this.state.items}
-        minDate={moment(new Date()).format()}
+        minDate={moment(new Date()).add(1, 'days').format()}
         loadItemsForMonth={this.loadItems.bind(this)}
         theme={{  
           agendaTodayColor: Colors.deeppink,
@@ -118,7 +118,6 @@ class CalendarService extends Component {
         var date = moment(new Date()).add(i,'days').format('Y-MM-DD');
         if (this.state.items[date] == undefined) {     
           this.state.items[date] = [];
-          console.log('BESTAAT NIET', this.state.items[date].length);
         } 
       }
       console.log(this.state.items);

@@ -33,3 +33,7 @@ export const DELETE_SUCCESS   = 'delete_success';
 export const CHILDREN_PENDING = 'children_pending';
 export const CHILDREN_SUCCESS = 'children_success';
 export const CHILDREN_ERROR = 'children_error';
+
+export const PROFILE_PENDING = 'profile_pending';
+export const PROFILE_SUCCESS = 'profile_success';
+export const PROFILE_ERROR = 'profile_error';
