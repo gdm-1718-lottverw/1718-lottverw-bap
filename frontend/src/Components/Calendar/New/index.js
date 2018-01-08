@@ -58,7 +58,7 @@ class NewCalendarService extends React.Component{
     }
   }
 
-  renderChecklist = (obj, patch) => {      
+  renderRadioButton = (obj, patch) => {      
     const state_item = 'check_' + patch;      
     return obj.map((item, i) => {
       return (
@@ -69,7 +69,7 @@ class NewCalendarService extends React.Component{
       })
   }
 
-  renderChildren = (obj, patch) => {   
+  renderCheckboxes = (obj, patch) => {   
     spliceState =(index) => {
       let a = this.state.child_id.splice(index, 1);
       this.setState([patch]: a);
@@ -119,21 +119,21 @@ class NewCalendarService extends React.Component{
          <GenerateIcon name={'user-circle-o'} size={15} />
           <Text style={styles.label}>Kind(eren)</Text>
           <View style={styles.description}>
-           {this.state.children !== undefined && this.state.children.length > 0 ? this.renderChildren(this.state.children, 'child_id') : null}
+           {this.state.children !== undefined && this.state.children.length > 0 ? this.renderCheckboxes(this.state.children, 'child_id') : null}
           </View>              
         </View>
         <View style={styles.item}>
          <GenerateIcon name={'sun-o'} size={15} />
           <Text style={styles.label}>Dag type</Text>
           <View style={styles.description}>
-            {this.renderChildren(types, 'types')}
+            {this.renderCheckboxes(types, 'types')}
           </View>              
         </View> 
         <View style={styles.item}>
          <GenerateIcon name={'bicycle'} size={15} />
           <Text style={styles.label}>Mag alleen naar huis.</Text>
           <View style={styles.description}>
-            {this.renderChecklist(bool, 'go_home_alone')}
+            {this.renderRadioButton(bool, 'go_home_alone')}
           </View>              
         </View>      
         <View style={styles.item}>

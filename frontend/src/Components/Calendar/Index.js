@@ -53,7 +53,7 @@ class CalendarService extends Component {
     let dots = []; 
     let dot = {};
     let children = {};
-    colors = [ Colors.lightBlue, Colors.darkBlue, Colors.green, Colors.yellow, Colors.pink, Colors.purple];
+    colors = [ Colors.lightBlue, Colors.pink, Colors.green, Colors.darkBlue, Colors.yellow, Colors.purple];
     a = 0;
     //disable the weekends
     let sat = this.getDaysBetweenDates( new Date(), moment(new Date()).add(1,'Y'), 'sat');
@@ -78,7 +78,6 @@ class CalendarService extends Component {
     Object.assign(marker, weekend);
     this.state.items = items;
     this.state.dates = marker;
-    console.log('CURRENT DATES:', this.state.dates);
   }
 
   renderEmptyDate() {
@@ -113,14 +112,12 @@ class CalendarService extends Component {
 
   loadItems(day) {
      setTimeout(() => {
-     
       for (let i = 0; i < 356; i++) {
         var date = moment(new Date()).add(i,'days').format('Y-MM-DD');
         if (this.state.items[date] == undefined) {     
           this.state.items[date] = [];
         } 
       }
-      console.log(this.state.items);
       }, 1000);
   }
 
@@ -135,15 +132,15 @@ class CalendarService extends Component {
             </View>
             <Text style={styles.description}>{item.description}</Text>
           </View>
-          <View style={styles.actions}>
+          {item.date != moment().format('Y-MM-DD')? <View style={styles.actions}>
             <TouchableOpacity style={styles.action} onPress={() => {Actions.updateCalendar({'itemId': item.id, 'date': item.date})}}>
               <Icon name='pencil' size={20}/>
             </TouchableOpacity>
-             <TouchableOpacity style={styles.action} onPress={() => {this.props.deleteDate(this.props.token, this.props.id, item.id)}}>
+             <TouchableOpacity style={styles.action} onPress={() => {this.props.deleteDate(this.props.token, this.props.id, item.id); this.state.items}}>
               <Icon name='trash' size={20}/>
             </TouchableOpacity>
-          </View>
-        </View>
+          </View> : null}
+         </View>
           {item.note != ''? <Text style={styles.note}>{item.note}</Text>: null}
       </View>
     );
