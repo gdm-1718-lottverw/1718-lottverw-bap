@@ -14,8 +14,10 @@ Route::middleware(['auth'])->group(function () {
 	   
 	Route::get('/', 'Backoffice\Home\IndexController@index')->name('home');
 	Route::post('/sign-in', 'Backoffice\Home\IndexController@signIn');
-	Route::post('/leftover/sign-in', 'Backoffice\Home\IndexController@LeftOverIn');
 	Route::post('/sign-out', 'Backoffice\Home\IndexController@signOut');
+	Route::post('/leftover/sign-in', 'Backoffice\Home\IndexController@leftOverIn');
+	Route::post('/leftover/sign-out', 'Backoffice\Home\IndexController@leftOverOut');
+	
 	Route::post('/edit-timestamps', 'Backoffice\Home\IndexController@editTimestamps');
 	Route::post('/new/child', 'Backoffice\Home\IndexController@storeChild');
 	Route::post('/delete/child', 'Backoffice\Home\IndexController@destroy');

@@ -32,10 +32,10 @@ class IndexController extends Controller
         }
     }
 
-    function helper_SaveChild(string $action, int $id){
-        $this->helper_CheckTime();
+    function helper_SaveChild(string $action, int $id, string $type){
+
         $child = PlannedAttendance::where(
-            ['child_id' => $id, 'date' => date("Y-m-d"), 'type' => $this->type]
+            ['child_id' => $id, 'date' => date("Y-m-d"), 'type' => $type]
         )->first();
 
         $child->$action = true;
@@ -80,7 +80,6 @@ class IndexController extends Controller
         $leftOver = [];
         if($this->type == "namiddag"){
             $leftOver = Child::general($general_conditions)
-            ->presence('present_registered')
             ->type($type_conditions_leftover)
             ->get();
         }
@@ -112,9 +111,11 @@ class IndexController extends Controller
     }    
 
     public function signIn(request $request){
+        // GET TYPE AND ORGANIZATION
+        $this->helper_CheckTime();
         $this->helper_loggedInOrganization();
         // UPDATE CHILD
-        $child = $this->helper_SaveChild('in', $request->id);
+        $child = $this->helper_SaveChild('in', $request->id, $this->type);
         // SAVE NEW LOG
         $this->helper_NewLog($child, 'in');
         // DEFINE GENERAL CONDITIONS
@@ -138,11 +139,12 @@ class IndexController extends Controller
     }    
 
     public function signOut(request $request){
+        // GET TYPE AND ORGANIZATION
+        $this->helper_CheckTime();
         $this->helper_loggedInOrganization();
-        $child = $this->helper_SaveChild('out', $request->id);
+        $child = $this->helper_SaveChild('out', $request->id, $this->type);
         $this->helper_NewLog($child, 'out');
-        
-        
+    
         $general_conditions = [
             'organization_id' => $this->organization_id, 
             'date' => Carbon::today()
@@ -159,7 +161,51 @@ class IndexController extends Controller
             ->get();
 
        return view('home.partials.out', compact('out'));
-    }    
+    }   
+
+    public function leftOverIn(request $request) {
+        // GET TYPE AND ORGANIZATION
+        $this->helper_CheckTime();
+        $this->helper_loggedInOrganization();
+        $child = $this->helper_SaveChild('in', $request->id, $this->type_inverse);
+        $this->helper_NewLog($child, 'in');
+
+        $general_conditions = [
+            'organization_id' => $this->organization_id, 
+            'date' => Carbon::today()
+        ];
+        $type_conditions_leftover = [
+            'type' => [$this->type_inverse]
+        ];
+
+        $leftOver = Child::general($general_conditions)
+            ->type($type_conditions_leftover)
+            ->get();
+
+        return view('home.partials.leftOvers', compact('leftOver'));
+
+    }
+    public function leftOverOut(request $request) {
+        // GET TYPE AND ORGANIZATION
+        $this->helper_CheckTime();
+        $this->helper_loggedInOrganization();
+        $child = $this->helper_SaveChild('out', $request->id, $this->type_inverse);
+        $this->helper_NewLog($child, 'out');
+
+        $general_conditions = [
+            'organization_id' => $this->organization_id, 
+            'date' => Carbon::today()
+        ];
+        $type_conditions_leftover = [
+            'type' => [$this->type_inverse]
+        ];
+
+        $leftOver = Child::general($general_conditions)
+            ->type($type_conditions_leftover)
+            ->get();
+
+        return view('home.partials.leftOvers', compact('leftOver'));
+    }
 
     public function storeChild(request $request){
         // request = data

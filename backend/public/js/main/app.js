@@ -114,7 +114,62 @@ $(document).ready(function () {
     $('#container-in').on('click', '.fa-sign-out', function (e) {
         signInOut('sign-out', 'container-in', 'container-out', 'in', 'out', e);
     });
+    /* ADD PARENT */
+    // SHOW FORM ON HOMEPAGE
+    showHide = function showHide(action, target) {
+        action == 'show' ? $(target).removeClass('hide') : $(target).addClass('hide');
+    };
+    var node;
+    var count = { medical: 0, pedagogic: 0, allergies: 0, guardian: 0 };
+    var stop = "<p class='disabled'>Er kunnen maar 3 extra items worden toegevoegd</p>";
+    // ADD PARENT DEPENDING ON SELECTED FAMILY TYPE
+    $("#family_type").change(function (e) {
+        var selected = e.target.selectedOptions[0].value;
+        if (selected == "alleenstaande ouder") {
+            console.log('selected:', selected);
+            node = $('#parent-1').detach();
+        } else {
+            $('.section').append(node);
+        }
+    });
 
+    // ADD CONDITION WHEN CLICKED
+    addNode = function addNode(condition) {
+        count[condition]++;
+        if (count[condition] == 4) {
+            $('#' + condition).replaceWith(stop);
+        } else if (count[condition] < 4) {
+            // Node we want to clone
+            node = $('#container_' + condition);
+            // We need to change the values for each input item
+            var updated_node = node.clone();
+            // Let's change the id for clean code.
+            updated_node.id = "container_" + count[condition] + '_' + condition;
+            updated_node.attr("id", updated_node.id);
+            var inputs = updated_node.find('input');
+            var selects = updated_node.find('select');
+            var labels = updated_node.find('label');
+            $.each(inputs, function (i, e) {
+                name = $(e).prop('name');
+                name = name.slice(0, -1);
+                $(e).attr("name", name + count[condition]);
+            });
+            $.each(labels, function (i, e) {
+                name = $(e).prop('for');
+                name = name.slice(0, -1);
+                $(e).attr("for", name + count[condition]);
+            });
+            $.each(selects, function (i, e) {
+                name = $(e).prop('name');
+                name = name.slice(0, -1);
+                $(e).attr("name", name + count[condition]);
+            });
+            // Insert the new node in the dom.
+            updated_node.insertBefore('#' + condition);
+        } else {
+            return;
+        }
+    };
     /* FILTER*/
     var slider = document.getElementById('slider');
     if (slider != null || slider != undefined) {
@@ -169,7 +224,7 @@ $(document).ready(function () {
                 data.push(item);
             } else {
                 // We need to keep track of the already looped items.
-                var count = 0;
+                var _count = 0;
                 // For each data object we need the index. 
                 data.forEach(function (o, i) {
                     // Let's take the key of the object. 
@@ -193,7 +248,7 @@ $(document).ready(function () {
                                 data.push(item);
                             }
                         }
-                    count++;
+                    _count++;
                 });
             }
             console.log(data);
