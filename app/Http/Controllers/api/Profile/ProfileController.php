@@ -18,7 +18,7 @@ use App\Models\PedagogicReport;
 use App\Models\OtherInformation;
 use App\Models\Guardian;
 
-class IndexController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -182,11 +182,20 @@ class IndexController extends Controller
      */
     public function update(Request $request)
     {
-        $calendar_item = PlannedAttendance::find($item_id);
-        $calendar_item->fill($request->only(['type', 'child_id', 'parent_notes', 'date', 'go_home_alone']));
-        $calendar_item->save();  
-
-        return $calendar_item;
-
+        if($request->parent == true){
+            foreach ($request->parents as $parent) {
+                $p = Parents::find($parent['id']);
+                $p->fill(['email' => $parent['email'], 'phone_number' => $parent['tel']]);
+                $p->save();
+            }
+        }
+ 
+        
+        if($request->address == true){
+            $address = Address::find($request->address_id);
+            $address->fill(['street' => $request->street, 'number' => $request->number, 'city' => $request->city, 'postal_code' => $request->postal_code, 'country' => $request->country]);
+            $address->save();  
+            return $address;
+        }
     }
 }

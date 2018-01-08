@@ -29,17 +29,19 @@ Route::group(['middleware' => ['jwt.auth']], function () {
         Route::patch('/parents/{parent_id}/calendar/update/{item}', 'API\Calendar\CalendarController@update');
         Route::get('/parents/{parent_id}/calendar/show/{item_id}', 'API\Calendar\CalendarController@show');
         
-
         // HISTORY
         Route::get('/parents/{parent_id}/history', 'API\History\HistoryController@index');
-        
+      
+    
 
     });
     
 });
 
 // PROFILE
-Route::get('/parents/profile', 'API\Profile\IndexController@index');
+Route::get('/parents/profile', 'API\Profile\ProfileController@index');
+Route::patch('/parents/profile/update', 'API\Profile\ProfileController@update');
 
 Route::post('/auth', 'API\Auth\AuthController@authenticate');
+
 

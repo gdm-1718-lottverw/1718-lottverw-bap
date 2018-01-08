@@ -12,7 +12,7 @@ class Address extends Model
      * @var string
      */
     protected $table = 'addresses';
- 	
+ 	protected $fillable = ['street', 'number', 'city', 'postal_code', 'country'];
  	/**
      * Get the addresses for a given child.
      * 

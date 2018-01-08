@@ -13,7 +13,7 @@ class Parents extends Model
      */
     protected $table = 'parents';
 
-    protected $fillable = ['auth_key_id'];
+    protected $fillable = ['auth_key_id', 'email', 'phone_number'];
     
     
     /**
