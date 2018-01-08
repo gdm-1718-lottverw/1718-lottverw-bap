@@ -94,21 +94,7 @@ class ProfileService extends Component {
                     <Text style={styles.bold}>Naam</Text>
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={(name) => {
-                         this.setState(data => ({
-                            ...this.state.data,
-                            parents: {
-                                ...this.state.data.parents,
-                                parents: {
-                                    ...this.state.data.parents, 
-                                      name : {
-                                        ...this.state.data.parents[i].name: name
-                                      }
-                                  }
-                              }
-                            })
-                        )}
-                      }
+                        onChangeText={(name) => {}}
                       value={parent.name} />
                     <Text style={styles.bold}>Relatie</Text>
                     <TextInput

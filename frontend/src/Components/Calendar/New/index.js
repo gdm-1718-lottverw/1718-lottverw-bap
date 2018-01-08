@@ -17,11 +17,10 @@ class NewCalendarService extends React.Component{
       children: [],
       // For adding to db.
       child_id: [],
+      types: [],
       // Just for radiubutton 
-      check_child_id: '',
       check_type: '',
       check_go_home_alone: false,
-      check_child_id: '',
 
     }
   }
@@ -43,7 +42,6 @@ class NewCalendarService extends React.Component{
        if(Array.isArray(patcho)){
           for(var i = 0; i < patcho.length; i++){
            if(patcho[i] == item.id){
-             console.log('.SAME.', patcho[i], item.id)
              return a;
            }
          }
@@ -78,7 +76,7 @@ class NewCalendarService extends React.Component{
     }          
     return obj.map((item, i) => {
       i*3;
-      var index; var active = false;
+    var index; var active = false;
      for(var o=0; o<this.state[patch].length; o++){
         if(this.state[patch][o] == item.id){
          var active = true;
@@ -99,7 +97,7 @@ class NewCalendarService extends React.Component{
       child_id: this.state.child_id,
       date: this.state.date,
       parent_notes: this.state.parent_notes,
-      type: this.state.type, 
+      types: this.state.types, 
       go_home_alone: this.state.go_home_alone
     };
     console.log(data);
@@ -107,7 +105,7 @@ class NewCalendarService extends React.Component{
   }
 
   render(){  
-    const types = [{name: 'voormiddag', id: 'voormiddag'}, {name: 'namiddag', id: 'namiddag'}, {name: 'hele dag', id: 'hele dag'}];
+    const types = [{name: 'voormiddag', id: 'voormiddag'}, {name: 'namiddag', id: 'namiddag'}];
     const bool = [{name: 'Mag alleen naar huis', id: true}, {name: 'Wordt opgehaald', id: false}];
 
     return (
@@ -128,7 +126,7 @@ class NewCalendarService extends React.Component{
          <GenerateIcon name={'sun-o'} size={15} />
           <Text style={styles.label}>Dag type</Text>
           <View style={styles.description}>
-            {this.renderChecklist(types, 'type')}
+            {this.renderChildren(types, 'types')}
           </View>              
         </View> 
         <View style={styles.item}>
