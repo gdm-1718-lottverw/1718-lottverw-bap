@@ -13,9 +13,8 @@
           <p class="label">geslacht</p>
           <p class="separation">{{$child->gender}}</p>
           <p class="label">adres</p>
-          @foreach($addresses as $address)
-          <p class="separation">{{$address->street}} {{$address->number}}, {{$address->postal_code}} {{$address->street}}</p>
-          @endforeach
+        
+          <p class="separation">{{$parents[0]->street}} {{$parents[0]->number}}, {{$parents[0]->postal_code}} {{$parents[0]->city}}</p>
         </div>
 
         <div class="item">

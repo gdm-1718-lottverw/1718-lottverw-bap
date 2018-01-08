@@ -85,7 +85,6 @@ class IndexController extends Controller
         $address->postal_code = $request['postal_code'];
         $address->number = $request['number'];
         $address->country = $request['country'];
-        $address->parent_id = $parent->id;
         $address->save();
        
         $parent = new Parents;
@@ -95,7 +94,7 @@ class IndexController extends Controller
         $parent->phone_number = $request->parent_1_phone_number;
         $parent->auth_key_id = $key->id;
         $parent->family_type = $request->family_type;
-        $parent->address_id = $address->id
+        $parent->address_id = $address->id;
         $parent->save();
         // check if there are multiple parents
         $parentCount = $request->family_type == "alleenstaande ouder"? 1 : 2;
@@ -109,7 +108,7 @@ class IndexController extends Controller
             $parent2->phone_number = $request->parent_2_phone_number;
             $parent2->auth_key_id = $key->id;
             $parent2->family_type = $request->family_type;
-            $parent2->address_id = $address->id
+            $parent2->address_id = $address->id;
             $parent2->save();
         }
         

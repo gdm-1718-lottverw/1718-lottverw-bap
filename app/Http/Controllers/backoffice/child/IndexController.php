@@ -51,16 +51,17 @@ class IndexController extends Controller
         $other_information = DB::table('other_information')->where('other_information.children_id', '=', $this->child_id)->get(['description as message']);
         
         $parents = DB::table('parents')
+        ->join('addresses', function($join){
+            $join->on('parents.address_id', '=', 'addresses.id');
+        })
         ->join('child_parents', function($join){
             $join->on('child_parents.parent_id', '=', 'parents.id')
                 ->where([
                     ['child_parents.child_id', '=', $this->child_id],
                 ]);
             })
-            ->get(['parents.name as name', 'parents.relation as relation', 'parents.phone_number as phone', 'parents.id as id']);
-
-        $addresses = DB::table('addresses')->where('addresses.parent_id', '=', $parents[0]->id)->get();
-
+            ->get(['parents.name as name', 'parents.relation as relation', 'parents.phone_number as phone', 'parents.id as id', 'addresses.street', 'addresses.number', 'addresses.city', 'addresses.postal_code', 'addresses.country']);
+        
         $guardians = DB::table('guardians')
             ->join('child_guardian', function($join){
                 $join->on('child_guardian.guardian_id', '=', 'guardians.id')
