@@ -40,22 +40,6 @@
                 <script>
                     $( document ).ready(function() {
                         // HOME SIGN IN OR OUT
-                        function signLeftoverInOut(action, oldContainer, oldId, e){
-                            $.ajax({
-                                method: "POST",
-                                url: "/leftover/" + action,
-                                data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
-                            }).done(function( msg ) {
-                                $('div#'+oldContainer).load(document.URL +  " div#"+oldContainer);
-                            })
-                        }
-                            
-                            $('#container-leftover').on('click', '.fa-sign-in', (e) => {
-                               signLeftoverInOut('sign-in', 'container-leftover', 'left-over', e);
-                            });
-                            $('#container-leftover').on('click', '.fa-sign-out', (e) => {
-                                signLeftoverInOut('sign-out', 'container-leftover', 'left-over', e);
-                            });
-                        });
+                               });
                 </script>
 </html>

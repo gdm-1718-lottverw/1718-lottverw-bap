@@ -95,7 +95,24 @@ $(document).ready(function () {
         $('.' + id).addClass('hide');
         var i = $('#' + id)[0].parentElement.classList.remove('hide');
     });
+
     // HOME SIGN IN OR OUT
+    function signLeftoverInOut(action, oldContainer, oldId, e) {
+        $.ajax({
+            method: "POST",
+            url: "/leftover/" + action,
+            data: { 'id': e.target.id, '_token': $('input[name=_token]').val() }
+        }).done(function (msg) {
+            $('div#' + oldContainer).load(document.URL + " div#" + oldContainer);
+        });
+    }
+    $('#container-leftover').on('click', '.fa-sign-in', function (e) {
+        signLeftoverInOut('sign-in', 'container-leftover', 'left-over', e);
+    });
+    $('#container-leftover').on('click', '.fa-sign-out', function (e) {
+        signLeftoverInOut('sign-out', 'container-leftover', 'left-over', e);
+    });
+
     function signInOut(action, oldContainer, newContainer, oldId, newId, e) {
         $.ajax({
             method: "POST",
