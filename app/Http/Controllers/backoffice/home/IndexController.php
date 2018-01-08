@@ -20,9 +20,9 @@ class IndexController extends Controller
     private $type; private $type_inverse; private $organization_id;
 
     function helper_CheckTime(){
-        $now = Carbon::now()->format('H:i:s'); 
+        Carbon::setlocale(LC_TIME, 'German');
+        $now = Carbon::now()->format('H:i:s');   
         $middag  = Carbon::create(2017, 12, 23, 12, 01, 00)->format('H:i:s');
-    
         if($now < $middag){
             $this->type = 'voormiddag';
             $this->type_inverse = 'namiddag';
@@ -33,9 +33,11 @@ class IndexController extends Controller
     }
 
     function helper_SaveChild(string $action, int $id){
+        $this->helper_CheckTime();
         $child = PlannedAttendance::where(
-            ['child_id' => $id, 'date' => date("Y-m-d")]
+            ['child_id' => $id, 'date' => date("Y-m-d"), 'type' => $this->type]
         )->first();
+
         $child->$action = true;
         $child->save();
 
@@ -76,27 +78,28 @@ class IndexController extends Controller
         $children = Child::where('organization_id', $this->organization_id)->get(['name', 'id']);
         
         $leftOver = [];
-        if($type_conditions_leftover == "voormiddag"){
+        if($this->type == "namiddag"){
             $leftOver = Child::general($general_conditions)
             ->presence('present_registered')
             ->type($type_conditions_leftover)
             ->get();
-        } 
-       
-
+        }
 
         $in = Child::whereHas('logs.actions', function($query){
                 $query->where('actions.name','=', 'in');
             })
             ->general($general_conditions)
             ->presence('present_present')
+            ->type(array("type" => [$this->type]))
             ->get();
+        
 
         $out = Child::whereHas('logs.actions', function($query){
                 $query->where('actions.name','=', 'out');
             })
             ->general($general_conditions)
             ->presence('present_out')
+            ->type(array("type" => [$this->type]))
             ->get();
 
         $toCome = Child::general($general_conditions)
@@ -195,9 +198,12 @@ class IndexController extends Controller
             [
                 ['child_id', '=' ,$pa->child_id],
                 ['created_at', '=' ,$pa->created_at],
+                ['deleted_at', '=' , null],
             ])->first();
-        $log->deleted_at = Carbon::now();
-        $log->save();
+        if($log != null ){
+            $log->deleted_at = Carbon::now();
+            $log->save();
+        }        
 
         return redirect()->route('home');
     }
