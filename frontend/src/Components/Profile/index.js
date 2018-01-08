@@ -16,11 +16,7 @@ class ProfileService extends Component {
           data: {},
           edit: {parents: false, address: false, children: false}
         }
-    }
-
-
-     
-
+  }
   
   componentDidMount() {
       this.props.fetchProfile(this.props.token);
@@ -74,8 +70,9 @@ class ProfileService extends Component {
               <View style={[styles.label, styles.row, styles.justifiedS ]}>
                 <Text style={[styles.bold]}>Familie {this.state.data.family_type}</Text> 
                 <TouchableOpacity
-                  onPress={() => { this.changeToEdit('parents'); }}
-                  ><Icon name={'pencil'} size={15}/></TouchableOpacity>
+                  onPress={() => { this.changeToEdit('parents'); }}>
+                  <Icon name={this.state.edit.parents == false? 'pencil': 'times'} size={15}/>
+                </TouchableOpacity>
               </View>
 
               {this.state.data.parents != undefined && this.state.edit['parents'] == false? this.state.data.parents.map((parent, i) => {
@@ -94,38 +91,114 @@ class ProfileService extends Component {
                     <Text style={styles.bold}>Naam</Text>
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={(name) => {}}
-                      value={parent.name} />
+                        onChangeText={(name) => {
+                          this.state.data.parents[i].name = name;
+                          this.setState({
+                            data: this.state.data
+                          });
+                        }}
+                        value={parent.name}/>
+
                     <Text style={styles.bold}>Relatie</Text>
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={(relation) => {this.toPatch('relation', relation)}}
-                        placeholder={parent.relation} />
+                        onChangeText={
+                          (relation) => {
+                            this.state.data.parents[i].relation = relation;
+                            this.setState({
+                              data: this.state.data
+                            });
+                        }}
+                        value={parent.relation} />
                     <Text style={styles.bold}>Telefoon</Text>
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={(tel) => {this.toPatch('tel', tel)}}
-                        placeholder={parent.tel} />
+                        onChangeText={(tel) => {
+                          this.state.data.parents[i].tel = tel;
+                          this.setState({
+                            data: this.state.data
+                          });
+                        }}
+                        value={parent.tel} />
                     <Text style={styles.bold}>Email</Text>
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={(email) => {this.toPatch('email', email)}}
-                        placeholder={parent.email} />
+                        onChangeText={(email) => {
+                          this.state.data.parents[i].email = email;
+                          this.setState({
+                            data: this.state.data
+                          });
+                        }}
+                        value={parent.email} />
                   </View>
               )
               }): null}
 
             </View>
             { this.state.edit['parents'] == true? <TouchableOpacity style={styles.btnSave}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
-            
+  
             <View style={styles.item}>
               <GenerateIcon name={'globe'} size={15} />
-              <Text style={styles.label}>Adres</Text>
-              <View style={styles.description}>
-                <Text>{this.state.data.address != undefined? this.state.data.address.street +' '+ this.state.data.address.number  + ", " + this.state.data.address.postal_code + ' ' + this.state.data.address.city + ' - ' + this.state.data.address.country  : null} </Text>
+              <View style={[styles.label, styles.row, styles.justifiedS ]}>
+                <Text style={[styles.bold]}>Adres</Text> 
+                <TouchableOpacity
+                  onPress={() => { this.changeToEdit('address'); }}>
+                  <Icon name={this.state.edit.address == false? 'pencil': 'times'} size={15}/>
+                </TouchableOpacity>
               </View>
+              {this.state.data.address != undefined && this.state.edit.address == false?
+              <View style={styles.description}>
+                <Text> { this.state.data.address.street +' '+ this.state.data.address.number  + ", " + this.state.data.address.postal_code + ' ' + this.state.data.address.city + ' - ' + this.state.data.address.country}   </Text>
+              </View>: null}
+              {this.state.edit.address == true?
+                  <View style={styles.description}>
+                    <Text style={styles.bold}>Straat</Text>
+                    <TextInput
+                      style={styles.textInput}
+                      onChangeText={(street) => {
+                        this.state.data.address.street = street;
+                        this.setState({
+                          data: this.state.data
+                        });
+                      }}
+                      value={this.state.data.address.street}/>
+
+                    <Text style={styles.bold}>Number</Text>
+                    <TextInput
+                      style={styles.textInput}
+                      onChangeText={(number) => {
+                        this.state.data.address.number = number;
+                        this.setState({
+                          data: this.state.data
+                        });
+                      }}
+                      value={this.state.data.address.number}/>
+
+                    <Text style={styles.bold}>Postcode</Text>
+                    <TextInput
+                      style={styles.textInput}
+                      onChangeText={(postal_code) => {
+                        this.state.data.address.postal_code = postal_code;
+                        this.setState({
+                          data: this.state.data
+                        });
+                      }}
+                      value={this.state.data.address.postal_code}/>
+
+                    <Text style={styles.bold}>Gemeente</Text>
+                    <TextInput
+                      style={styles.textInput}
+                      onChangeText={(city) => {
+                        this.state.data.address.city = city;
+                        this.setState({
+                          data: this.state.data
+                        });
+                      }}
+                      value={this.state.data.address.city}/>
+                  </View>
+              :null}
             </View>
-            { this.state.edit['address'] == true? <TouchableOpacity><Text>SAVE</Text></TouchableOpacity>: null}
+            { this.state.edit['address'] == true? <TouchableOpacity style={styles.btnSave}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
             <View style={styles.item}>
              <GenerateIcon name={'child'} size={15} />
               {this.state.data.children!= undefined? this.state.data.children.map((child, i) => {
