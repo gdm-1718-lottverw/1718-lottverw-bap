@@ -20,7 +20,6 @@ class IndexController extends Controller
     private $type; private $type_inverse; private $organization_id;
 
     function helper_CheckTime(){
-       // echo Carbon::now()->format('H:i:s');
         $now = Carbon::now()->format('H:i:s'); 
         $middag  = Carbon::create(2017, 12, 23, 12, 01, 00)->format('H:i:s');
     
@@ -74,23 +73,23 @@ class IndexController extends Controller
             'type' => [$this->type_inverse]
         ];
 
-        $type_conditions = [
-            'type' => [$this->type, 'hele dag']
-        ];
-
         $children = Child::where('organization_id', $this->organization_id)->get(['name', 'id']);
         
-        $leftOver = Child::general($general_conditions)
+        $leftOver = [];
+        if($type_conditions_leftover == "voormiddag"){
+            $leftOver = Child::general($general_conditions)
             ->presence('present_registered')
             ->type($type_conditions_leftover)
             ->get();
+        } 
+       
+
 
         $in = Child::whereHas('logs.actions', function($query){
                 $query->where('actions.name','=', 'in');
             })
             ->general($general_conditions)
             ->presence('present_present')
-            ->type($type_conditions)
             ->get();
 
         $out = Child::whereHas('logs.actions', function($query){
@@ -98,13 +97,13 @@ class IndexController extends Controller
             })
             ->general($general_conditions)
             ->presence('present_out')
-            ->type($type_conditions)
             ->get();
 
         $toCome = Child::general($general_conditions)
             ->presence('present_registered')
-            ->type($type_conditions)
+            ->type(array("type" => [$this->type]))
             ->get();
+
 
         return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children']));
     }    
@@ -121,7 +120,7 @@ class IndexController extends Controller
             'date' => Carbon::today()
         ];
         $type_conditions = [
-            'type' => [$this->type, 'hele dag']
+            'type' => [$this->type]
         ];
 
         $in = Child::whereHas('logs.actions', function($query){
@@ -146,7 +145,7 @@ class IndexController extends Controller
             'date' => Carbon::today()
         ];
         $type_conditions = [
-            'type' => [$this->type, 'hele dag']
+            'type' => [$this->type]
         ];
         $out = Child::whereHas('logs.actions', function($query){
                 $query->where('actions.name','=', 'out');
