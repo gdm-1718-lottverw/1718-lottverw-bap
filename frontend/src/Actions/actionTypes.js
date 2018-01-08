@@ -37,3 +37,8 @@ export const CHILDREN_ERROR = 'children_error';
 export const PROFILE_PENDING = 'profile_pending';
 export const PROFILE_SUCCESS = 'profile_success';
 export const PROFILE_ERROR = 'profile_error';
+
+export const PROFILE_UPDATING = 'profile_updating';
+export const PROFILE_UPDATE_ERROR = 'profile_update_error';
+export const PROFILE_UPDATE_SUCCESS = 'profile_update_success';
+

@@ -25,7 +25,6 @@ class ProfileService extends Component {
   componentWillReceiveProps(nextProps) {
         if (nextProps.error == undefined) {
             this.setState({data: nextProps.data});
-            console.log('DATA: ', this.state.data)
         }   
     }
 
@@ -87,29 +86,7 @@ class ProfileService extends Component {
 
               {this.state.data.parents != undefined && this.state.edit['parents'] == true? this.state.data.parents.map((parent, i) => {
                 return (
-                  <View style={styles.description} key={i}>
-                    <Text style={styles.bold}>Naam</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        onChangeText={(name) => {
-                          this.state.data.parents[i].name = name;
-                          this.setState({
-                            data: this.state.data
-                          });
-                        }}
-                        value={parent.name}/>
-
-                    <Text style={styles.bold}>Relatie</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        onChangeText={
-                          (relation) => {
-                            this.state.data.parents[i].relation = relation;
-                            this.setState({
-                              data: this.state.data
-                            });
-                        }}
-                        value={parent.relation} />
+                  <View style={styles.description} key={i}>                  
                     <Text style={styles.bold}>Telefoon</Text>
                     <TextInput
                         style={styles.textInput}
@@ -135,7 +112,12 @@ class ProfileService extends Component {
               }): null}
 
             </View>
-            { this.state.edit['parents'] == true? <TouchableOpacity style={styles.btnSave}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
+            { this.state.edit['parents'] == true? <TouchableOpacity style={styles.btnSave} onPress={() => {
+              var result = { 'parent': true, 'parents': this.state.data.parents}
+              console.log(JSON.stringify(result, '\t'));
+             
+
+            }}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
   
             <View style={styles.item}>
               <GenerateIcon name={'globe'} size={15} />
@@ -148,7 +130,7 @@ class ProfileService extends Component {
               </View>
               {this.state.data.address != undefined && this.state.edit.address == false?
               <View style={styles.description}>
-                <Text> { this.state.data.address.street +' '+ this.state.data.address.number  + ", " + this.state.data.address.postal_code + ' ' + this.state.data.address.city + ' - ' + this.state.data.address.country}   </Text>
+                <Text> { this.state.data.address.street +' '+ this.state.data.address.number +", "+ this.state.data.address.postal_code + ' ' + this.state.data.address.city + ' - ' + this.state.data.address.country}   </Text>
               </View>: null}
               {this.state.edit.address == true?
                   <View style={styles.description}>
@@ -195,10 +177,29 @@ class ProfileService extends Component {
                         });
                       }}
                       value={this.state.data.address.city}/>
+
+                    <Text style={styles.bold}>Country</Text>
+                    <TextInput
+                      style={styles.textInput}
+                      onChangeText={(country) => {
+                        this.state.data.address.country = country;
+                        this.setState({
+                          data: this.state.data
+                        });
+                      }}
+                      value={this.state.data.address.country}/>
                   </View>
               :null}
             </View>
-            { this.state.edit['address'] == true? <TouchableOpacity style={styles.btnSave}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
+
+            { this.state.edit['address'] == true? <TouchableOpacity style={styles.btnSave} onPress={() => {
+              this.state.data.address.address_id = this.state.data.address.id;
+              this.state.data.address['address'] = true;
+              this.props.UpdateProfile(this.props.token, this.state.data.address);
+              this.state.edit['address'] = false;
+              this.setState({ edit: this.state.edit});
+            }}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
+            
             <View style={styles.item}>
              <GenerateIcon name={'child'} size={15} />
               {this.state.data.children!= undefined? this.state.data.children.map((child, i) => {

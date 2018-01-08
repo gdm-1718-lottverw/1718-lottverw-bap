@@ -66,11 +66,6 @@ export const fetchItem = (token, parentId, itemId) => {
 }
 
 export const updateItem = (token, parentId, itemId, data) => {
-    console.log('TOKEN, ', token);
-    console.log('PARENT ID', parentId );
-    console.log('ITEMID', itemId);
-    console.log('DATA:', JSON.stringify(data));
-    console.log('URL', `${URL}parents/${parentId}/calendar/update/${itemId}`);
     return dispatch => {
         dispatch(editCalendar())
         axios.patch(`${URL}parents/${parentId}/calendar/update/${itemId}`, JSON.stringify(data), {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})

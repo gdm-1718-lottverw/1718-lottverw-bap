@@ -15,6 +15,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchProfile: (token) => dispatch(fetchProfile(token)),
+    UpdateProfile: (token, data) => dispatch(UpdateProfile(token, data)),
 })
 
 export const profilePending = () => ({
@@ -31,6 +32,21 @@ export const profileError = (error) => ({
     error: error
 })
 
+
+export const profileUpdating = () => ({
+    type: ActionTypes.PROFILE_UPDATING
+})
+
+export const profileUpdateSuccess = (data) => ({
+    type: ActionTypes.PROFILE_UPDATE_SUCCESS,
+    data: data
+})
+
+export const profileUpdateError = (error) => ({
+    type: ActionTypes.PROFILE_UPDATE_ERROR,
+    error: error
+})
+
 export const fetchProfile = (token) => {
     return dispatch => {
         dispatch(profilePending())
@@ -41,6 +57,18 @@ export const fetchProfile = (token) => {
         })
         .catch(error => {
             dispatch(profileError(error))
+        });
+    }
+}
+
+export const UpdateProfile = (token, data) => {
+    return dispatch => {
+        dispatch(profileUpdating())
+        axios.patch(`${URL}parents/profile/update`, JSON.stringify(data), {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
+        .then(response => {
+            dispatch(profileUpdateSuccess(response.data));
+        }).catch(error => {
+            dispatch(profileUpdateError(error))
         });
     }
 }
