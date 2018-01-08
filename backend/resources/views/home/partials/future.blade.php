@@ -7,7 +7,7 @@
     </div>
       <a href="/child/{{$tc->child_id}}"  class="child-info flex column">
         <span class="name">{{$tc->name}}</span>
-        <p class="description">{{$tc->parent_notes}}</p>
+        <p class="description"> {{$tc->parent_notes}} {{$tc->type}}</p>
       </a>
   </div>  
   @endforeach
