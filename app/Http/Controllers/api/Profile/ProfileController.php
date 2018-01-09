@@ -131,31 +131,24 @@ class ProfileController extends Controller
                 
                 for($i = 0; Count($child) > $i; $i++) {
                     $ids[$i] = $child[$i]['id'];
+
                     $a = Allergie::where('children_id', $child[$i]->id)->get(['id', 'type', 'gravity', 'description', 'medication', 'prescription']);
-                    if(Count($a) > 0){
-                        Count($children[$i]['allergie']) == 0? $children[$i]['allergies'] = $a: null;
-                    }
+                    Count($children[$i]['allergie']) == 0? $children[$i]['allergies'] = $a: $children[$i]['allergies'] = [];
 
                     $d = Doctor::where('children_id','=', $child[$i]->id)->first(['id', 'name', 'phone_number as tel']);
-                    if(Count($d) > 0){
-                        Count($children[$i]['doctors']) == 0? $children[$i]['doctor'] = $d: null;
-                    }
+                    Count($children[$i]['doctors']) == 0? $children[$i]['doctor'] = $d: $children[$i]['doctor'] = [];
+                  
 
                     $o = OtherInformation::where('children_id', $child[$i]->id)->get(['id', 'description']);
-                    if(Count($o) > 0){
-                        Count($children[$i]['comment']) == 0? $children[$i]['comments'] = $o: null;
-                    }
+                    Count($children[$i]['comment']) == 0? $children[$i]['comments'] = $o: $children[$i]['comments'] = [];
 
                     $m = MedicalReport::where('children_id', $child[$i]->id)->get(['id', 'description', 'medication', 'prescription']);
-
-                    if(Count($m) > 0){
-                        Count($children[$i]['medial']) == 0? $children[$i]['medical'] =  $m: null;
-                    }
+                    Count($children[$i]['medial']) == 0? $children[$i]['medical'] =  $m: $children[$i]['medical'] = [];
+                    
 
                     $p = PedagogicReport::where('children_id', $child[$i]->id)->get(['id', 'description', 'medication', 'prescription']);
-                    if(Count($p) > 0){
-                        Count($children[$i]['pedagogic']) == 0? $children[$i]['pedagogic'] = $p : null;
-                    }
+                    Count($children[$i]['pedagogic']) == 0? $children[$i]['pedagogic'] = $p : $children[$i]['pedagogic'] = [];
+                    
                 }
             }
         }
@@ -189,13 +182,99 @@ class ProfileController extends Controller
                 $p->save();
             }
         }
+
+        if($request->child == true){
+
+            foreach ($request->children as $child) {
+                $update = Child::find($child['id']);
+                $update->fill(['potty_trained' => $child['potty_trained'], 'pictures' => $child['pictures']]);
+                $update->save();
+                //IF NOT DELETE TE CONDITION
+                foreach ($child['medical'] as $care) {
+                    // IF THERE IS NO ID CREATE NEW
+                    if(!isset($care['id'])){
+                        $m = new MedicalReport;
+                        $m->description = $care['description'];
+                        $m->children_id = $child['id'];
+                        $m->save();
+                    } else if(isset($care['delete'])){
+                        $m = MedicalReport::find($care['id']);
+                        $m->delete();
+                    } else if (!isset($care['delete'])) { 
+                        $m = MedicalReport::find($care['id']);
+                        $m->fill(['description' => $care['description']]);
+                        $m->save();
+                    }
+                };
+
+                 
+                        $doctor = $child['doctor'] ;
+                        $m = Doctor::find($doctor['id']);
+                        $m->fill(['name' => $doctor['name'], 'phone_number' => $doctor['tel']]);
+                        $m->save();
+
+                foreach ($child['comments'] as $comment) {
+                    // IF THERE IS NO ID CREATE NEW
+                    if(!isset($comment['id'])){
+                        $m = new OtherInformation;
+                        $m->description = $comment['description'];
+                        $m->children_id = $child['id'];
+                        $m->save();
+                    } else if(isset($comment['delete'])){
+                        $m = OtherInformation::find($comment['id']);
+                        $m->delete();
+                    } else if (!isset($comment['delete'])) { 
+                        $m = OtherInformation::find($comment['id']);
+                        $m->fill(['description' => $comment['description']]);
+                        $m->save();
+                    }
+                };
+
+                foreach ($child['pedagogic'] as $care) {
+                    // IF THERE IS NO ID CREATE NEW
+                    if(!isset($care['id'])){
+                        $m = new PedagogicReport;
+                        $m->description = $care['description'];
+                        $m->children_id = $child['id'];
+                        $m->save();
+                    } else if(isset($care['delete'])){
+                        $m = PedagogicReport::find($care['id']);
+                        $m->delete();
+                    } else if (!isset($care['delete'])) { 
+                        $m = PedagogicReport::find($care['id']);
+                        $m->fill(['description' => $care['description']]);
+                        $m->save();
+                    }
+
+                };
+                foreach ($child['allergies'] as $care) {
+                    // IF THERE IS NO ID CREATE NEW
+                    if(!isset($care['id'])){
+                        $m = new Allergie;
+                        $m->description = $care['description'];
+                        $m->type = $care['type'];
+                        $m->gravity = $care['gravity'];
+                        $m->children_id = $child['id'];
+                        $m->save();
+                    } else if(isset($care['delete'])){
+                        $m = Allergie::find($care['id']);
+                        $m->delete();
+                    } else if (!isset($care['delete'])) { 
+                        $m = Allergie::find($care['id']);
+                        $m->fill(['description' => $care['description'], 'type' => $care['type'], 'gravity' => $care['gravity']]);
+                        $m->save();
+                    }
+
+                };
+            }
+        }
  
         
         if($request->address == true){
             $address = Address::find($request->address_id);
             $address->fill(['street' => $request->street, 'number' => $request->number, 'city' => $request->city, 'postal_code' => $request->postal_code, 'country' => $request->country]);
             $address->save();  
-            return $address;
         }
+        return 'success';
     }
 }
