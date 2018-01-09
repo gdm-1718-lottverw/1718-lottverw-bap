@@ -56,25 +56,30 @@ const styles = StyleSheet.create({
         margin: 0,
 	},
 	section: {
-		fontSize: 10,
+		fontSize: 11,
+        paddingLeft: 3,
         fontWeight: '700',
-		paddingBottom: 2
 	}, 
     child: {
         marginTop: 2,
     },
     btnSave: {
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.lightBlue,
         borderRadius: 7,
         padding: 10, 
         marginHorizontal: 10,
         marginLeft: 35,
     }, 
     btnText: {
-         textAlign: 'center'
+         textAlign: 'center',
+         color: Colors.white
+    },
+    alignRight: {
+         textAlign: 'right'
     },
     radio: {
         marginVertical: 5,
+        marginHorizontal: 3,
         marginRight: 5,
         height: 10, 
         width: 10, 
@@ -85,11 +90,43 @@ const styles = StyleSheet.create({
     radioFull: {
         backgroundColor: Colors.darkgrey
     },
+    light: {
+        fontWeight: '400',
+        marginVertical: 2
+    },
     textInput: {
         margin: 0,
         padding: 0,
         paddingBottom: 7,
         paddingLeft: 3
     },
+    white: {
+        color: Colors.white
+    },
+    delete: {
+        backgroundColor: Colors.pink, 
+        padding: 2,
+        borderRadius: 7,
+        width: 100,
+        alignSelf: 'flex-end',
+        marginRight: 3
+    },
+    add: {
+        paddingTop: 3,
+        marginVertical: 5,
+        borderTopWidth: 0, 
+        borderTopColor: Colors.darkgrey,
+        borderRadius: 3,
+    },
+    addText: {
+        borderRadius: 7,
+        padding: 3,
+        textAlign: 'center',
+        fontSize: 12,
+        borderWidth: 1,
+        color: Colors.white, 
+        backgroundColor: Colors.darkgrey, 
+        opacity: 0.7
+    }
 });
 export default styles;

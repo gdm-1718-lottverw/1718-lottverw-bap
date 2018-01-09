@@ -19,7 +19,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchItem: (token, parentId, itemId) => dispatch(fetchItem(token, parentId, itemId)),
-    updateItem: (token, parentId, itemId, data) => dispatch(updateItem(token, parentId, itemId, data))
+    updateItem: (token, parentId, itemId, data) => dispatch(updateItem(token, parentId, itemId, data)),
+     deleteDate: (token, id, itemId) => dispatch(deleteDate(token, id, itemId))
 })
 
 export const calendarItemPending = () => ({
@@ -51,6 +52,20 @@ export const editCalendarError = (error) => ({
     error: error
 })
 
+export const deleteCalendar = () => ({
+    type: ActionTypes.DELETE_PENDING
+})
+
+export const deleteSuccess = (data) => ({
+    type: ActionTypes.DELETE_SUCCESS,
+    data: data
+})
+
+export const deleteError = (error) => ({
+    type: ActionTypes.DELETE_ERROR,
+    error: error
+})
+
 export const fetchItem = (token, parentId, itemId) => {
     console.log('URL',`${URL}parents/${parentId}/show/${itemId}` )
     return dispatch => {
@@ -75,6 +90,21 @@ export const updateItem = (token, parentId, itemId, data) => {
         })
         .catch(error => {
             dispatch(editCalendarError(error))
+        });
+    }
+}
+
+export const deleteDate = (token, id, itemId) => {
+    console.log(`${URL}parents/${id}/calendar/delete/${itemId}`);
+    return dispatch => {
+        dispatch(deleteCalendar())
+        axios.get(`${URL}parents/${id}/calendar/delete/${itemId}`, {headers: {'Authorization': `Bearer ${token}`}})
+        .then(response => {
+            dispatch(deleteSuccess(response.data));
+             Actions.pop();
+        })
+        .catch(error => {
+            dispatch(deleteError(error))
         });
     }
 }

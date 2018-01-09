@@ -136,9 +136,6 @@ class CalendarService extends Component {
             <TouchableOpacity style={styles.action} onPress={() => {Actions.updateCalendar({'itemId': item.id, 'date': item.date})}}>
               <Icon name='pencil' size={20}/>
             </TouchableOpacity>
-             <TouchableOpacity style={styles.action} onPress={() => {this.props.deleteDate(this.props.token, this.props.id, item.id); this.state.items}}>
-              <Icon name='trash' size={20}/>
-            </TouchableOpacity>
           </View> : null}
          </View>
           {item.note != ''? <Text style={styles.note}>{item.note}</Text>: null}

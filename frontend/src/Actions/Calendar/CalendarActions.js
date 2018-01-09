@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchDates: (token, id) => dispatch(fetchDates(token, id)),
-    deleteDate: (token, id, date) => dispatch(deleteDate(token, id, date))
+    deleteDate: (token, id, date_id) => dispatch(deleteDate(token, id, date_id))
 })
 
 export const calendarPending = () => ({
@@ -61,14 +61,13 @@ export const fetchDates = (token, id) => {
     }
 }
 
-export const deleteDate = (token, id, date) => {
+export const deleteDate = (token, id, date_id) => {
+    console.log(`${URL}parents/${id}/calendar/delete/${date_id}`);
     return dispatch => {
         dispatch(deleteCalendar())
-        axios.get(`${URL}parents/${id}/calendar/delete/${date}`, {headers: {'Authorization': `Bearer ${token}`}})
+        axios.get(`${URL}parents/${id}/calendar/delete/${date_id}`, {headers: {'Authorization': `Bearer ${token}`}})
         .then(response => {
-            dispatch(deleteSuccess(response.data)),
-            dispatch(calendarSuccess(response.data))
-            
+            dispatch(deleteSuccess(response.data));
         })
         .catch(error => {
             dispatch(deleteError(error))

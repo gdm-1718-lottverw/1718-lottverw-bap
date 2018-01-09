@@ -42,9 +42,32 @@ const styles = StyleSheet.create({
 		borderTopRightRadius: 7,
 		borderTopLeftRadius: 7
 	},
+	btn: {
+		backgroundColor: Colors.lightBlue,
+        paddingVertical: 15,
+        alignItems: 'center',
+		marginTop: 12,
+        marginBottom: 0,
+        flex: 3,
+	}, 
+	btnText: {
+		color: Colors.white,
+	},
+	btnDelete: {
+		backgroundColor: Colors.pink,
+		flex: 1,
+		alignItems: 'center',
+		marginTop: 12,
+		paddingVertical: 15,
+	},
 	single: {
 		borderRadius: 7
 	},
+	row: {
+		display: 'flex',
+        flexDirection: 'row',
+	},
+   
 	active: {
 		backgroundColor: Colors.pink
 	},
@@ -66,19 +89,6 @@ const styles = StyleSheet.create({
 		marginLeft: 5,
 		marginRight: 5
 	},
-	btn: {
-		backgroundColor: Colors.lightBlue,
-        alignContent: 'flex-end',
-        padding: 15,
-        alignItems: 'center',
-		borderRadius: 7,
-		margin: -20,
-		marginTop: 12,
-        marginBottom: 0,
-
-	}, 
-	btnText: {
-		color: Colors.white,
-	},
+	
 });
 export default styles;

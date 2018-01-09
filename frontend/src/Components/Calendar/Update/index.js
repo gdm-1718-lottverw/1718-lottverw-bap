@@ -147,9 +147,14 @@ class UpdateCalendarService extends Component {
             placeholder={this.updateFollowing.parent_notes == undefined? this.state.item.parent_notes: this.updateFollowing.parent_notes} />
         </View>              
       </View>
-      <TouchableOpacity style={styles.btn} onPress={() => {this.submit()}}>
-        <Text style={styles.btnText}>BEWAREN</Text>
-      </TouchableOpacity>     
+      <View style={styles.row}>
+        <TouchableOpacity style={[styles.btn, styles.stretch]} onPress={() => {this.submit()}}>
+          <Text style={styles.btnText}>BEWAREN</Text>
+        </TouchableOpacity>       
+        <TouchableOpacity style={[styles.btnDelete]} onPress={() => {this.props.deleteDate(this.props.token, this.props.id, this.props.itemId)}}>
+           <Text style={styles.btnText}>DELETE</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
   }
