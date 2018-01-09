@@ -15,7 +15,7 @@ class ProfileService extends Component {
         moment.locale('nl-be');
         this.state = {
           data: {},
-          edit: {parents: false, address: false, children: false}
+          edit: {parents: false, address: false, children: false, guardians: false}
         }
   }
   
@@ -357,8 +357,6 @@ class ProfileService extends Component {
                         this.setState({data: this.state.data});
                       }}><Text style={[styles.addText]} >pedagogische aandacht toevoegen</Text></TouchableOpacity>
 
-
-
                       <Text style={styles.bold}>Opmerkingen</Text>   
                       {c.comments != undefined? c.comments.map((p, o) => {
                         if(p['delete'] != true){
@@ -379,8 +377,7 @@ class ProfileService extends Component {
                             this.setState({data: this.state.data});
                           }}><Text style={[styles.btnText, styles.white]}>delete</Text></TouchableOpacity>
                           </View>
-                       )
-                        }
+                       )}
                         
                        }) :null}
                       <TouchableOpacity style={[styles.add]} onPress={() => {
@@ -474,6 +471,66 @@ class ProfileService extends Component {
             </View>  
             </View>)
             }): null}
+              
+              <View style={styles.item}>
+                 <GenerateIcon name={'users'} size={15} />
+                   <View style={[styles.label, styles.row, styles.justifiedS]}>
+                    <Text style={[styles.bold]}>Bevoegd om mijn kind(eren) op te halen</Text> 
+                    <TouchableOpacity
+                      onPress={() => { this.changeToEdit('guardians'); }}>
+                      <Icon name={this.state.edit.guardians == false? 'pencil': 'times'} size={15}/>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={styles.description}>
+                { this.state.data.guardians != undefined && this.state.edit.guardians == false? 
+                  this.state.data.guardians.map((g, i) => {
+                    return (
+                      <View key={i}>
+                         <View style={[styles.row ]}>
+                          <Text style={[styles.stretch]}>{g.name}</Text>
+                          <Text style={[styles.stretch, styles.alignRight]}>Tel. {g.tel}</Text>
+                        </View>
+                      </View>
+                    )})
+                :null}
+                { this.state.data.guardians != undefined && this.state.edit.guardians == true? 
+                  this.state.data.guardians.map((g, i) => {
+                    return (
+                    <View key={i}>           
+                      <View style={styles.row}>                   
+                        <Text style={[styles.stretch, styles.section]}>Naam</Text>
+                        <Text style={[styles.stretch, styles.section]}>Tel.</Text>                       
+                      </View>
+                      <View style={styles.row}>    
+                        <TextInput style={[styles.stretch, styles.textInput]} onChangeText={(name) => {
+                               g.name = name;
+                              this.setState({
+                                data: this.state.data
+                              });
+                            }}
+                            value={g.name} />     
+                        <TextInput style={[styles.stretch, styles.textInput]} onChangeText={(tel) => {
+                              g.tel = tel;
+                              this.setState({
+                                data: this.state.data
+                              });
+                            }}
+                            value={g.tel} />     
+                      </View>
+                     </View>
+                    )})
+                :null}
+               
+                </View>
+                 {this.state.edit['guardians'] == true? <TouchableOpacity style={styles.btnSave} onPress={() => {
+                    var result = { 'guardian': true, 'guardians': this.state.data.guardians, 'children': this.state.data.children};
+                    this.props.UpdateProfile(this.props.token, result);
+                    console.log(JSON.stringify(result, '\t'));
+                    this.state.edit['guardians'] = false;
+                    this.setState({ edit: this.state.edit});
+                  }}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
+              </View> 
            </View>
           </ScrollView>
         );

@@ -138,7 +138,6 @@ class ProfileController extends Controller
                     $d = Doctor::where('children_id','=', $child[$i]->id)->first(['id', 'name', 'phone_number as tel']);
                     Count($children[$i]['doctors']) == 0? $children[$i]['doctor'] = $d: $children[$i]['doctor'] = [];
                   
-
                     $o = OtherInformation::where('children_id', $child[$i]->id)->get(['id', 'description']);
                     Count($children[$i]['comment']) == 0? $children[$i]['comments'] = $o: $children[$i]['comments'] = [];
 
@@ -155,7 +154,7 @@ class ProfileController extends Controller
 
         $guardians = Guardian::whereHas('children', function($q) use($ids) {
             $q->whereIn('child_id', $ids);
-        })->get();
+        })->get(['guardians.id', 'guardians.name', 'guardians.phonenumber as tel']);
 
         // Merge all info into one pretty object.
         $data['parents'] =  $parent;
@@ -269,7 +268,31 @@ class ProfileController extends Controller
             }
         }
  
-        
+        if($request['guardian'] == true){
+            foreach ($request->guardians as $guardian ) {
+                if(!isset($guardian['id'])){
+                    $g = new Guardian;
+                    $g->phonenumber = $guardian['tel'];
+                    $g->name = $guardian['name'];
+                    $g->save();
+                    foreach ($request['children'] as $child) {
+                      $child->guardians()->attach($g->id);
+                    }
+                } 
+                else if(isset($guardian['delete'])){
+                    foreach ($request['children'] as $child) {
+                      $child->guardians()->detach($guardian['id']);
+                    }
+                    $g = Guardian::find($guardian['id']);
+                    $g->delete();
+                } 
+                else if (!isset($guardian['delete'])){
+                    $g = Guardian::find($guardian['id']);
+                    $g->fill(['name' => $guardian['name'], 'phonenumber' => $guardian['tel']]);
+                    $g->save();
+                }
+            }
+        }
         if($request->address == true){
             $address = Address::find($request->address_id);
             $address->fill(['street' => $request->street, 'number' => $request->number, 'city' => $request->city, 'postal_code' => $request->postal_code, 'country' => $request->country]);
