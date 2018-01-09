@@ -276,13 +276,11 @@ class ProfileController extends Controller
                     $g->name = $guardian['name'];
                     $g->save();
                     foreach ($request['children'] as $child) {
-                      $child->guardians()->attach($g->id);
+                        $c = Child::find($child['id']);
+                        $c->guardians()->attach($g->id);
                     }
                 } 
                 else if(isset($guardian['delete'])){
-                    foreach ($request['children'] as $child) {
-                      $child->guardians()->detach($guardian['id']);
-                    }
                     $g = Guardian::find($guardian['id']);
                     $g->delete();
                 } 

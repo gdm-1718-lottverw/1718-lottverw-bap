@@ -28,9 +28,8 @@ class HistoryController extends Controller
 
         $history = Child::whereIn('children.id', $id)
             ->historyAttendance()
-            ->get(
-            ['pa.date as date', 'children.name', 'pa.in', 'pa.out', 'pa.type']
-        );
+            ->orderBy('pa.date', 'desc')
+            ->get(['pa.date as date', 'children.name', 'pa.in', 'pa.out', 'pa.type']);
           
         return $history;
         
