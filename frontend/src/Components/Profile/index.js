@@ -111,32 +111,30 @@ class ProfileService extends Component {
               <Text> { this.state.data.address.street +' '+ this.state.data.address.number +", "+ this.state.data.address.postal_code + ' ' + this.state.data.address.city + ' - ' + this.state.data.address.country}   </Text>
             </View>: null}
           {this.state.edit.address == true?
-                  <View style={styles.description}>
-                   <View style={styles.row}>
-                    <Text style={[styles.section, styles.stretch]}>Straat</Text>
-                    <Text style={[styles.section, styles.stretch]}>Number</Text>
-                  </View>
-                    <View style={styles.row}>
-                    <TextInput
-                      style={[styles.textInput, styles.stretch]}
-                      onChangeText={(street) => {
-                        this.state.data.address.street = street;
-                        this.setState({
-                          data: this.state.data
-                        });
-                      }}
-                      value={this.state.data.address.street}/>
-
+            <View style={styles.description}>
+             <View style={styles.row}>
+              <Text style={[styles.section, styles.stretch]}>Straat</Text>
+              <Text style={[styles.section, styles.stretch]}>Number</Text>
+            </View>
+            <View style={styles.row}>
+              <TextInput style={[styles.textInput, styles.stretch]}
+                onChangeText={(street) => {
+                  this.state.data.address.street = street;
+                  this.setState({
+                    data: this.state.data
+                  });
+                }}
+               value={this.state.data.address.street}/>
                     
-                    <TextInput
-                      style={[styles.textInput, styles.stretch]}
-                      onChangeText={(number) => {
-                        this.state.data.address.number = number;
-                        this.setState({
-                          data: this.state.data
-                        });
-                      }}
-                      value={this.state.data.address.number}/>
+              <TextInput
+                style={[styles.textInput, styles.stretch]}
+                onChangeText={(number) => {
+                  this.state.data.address.number = number;
+                  this.setState({
+                    data: this.state.data
+                  });
+                }}
+                value={this.state.data.address.number}/>
                   </View>
                   <View style={styles.row}>
                     <Text style={[styles.section, styles.stretch]}>Postcode</Text>
@@ -496,32 +494,44 @@ class ProfileService extends Component {
                 :null}
                 { this.state.data.guardians != undefined && this.state.edit.guardians == true? 
                   this.state.data.guardians.map((g, i) => {
-                    return (
-                    <View key={i}>           
-                      <View style={styles.row}>                   
-                        <Text style={[styles.stretch, styles.section]}>Naam</Text>
-                        <Text style={[styles.stretch, styles.section]}>Tel.</Text>                       
-                      </View>
-                      <View style={styles.row}>    
-                        <TextInput style={[styles.stretch, styles.textInput]} onChangeText={(name) => {
-                               g.name = name;
-                              this.setState({
-                                data: this.state.data
-                              });
-                            }}
-                            value={g.name} />     
-                        <TextInput style={[styles.stretch, styles.textInput]} onChangeText={(tel) => {
-                              g.tel = tel;
-                              this.setState({
-                                data: this.state.data
-                              });
-                            }}
-                            value={g.tel} />     
-                      </View>
-                     </View>
-                    )})
+                    if(g['delete'] == undefined){
+                      return (
+                      <View key={i}>           
+                        <View style={styles.row}>                   
+                          <Text style={[styles.stretch, styles.section]}>Naam</Text>
+                          <Text style={[styles.stretch, styles.section]}>Tel.</Text>                       
+                        </View>
+                        <View style={styles.row}>    
+                          <TextInput style={[styles.stretch, styles.textInput]} onChangeText={(name) => {
+                                 g.name = name;
+                                this.setState({
+                                  data: this.state.data
+                                });
+                              }}
+                              value={g.name} />     
+                          <TextInput style={[styles.stretch, styles.textInput]} onChangeText={(tel) => {
+                                g.tel = tel;
+                                this.setState({
+                                  data: this.state.data
+                                });
+                              }}
+                              value={g.tel} />     
+                        </View>
+                        <TouchableOpacity style={[styles.delete]} onPress={() => {
+                          g['delete'] = true;
+                          this.setState({data: this.state.data});
+                        }}><Text style={[styles.btnText, styles.white]}>delete</Text></TouchableOpacity>
+                       </View>
+                      )}
+                      })
+
                 :null}
-               
+                {this.state.edit['guardians'] == true? <TouchableOpacity style={styles.add} onPress={() => {
+                  this.state.data.guardians == undefined? this.state.data.guardians = [{name: '', tel: ''}]: this.state.data.guardians.push({name: '', tel: ''});
+                }}> 
+                  <Text style={[styles.addText]}>Voogd Toevoegen</Text>
+                </TouchableOpacity> :null}
+
                 </View>
                  {this.state.edit['guardians'] == true? <TouchableOpacity style={styles.btnSave} onPress={() => {
                     var result = { 'guardian': true, 'guardians': this.state.data.guardians, 'children': this.state.data.children};
