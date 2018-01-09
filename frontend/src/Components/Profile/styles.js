@@ -38,7 +38,11 @@ const styles = StyleSheet.create({
 	row: {
 		display: 'flex',
         flexDirection: 'row',
+        marginVertical: 3,
 	},
+    stretch: {
+        flex: 1,
+    },
     column: {
         display: 'flex',
         flexDirection: 'column',
@@ -48,6 +52,8 @@ const styles = StyleSheet.create({
     },
 	bold: {
 		fontWeight: '900',
+        padding: 0,
+        margin: 0,
 	},
 	section: {
 		fontSize: 10,
@@ -66,6 +72,24 @@ const styles = StyleSheet.create({
     }, 
     btnText: {
          textAlign: 'center'
-    }
+    },
+    radio: {
+        marginVertical: 5,
+        marginRight: 5,
+        height: 10, 
+        width: 10, 
+        borderWidth: 1,
+        borderRadius: 100,
+        borderColor: Colors.darkgray
+    },
+    radioFull: {
+        backgroundColor: Colors.darkgrey
+    },
+    textInput: {
+        margin: 0,
+        padding: 0,
+        paddingBottom: 7,
+        paddingLeft: 3
+    },
 });
 export default styles;

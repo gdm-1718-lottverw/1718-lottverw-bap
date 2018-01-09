@@ -26,7 +26,6 @@ export default styles = StyleSheet.create({
         borderBottomRightRadius: 7,
         borderBottomLeftRadius: 7,
         marginRight: 10,
-
     },
     label: {
         fontWeight: '900',
@@ -74,7 +73,6 @@ export default styles = StyleSheet.create({
         margin: -20,
         marginTop: 12,
         marginBottom: 0,
-
     }, 
     btnText: {
         color: Colors.white,

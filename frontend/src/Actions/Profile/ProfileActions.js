@@ -67,6 +67,7 @@ export const UpdateProfile = (token, data) => {
         axios.patch(`${URL}parents/profile/update`, JSON.stringify(data), {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
         .then(response => {
             dispatch(profileUpdateSuccess(response.data));
+            dispatch(fetchProfile(token));
         }).catch(error => {
             dispatch(profileUpdateError(error))
         });
