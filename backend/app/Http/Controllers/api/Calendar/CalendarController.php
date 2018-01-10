@@ -44,16 +44,28 @@ class CalendarController extends Controller
     public function create($id, Request $request){
         foreach ($request->child_id as $child => $id) {
             $organization = Child::where('id', $id)->with('organization')->first()->organization;
+            
             foreach ($request->types as $type) {
-                $calendar_item = new PlannedAttendance;
-                $calendar_item->date = $request->date;
-                $calendar_item->type = $type;
-                $calendar_item->parent_notes = $request->parent_notes;
-                $calendar_item->go_home_alone = $request->go_home_alone;
-                $calendar_item->child_id = $id;
-                $calendar_item->organization_id = $organization->id;
-                $calendar_item->save();
-
+                // check if item already exsists. 
+                $check = PlannedAttendance::where([
+                    ['child_id', '=', $id], 
+                    ['type', '=', $type], 
+                    ['date', '=',  $request->date], 
+                    ['deleted_at', '=', null]
+                ])->get();
+                if(Count($check) == 0){
+                    echo ' check == 0 ';
+                    $calendar_item = new PlannedAttendance;
+                    $calendar_item->date = $request->date;
+                    $calendar_item->type = $type;
+                    $calendar_item->parent_notes = $request->parent_notes;
+                    $calendar_item->go_home_alone = $request->go_home_alone;
+                    $calendar_item->child_id = $id;
+                    $calendar_item->organization_id = $organization->id;
+                    $calendar_item->save();
+                } else {
+                    echo ' check != [] ';
+                }
             }
         }
        
