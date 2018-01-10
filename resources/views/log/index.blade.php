@@ -7,6 +7,7 @@
         <tr>
           <td class="row-2">Datum</td>
           <td class="row-3">Kind</td>
+          <td class="row-2">type</td>
           <td class="row-1 text-align-c">Actie</td>
           <td class="row-1 text-align-c">Tijd</td>
           <td class="row-1"></td>
@@ -21,6 +22,7 @@
           <tr> 
             <td class="row-2">{{ Carbon\Carbon::parse($l->updated_at)->format('D d, H:i') }}</td>
             <td class="row-3">{{$l->name}}</td>
+            <td class="row-2">{{$l->type}}</td>
             <td class="row-1 text-align-c">{{$l->action}}</td>
             <td class="row-1 text-align-c">{{ Carbon\Carbon::parse($l->time)->format('H:i') }}</td>
             <td class="hide row-3 {{$l->id}} text-align-c"> 

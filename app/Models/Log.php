@@ -35,9 +35,9 @@ class Log extends Model
      */
     public function scopeGeneral($query, $conditions)
     { 
-
         $query = $query
-        ->join('children As child', 'child.id', '=', 'logs.child_id');
+        ->join('planned_attendances as pa', 'logs.planned_attendance_id', '=', 'pa.id')
+        ->join('children As child', 'child.id', '=', 'pa.child_id');
         foreach($conditions as $column => $value){
             $query->where([
                 ['logs.'.$column, '=', $value],
