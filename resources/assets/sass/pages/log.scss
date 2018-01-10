@@ -8,6 +8,14 @@
         width: 96%;
         padding: 20px;
         margin: 2%;
+        thead {
+            td{
+                height: 55px;
+                background: $lightgray;
+                padding: 0 15px;
+                font-weight: 700;
+            }
+        }
         tbody {
             td {
                 height: 55px;

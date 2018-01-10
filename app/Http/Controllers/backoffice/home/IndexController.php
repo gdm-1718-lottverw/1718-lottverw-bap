@@ -33,11 +33,7 @@ class IndexController extends Controller
     }
 
     function helper_SaveChild(string $action, int $id, string $type){
-
-        $child = PlannedAttendance::where(
-            ['child_id' => $id, 'date' => date("Y-m-d"), 'type' => $type]
-        )->first();
-
+        $child = PlannedAttendance::find($id);
         $child->$action = true;
         $child->save();
 
@@ -46,15 +42,14 @@ class IndexController extends Controller
 
     function helper_loggedInOrganization(){
         $key = Auth::id();
-        $o= Organization::where('auth_key_id', $key)->first();
+        $o = Organization::where('auth_key_id', $key)->first();
         $this->organization_id = $o->id;
     }
     
-    function helper_NewLog($child, $action){
+    function helper_NewLog($attendance, $action){
         $action = Action::where('name', $action)->first();
-
         $log = new Log;
-        $log->child_id = $child->child_id;
+        $log->planned_attendance_id = $attendance;
         $log->organization_id = $this->organization_id;
         $log->action_time = date('H:i:s');
         $log->deleted_at = NULL;
@@ -81,31 +76,25 @@ class IndexController extends Controller
         if($this->type == "namiddag"){
             $leftOver = Child::general($general_conditions)
             ->type($type_conditions_leftover)
-            ->get();
+            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id', 'pa.in', 'pa.out']);
         }
 
-        $in = Child::whereHas('logs.actions', function($query){
-                $query->where('actions.name','=', 'in');
-            })
-            ->general($general_conditions)
+        $in = Child::general($general_conditions)
+            ->logs('in')
             ->presence('present_present')
             ->type(array("type" => [$this->type]))
-            ->get();
+            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
         
-
-        $out = Child::whereHas('logs.actions', function($query){
-                $query->where('actions.name','=', 'out');
-            })
-            ->general($general_conditions)
+        $out = Child::general($general_conditions)
             ->presence('present_out')
+            ->logs('out')
             ->type(array("type" => [$this->type]))
-            ->get();
+            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
 
         $toCome = Child::general($general_conditions)
             ->presence('present_registered')
             ->type(array("type" => [$this->type]))
             ->get();
-
 
         return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children']));
     }    
@@ -114,10 +103,10 @@ class IndexController extends Controller
         // GET TYPE AND ORGANIZATION
         $this->helper_CheckTime();
         $this->helper_loggedInOrganization();
-        // UPDATE CHILD
+        // UPDATE PLANNED ATTENDANXE
         $child = $this->helper_SaveChild('in', $request->id, $this->type);
         // SAVE NEW LOG
-        $this->helper_NewLog($child, 'in');
+        $this->helper_NewLog($request->id, 'in');
         // DEFINE GENERAL CONDITIONS
         $general_conditions = [
             'organization_id' => $this->organization_id, 
@@ -127,13 +116,11 @@ class IndexController extends Controller
             'type' => [$this->type]
         ];
 
-        $in = Child::whereHas('logs.actions', function($query){
-                    $query->where('actions.name','=', 'in');
-            })
-            ->general($general_conditions)
+        $in = Child::general($general_conditions)
             ->presence('present_present')
             ->type($type_conditions)
-            ->get();
+            ->logs('in')
+            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
 
         return view('home.partials.in', compact('in'));
     }    
@@ -143,7 +130,7 @@ class IndexController extends Controller
         $this->helper_CheckTime();
         $this->helper_loggedInOrganization();
         $child = $this->helper_SaveChild('out', $request->id, $this->type);
-        $this->helper_NewLog($child, 'out');
+        $this->helper_NewLog($request->id, 'out');
     
         $general_conditions = [
             'organization_id' => $this->organization_id, 
@@ -152,14 +139,13 @@ class IndexController extends Controller
         $type_conditions = [
             'type' => [$this->type]
         ];
-        $out = Child::whereHas('logs.actions', function($query){
-                $query->where('actions.name','=', 'out');
-            })
-            ->general($general_conditions)
+
+        $out = Child::general($general_conditions)
             ->presence('present_out')
             ->type($type_conditions)
-            ->get();
-
+            ->logs('out')
+            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
+       
        return view('home.partials.out', compact('out'));
     }   
 
@@ -168,7 +154,7 @@ class IndexController extends Controller
         $this->helper_CheckTime();
         $this->helper_loggedInOrganization();
         $child = $this->helper_SaveChild('in', $request->id, $this->type_inverse);
-        $this->helper_NewLog($child, 'in');
+        $this->helper_NewLog($request->id, 'in');
 
         $general_conditions = [
             'organization_id' => $this->organization_id, 
@@ -180,7 +166,7 @@ class IndexController extends Controller
 
         $leftOver = Child::general($general_conditions)
             ->type($type_conditions_leftover)
-            ->get();
+            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id', 'pa.in', 'pa.out']);
 
         return view('home.partials.leftOvers', compact('leftOver'));
 
@@ -190,7 +176,7 @@ class IndexController extends Controller
         $this->helper_CheckTime();
         $this->helper_loggedInOrganization();
         $child = $this->helper_SaveChild('out', $request->id, $this->type_inverse);
-        $this->helper_NewLog($child, 'out');
+        $this->helper_NewLog($request->id, 'out');
 
         $general_conditions = [
             'organization_id' => $this->organization_id, 
@@ -202,7 +188,7 @@ class IndexController extends Controller
 
         $leftOver = Child::general($general_conditions)
             ->type($type_conditions_leftover)
-            ->get();
+           ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id', 'pa.in', 'pa.out']);
 
         return view('home.partials.leftOvers', compact('leftOver'));
     }
@@ -222,7 +208,7 @@ class IndexController extends Controller
         $pa->child_id = $data['child_id'];
         $pa->save();
         // New log entry
-        $this->helper_NewLog($data, 'in');
+        $this->helper_NewLog($pa->id, 'in');
 
         
         return redirect()->route('home');
@@ -242,10 +228,11 @@ class IndexController extends Controller
 
         $log = Log::where(
             [
-                ['child_id', '=' ,$pa->child_id],
-                ['created_at', '=' ,$pa->created_at],
+                ['planned_attendance_id', '=' ,$request['_id']],
+                ['created_at', '=' , $pa->created_at],
                 ['deleted_at', '=' , null],
             ])->first();
+
         if($log != null ){
             $log->deleted_at = Carbon::now();
             $log->save();

@@ -9,9 +9,12 @@ use App\Models\Child;
 use App\Models\Organization;
 use App\Models\PlannedAttendance;
 use App\Models\Log;
-use Illuminate\Support\Facades\Auth;
 
+
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller; 
+
 class IndexController extends Controller
 {
     private $organization_id;
@@ -19,7 +22,7 @@ class IndexController extends Controller
     function helper_loggedInOrganization(){
         $key = Auth::id();
         $o= Organization::where('auth_key_id', $key)->first();
-        $this->organization_id = $o->id;  
+        $this->organization_id = $o->id; 
     }
     /**
      * Display a listing of the resource.
@@ -29,18 +32,15 @@ class IndexController extends Controller
     public function index()
     {
         $this->helper_loggedInOrganization();
-        $log = 
-        DB::table('logs')
-        ->where([
-            [DB::raw('date(logs.created_at)'), '=',\Carbon\Carbon::today()],
-            ['logs.organization_id', '=', $this->organization_id],
-            ['logs.deleted_at', '=', null]
-        ])
-        ->join('children', 'children.id', '=', 'logs.child_id')
-        ->join('actions', 'actions.id', '=', 'logs.action_id')
-        ->orderBy('logs.action_time', 'desc')
-        ->get(['logs.updated_at', 'logs.id as id', 'actions.name as action', 'logs.action_time as time', 'children.name']);
-        
+        $general_conditions = [
+            'organization_id' => $this->organization_id,
+            'deleted_at' => null,
+        ];
+        $log = Log::general($general_conditions)
+            ->actionName()->where('logs.created_at', '>=', Carbon::today())
+            ->orderBy('logs.action_time', 'desc')
+            ->get(['logs.updated_at', 'logs.id as id', 'actions.name as action', 'logs.action_time as time', 'child.name']);
+
         return view('log.index', compact('log'));
     }
 

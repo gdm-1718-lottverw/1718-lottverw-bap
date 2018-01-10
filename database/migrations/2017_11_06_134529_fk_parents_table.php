@@ -13,7 +13,6 @@ class FkParentsTable extends Migration
      */
     public function up()
     { 
-    
         Schema::table('parents', function (Blueprint $table) {
             $table->foreign('auth_key_id')->references('id')->on('auth_keys');
             $table->foreign('address_id')->references('id')->on('addresses');

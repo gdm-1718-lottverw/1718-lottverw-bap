@@ -4076,6 +4076,13 @@ body .guest-navigation li a {
   margin: 2%;
 }
 
+.log table thead td {
+  height: 55px;
+  background: #F7F7F7;
+  padding: 0 15px;
+  font-weight: 700;
+}
+
 .log table tbody td {
   height: 55px;
   background: #F7F7F7;
