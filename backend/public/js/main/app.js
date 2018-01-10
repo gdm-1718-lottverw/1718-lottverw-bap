@@ -73,7 +73,9 @@ module.exports = __webpack_require__(2);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -107,10 +109,16 @@ $(document).ready(function () {
         });
     }
     $('#container-leftover').on('click', '.fa-sign-in', function (e) {
-        signLeftoverInOut('sign-in', 'container-leftover', 'left-over', e);
+        var target = $(e.target);
+        var attr = target.attr('disabled');
+        (typeof attr === 'undefined' ? 'undefined' : _typeof(attr)) == ( true ? 'undefined' : _typeof(undefined)) ? signLeftoverInOut('sign-in', 'container-leftover', 'left-over', e) : console.log(attr);
+        target.attr('disabled', 'disabled');
     });
     $('#container-leftover').on('click', '.fa-sign-out', function (e) {
-        signLeftoverInOut('sign-out', 'container-leftover', 'left-over', e);
+        var target = $(e.target);
+        var attr = target.attr('disabled');
+        (typeof attr === 'undefined' ? 'undefined' : _typeof(attr)) == ( true ? 'undefined' : _typeof(undefined)) ? signLeftoverInOut('sign-out', 'container-leftover', 'left-over', e) : console.log(attr);
+        target.attr('disabled', 'disabled');
     });
 
     function signInOut(action, oldContainer, newContainer, oldId, newId, e) {
@@ -119,18 +127,25 @@ $(document).ready(function () {
             url: "/" + action,
             data: { 'id': e.target.id, '_token': $('input[name=_token]').val() }
         }).done(function (msg) {
-            $('div#' + oldContainer).load(location.href + " #" + oldId, function () {});
-            $('div#' + newContainer).load(location.href + " #" + newId, function () {});
+            $('div#' + oldContainer).load(document.URL + " div#" + oldId);
+            $('div#' + newContainer).load(document.URL + " div#" + newId);
         });
     }
 
     $('#container-future').on('click', '.fa-sign-in', function (e) {
-        signInOut('sign-in', 'container-future', 'container-in', 'to-come', 'in', e);
+        var target = $(e.target);
+        var attr = target.attr('disabled');
+        (typeof attr === 'undefined' ? 'undefined' : _typeof(attr)) == ( true ? 'undefined' : _typeof(undefined)) ? signInOut('sign-in', 'container-future', 'container-in', 'to-come', 'in', e) : console.log(attr);
+        target.attr('disabled', 'disabled');
     });
 
     $('#container-in').on('click', '.fa-sign-out', function (e) {
-        signInOut('sign-out', 'container-in', 'container-out', 'in', 'out', e);
+        var target = $(e.target);
+        var attr = target.attr('disabled');
+        (typeof attr === 'undefined' ? 'undefined' : _typeof(attr)) == ( true ? 'undefined' : _typeof(undefined)) ? signInOut('sign-out', 'container-in', 'container-out', 'in', 'out', e) : console.log(attr);
+        target.attr('disabled', 'disabled');
     });
+
     /* ADD PARENT */
     // SHOW FORM ON HOMEPAGE
     showHide = function showHide(action, target) {

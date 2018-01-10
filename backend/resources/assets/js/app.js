@@ -19,20 +19,26 @@ $(document).ready(function(){
 
     // HOME SIGN IN OR OUT
     function signLeftoverInOut(action, oldContainer, oldId, e){
-           $.ajax({
-               method: "POST",
-               url: "/leftover/" + action,
-                   data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
-               }).done(function( msg ) {
-                   $('div#'+oldContainer).load(document.URL +  " div#"+oldContainer);
-               })
-            }
-                $('#container-leftover').on('click', '.fa-sign-in', (e) => {
-                   signLeftoverInOut('sign-in', 'container-leftover', 'left-over', e);
-                });
-             $('#container-leftover').on('click', '.fa-sign-out', (e) => {
-                 signLeftoverInOut('sign-out', 'container-leftover', 'left-over', e);
-             });
+        $.ajax({
+            method: "POST",
+            url: "/leftover/" + action,
+               data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
+           }).done(function( msg ) {
+                $('div#'+oldContainer).load(document.URL +  " div#"+oldContainer);
+           })
+        }
+        $('#container-leftover').on('click', '.fa-sign-in', (e) => {
+            var target = $(e.target);
+            var attr = target.attr('disabled');
+            typeof attr == typeof undefined ?  signLeftoverInOut('sign-in', 'container-leftover', 'left-over', e): console.log(attr);           
+            target.attr('disabled', 'disabled');
+        });
+        $('#container-leftover').on('click', '.fa-sign-out', (e) => {
+            var target = $(e.target);
+            var attr = target.attr('disabled');
+            typeof attr == typeof undefined ? signLeftoverInOut('sign-out', 'container-leftover', 'left-over', e): console.log(attr);           
+            target.attr('disabled', 'disabled');
+        });
 
     function signInOut(action, oldContainer, newContainer, oldId, newId, e){
         $.ajax({
@@ -40,18 +46,26 @@ $(document).ready(function(){
             url: "/"+action,
             data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
         }).done(function( msg ) {
-            $('div#'+oldContainer).load(location.href + " #"+oldId, function() {})
-            $('div#'+newContainer).load(location.href + " #"+newId, function() {})
+            $('div#'+oldContainer).load(document.URL +  " div#"+oldId);
+            $('div#'+newContainer).load(document.URL +  " div#"+newId);
         })
     }
-            
+
     $('#container-future').on('click', '.fa-sign-in', (e) => {
-        signInOut('sign-in', 'container-future', 'container-in', 'to-come', 'in', e);
+        var target = $(e.target);
+        var attr = target.attr('disabled');
+        typeof attr == typeof undefined ? signInOut('sign-in', 'container-future', 'container-in', 'to-come', 'in', e): console.log(attr);           
+        target.attr('disabled', 'disabled');
     });
 
     $('#container-in').on('click', '.fa-sign-out', (e) => {
-        signInOut('sign-out', 'container-in', 'container-out', 'in', 'out', e);
+        var target = $(e.target);
+        var attr = target.attr('disabled');
+        typeof attr == typeof undefined ? signInOut('sign-out', 'container-in', 'container-out', 'in', 'out', e) : console.log(attr);                  
+        target.attr('disabled', 'disabled');
     });
+
+
     /* ADD PARENT */
     // SHOW FORM ON HOMEPAGE
     showHide = (action, target) => {
