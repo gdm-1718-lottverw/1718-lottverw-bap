@@ -121,7 +121,7 @@ class IndexController extends Controller
         // DEFINE GENERAL CONDITIONS
         $general_conditions = [
             'organization_id' => $this->organization_id, 
-            'date' => Carbon::today()
+            'date' => Carbon::today(),
         ];
         $type_conditions = [
             'type' => [$this->type]
