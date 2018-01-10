@@ -16,16 +16,7 @@ class Child extends Model
      */
     protected $table = 'children';
     protected $fillable = ['potty_trained', 'pictures'];
-    /**
-     * Get the activities for a given child.
-     * 
-     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function activities()
-    {
-        return $this->belongsToMany('App\Models\Activity')->using('App\Models\ActivityChild');
-    }
-
+    
     /**
      * Get all the children
      * 
@@ -74,16 +65,6 @@ class Child extends Model
     public function allergies()
     {
         return $this->hasMany('App\Models\Allergie', 'children_id');
-    }
-
-    /**
-     * Get the logs associated with the child.
-     * 
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function logs()
-    {
-        return $this->hasMany('App\Models\Log');
     }
 
     /**
@@ -295,6 +276,24 @@ class Child extends Model
             $query->whereIn('al.type', $value);
         }
         
+    }
+
+     /**
+     * Scope a query to only include logs with some conditions.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLogs($query, $type)
+    {
+        $query = $query
+            ->leftJoin('logs', 'pa.id', '=', 'logs.planned_attendance_id')
+            ->leftJoin('actions', 'logs.action_id', '=', 'actions.id')
+            ->where([
+                ['logs.deleted_at', '=', null],
+                ['actions.name', '=', $type]
+            ]);
     }
 
        

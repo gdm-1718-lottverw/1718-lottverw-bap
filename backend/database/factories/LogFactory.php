@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 /* @var Illuminate\Database\Eloquent\Factory $factory */
 
 $factory->define(App\Models\Log::class, function (Faker $faker) {
-    $children = App\Models\Child::pluck('id');
+    $planned = App\Models\PlannedAttendance::pluck('id');
     $actions = App\Models\Action::pluck('id');
     $organizations = App\Models\Organization::pluck('id');
    
@@ -13,6 +13,6 @@ $factory->define(App\Models\Log::class, function (Faker $faker) {
         'action_time' => $faker->boolean($chanceOfGettingTrue = 5),
         'action_id' => rand(1, (count($actions) - 1)),
         'organization_id' => rand(1, (count($organizations) - 1)),
-        'child_id' => rand(1, (count($children) - 1))
+        'planned_attendance_id' => rand(1, (count($planned) - 1))
     ];
 });

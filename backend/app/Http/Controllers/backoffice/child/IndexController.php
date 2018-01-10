@@ -35,6 +35,7 @@ class IndexController extends Controller
          * Select all child data from the database.
          */
         $child = DB::table('children')
+            ->where('children.id', $child_id)
             ->join('doctors', 'children.id', '=', 'doctors.children_id')
             ->first(
                 [ 'doctors.name as doctor', 

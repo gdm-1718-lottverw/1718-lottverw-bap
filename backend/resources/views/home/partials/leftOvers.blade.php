@@ -4,11 +4,11 @@
   <div class="child-card flex">
     <div class="flex column btn justified-s">
       @if($lo->in == false && $lo->out == false)
-      <i class="fa fa-sign-in" id="{{$lo->child_id}}"></i>
+      <i class="fa fa-sign-in" id="{{$lo->id}}"></i>
       @elseif($lo->in == true && $lo->out == false)
-      <i class="fa fa-sign-out" id="{{$lo->child_id}}"></i>
+      <i class="fa fa-sign-out" id="{{$lo->id}}"></i>
       @endif
-    <a href="/log"><i class="fa fa-pencil" id="{{$lo->child_id}}"></i></a>
+    <a href="/log"><i class="fa fa-pencil" id="{{$lo->id}}"></i></a>
     </div>
     <a href="/child/{{$lo->child_id}}" class="child-info flex column">
       <span class="name">{{$lo->name}}</span>

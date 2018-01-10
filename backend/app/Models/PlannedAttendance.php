@@ -38,6 +38,17 @@ class PlannedAttendance extends Model
         return $this->belongsTo('App\Models\Child', 'child_id');
     }
 
+    /**
+     * Get the logs associated with the child.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function logs()
+    {
+        return $this->hasMany('App\Models\Log');
+    }
+
+
      /**
      * Get the planned attendance associated with the child.
      * 

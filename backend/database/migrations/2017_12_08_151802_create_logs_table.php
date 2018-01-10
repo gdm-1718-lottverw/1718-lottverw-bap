@@ -18,7 +18,7 @@ class CreateLogsTable extends Migration
             $table->timestamp('deleted_at')->nullable();
             $table->time('action_time');
             $table->unsignedInteger('action_id');
-            $table->unsignedInteger('child_id');
+            $table->unsignedInteger('planned_attendance_id');
             $table->unsignedInteger('organization_id');
             $table->timestamps();
         });
@@ -26,7 +26,7 @@ class CreateLogsTable extends Migration
         Schema::table('logs', function (Blueprint $table) {
             $table->foreign('action_id')->references('id')->on('actions');
             $table->foreign('organization_id')->references('id')->on('organizations');
-            $table->foreign('child_id')->references('id')->on('children');
+            $table->foreign('planned_attendance_id')->references('id')->on('planned_attendances');
         });
     }
 

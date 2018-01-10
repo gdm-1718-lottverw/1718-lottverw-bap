@@ -3,6 +3,16 @@
 @section('content') 
   <section class="log" id="log">
     <table>
+      <thead>
+        <tr>
+          <td class="row-2">Datum</td>
+          <td class="row-3">Kind</td>
+          <td class="row-1 text-align-c">Actie</td>
+          <td class="row-1 text-align-c">Tijd</td>
+          <td class="row-1"></td>
+          <td class="row-1"></td>
+        </tr>
+      </thead>
       <tbody>
       @if(count($log)  == 0)
         <h1>Er zijn geen log items gevonden.</h1>

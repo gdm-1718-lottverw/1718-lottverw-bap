@@ -16,15 +16,6 @@ class Organization extends Model
     protected $table = 'organizations';
 
     protected $fillable = ['auth_key_id'];
-    /**
-     * Get all the activities
-     * 
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function activities()
-    {
-        return $this->hasMany('App\Models\Activity');
-    }
     
     /**
      * Get all the addresses

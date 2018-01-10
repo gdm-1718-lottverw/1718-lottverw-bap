@@ -53,8 +53,8 @@ class CalendarController extends Controller
                     ['date', '=',  $request->date], 
                     ['deleted_at', '=', null]
                 ])->get();
+                
                 if(Count($check) == 0){
-                    echo ' check == 0 ';
                     $calendar_item = new PlannedAttendance;
                     $calendar_item->date = $request->date;
                     $calendar_item->type = $type;
@@ -63,9 +63,7 @@ class CalendarController extends Controller
                     $calendar_item->child_id = $id;
                     $calendar_item->organization_id = $organization->id;
                     $calendar_item->save();
-                } else {
-                    echo ' check != [] ';
-                }
+                } 
             }
         }
        
