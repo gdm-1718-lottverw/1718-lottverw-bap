@@ -257,7 +257,7 @@ class ProfileService extends Component {
                               <TouchableOpacity style={[styles.row, styles.stretch]} key={i} onPress={() => {
                                 a.type = t.value;
                                 this.setState({data: this.state.data});
-                              }}>{t.value == a.type?  <View style={[styles.radio, styles.radioFull]}></View> : <View style={[styles.radio]}></View>}<Text style={[styles.section, styles.light]}>{t.name}</Text></TouchableOpacity>
+                              }}>{t.value == a.type? <View style={[styles.radio, styles.radioFull]}></View> : <View style={[styles.radio]}></View>}<Text style={[styles.section, styles.light]}>{t.name}</Text></TouchableOpacity>
                               )
                             })}
                             </View>

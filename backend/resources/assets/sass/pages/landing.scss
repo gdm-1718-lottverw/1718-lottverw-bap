@@ -1,11 +1,49 @@
 .login {
-    min-height: calc(100vh - 35px);
+    min-height: calc(100vh);
     .intro {
-        background: $green;
+        background-image: url("../images/achtergrond.png");
+       // background: #6F9DFA;
+    }    
+    img {
+        margin: 170px calc((100% - 50rem)/2);
+        width: 50rem;
+
+    }
+    .flex-item:nth-child(1) {
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: center;
+        -ms-flex-item-align: center;
+        align-self: center;
     }
     .content {
+        .form-container {
+            margin-top: 20px;
+            width: 95%;
+        }
         .form {
             width: 100%;
+            border: none;
+            margin-top: 20px;
+             .description{
+                background: white;
+                padding: 25px;
+                border-radius: 7px;
+                opacity: 0.9;
+                text-align: center;
+                a {
+                    color: $darkgray;
+                    text-decoration: none;
+                    font-size: 12px;
+                }
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
     }
 }
@@ -14,6 +52,7 @@
 @include breakpoint(xs){
     .intro {
         display: none;
+        
     }
     .content {
         padding: 20px;
@@ -25,6 +64,7 @@
 @include breakpoint(sm){
     .intro {
         display: none;
+        
     }
     .content {
         width: 100%;
@@ -36,9 +76,9 @@
     .intro {
         width: 50%;
         display: block;
+       
     }
     .content {
-        padding: 30px;
         width: 50%;
     }
 }
@@ -49,7 +89,6 @@
         display: block;
     }
     .content {
-        padding: 40px;
         width: 40%;
     }
 }

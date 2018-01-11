@@ -1,26 +1,39 @@
 .log {
     position: absolute;
     z-index: 0;
-    background: white;
     bottom: 0;
+    .title {
+        font-weight: 100;
+        border-bottom: 1px solid $darkgray;
+        padding: 30px 0;
+        width: 100%;
+        background: $white;
+        text-align: center;
+        margin: 0;
+    }
     table {
-        background: $lightgray;
+        background: $white;
         width: 96%;
-        padding: 20px;
+        padding: 30px;
         margin: 2%;
         thead {
             td{
                 height: 55px;
-                background: $lightgray;
                 padding: 0 15px;
                 font-weight: 700;
+                border-bottom: 2px solid $darkgray;
             }
         }
         tbody {
+             tr:nth-of-type(2n){
+                td {
+                    background: $lightgray;
+                }   
+            }
             td {
-                height: 55px;
-                background: $lightgray;
+                height: 57px;
                 padding: 0 15px;
+                border-bottom: 1px solid $darkgray;
             }
         }
     }
@@ -81,14 +94,14 @@
 
 @include breakpoint(xs){
     .log{
-        top: 80px;
+        top: 0;
         overflow: visible ;
         width: 100%;
     }
 }
 @include breakpoint(sm){
     .log{
-        top: 90px;
+        top: 0;
         overflow: visible;
         width: 100% ;
     }
@@ -97,9 +110,10 @@
     .log{
         overflow: scroll;
         z-index: 0;
-        top: 35px;
-        height: calc(100% - 35px);
+        top: 0;
+        height: 100%;
         width: calc(100vw - 70px);
+        left: 70px;
     }
 
 }

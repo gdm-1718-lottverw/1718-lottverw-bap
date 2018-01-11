@@ -1,0 +1,32 @@
+#slider {
+	height: 170px;
+	margin: 22px 30px 5px;
+	background: none !important;
+	border-radius: 0 !important;
+	border: none !important;
+	box-shadow: none !important;
+	.noUi-base {
+		width: 4px;
+	}
+	.noUi-handle {
+		width: 34px;
+		height: 34px;
+		left: -16px;
+		top: -17px;
+		border-radius: 100%;
+		box-shadow: none;
+		outline: none;
+		border: 1px solid $darkgray;
+		&::after, &::before {
+			background: none;
+		}
+		.noUi-tooltip {
+			left: 120%;
+			right: auto;
+		}
+	}
+	.noUi-connect {
+		background-color: $deeppink;
+	}
+	
+}

@@ -1,5 +1,39 @@
 .register {
-
+	background: $lightgray;
+	height: 100vh;
+	.title {
+		font-weight: 100;
+		border-bottom: 1px solid $darkgray;
+		padding-bottom: 30px;
+		width: 70%;
+		text-align: center;
+	}
+	.form {
+		background: $white;
+		width: 70%;
+		padding: 70px;
+		.form-group {
+			margin: 20px;
+			width: 100%;
+			&.btn{
+				margin-right: 70px;
+			}
+		}
+	}
+	a {
+		width: 70%;
+        padding: 25px 70px;
+        border-radius: 7px;
+        margin-top: 30px;
+        opacity: 0.9;
+        text-align: center;
+        color: $darkgray;
+        text-decoration: none;
+        font-size: 12px;
+        &:hover {
+        	text-decoration: underline;
+        }
+	}
 }
 
 

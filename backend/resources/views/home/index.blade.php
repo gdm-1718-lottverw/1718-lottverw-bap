@@ -4,53 +4,66 @@
 
   <section class="home" id="home">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    @if(Count($leftOver)>0)
+    @if(Count($leftOver) > 0)
     <div id="container-leftover">
       @include('home.partials.leftOvers')
     </div> 
     @endif
-    <div class="flex justified-end">
-      <i onClick="showHide('show', '#overlay')" class="fa fa-plus btn-fab yellow flex-child center" aria-hidden="true"></i>
-    </div>
+    <i onClick="showHide('show', '#overlay')" class="fa fa-plus btn-fab blue" aria-hidden="true"></i>
+     @if(Count($toCome) > 0)
     <div id="container-future">
       @include('home.partials.future')
     </div>  
+    @endif
+    @if(Count($in) > 0)
     <div id="container-in">
       @include('home.partials.in')
     </div>
+    @endif
+    @if(Count($out) > 0)
     <div id="container-out">
       @include('home.partials.out')
     </div>
-    <div id="overlay" class="hide">
+    @endif
+    <div id="overlay" class="hide flex justified-c">
       <div class="flex justified-end">
         <i onClick="showHide('hide', '#overlay')" class="fa fa-times btn-fab pink flex-child center" aria-hidden="true"></i>
       </div>
-      {{Form::open(array('action' => 'Backoffice\Home\IndexController@storeChild', 'class' => 'form'))}}
+      {{Form::open(array('action' => 'Backoffice\Home\IndexController@storeChild', 'class' => 'form flex-child center'))}}
+        <h1 class="title">Kind toevoegen</h1>
         {{-- TOKEN --}}
         {{ Form::hidden('_token', csrf_token() )}}
         {{ Form::hidden('_date', Carbon\Carbon::now() )}}
         {{ Form::hidden('_date', Carbon\Carbon::now() )}}
         {{ Form::hidden('_in', true )}}
         {{ Form::hidden('_out', false )}}
-        <div class="select-dropdown">
-          {{ Form::label('type', 'Selecteer een dagtype')}}
-          <select name="type" id="type" class="form-control">
-            <option value=""> -- Selecteer een dagtype --</option>
-            <option value="voormiddag">Voormiddag</option>
-            <option value="namiddag">Namiddag</option>
-            <option value="hele dag">hele dag</option>
-          </select>
+        <div class="flex column">
+          <div class="form-group flex column">
+            {{ Form::label('type', 'Selecteer een dagtype')}}
+            <div class="select-dropdown">
+              <select name="type" id="type" class="form-control">
+                <option value=""> -- Selecteer een dagtype --</option>
+                <option value="voormiddag">Voormiddag</option>
+                <option value="namiddag">Namiddag</option>
+                <option value="hele dag">hele dag</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group flex column">
+            {{ Form::label('child_id', 'Selecteer een kind')}}
+            <div class="select-dropdown">
+              <select name="child_id" id="child" class="form-control">
+                <option value=""> -- Selecteer een kind --</option>
+                @foreach ($children as $child)
+                  <option value="{{ $child->id }}">{{ $child->name }}</option>
+                @endforeach 
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="select-dropdown">
-          {{ Form::label('child_id', 'Selecteer een kind')}}
-          <select name="child_id" id="child" class="form-control">
-            <option value=""> -- Selecteer een kind --</option>
-            @foreach ($children as $child)
-              <option value="{{ $child->id }}">{{ $child->name }}</option>
-            @endforeach 
-          </select>
+        <div class="flex justified-end">
+          {!! Form::submit('Opslaan', array('class'=>'btn flex-child end')) !!}
         </div>
-      {!! Form::submit('Opslaan', array('class'=>'btn')) !!}
     </div> 
   </section>
 
