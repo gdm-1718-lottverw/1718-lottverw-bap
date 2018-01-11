@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container register">
-    <form class="form" method="POST" action="{{ route('register') }}">
+<div class="container flex column justified-c register">
+    <h1 class="flex-child center title">Registreer nu!</h1>
+    <form class="form flex-child center" method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
         <div class="flex">
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -16,7 +17,7 @@
                 @endif
             </div>
                        
-            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+            <div class="form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
                 <label for="phone" class="col-md-4 control-label">Telefoon nummer</label>
                 <input id="phone" type="text" placeholder="+321 23 45 67" class="form-control" name="phone" value="{{ old('phone') }}" required>
                 <div class="border"></div>
@@ -61,16 +62,18 @@
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                  @endif
-            </div>''        
+            </div>      
             <div class="form-group">
                 <label for="password-confirm" class="col-md-4 control-label">Herhaal wachtwoord</label>
                 <input id="password-confirm" placeholder="Wachtwoord" type="Herhaal wachtwoord" class="form-control" name="password_confirmation">
                 <div class="border"></div>
             </div>
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Register</button>
+
+        <div class="flex justified-end">
+            <button type="submit" class="btn">Register</button>
         </div>
     </form>
+     <a class="flex-child center" href="/login">Ik heb al een account</a>
 </div>
 @endsection

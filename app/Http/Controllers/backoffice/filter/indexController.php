@@ -30,7 +30,7 @@ class IndexController extends Controller
     }
 
     public function index(){
-        $or = Organization::where('id',  $this->organization_id );
+        $or = Organization::where('id', $this->organization_id)->orWhere('main_organization');
         $this->helper_loggedInOrganization();
         $conditions = [
             'organization_id' =>  $this->organization_id, 
@@ -42,14 +42,16 @@ class IndexController extends Controller
         return view('filter.index', compact(['planned', 'or']));
     }
     
-    public function create(request $request){       
-        $data = $request->data; $date = $request->date; $age = $request->age['age'];
+    public function create(request $request){    
+        $this->helper_loggedInOrganization();   
+        $data = $request->data; $date = $request->date; $age = $request->age[0]['age'];
         $general_conditions = [
             'organization_id' => $this->organization_id,  
             'date' => $date
         ];
         $type_conditions = []; $allergie_conditions = [];
         $present = ''; $birthday = false; $picture = ''; $potty_trained = '';
+
         foreach($data as $d){
             $key = array_keys($d)[0];
             $value = array_values($d)[0];
@@ -74,16 +76,19 @@ class IndexController extends Controller
                     break; 
             }
         }
+
         $children = Child::general($general_conditions)
-            ->type($type_conditions)
             ->presence($present)
+            ->type($type_conditions)
+            ->age($age)
             ->pictures($picture)
             ->pottyTrained($potty_trained)
+            ->birthday($birthday) 
             ->allergies($allergie_conditions)
-            ->age($age)
-            ->birthday($birthday)
+            ->groupBy('children.id')
             ->get();
-        
+
+       // return $children;
         return view('filter.children', compact('children'));
     }
 

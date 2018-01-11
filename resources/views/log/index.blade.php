@@ -2,22 +2,22 @@
 
 @section('content') 
   <section class="log" id="log">
+  @if(count($log)  == 0)
+  <h1 class="title">Er zijn nog geen items voor vandaag.</h1>
+  @else 
     <table>
-      <thead>
-        <tr>
-          <td class="row-2">Datum</td>
-          <td class="row-3">Kind</td>
-          <td class="row-2">type</td>
-          <td class="row-1 text-align-c">Actie</td>
-          <td class="row-1 text-align-c">Tijd</td>
-          <td class="row-1"></td>
-          <td class="row-1"></td>
-        </tr>
-      </thead>
-      <tbody>
-      @if(count($log)  == 0)
-        <h1>Er zijn geen log items gevonden.</h1>
-        @else 
+        <thead>
+          <tr>
+            <td class="row-2">Datum</td>
+            <td class="row-3">Kind</td>
+            <td class="row-2">type</td>
+            <td class="row-1 text-align-c">Actie</td>
+            <td class="row-1 text-align-c">Tijd</td>
+            <td class="row-1 text-align-c">Aanpassen</td>
+            <td class="row-1 text-align-c">Verwijderen</td>
+          </tr>
+        </thead>
+        <tbody>
           @foreach($log as $l) 
           <tr> 
             <td class="row-2">{{ Carbon\Carbon::parse($l->updated_at)->format('D d, H:i') }}</td>

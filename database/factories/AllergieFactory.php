@@ -15,7 +15,6 @@ $factory->define(App\Models\Allergie::class, function (Faker $faker) {
     ];
 });
 
-
 function generateGravity() {
     $gravity = ['deadly', 'light', 'medium light', 'medium', 'severe'];
     $x = rand(1, 5);
@@ -32,7 +31,7 @@ function generateGravity() {
     }
 }
 function generateType() {
-    $type = ['food', 'latex', 'pollen', 'animal', 'insects', 'other'];
+    $type = ['food', 'animals', 'insects', 'other'];
     $x = rand(1, 6);
     if($x == 1){
         return $type[0];

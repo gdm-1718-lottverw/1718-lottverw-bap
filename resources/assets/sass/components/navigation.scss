@@ -57,22 +57,6 @@ body {
             }
         }
     } 
-    .guest-navigation {
-        margin: 0;
-        padding: 10px 15px;
-        height: 35px;
-        background: $darkgray;
-        li {
-            list-style: none;
-            margin: 0 10px;
-            a {
-                text-decoration: none;
-                color: $white;
-                font-size: 15px;
-                font-family: $main-font;
-            }
-        }
-    }     
 }
 @include breakpoint(xs){
     .header {
@@ -81,7 +65,7 @@ body {
     .navigation {
         right: 0 ;
         left: 0 ;
-        top: 35px ;
+        top: 0 ;
         flex-direction: row ;
         height: 45px ;
         a {
@@ -104,7 +88,7 @@ body {
     .navigation {
         right: 0 ;
         left: 0 ;
-        top: 35px ;
+        top: 0;
         flex-direction: row ;
         height: 45px ;
         a {
@@ -123,13 +107,13 @@ body {
 
 @include breakpoint(md){
     .navigation {
-        right: 0;
-        top: 35px;
+        left: 0;
+        top: 0;
         flex-direction: column;
-        height: calc(100vh - 34px);
-        left: auto;
+        height: 100vh;
+        right: auto;
         a {
-            border: none ;
+            border: none;
             border-bottom: 1px solid $white;
             padding: 20px 22px;
             font-size: 25px;

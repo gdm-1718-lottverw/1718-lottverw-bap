@@ -2,13 +2,12 @@
 
 @section('content')
 <div class="login flex">
-    <div class="intro flex-child ">
-        <img src="assets/logo" />
-        <p>Some intro text about rhino register</p>
-        <a href="{{ route('register') }}">Registreer Nu</a>
+    <div class="intro flex justified-c ">
+        <img class="flex-child center" src="{{ asset('../images/logo.png')}}"/>
     </div>
-    <div class="content flex-child center">
-        {{ Form::open(array('route' => 'authenticate', 'class' => 'form'))}}
+    <div class="column flex justified-c content">
+    <div class="flex-child form-container center">
+        {{ Form::open(array('route' => 'authenticate', 'class' => 'form column flex'))}}
             {{ csrf_field() }}
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                 <label for="username" class="col-md-4 control-label">Gebruikersnaam</label>
@@ -38,7 +37,12 @@
             <div class="form-group flex column">
                 <button type="submit" class="flex-child end">Login</button>
             </div>
+            <div class="flex-child center description">
+                <a href="{{ route('register') }}">Registreer Nu</a>
+            </div>
         {{Form::close()}}
+        
+    </div>
     </div>
 </div>
 @endsection
