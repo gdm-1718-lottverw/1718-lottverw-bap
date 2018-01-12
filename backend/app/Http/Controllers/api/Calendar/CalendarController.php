@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Child;
 use App\Models\PlannedAttendance;
 use App\Models\Parents;
-
+use App\Models\Guardian;
 use Carbon\Carbon;
 class CalendarController extends Controller
 {
@@ -32,8 +32,8 @@ class CalendarController extends Controller
         $p = Child::whereIn('children.id', $id)->futureAttendance()->get(
             ['pa.date as date', 'children.name as child', 'pa.type as type', 'pa.id as id', 'pa.parent_notes as note']
         );
-        return $p;
         
+        return $p;
     }
 
     /**
@@ -76,12 +76,25 @@ class CalendarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($parent_id, $item_id){
-        $calendar_item = PlannedAttendance::where('id', $item_id)->first(['date', 'id', 'type', 'parent_notes', 'go_home_alone', 'child_id']);
+        $calendar_item = PlannedAttendance::where('id', $item_id)->first(['date', 'id', 'type', 'parent_notes','guardian_id', 'go_home_alone', 'child_id']);
         $children = Parents::with('children')->where('id', $parent_id)->first()->children()->get(['children.name as name', 'children.id as id']);
+        $ids = [];
+        foreach ($children as $child) {
+            $id =  $child->guardians()->get(['guardian_id']);
+            foreach($id as $i){
+                array_push($ids, $i['guardian_id']);
+            }
+        }
+
+        $guardians = Guardian::whereIn('id', $ids)->get(['id', 'name']);
+        $default = array("id" => null, "name" => "Ouders");
+        $guardians[Count($guardians)] = $default;
         $response = [
             'item' => $calendar_item,
-            'children' => $children
+            'children' => $children, 
+            'guardians' => $guardians
         ];
+
         return $response;
     }
 
