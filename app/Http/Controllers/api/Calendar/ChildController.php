@@ -36,6 +36,7 @@ class ChildController extends Controller
             'children' => $children,
             'guardians' => $guardians,
         ];
+        
         return $result; 
     }
 

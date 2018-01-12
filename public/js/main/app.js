@@ -225,65 +225,15 @@ $(document).ready(function () {
             }
         });
         slider.noUiSlider.on('end', function () {
-            var data = [];
-            var date = $('input[name=date]').val();
-            var age_data = [{ age: slider.noUiSlider.get() }];
-            var age = [{ age: slider.noUiSlider.get() }];
-            $('.item input:checked').each(function (index) {
-                // Get the input name
-                var name = $(this)[0]['name'];
-                // Get the input value
-                var value = $(this).val();
-                // a new object with name as key value als value.
-                var item = _defineProperty({}, name, [value]);
-                // When the data array is empty
-                // add the first selected item.
-                if (data.length === 0) {
-                    data.push(item);
-                } else {
-                    // We need to keep track of the already looped items.
-                    var _count = 0;
-                    // For each data object we need the index. 
-                    data.forEach(function (o, i) {
-                        // Let's take the key of the object. 
-                        a = Object.keys(o)[0];
-                        // Check if the name of the input field exists in the data array.
-                        if (a == name) {
-                            // If it does we need to check each value. 
-                            data[i][name].forEach(function (val, ii) {
-                                // When a value is not present in the current data object
-                                // push it. 
-                                if (val != value && ii == data[i][name].length - 1) {
-                                    data[i][name].push(value);
-                                }
-                            });
-                        }
-                        // If the key is different from the curren name we need to add it. 
-                        else if (a != name) {
-                                // But we do not want to add it before the whole array has been looped. 
-                                // That is why we check if the current index is equal to the length of an array. 
-                                if (i === data.length - 1) {
-                                    data.push(item);
-                                }
-                            }
-                        _count++;
-                    });
-                }
-                console.log(data);
-            });
-            $.ajax({
-                method: "POST",
-                url: "filter",
-                data: { 'data': data, 'age': age, 'date': date, '_token': $('input[name=_token]').val() }
-            }).done(function (msg) {
-                $('.filter-results').replaceWith(msg);
-            });
+            filterItems();
         });
     }
-
-    $('.item input').change(function () {
-        // Init new data array     
+    $('.date').change(function () {
+        filterItems();
+    });
+    filterItems = function filterItems() {
         var data = [];
+        // Init new data array     
         var age = [{ age: slider.noUiSlider.get() }];
         // Get the selected date.
         var date = $('input[name=date]').val();
@@ -300,7 +250,7 @@ $(document).ready(function () {
                 data.push(item);
             } else {
                 // We need to keep track of the already looped items.
-                var _count2 = 0;
+                var _count = 0;
                 // For each data object we need the index. 
                 data.forEach(function (o, i) {
                     // Let's take the key of the object. 
@@ -324,7 +274,7 @@ $(document).ready(function () {
                                 data.push(item);
                             }
                         }
-                    _count2++;
+                    _count++;
                 });
             }
             console.log(data);
@@ -336,6 +286,9 @@ $(document).ready(function () {
         }).done(function (msg) {
             $('.filter-results').replaceWith(msg);
         });
+    };
+    $('.item input').change(function () {
+        filterItems();
     });
 });
 

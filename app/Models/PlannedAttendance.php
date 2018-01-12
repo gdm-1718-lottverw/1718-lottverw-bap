@@ -19,14 +19,14 @@ class PlannedAttendance extends Model
      *
      * @var array
      */
-    protected $fillable = ['date', 'type', 'child_id', 'go_home_alone', 'parent_notes'];
+    protected $fillable = ['date', 'type', 'child_id', 'go_home_alone', 'parent_notes', 'guardian_id'];
     
     /**
      * Get all of the posts for the country.
      */
     public function guardian()
     {
-        return $this->hasManyThrough('App\Guardian', 'App\Child', 'has_been_pickup_by');
+        return $this->belongsTo('App\Models\Guardian', 'guardia_id');
     }
     /**
      * Get the planned attendance associated with the child.
