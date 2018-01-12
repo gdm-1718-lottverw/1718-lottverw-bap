@@ -1,6 +1,6 @@
 import * as Actions from '../Actions/ActionTypes'
 
-const CalendarReducer = (state = { isLoading: false, error: undefined, data: {}, deleting: false, deleted: false, updating: false, updated: false, item: {}, children: [] }, action) => {
+const CalendarReducer = (state = { isLoading: false, error: undefined, data: {}, deleting: false, deleted: false, updating: false, updated: false, item: {}, children: [], guardians: [] }, action) => {
     switch (action.type) {
         case Actions.CALENDAR_PENDING:
             return Object.assign({}, state, {
@@ -44,7 +44,8 @@ const CalendarReducer = (state = { isLoading: false, error: undefined, data: {},
             return Object.assign({}, state, {
                 isLoading: true,
                 item: action.item,
-                children: action.children
+                children: action.children,
+                guardians: action.guardians
             }); 
          case Actions.CALENDAR_UPDATING:
             return Object.assign({}, state, {

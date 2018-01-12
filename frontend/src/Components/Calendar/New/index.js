@@ -17,7 +17,7 @@ class NewCalendarService extends React.Component{
       guardians: [],
       error: '',
       types: [{name: 'voormiddag', id: 'voormiddag'}, {name: 'namiddag', id: 'namiddag'}],
-      bool: [{name: 'Wordt opgehaald', id: true, selected: true}, {name: 'Mag alleen naar huis', id: false, selected: false}],
+      bool: [{name: 'Wordt opgehaald', id: false, selected: true}, {name: 'Mag alleen naar huis', id: true, selected: false}],
     }
     var loading = true;
   }
@@ -65,12 +65,11 @@ class NewCalendarService extends React.Component{
 
   setSelected = (obj, item) => {
     obj.forEach((o, i)=>{
-      //SET STATE BOOL AND GUARDIAN
       o.selected = false;
-      o.id = false;
+      //o.id = false;
       if(o.name == item.name){
         o.selected = true;
-        o.id = true;
+        //o.id = true;
       }
     })
     return obj;
@@ -98,8 +97,13 @@ class NewCalendarService extends React.Component{
     this.state.types.forEach((e) => {
      e.selected == true? types.push(e.id): null;
     })
+    let home = false;
+    this.state.types.forEach((e) => {
+     e.selected == true? home = e.id: null;
+    })
     let guardians = null;
     this.state.guardians.forEach((e) => {
+      console.log(this.state.guardians);
       e.selected == true? guardians = e.id: null;
     })    
 
@@ -108,7 +112,7 @@ class NewCalendarService extends React.Component{
       date: this.state.date,
       parent_notes: this.state.parent_notes,
       types: types, 
-      go_home_alone: this.state.bool[1].id,
+      go_home_alone: home,
       guardian_id: guardians
     };
     console.log(data);

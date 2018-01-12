@@ -31,7 +31,7 @@ export default class App extends Component<{}> {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <ReduxRouter  backAndroidHandler={this.onBackPress} navigator={navigator} />
+          <ReduxRouter backAndroidHandler={this.onBackPress} navigator={navigator} />
         </View>
       </Provider>
     );

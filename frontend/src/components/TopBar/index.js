@@ -10,8 +10,7 @@ export default class TopBar extends React.Component {
       const title = this.props.title;
       const icon = this.props.icon; 
       const pop = this.props.pop;
-      var loading = true;
-      
+      var loading = false;
       return (
         <View style={styles.container}>
           <Text style={styles.text}> {title} </Text>

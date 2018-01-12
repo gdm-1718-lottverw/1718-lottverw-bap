@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
     error: state.calendar.error,
     item: state.calendar.item,
     children: state.calendar.children,
+    guardians: state.calendar.guardians,
     updated: state.calendar.updated,
     updating: state.calendar.updating,
     token: state.auth.token,
@@ -20,17 +21,18 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchItem: (token, parentId, itemId) => dispatch(fetchItem(token, parentId, itemId)),
     updateItem: (token, parentId, itemId, data) => dispatch(updateItem(token, parentId, itemId, data)),
-     deleteDate: (token, id, itemId) => dispatch(deleteDate(token, id, itemId))
+    deleteDate: (token, id, itemId) => dispatch(deleteDate(token, id, itemId))
 })
 
 export const calendarItemPending = () => ({
     type: ActionTypes.CALENDAR_ITEM_PENDING
 })
 
-export const calendarItemSuccess = (data, children) => ({
+export const calendarItemSuccess = (data, children, guardians) => ({
     type: ActionTypes.CALENDAR_ITEM_SUCCESS,
     item: data, 
-    children: children
+    children: children,
+    guardians: guardians
 })
 
 export const calendarItemError = (error) => ({
@@ -72,7 +74,7 @@ export const fetchItem = (token, parentId, itemId) => {
         dispatch(calendarItemPending())
         axios.get(`${URL}parents/${parentId}/calendar/show/${itemId}`, {headers: {'Authorization': `Bearer ${token}`}})
         .then(response => {
-            dispatch(calendarItemSuccess(response.data.item, response.data.children));
+            dispatch(calendarItemSuccess(response.data.item, response.data.children, response.data.guardians));
         })
         .catch(error => {
             dispatch(calendarItemError(error))

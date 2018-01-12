@@ -2,23 +2,9 @@ import { StyleSheet } from 'react-native';
 import Colors from '../../../Config/theme';
 
 const styles = StyleSheet.create({
-	container: {
-	},
-	iconTest: {
-		color: Colors.lightBlue,
-		backgroundColor: Colors.white,
-		paddingLeft: 8,
-		paddingTop: 8,
-		borderRadius: 20,
-		height: 30,
-		width: 30,
-		zIndex: 3
-	}, 
-	icon:{
-		color: Colors.darkgray,
-		marginLeft: 10,
-		paddingTop: 20,
-	},
+	 loadingContainer: {
+        marginTop: 100,
+    },
 	description: {
 		backgroundColor: Colors.white,
 		padding: 5,
@@ -27,8 +13,25 @@ const styles = StyleSheet.create({
 		borderBottomRightRadius: 7,
 		borderBottomLeftRadius: 7,
 		marginRight: 10,
-
 	},
+	checked: {
+        backgroundColor: '#000000', 
+        height: 10, 
+        width:10, 
+        borderRadius: 7,  
+        marginTop: 5, 
+        marginRight: 5
+    },
+    unChecked: {
+        backgroundColor: '#FFFFFF', 
+        borderColor: '#000', 
+        borderWidth: 1, 
+        height: 10,
+        width:10, 
+        borderRadius: 7, 
+        marginTop: 5, 
+        marginRight: 5
+    },   
 	label: {
 		fontWeight: '900',
 		backgroundColor: Colors.white,
