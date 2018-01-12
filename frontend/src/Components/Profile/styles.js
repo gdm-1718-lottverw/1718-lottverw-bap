@@ -26,6 +26,22 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 7,
         borderTopLeftRadius: 7
     },
+    error: {
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: 'red',
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    errorText: {
+        color: Colors.white,
+        textAlign: 'center',
+    },
+    errorIcon: {
+        marginTop: 2,
+        color: Colors.white,
+    },
     single: {
 		borderRadius: 7
 	},

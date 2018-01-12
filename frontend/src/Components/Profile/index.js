@@ -15,6 +15,7 @@ class ProfileService extends Component {
         moment.locale('nl-be');
         this.state = {
           data: {},
+          error: "",
           edit: {parents: false, address: false, children: false, guardians: false}
         }
   }
@@ -28,6 +29,25 @@ class ProfileService extends Component {
       this.setState({data: nextProps.data});
     }   
   }
+  validateEmail = (email) => {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+  
+  validatePhone = (tel) => {
+    var re = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/;
+    return re.test(tel);
+  }
+
+  validateDescription= (descr) => {
+    var re = /\s*(\S\s*){20, 40}/ ;
+    return re.test(descr);
+  }
+
+  validatePostalCode = (code) => {
+    var re = /^[1-9]{4}$/;
+    return re.test(code);
+  }
 
   changeToEdit = (item) => {
     let currentState = this.state.edit[item];
@@ -40,6 +60,10 @@ class ProfileService extends Component {
       
     return (
       <ScrollView style={styles.container} keyboardShouldPersistTaps='always'>
+        {this.state.error != ""?  <View style={styles.error}>
+            <Icon style={styles.errorIcon}  name={'exclamation-triangle'} size={14}/>
+            <Text style={styles.errorText}>{this.state.error}</Text>
+          </View>:null}
         <View style={styles.item}>
           <GenerateIcon name={'users'} size={15} />
           <View style={[styles.label, styles.row, styles.justifiedS ]}>
@@ -68,6 +92,7 @@ class ProfileService extends Component {
                     style={styles.textInput}
                     onChangeText={(tel) => {
                       this.state.data.parents[i].tel = tel;
+                      this.state.error = "";
                       this.setState({
                         data: this.state.data
                       });
@@ -78,6 +103,7 @@ class ProfileService extends Component {
                     style={styles.textInput}
                     onChangeText={(email) => {
                       this.state.data.parents[i].email = email;
+                      this.state.error = "";
                       this.setState({
                         data: this.state.data
                       });
@@ -90,6 +116,13 @@ class ProfileService extends Component {
         { 
           this.state.edit['parents'] == true? <TouchableOpacity style={styles.btnSave} onPress={() => {
           var result = { 'parent': true, 'parents': this.state.data.parents};
+            this.state.data.parents.forEach((e) => {
+              if(!this.validateEmail(e.email)){
+                this.setState({error: e.email + ' is niet geldig.'})
+              } else if (!this.validatePhone(e.tel)){
+                 this.setState({error: e.tel + this.validatePhone(e.tel) +' is geen geldig telefoonnummer'})
+              }
+            })
             this.props.UpdateProfile(this.props.token, result);
             this.state.edit['parents'] = false;
             this.setState({ edit: this.state.edit});}}>
@@ -120,6 +153,7 @@ class ProfileService extends Component {
               <TextInput style={[styles.textInput, styles.stretch]}
                 onChangeText={(street) => {
                   this.state.data.address.street = street;
+                  this.state.error = '';
                   this.setState({
                     data: this.state.data
                   });
@@ -130,6 +164,7 @@ class ProfileService extends Component {
                 style={[styles.textInput, styles.stretch]}
                 onChangeText={(number) => {
                   this.state.data.address.number = number;
+                   this.state.error = '';
                   this.setState({
                     data: this.state.data
                   });
@@ -145,15 +180,15 @@ class ProfileService extends Component {
                        style={[styles.textInput, styles.stretch]}
                       onChangeText={(postal_code) => {
                         this.state.data.address.postal_code = postal_code;
-                        this.setState({
-                          data: this.state.data
-                        });
+                         this.state.error = '';
+                         this.setState({data: this.state.data});            
                       }}
                       value={this.state.data.address.postal_code}/>
                     <TextInput
                        style={[styles.textInput, styles.stretch]}
                       onChangeText={(city) => {
                         this.state.data.address.city = city;
+                         this.state.error = '';
                         this.setState({
                           data: this.state.data
                         });
@@ -165,6 +200,7 @@ class ProfileService extends Component {
                       style={styles.textInput}
                       onChangeText={(country) => {
                         this.state.data.address.country = country;
+                        this.state.error = '';
                         this.setState({
                           data: this.state.data
                         });
@@ -176,10 +212,24 @@ class ProfileService extends Component {
 
         { this.state.edit['address'] == true? <TouchableOpacity style={styles.btnSave} onPress={() => {
           this.state.data.address.address_id = this.state.data.address.id;
-          this.state.data.address['address'] = true;
-          this.props.UpdateProfile(this.props.token, this.state.data.address);
-          this.state.edit['address'] = false;
-          this.setState({ edit: this.state.edit});
+          //ADDRES VALIDATION
+          if(
+            this.state.data.address.street == "" ||
+            this.state.data.address.number == "" || 
+            this.state.data.address.country != "België" || 
+            this.state.data.address.city == ""){
+            this.setState({'error': 'dit adres is niet geldig'});
+          } 
+          else if(!this.validatePostalCode(this.state.data.address.postal_code))
+            {this.setState({'error': 'Geen geldige postcode.'})} 
+          else {
+            this.state.error = "";
+            this.state.data.address['address'] = true;
+            this.props.UpdateProfile(this.props.token, this.state.data.address);
+            this.state.edit['address'] = false;
+            this.setState({ edit: this.state.edit});
+          }
+          
         }}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
          
         <View style={styles.item}>
@@ -239,6 +289,8 @@ class ProfileService extends Component {
                     <TextInput
                       style={[styles.textInput, styles.stretch]} onChangeText={(tel) => {
                         c.doctor.tel = tel;
+                        this.state.error = "";
+                        !this.validatePhone(tel)?this.setState({'error': tel + "  is geen geldig telefoonnummer"}): this.state.error = "";
                         this.setState({
                           data: this.state.data
                         });
@@ -278,6 +330,7 @@ class ProfileService extends Component {
                               multiline={true}
                               onChangeText={(description) => {
                                 a.description = description;
+                                !this.validateDescription(description)? this.setState({'error': description + ' is niet uitgebreid genoeg.'}): this.state.error = "";
                                 this.setState({
                                   data: this.state.data
                                 });
@@ -305,12 +358,12 @@ class ProfileService extends Component {
                            multiline={true}
                            onChangeText={(description) => {
                             m.description = description;
+                            !this.validateDescription(description)? this.setState({'error': description + ' is niet uitgebreid genoeg.'}): this.state.error = "";
                             this.setState({
                               data: this.state.data
                             });
                           }}
                           value={m.description}/>
-
                           <TouchableOpacity style={[styles.delete]} onPress={() => {
                             m['delete'] = true;
                             this.setState({data: this.state.data});
@@ -334,6 +387,7 @@ class ProfileService extends Component {
                               multiline={true}
                               onChangeText={(description) => {
                                 p.description = description;
+                                !this.validateDescription(description)? this.setState({'error': description + ' is niet uitgebreid genoeg.'}): this.setState({'error': ""});
                                 this.setState({
                                   data: this.state.data
                                 });
@@ -365,6 +419,7 @@ class ProfileService extends Component {
                               multiline={true}
                               onChangeText={(description) => {
                                 p.description = description;
+                                !this.validateDescription(description)? this.setState({'error': description + ' is niet uitgebreid genoeg.'}): this.setState({'error': ""});
                                 this.setState({
                                   data: this.state.data
                                 });
@@ -390,9 +445,12 @@ class ProfileService extends Component {
               : null}
               {this.state.edit['children'] == true? <TouchableOpacity style={styles.btnSave} onPress={() => {
               var result = { 'child': true, 'children': this.state.data.children};
-              this.props.UpdateProfile(this.props.token, result);
-              this.state.edit['children'] = false;
-              this.setState({ edit: this.state.edit});
+              if(this.state.error == ""){
+                this.props.UpdateProfile(this.props.token, result);
+                this.state.edit['children'] = false;
+                this.setState({ edit: this.state.edit});
+              }
+              
             }}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
             
         {this.state.edit['children'] == false && this.state.data.children != undefined? this.state.data.children.map((c, i) => {
@@ -503,7 +561,9 @@ class ProfileService extends Component {
                         </View>
                         <View style={styles.row}>    
                           <TextInput style={[styles.stretch, styles.textInput]} onChangeText={(name) => {
-                                 g.name = name;
+                                g.name = name;
+                                this.state.error = "";
+                                name == ""?this.setState({'error': "Geef een naam op"}): this.state.error = "";
                                 this.setState({
                                   data: this.state.data
                                 });
@@ -511,6 +571,8 @@ class ProfileService extends Component {
                               value={g.name} />     
                           <TextInput style={[styles.stretch, styles.textInput]} onChangeText={(tel) => {
                                 g.tel = tel;
+                                this.state.error = "";
+                                !this.validatePhone(tel)?this.setState({'error': tel + "  is geen geldig telefoonnummer"}): this.state.error = "";
                                 this.setState({
                                   data: this.state.data
                                 });
@@ -519,7 +581,10 @@ class ProfileService extends Component {
                         </View>
                         <TouchableOpacity style={[styles.delete]} onPress={() => {
                           g['delete'] = true;
-                          this.setState({data: this.state.data});
+  
+                             this.setState({data: this.state.data});
+ 
+                         
                         }}><Text style={[styles.btnText, styles.white]}>delete</Text></TouchableOpacity>
                        </View>
                       )}
@@ -534,11 +599,13 @@ class ProfileService extends Component {
 
                 </View>
                  {this.state.edit['guardians'] == true? <TouchableOpacity style={styles.btnSave} onPress={() => {
+                  if(this.state.error == ""){
                     var result = { 'guardian': true, 'guardians': this.state.data.guardians, 'children': this.state.data.children};
                     this.props.UpdateProfile(this.props.token, result);
                     console.log(JSON.stringify(result, '\t'));
                     this.state.edit['guardians'] = false;
                     this.setState({ edit: this.state.edit});
+                  }  
                   }}><Text style={styles.btnText}>SAVE</Text></TouchableOpacity>: null}
               </View> 
            </View>
