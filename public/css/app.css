@@ -3640,7 +3640,7 @@ body .header {
 
 body .navigation {
   z-index: 1000;
-  position: absolute;
+  position: fixed;
   background: #3B4250;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3920,8 +3920,8 @@ body .navigation a :hover {
 .home .tip {
   color: #3B4250;
   position: absolute;
-  right: 93px;
-  bottom: 80px;
+  right: 83px;
+  bottom: 84px;
   background: #F7F7F7;
   padding: 8px 15px;
   border-radius: 7px;
@@ -3934,8 +3934,8 @@ body .navigation a :hover {
   opacity: 1;
   -webkit-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
-  -webkit-animation: shakeThatBooty 0.9s 1;
-  animation: shakeThatBooty 0.9s 1;
+  -webkit-animation: shakeThatBooty 0.5s 1;
+  animation: shakeThatBooty 0.5s 1;
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
@@ -4030,8 +4030,7 @@ body .navigation a :hover {
 
 @media screen and (max-width: 37.5em) {
   .home {
-    top: 0;
-    overflow: visible;
+    top: 45px;
     width: 100%;
   }
 
@@ -4070,8 +4069,7 @@ body .navigation a :hover {
 
 @media screen and (min-width: 37.5em) {
   .home {
-    top: 0;
-    overflow: visible;
+    top: 45px;
     width: 100%;
   }
 
@@ -4110,11 +4108,10 @@ body .navigation a :hover {
 
 @media screen and (min-width: 50em) {
   .home {
-    overflow: scroll;
     z-index: 0;
     top: 0;
     height: 100%;
-    width: calc(100vw - 70px);
+    width: calc(100% - 70px);
     left: 70px;
   }
 
@@ -4277,8 +4274,7 @@ body .navigation a :hover {
 @media screen and (min-width: 50em) {
   .filter {
     height: 100%;
-    width: calc(100vw - 70px);
-    overflow: scroll;
+    width: calc(100% - 70px);
     left: 70px;
     top: 0;
   }
@@ -4382,23 +4378,20 @@ body .navigation a :hover {
 
 @media screen and (max-width: 37.5em) {
   .log {
-    top: 0;
-    overflow: visible;
+    top: 45px;
     width: 100%;
   }
 }
 
 @media screen and (min-width: 37.5em) {
   .log {
-    top: 0;
-    overflow: visible;
+    top: 45px;
     width: 100%;
   }
 }
 
 @media screen and (min-width: 50em) {
   .log {
-    overflow: scroll;
     z-index: 0;
     top: 0;
     height: 100%;
@@ -4485,8 +4478,7 @@ body .navigation a :hover {
 
 @media screen and (max-width: 37.5em) {
   .child {
-    top: 90px;
-    overflow: visible;
+    top: 45px;
     width: 100%;
   }
 
@@ -4499,16 +4491,14 @@ body .navigation a :hover {
   }
 
   .addChild {
-    top: 90px;
-    overflow: visible;
+    top: 45px;
     width: 100%;
   }
 }
 
 @media screen and (min-width: 37.5em) {
   .child {
-    top: 90px;
-    overflow: visible;
+    top: 45px;
     width: 100%;
   }
 
@@ -4523,11 +4513,11 @@ body .navigation a :hover {
 
 @media screen and (min-width: 50em) {
   .child {
-    overflow: scroll;
     z-index: 0;
-    top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    top: 0px;
+    height: 100%;
+    left: 70px;
+    width: calc(100% - 70px);
   }
 
   .grid .column {
@@ -4542,8 +4532,8 @@ body .navigation a :hover {
     overflow: scroll;
     z-index: 0;
     top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    height: 100%;
+    width: calc(100% - 70px);
   }
 }
 
@@ -4551,9 +4541,10 @@ body .navigation a :hover {
   .child {
     overflow: scroll;
     z-index: 0;
-    top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    top: 0;
+    height: 100%;
+    left: 70px;
+    width: calc(100% - 70px);
   }
 
   .child .grid .column {
@@ -4567,9 +4558,10 @@ body .navigation a :hover {
   .add-child {
     overflow: scroll;
     z-index: 0;
-    top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    top: 0;
+    height: 100%;
+    left: 70px;
+    width: calc(100% - 70px);
   }
 }
 
@@ -4577,9 +4569,9 @@ body .navigation a :hover {
   .child {
     overflow: scroll;
     z-index: 0;
-    top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    top: 0;
+    height: 100%;
+    width: calc(100M - 70px);
   }
 
   .child .grid .column {
@@ -4593,9 +4585,10 @@ body .navigation a :hover {
   .add-child {
     overflow: scroll;
     z-index: 0;
-    top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    top: 0;
+    left: 70px;
+    height: 100%;
+    width: calc(100% - 70px);
   }
 }
 
@@ -4603,9 +4596,10 @@ body .navigation a :hover {
   .child {
     overflow: scroll;
     z-index: 0;
-    top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    left: 70px;
+    top: 0;
+    height: 100%;
+    width: calc(100% - 70px);
   }
 
   .child .grid .column {
@@ -4619,9 +4613,10 @@ body .navigation a :hover {
   .add-child {
     overflow: scroll;
     z-index: 0;
-    top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    left: 70px;
+    top: 0;
+    height: 100%;
+    width: calc(100% - 70px);
   }
 }
 
@@ -4629,34 +4624,33 @@ body .navigation a :hover {
   position: absolute;
   z-index: 0;
   bottom: 0;
+  right: 0;
 }
 
 .list .child-item {
   text-decoration: none;
   color: #3B4250;
-  padding: 10px 20px;
+  font-weight: 500;
   height: 70px;
   background: #F7F7F7;
 }
 
 @media screen and (max-width: 37.5em) {
   .list {
-    top: 90px;
-    overflow: visible;
+    top: 47px;
     width: 100%;
   }
 
   .list .child-item {
     margin: 2px;
-    padding: 10px;
+    padding: 15px;
     width: calc(100% - 4px);
   }
 }
 
 @media screen and (min-width: 37.5em) {
   .list {
-    top: 90px;
-    overflow: visible;
+    top: 48px;
     width: 100%;
   }
 
@@ -4668,30 +4662,17 @@ body .navigation a :hover {
 
 @media screen and (min-width: 50em) {
   .list {
-    overflow: scroll;
     z-index: 0;
-    top: 35px;
-    height: calc(100% - 35px);
-    width: calc(100vw - 70px);
+    top: 4px;
+    left: 70px;
+    height: 100%;
+    width: calc(100% - 70px);
   }
 
   .list .child-item {
-    width: calc((100% / 4) - 8px);
-    margin: 2px;
-  }
-}
-
-@media screen and (min-width: 64em) {
-  .child-item {
-    width: calc((100% / 5) - 10px);
-    margin: 2px;
-  }
-}
-
-@media screen and (min-width: 70em) {
-  .child-item {
-    width: calc((100% / 6) - 12px);
-    margin: 2px;
+    width: calc((100% / 4) - 6px);
+    margin: 3px;
+    padding: 10px 15px;
   }
 }
 

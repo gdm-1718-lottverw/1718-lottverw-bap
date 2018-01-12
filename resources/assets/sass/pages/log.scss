@@ -94,21 +94,18 @@
 
 @include breakpoint(xs){
     .log{
-        top: 0;
-        overflow: visible ;
+        top: 45px;
         width: 100%;
     }
 }
 @include breakpoint(sm){
     .log{
-        top: 0;
-        overflow: visible;
+        top: 45px;
         width: 100% ;
     }
 }
 @include breakpoint(md){
     .log{
-        overflow: scroll;
         z-index: 0;
         top: 0;
         height: 100%;

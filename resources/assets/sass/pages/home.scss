@@ -85,8 +85,8 @@
     .tip {
         color: $darkgray;
         position: absolute;
-        right: 93px;
-        bottom: 80px;
+        right: 83px;
+        bottom: 84px;
         background: $lightgray;
         padding: 8px 15px;
         border-radius: 7px;
@@ -146,8 +146,7 @@
 
 @include breakpoint(xs){
     .home {
-        top: 0;
-        overflow: visible ;
+        top: 45px;
         width: 100% ;
     }
     #to-come, #in, #out, #leftover {
@@ -171,8 +170,7 @@
 }
 @include breakpoint(sm){
     .home {
-        top: 0;
-        overflow: visible;
+        top: 45px;
         width: 100%;
     }
     #to-come, #in, #out, #leftover {
@@ -196,11 +194,10 @@
 }
 @include breakpoint(md){
     .home {
-        overflow: scroll;
         z-index: 0;
         top: 0;
         height: 100%;
-        width: calc(100vw - 70px);
+        width: calc(100% - 70px);
         left: 70px;
     }
     #to-come, #in, #out, #leftover {
