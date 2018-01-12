@@ -37,9 +37,8 @@ export const profileUpdating = () => ({
     type: ActionTypes.PROFILE_UPDATING
 })
 
-export const profileUpdateSuccess = (data) => ({
+export const profileUpdateSuccess = () => ({
     type: ActionTypes.PROFILE_UPDATE_SUCCESS,
-    data: data
 })
 
 export const profileUpdateError = (error) => ({
@@ -66,8 +65,7 @@ export const UpdateProfile = (token, data) => {
         dispatch(profileUpdating())
         axios.patch(`${URL}parents/profile/update`, JSON.stringify(data), {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
         .then(response => {
-            dispatch(profileUpdateSuccess(response.data));
-            dispatch(fetchProfile(token));
+            dispatch(profileUpdateSuccess());
         }).catch(error => {
             dispatch(profileUpdateError(error))
         });

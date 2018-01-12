@@ -27,8 +27,7 @@ const ProfileReducer = (state = { isLoading: false, error: undefined, data: {} }
             });
         case Actions.PROFILE_UPDATE_SUCCESS:
             return Object.assign({}, state, {
-                isLoading: false,
-                data: action.data,
+                isLoading: false
             }); 
         default:
             return state;
