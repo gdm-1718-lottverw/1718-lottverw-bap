@@ -27,7 +27,7 @@
                 font-size: 16px;
                 font-weight: 100;
                 margin: -20px;
-                    margin-bottom: -20px;
+                margin-bottom: -20px;
                 margin-bottom: 20px;
                 padding: 14px;
                 border-bottom: 1px solid $darkgray;
@@ -65,8 +65,7 @@
 
 @include breakpoint(xs){
     .child{
-        top: 90px;
-        overflow: visible ;
+        top: 45px;
         width: 100% ;
         .grid {
             .column {
@@ -78,16 +77,14 @@
         }
     }
     .addChild{
-        top: 90px;
-        overflow: visible ;
+        top: 45px;
         width: 100% ;
     }
 }
 
 @include breakpoint(sm){
     .child{
-        top: 90px;
-        overflow: visible;
+        top: 45px;
         width: 100% ;
         .grid {
             .column {
@@ -101,11 +98,11 @@
 }
 @include breakpoint(md){
     .child {
-        overflow: scroll;
         z-index: 0;
-        top: 35px;
-        height: calc(100% - 35px);
-        width: calc(100vw - 70px);
+        top: 0px;
+        height: 100%;
+        left: 70px;
+        width: calc(100% - 70px);
     }
     .grid {
         .column {
@@ -119,8 +116,8 @@
        overflow: scroll;
         z-index: 0;
         top: 35px;
-        height: calc(100% - 35px);
-        width: calc(100vw - 70px);
+        height: 100%;
+        width: calc(100% - 70px);
     }
 }
 
@@ -128,9 +125,10 @@
     .child {
         overflow: scroll;
         z-index: 0;
-        top: 35px;
-        height: calc(100% - 35px);
-        width: calc(100vw - 70px);
+        top: 0;
+        height: 100%;
+         left: 70px;
+        width: calc(100% - 70px);
         .grid {
             .column {
                 width: calc((100% - 30px) / 3);
@@ -143,9 +141,10 @@
     .add-child{
         overflow: scroll;
         z-index: 0;
-        top: 35px;
-        height: calc(100% - 35px);
-        width: calc(100vw - 70px);
+        top: 0;
+        height: 100%;
+         left: 70px;
+        width: calc(100% - 70px);
     }
 }
 
@@ -153,9 +152,9 @@
     .child {
         overflow: scroll;
         z-index: 0;
-        top: 35px;
-        height: calc(100% - 35px);
-        width: calc(100vw - 70px);
+        top: 0;
+         height: 100%;
+        width: calc(100M - 70px);
         .grid {
             .column {
                 width: calc((100% - 30px) / 3);
@@ -168,18 +167,20 @@
     .add-child {
         overflow: scroll;
         z-index: 0;
-        top: 35px;
-        height: calc(100% - 35px);
-        width: calc(100vw - 70px);
+        top: 0;
+         left: 70px;
+         height: 100%;
+        width: calc(100% - 70px);
     }
 }
 @include breakpoint(xxl){
     .child {
         overflow: scroll;
         z-index: 0;
-        top: 35px;
-        height: calc(100% - 35px);
-        width: calc(100vw - 70px);
+         left: 70px;
+        top: 0;
+        height: 100%;
+        width: calc(100% - 70px);
         .grid {
             .column {
                 width: calc((100% - 30px) / 3);
@@ -192,8 +193,9 @@
     .add-child {
         overflow: scroll;
         z-index: 0;
-        top: 35px;
-        height: calc(100% - 35px);
-        width: calc(100vw - 70px);
+         left: 70px;
+        top: 0;
+         height: 100%;
+        width: calc(100% - 70px);
     }
 }

@@ -5,9 +5,6 @@ $(document).ready(function(){
         $('.date').text(d.getDate() + '/' + (d.getMonth() + 1 ) + '/' + d.getFullYear() + ', ' + d.getHours() + ":" + d.getMinutes());
     }, 30000);
 
-    // HOW MANY CHILDREN ARE PRESENT 
-    var count = $("#in").children().length;
-    $('#headCount').append("<p class='count'>"+ count + '</p>');
     // LOGPAGE CHANGE EDIT FIELD
     $('tbody').on('click', '.fa-pencil', (e) => {
         var id = e.currentTarget.id;
@@ -43,6 +40,14 @@ $(document).ready(function(){
             target.attr('disabled', 'disabled');
         });
 
+    $("#headCount").click((e) => {
+        var tip = $('.tip');
+        if(tip.hasClass('show')){
+             tip.removeClass('show');
+         } else{
+            tip.addClass('show')
+         } 
+    })
     function signInOut(action, oldContainer, newContainer, oldId, newId, e){
         $.ajax({
             method: "POST",
@@ -55,6 +60,8 @@ $(document).ready(function(){
     }
 
     $('#container-future').on('click', '.fa-sign-in', (e) => {
+        var count = $("#in").children().length + 1;
+        $('#headCount').html("<p class='count'>"+ count + '</p>');
         var target = $(e.target);
         var attr = target.attr('disabled');
         typeof attr == typeof undefined ? signInOut('sign-in', 'container-future', 'container-in', 'to-come', 'in', e): console.log(attr);           
@@ -62,6 +69,8 @@ $(document).ready(function(){
     });
 
     $('#container-in').on('click', '.fa-sign-out', (e) => {
+        var count = $("#in").children().length;
+        $('#headCount').html("<p class='count'>"+ count + '</p>');
         var target = $(e.target);
         var attr = target.attr('disabled');
         typeof attr == typeof undefined ? signInOut('sign-out', 'container-in', 'container-out', 'in', 'out', e) : console.log(attr);                  

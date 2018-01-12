@@ -39,7 +39,7 @@ body {
     }
     .navigation {
         z-index: 1000;
-        position: absolute;
+        position: fixed;
         background: $darkgray;
         display: flex;
         align-items: flex-end;

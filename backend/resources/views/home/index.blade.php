@@ -10,21 +10,15 @@
     </div> 
     @endif
     <i onClick="showHide('show', '#overlay')" class="fa fa-plus btn-fab blue" aria-hidden="true"></i>
-     @if(Count($toCome) > 0)
     <div id="container-future">
       @include('home.partials.future')
     </div>  
-    @endif
-    @if(Count($in) > 0)
     <div id="container-in">
       @include('home.partials.in')
     </div>
-    @endif
-    @if(Count($out) > 0)
     <div id="container-out">
       @include('home.partials.out')
     </div>
-    @endif
 
     <div id="headCount" class="info-fab deeppink bottom"></div>
     <span class="tip">Aanwezigen</span>
