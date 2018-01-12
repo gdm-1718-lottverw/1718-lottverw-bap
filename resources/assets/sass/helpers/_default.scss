@@ -51,18 +51,59 @@
     text-decoration: underline;
 }
 
+.info-fab{
+    right: 27px;
+    top: auto;
+    left: auto;
+    bottom: 90px;
+    position: fixed;
+    border-radius: 100%;
+    font-size: 25px;
+    width: 55px;
+    height: 55px;
+    padding: 14px 20px;
+    color: white;
+    box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.8);
+    p {
+        margin: 0;
+        padding: 0;
+    }
+    &.yellow {
+        background: $yellow;
+        color: $darkgray;
+    }
+    &.darkgray {
+        background: $darkgray;
+    }
+     &.pink {
+        background: $pink;
+    }
+    &.deeppink {
+        background: $deeppink;
+    }
+    &.green {
+        background: $green;
+    }
+    &.blue {
+        background: $lightblue;
+    }
+    &.top {
+        top: 20px;
+        bottom: auto;
+    }
+}
 // BUTTONS
 .btn-fab {
     top: auto;
-    right: 20px;
-    bottom: 20px;
+    right: 27px;
+    bottom: 27px;
     left: auto;
     position: fixed;
     border-radius: 100%;
     font-size: 27px;
-    width: 63px;
-    height: 63px;
-    padding: 19px 21px;
+    width: 55px;
+    height: 55px;
+    padding: 15px 17px;
     color: white;
     box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.8);
     &.yellow {

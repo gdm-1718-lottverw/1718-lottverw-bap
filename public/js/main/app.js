@@ -86,6 +86,9 @@ $(document).ready(function () {
         $('.date').text(d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear() + ', ' + d.getHours() + ":" + d.getMinutes());
     }, 30000);
 
+    // HOW MANY CHILDREN ARE PRESENT 
+    var count = $("#in").children().length;
+    $('#headCount').append("<p class='count'>" + count + '</p>');
     // LOGPAGE CHANGE EDIT FIELD
     $('tbody').on('click', '.fa-pencil', function (e) {
         var id = e.currentTarget.id;
@@ -127,8 +130,8 @@ $(document).ready(function () {
             url: "/" + action,
             data: { 'id': e.target.id, '_token': $('input[name=_token]').val() }
         }).done(function (msg) {
-            $('div#' + oldContainer).load(document.URL + " div#" + oldId);
-            $('div#' + newContainer).load(document.URL + " div#" + newId);
+            $('div#' + oldContainer).load(window.location.href + " div#" + oldId);
+            $('div#' + newContainer).load(window.location.href + " div#" + newId);
         });
     }
 

@@ -34,6 +34,45 @@
   transition: $args;
 }
 
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes $animation-name {
+    @content;
+  }
+  @-moz-keyframes $animation-name {
+    @content;
+  }  
+  @-ms-keyframes $animation-name {
+    @content;
+  }
+  @-o-keyframes $animation-name {
+    @content;
+  }  
+  @keyframes $animation-name {
+    @content;
+  }
+}
+
+@mixin transform($str...) {
+  transform: $str;
+  -webkit-transform: $str;
+  -moz-transform: $str;
+  -o-transform: $str;
+  -ms-transform: $str;
+}
+@mixin animation($str...) {
+  -webkit-animation: $str;
+  -moz-animation: $str;
+  -ms-animation: $str;
+  -o-animation: $str;
+  animation: $str;
+}
+@mixin transition-timing-function($timing...) {
+    -moz-transition-timing-function:    $timing;
+    -o-transition-timing-function:      $timing;
+    -webkit-transition-timing-function: $timing;
+    transition-timing-function:         $timing;
+}
+
 @mixin placeholder {
    ::-webkit-input-placeholder { @content;}
    :-moz-placeholder           { @content;}
