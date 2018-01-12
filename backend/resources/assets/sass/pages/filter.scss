@@ -23,7 +23,9 @@
 
 @include breakpoint(md){
     .filter {
+        height: 100%;
         width: calc(100vw - 70px);
+        overflow: scroll;
         left: 70px;
         top: 0;
     }

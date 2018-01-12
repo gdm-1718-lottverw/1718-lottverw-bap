@@ -12,6 +12,6 @@ $factory->define(App\Models\Parents::class, function (Faker $faker) {
         'email' =>  $faker->unique()->email(),
         'phone_number' =>  $faker->unique()->phoneNumber(),
         'auth_key_id' => factory(App\Models\AuthKey::class)->create()->id,
-        'address_id' => factory(App\Models\Address::class)->create()->id,
+        'address_id' => factory(App\Models\Address::class)->create()->id
     ];
 });

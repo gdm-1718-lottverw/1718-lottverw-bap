@@ -10,6 +10,6 @@ $factory->define(App\Models\Address::class, function (Faker $faker) {
         'number' => $faker->buildingNumber,
         'street' => $faker->streetName,
         'city' => $faker->city,
-        'country' => $faker->country,
+        'country' => $faker->country
     ];
 });

@@ -11,6 +11,6 @@ class AllergieTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Allergie::class, 50)->create();
+        factory(App\Models\Allergie::class, 100)->create();
     }
 }

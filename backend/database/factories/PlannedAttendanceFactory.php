@@ -22,18 +22,8 @@ $factory->define(App\Models\PlannedAttendance::class, function (Faker $faker) {
 
 
 function generateDay() {
-    $m = 'voormiddag'; $f = 'namiddag'; $d = 'hele dag';
-    $x = rand(1, 3);
-    switch($x){
-        case $x == 1:
-            return $m;
-            break;
-        case $x == 2:
-            return $f;
-            break;
-        case $x == 3:
-            return $d;
-            break;
-    }
+    $type = ['voormiddag', 'namiddag'];
+    $x = rand(0, 1);
+    return $type[$x];
 } 
 
