@@ -3238,7 +3238,6 @@
   color: white;
   -webkit-box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.8);
           box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.8);
-  z-index: 10;
 }
 
 .btn-fab.yellow {
@@ -3267,7 +3266,7 @@
 }
 
 .btn-fab.top {
-  top: 40px;
+  top: 20px;
   bottom: auto;
 }
 
@@ -4146,7 +4145,9 @@ body .navigation a :hover {
 
 @media screen and (min-width: 50em) {
   .filter {
+    height: 100%;
     width: calc(100vw - 70px);
+    overflow: scroll;
     left: 70px;
     top: 0;
   }

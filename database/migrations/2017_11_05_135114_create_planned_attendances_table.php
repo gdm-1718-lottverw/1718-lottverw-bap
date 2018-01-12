@@ -24,12 +24,14 @@ class CreatePlannedAttendancesTable extends Migration
             $table->boolean('out');
             $table->text('parent_notes')->nullable();
             $table->timestamps();
+            $table->unsignedInteger('guardian_id')->nullable();
             $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::table('planned_attendances', function (Blueprint $table) {
             $table->foreign('organization_id')->references('id')->on('organizations');
             $table->foreign('child_id')->references('id')->on('children');
+            $table->foreign('guardian_id')->references('id')->on('guardians');
         });
     }
 

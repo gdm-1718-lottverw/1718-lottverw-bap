@@ -6,8 +6,9 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Doctor::class, function (Faker $faker) {
     $children = App\Models\Child::pluck('id');
+    $i = 1;
     return [
-        'children_id' => rand(1, (count($children) -1)),
+        'children_id' => rand(1, 700),
         'name' => $faker->firstName() . " " . $faker->lastName(),
         'phone_number' => $faker->phoneNumber(),
     ];

@@ -182,10 +182,10 @@ class Child extends Model
     public function scopeHistoryAttendance($query)
     { 
         // we use this scope first so the join will be global and can be used in the
-        // following scopes.
+        // following scopes.s
         $query = $query->leftJoin('planned_attendances As pa', 'children.id', '=', 'pa.child_id');
         $query->where([
-                ['pa.date','<=', Carbon::today()],
+                ['pa.date','<=', Carbon::yesterday()],
                 ['pa.date', '>=', Carbon::now()->subMonth(3)],
                 ['pa.deleted_at', '=', null]
             ]);

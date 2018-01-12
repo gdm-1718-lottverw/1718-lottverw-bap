@@ -75,25 +75,37 @@ class IndexController extends Controller
         $leftOver = [];
         if($this->type == "namiddag"){
             $leftOver = Child::general($general_conditions)
+            ->presence('present_registered')
             ->type($type_conditions_leftover)
-            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id', 'pa.in', 'pa.out']);
+            ->groupBy('pa.id')
+            ->orderBy('children.name')
+            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id', 'pa.in', 'pa.type', 'pa.out']);
         }
 
         $in = Child::general($general_conditions)
             ->logs('in')
             ->presence('present_present')
             ->type(array("type" => [$this->type]))
-            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
+            ->groupBy('pa.id')
+            ->orderBy('children.name')
+            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'pa.in', 'pa.type', 'pa.out', 'children.id as child_id']);
+        
         
         $out = Child::general($general_conditions)
             ->presence('present_out')
             ->logs('out')
             ->type(array("type" => [$this->type]))
+            ->groupBy('pa.id')
+            ->orderBy('children.name')
             ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
+        
 
         $toCome = Child::general($general_conditions)
             ->presence('present_registered')
+            ->groupBy('children.name')
             ->type(array("type" => [$this->type]))
+            ->groupBy('pa.id')
+            ->orderBy('children.name')
             ->get();
 
         return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children']));

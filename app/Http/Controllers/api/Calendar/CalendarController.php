@@ -60,6 +60,7 @@ class CalendarController extends Controller
                     $calendar_item->type = $type;
                     $calendar_item->parent_notes = $request->parent_notes;
                     $calendar_item->go_home_alone = $request->go_home_alone;
+                    $calendar_item->guardian_id = $request->guardian_id;
                     $calendar_item->child_id = $id;
                     $calendar_item->organization_id = $organization->id;
                     $calendar_item->save();

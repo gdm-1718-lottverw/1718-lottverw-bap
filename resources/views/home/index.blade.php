@@ -27,7 +27,7 @@
     @endif
     <div id="overlay" class="hide flex justified-c">
       <div class="flex justified-end">
-        <i onClick="showHide('hide', '#overlay')" class="fa fa-times btn-fab pink flex-child center" aria-hidden="true"></i>
+        <i onClick="showHide('hide', '#overlay')" class="fa fa-times btn-fab pink top flex-child center" aria-hidden="true"></i>
       </div>
       {{Form::open(array('action' => 'Backoffice\Home\IndexController@storeChild', 'class' => 'form flex-child center'))}}
         <h1 class="title">Kind toevoegen</h1>
@@ -45,7 +45,6 @@
                 <option value=""> -- Selecteer een dagtype --</option>
                 <option value="voormiddag">Voormiddag</option>
                 <option value="namiddag">Namiddag</option>
-                <option value="hele dag">hele dag</option>
               </select>
             </div>
           </div>

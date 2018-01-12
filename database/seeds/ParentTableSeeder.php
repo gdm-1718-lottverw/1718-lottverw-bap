@@ -11,6 +11,6 @@ class ParentTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Parents::class, 100)->create();
+        factory(App\Models\Parents::class, 1000)->create();
     }
 }
