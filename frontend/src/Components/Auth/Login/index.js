@@ -39,6 +39,7 @@ class LoginService extends Component {
             <Text style={styles.label}>password</Text>
             <TextInput
                 style={styles.textInput}
+                secureTextEntry={true}
                 onChangeText={(password) => this.setState({password})}
                 value={this.state.password}/>
             
