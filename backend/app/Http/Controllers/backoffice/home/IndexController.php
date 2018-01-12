@@ -75,7 +75,7 @@ class IndexController extends Controller
         $leftOver = [];
         if($this->type == "namiddag"){
             $leftOver = Child::general($general_conditions)
-            ->presence('present_registered')
+            ->where('pa.out', false)
             ->type($type_conditions_leftover)
             ->groupBy('pa.id')
             ->orderBy('children.name')
@@ -89,7 +89,6 @@ class IndexController extends Controller
             ->groupBy('pa.id')
             ->orderBy('children.name')
             ->get(['children.name', 'pa.id', 'pa.parent_notes', 'pa.in', 'pa.type', 'pa.out', 'children.id as child_id']);
-        
         
         $out = Child::general($general_conditions)
             ->presence('present_out')
@@ -108,7 +107,7 @@ class IndexController extends Controller
             ->orderBy('children.name')
             ->get();
 
-        return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children']));
+        return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children', 'count']));
     }    
 
     public function signIn(request $request){

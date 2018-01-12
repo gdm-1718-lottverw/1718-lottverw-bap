@@ -219,8 +219,7 @@ class Child extends Model
                 ]);
                 break;
             default:
-                break;
-                
+                break; 
             }
     }
 
