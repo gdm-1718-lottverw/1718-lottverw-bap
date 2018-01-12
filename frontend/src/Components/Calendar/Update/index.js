@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import { connect }from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from './styles';
@@ -92,10 +92,16 @@ class UpdateCalendarService extends Component {
   }
 
   render() {
-    const types = [{name: 'voormiddag', id: 'morning', checked: false}, {name: 'namiddag', id: 'evening', checked: false}, {name: 'hele dag', id: 'full day', checked: false}];
+    const types = [{name: 'voormiddag', id: 'morning', checked: false}, {name: 'namiddag', id: 'evening', checked: false}];
     const bool = [{name: 'Mag alleen naar huis', id: true, checked: false}, {name: 'Wordt opgehaald', id: false, checked: false}];
     return (
      <ScrollView style={styles.container} keyboardShouldPersistTaps='always' >
+     <View style={[styles.container, styles.horizontal]}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="small" color="#00ff00" />
+        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="small" color="#00ff00" />
+      </View>
       <View style={styles.item}>
         <GenerateIcon name={'calendar'} size={15} />
         <Text style={[styles.label, styles.single ]}>Ingeschreven op: {this.state.item.date}</Text>            

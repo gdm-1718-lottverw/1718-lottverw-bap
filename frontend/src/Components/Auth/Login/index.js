@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ListView, ActivityIndicator, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { connect }from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import Icon  from 'react-native-vector-icons/FontAwesome';
-import store from '../../../Reducers/index';
 import styles from './styles';
+import GenerateLoading from '../../Loading/index';
 
 class LoginService extends Component {
   constructor(props) {
@@ -14,6 +13,7 @@ class LoginService extends Component {
       password: '',
     }
     error = "";
+    loading = false;
     errorActive = false;
   }
   componentDidMount() {}   
@@ -28,6 +28,8 @@ class LoginService extends Component {
         return (
           <View style={styles.container}>
           {this.errorActive == true ? <Text style={styles.error}>{this.error}</Text> : null}
+          {this.loading == true && this.errorActive == false? <GenerateLoading />:<View>
+             <View style={styles.container}>
             <Text style={styles.label}>username</Text>
             <TextInput
                 style={styles.textInput}
@@ -43,10 +45,13 @@ class LoginService extends Component {
             <TouchableOpacity
                 style={styles.btn}
                 onPress={() => {
-                  this.props.login(JSON.stringify(this.state)); 
+                  this.loading = true; 
+                  this.props.login(JSON.stringify(this.state));
                 }}>
                 <Text style={styles.btnText}>Log in</Text>
             </TouchableOpacity>
+             </View></View>
+            }
           </View>
         );
       }

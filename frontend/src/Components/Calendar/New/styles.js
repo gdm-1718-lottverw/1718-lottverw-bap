@@ -2,16 +2,25 @@ import { StyleSheet } from 'react-native';
 import Colors from '../../../Config/theme';
 
 export default styles = StyleSheet.create({
-    iconTest: {
-        color: Colors.lightBlue,
-        backgroundColor: Colors.white,
-        paddingLeft: 8,
-        paddingTop: 8,
-        borderRadius: 20,
-        height: 30,
-        width: 30,
-        zIndex: 3
-    }, 
+    loadingContainer: {
+        marginTop: 100,
+    },
+    error: {
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: 'red',
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    errorText: {
+        color: Colors.white,
+        textAlign: 'center',
+    },
+    errorIcon: {
+        marginTop: 2,
+        color: Colors.white,
+    },
     icon:{
         color: Colors.darkgray,
         marginLeft: 10,
@@ -27,6 +36,24 @@ export default styles = StyleSheet.create({
         borderBottomLeftRadius: 7,
         marginRight: 10,
     },
+    checked: {
+        backgroundColor: '#000000', 
+        height: 10, 
+        width:10, 
+        borderRadius: 7,  
+        marginTop: 5, 
+        marginRight: 5
+    },
+    unChecked: {
+        backgroundColor: '#FFFFFF', 
+        borderColor: '#000', 
+        borderWidth: 1, 
+        height: 10,
+        width:10, 
+        borderRadius: 7, 
+        marginTop: 5, 
+        marginRight: 5
+    },    
     label: {
         fontWeight: '900',
         backgroundColor: Colors.white,

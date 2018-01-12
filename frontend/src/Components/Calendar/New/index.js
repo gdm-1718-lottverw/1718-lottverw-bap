@@ -4,25 +4,22 @@ import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import GenerateIcon from '../../Icon/index';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import GenerateLoading from '../../Loading/index'; 
 
 class NewCalendarService extends React.Component{  
   constructor(props){
     super(props);
     this.state = {
-      type: '',
-      go_home_alone: false,
       parent_notes: '',
       date: this.props.date,
-      // All parent childen.
       children: [],
-      // For adding to db.
-      child_id: [],
-      types: [],
-      // Just for radiubutton 
-      check_type: '',
-      check_go_home_alone: false,
-
+      guardians: [],
+      error: '',
+      types: [{name: 'voormiddag', id: 'voormiddag'}, {name: 'namiddag', id: 'namiddag'}],
+      bool: [{name: 'Wordt opgehaald', id: true, selected: true}, {name: 'Mag alleen naar huis', id: false, selected: false}],
     }
+    var loading = true;
   }
 
   componentDidMount() {
@@ -30,86 +27,116 @@ class NewCalendarService extends React.Component{
   }   
 
   componentWillReceiveProps(nextProps) {
-   if (nextProps.data.length > 0 && nextProps.error == undefined) {
-      this.state.children = nextProps.data;
+   if (nextProps.error == undefined) {
+      this.setState({'children': nextProps.data['children']});
+      this.setState({'guardians': nextProps.data['guardians']});
+      this.loading = false;
     } 
   }
+  
+  renderCheckBoxes = (obj, patch) => {
+    return obj.map((item, i) => {
+      return (
+        <TouchableOpacity style={styles.check} key={i} onPress={() => {
+          this.setCheckBoxSelected(this.state[patch][i]);
+          this.setState({[patch]: obj})
+        }}>
+         <View style={this.setCheckedRadio(this.state[patch][i])}></View>
+         <Text style={styles.checkText}>{item.name}</Text>
+        </TouchableOpacity>)
+      })
+  }
 
-  setCheck = (item, patcho) => {
-       var a = {backgroundColor: '#000000', height: 10, width:10, borderRadius: 7,  marginTop: 5, marginRight: 5};
-       var b = {backgroundColor: '#FFFFFF', borderColor: '#000', borderWidth: 1, height: 10, width:10, borderRadius: 7, marginTop: 5, marginRight: 5};
-       
-       if(Array.isArray(patcho)){
-          for(var i = 0; i < patcho.length; i++){
-           if(patcho[i] == item.id){
-             return a;
-           }
-         }
-         return b;
-       } else {
-        switch(patcho){
-          case item.name: 
-            return a;
-            break;
-          default: 
-            return b;
-            break;
-        }
+  setCheckBoxSelected = (item) => {
+    if(item['selected'] == undefined){
+      item['selected'] = true;
+    } else {
+      item['selected'] = !item['selected'];
     }
   }
 
+  setCheckedRadio = (item) => {
+    if(item.selected == true){
+      return styles.checked;
+    } else {
+      return styles.unChecked;
+    }
+  }
+
+  setSelected = (obj, item) => {
+    obj.forEach((o, i)=>{
+      //SET STATE BOOL AND GUARDIAN
+      o.selected = false;
+      o.id = false;
+      if(o.name == item.name){
+        o.selected = true;
+        o.id = true;
+      }
+    })
+    return obj;
+  }
+
   renderRadioButton = (obj, patch) => {      
-    const state_item = 'check_' + patch;      
     return obj.map((item, i) => {
       return (
-        <TouchableOpacity style={styles.check} key={i} onPress={() => {this.setState({[patch]: item.id}); this.setState({[state_item]: item.name})}}>
-         <View style={this.setCheck(item, this.state[state_item])}></View>
+        <TouchableOpacity style={styles.check} key={i} onPress={() => {
+            this.setSelected(obj, item);
+            this.setState({[patch]: obj}); 
+          }}>
+         <View style={this.setCheckedRadio(item)}></View>
          <Text style={styles.checkText}>{item.name}</Text>
         </TouchableOpacity>)
       })
   }
-
-  renderCheckboxes = (obj, patch) => {   
-    spliceState =(index) => {
-      let a = this.state.child_id.splice(index, 1);
-      this.setState([patch]: a);
-    }          
-    return obj.map((item, i) => {
-      i*3;
-    var index; var active = false;
-     for(var o=0; o<this.state[patch].length; o++){
-        if(this.state[patch][o] == item.id){
-         var active = true;
-         var index = this.state[patch].indexOf(item.id);
-        }
-     }
-      return (
-        <TouchableOpacity style={styles.check} key={i} onPress={() => {!active? this.setState({[patch]: [...this.state[patch], item.id]}): spliceState(index)}}>
-         <View style={this.setCheck(item, this.state[patch])}></View>
-         <Text style={styles.checkText}>{item.name}</Text>
-        </TouchableOpacity>)
-      })
-  }
-
 
   submit = () => {
+    let children = [];
+    this.state.children.forEach((e) => {
+      e.selected == true? children.push(e.id): null;
+    })
+    let types = [];
+    this.state.types.forEach((e) => {
+     e.selected == true? types.push(e.id): null;
+    })
+    let guardians = null;
+    this.state.guardians.forEach((e) => {
+      e.selected == true? guardians = e.id: null;
+    })    
+
     let data = {
-      child_id: this.state.child_id,
+      child_id: children,
       date: this.state.date,
       parent_notes: this.state.parent_notes,
-      types: this.state.types, 
-      go_home_alone: this.state.go_home_alone
+      types: types, 
+      go_home_alone: this.state.bool[1].id,
+      guardian_id: guardians
     };
     console.log(data);
-    this.props.submitNewAttendance(this.props.token, this.props.id, JSON.stringify(data));
+    if (children.length == 0 && types.length == 0){
+      this.setState({error: "U heeft geen kinderen noch dag types gekozen."});
+    } else if(children.length == 0){
+      this.setState({error: "Gelieve minimum één kind aan te duiden."});
+    } else if(types.length == 0){
+      this.setState({error: "Gelieve een dag type aan te duiden."});
+    } else {
+      this.loading = true;
+      this.setState({error: ''});
+      this.props.submitNewAttendance(this.props.token, this.props.id, JSON.stringify(data));
+    }
   }
 
   render(){  
-    const types = [{name: 'voormiddag', id: 'voormiddag'}, {name: 'namiddag', id: 'namiddag'}];
-    const bool = [{name: 'Mag alleen naar huis', id: true}, {name: 'Wordt opgehaald', id: false}];
-
     return (
       <ScrollView style={styles.container}>
+       
+        {this.loading == true? <View style={styles.loadingContainer}><GenerateLoading /></View>:
+          <View>
+          {this.state.error != ''? 
+          <View style={styles.error}>
+            <Icon style={styles.errorIcon}  name={'exclamation-triangle'} size={14}/>
+            <Text style={styles.errorText}>{this.state.error}</Text>
+          </View>
+        :null}
         <View style={styles.item}>
           <GenerateIcon name={'calendar'} size={15} />
           <Text style={[styles.label, styles.single ]}>Ingeschreven voor: {this.props.date}</Text>            
@@ -119,23 +146,34 @@ class NewCalendarService extends React.Component{
          <GenerateIcon name={'user-circle-o'} size={15} />
           <Text style={styles.label}>Kind(eren)</Text>
           <View style={styles.description}>
-           {this.state.children !== undefined && this.state.children.length > 0 ? this.renderCheckboxes(this.state.children, 'child_id') : null}
+           {this.state.children !== undefined && this.state.children.length > 0 ? this.renderCheckBoxes(this.state.children, 'children') : null}
           </View>              
         </View>
         <View style={styles.item}>
          <GenerateIcon name={'sun-o'} size={15} />
           <Text style={styles.label}>Dag type</Text>
           <View style={styles.description}>
-            {this.renderCheckboxes(types, 'types')}
+            {this.renderCheckBoxes(this.state.types, 'types')}
           </View>              
         </View> 
+
         <View style={styles.item}>
          <GenerateIcon name={'bicycle'} size={15} />
           <Text style={styles.label}>Mag alleen naar huis.</Text>
           <View style={styles.description}>
-            {this.renderRadioButton(bool, 'go_home_alone')}
+            {this.renderRadioButton(this.state.bool, 'bool')}
           </View>              
-        </View>      
+        </View>     
+
+
+        <View style={styles.item}>
+         <GenerateIcon name={'users'} size={15} />
+          <Text style={styles.label}>Komt kind ophalen.</Text>
+          <View style={styles.description}>
+            {this.state.guardians != undefined? this.renderRadioButton(this.state.guardians, 'guardians'): null}
+          </View>              
+        </View>  
+
         <View style={styles.item}>
          <GenerateIcon name={'comment-o'} size={15} />
           <Text style={styles.label}>Opmerkingen</Text>
@@ -153,6 +191,8 @@ class NewCalendarService extends React.Component{
             <Text style={styles.btnText}>BEWAREN</Text>
           </TouchableOpacity>
         </View>
+                </View>
+        }
       </ScrollView>
       );
 

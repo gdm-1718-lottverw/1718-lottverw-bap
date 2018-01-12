@@ -20,16 +20,25 @@ export default class App extends Component<{}> {
   constructor(props){
     super(props);
   }
+  onBackPress() {
+    if (Actions.state.index === 0) {
+      return false
+    }
+    Actions.pop()
+    return true
+  }
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <ReduxRouter navigator={navigator} />
+          <ReduxRouter  backAndroidHandler={this.onBackPress} navigator={navigator} />
         </View>
       </Provider>
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
