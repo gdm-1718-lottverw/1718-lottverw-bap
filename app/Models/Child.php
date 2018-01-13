@@ -190,6 +190,19 @@ class Child extends Model
                 ['pa.deleted_at', '=', null]
             ]);
     }
+    /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGuards($query)
+    { 
+        // we use this scope first so the join will be global and can be used in the
+        // following scopes.s
+        $query = $query->leftJoin('guardians As g', 'g.id', '=', 'pa.guardian_id');
+    }
    /**
      * Scope a query to only include users of a given type.
      *
