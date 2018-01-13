@@ -10,9 +10,24 @@
       @endif
     <a href="/log"><i class="fa fa-pencil" id="{{$lo->id}}"></i></a>
     </div>
-    <a href="/child/{{$lo->child_id}}" class="child-info flex column">
-      <span class="name">{{$lo->name}}</span>
+    <a href="/child/{{$lo->child_id}}" class="child-info flex column justified-start">
+      <span class="name">{{$lo->name}} </span>
       <p class="description">{{$lo->parent_notes}}</p>
+       @if($lo->guardian_id != null)
+         <p class="guard">Kind wordt opgehaald door {{$lo->guard}}</p>
+      @endif
+       <div class="icons flex row flex-child end "> 
+          @if($lo->pictures == true)
+           <span class="icon flex justified-c centered">
+            <i class="fa fa-camera" aria-hidden="true"></i></span>
+          @endif
+          @if($lo->potty_trained == true)
+             <span class="icon flex justified-c centered"><i class="fa fa-tint" aria-hidden="true"></i></span>
+          @endif
+          @if(\Carbon\Carbon::parse($lo->date_of_birth)->format('m-d') == \Carbon\Carbon::now()->format('m-d'))
+             <span class="icon flex justified-c centered"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
+          @endif
+        </div>
     </a>
     @if(\Carbon\Carbon::parse($lo->created_at)->format('Y-m-d') == \Carbon\Carbon::now()->format('Y-m-d'))
         {{ Form::open(array('action' => 'Backoffice\Home\IndexController@destroy', 'class' => 'ban')) }} 

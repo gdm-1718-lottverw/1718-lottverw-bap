@@ -3815,8 +3815,38 @@ body .navigation a :hover {
 .home #in .child-card,
 .home #out .child-card,
 .home #leftover .child-card {
-  height: 130px;
+  height: 155px;
   position: relative;
+}
+
+.home #to-come .child-card .icons,
+.home #in .child-card .icons,
+.home #out .child-card .icons,
+.home #leftover .child-card .icons {
+  text-align: right;
+  margin-top: 6px;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+.home #to-come .child-card .icons .icon,
+.home #in .child-card .icons .icon,
+.home #out .child-card .icons .icon,
+.home #leftover .child-card .icons .icon {
+  margin: 0 3px;
+  background: #3B4250;
+  border-radius: 21px;
+  color: white;
+  width: 22px;
+  height: 22px;
+}
+
+.home #to-come .child-card .icons .icon i,
+.home #in .child-card .icons .icon i,
+.home #out .child-card .icons .icon i,
+.home #leftover .child-card .icons .icon i {
+  font-size: 11px;
 }
 
 .home #to-come .child-card .btn,
@@ -3874,7 +3904,7 @@ body .navigation a :hover {
 .home #leftover .child-card .child-info {
   width: 100%;
   background: #F7F7F7;
-  padding: 20px;
+  padding: 16px;
 }
 
 .home #to-come .child-card .child-info .name,
@@ -3883,9 +3913,17 @@ body .navigation a :hover {
 .home #leftover .child-card .child-info .name {
   color: #3B4250;
   text-decoration: none;
-  font-size: 0.9em;
+  font-size: 0.85em;
   font-weight: 600;
   width: 100%;
+}
+
+.home #to-come .child-card .child-info .guard,
+.home #in .child-card .child-info .guard,
+.home #out .child-card .child-info .guard,
+.home #leftover .child-card .child-info .guard {
+  margin: 7px 0;
+  font-size: 0.7em;
 }
 
 .home #to-come .child-card .child-info .description,
@@ -3894,9 +3932,9 @@ body .navigation a :hover {
 .home #leftover .child-card .child-info .description {
   color: #3B4250;
   text-decoration: none;
-  font-size: 0.6em;
+  font-size: 0.7em;
   font-weight: 300;
-  margin: 4px 0;
+  margin: 10px 0;
 }
 
 .home #container-leftover {
@@ -4126,8 +4164,8 @@ body .navigation a :hover {
   #in .child-card,
   #out .child-card,
   #leftover .child-card {
-    width: calc((100% / 3) - 14px);
-    margin: 7px;
+    width: calc((100% / 3) - 6px);
+    margin: 3px;
   }
 
   #overlay {
@@ -4204,8 +4242,8 @@ body .navigation a :hover {
   #in .child-card,
   #out .child-card,
   #leftover .child-card {
-    width: calc((100% / 5) - 10px);
-    margin: 5px;
+    width: calc((100% / 4) - 6px);
+    margin: 3px;
   }
 
   #to-come .child-card .btn,

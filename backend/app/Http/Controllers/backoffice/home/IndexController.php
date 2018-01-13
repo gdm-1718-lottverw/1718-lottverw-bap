@@ -12,6 +12,7 @@ use App\Models\Child;
 use App\Models\Organization;
 use App\Models\PlannedAttendance;
 use App\Models\Log;
+use App\Models\Guardian;
 use App\Models\Action;
 use Carbon\Carbon;
 
@@ -79,33 +80,86 @@ class IndexController extends Controller
             ->type($type_conditions_leftover)
             ->groupBy('pa.id')
             ->orderBy('children.name')
-            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id', 'pa.in', 'pa.type', 'pa.out']);
+            ->get([
+                'children.name',
+                'children.date_of_birth', 
+                'children.potty_trained',
+                'children.pictures', 
+                'children.id as child_id',
+                'pa.id', 
+                'pa.parent_notes', 
+                 'pa.created_at', 
+                'pa.in', 
+                'pa.type', 
+                'pa.out',]);
         }
 
         $in = Child::general($general_conditions)
             ->logs('in')
             ->presence('present_present')
             ->type(array("type" => [$this->type]))
+            ->guards()
             ->groupBy('pa.id')
             ->orderBy('children.name')
-            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'pa.in', 'pa.type', 'pa.out', 'children.id as child_id']);
-        
+            ->get([
+                'children.name',
+                'children.date_of_birth', 
+                'children.potty_trained',
+                'children.pictures', 
+                'children.id as child_id',
+                'pa.id', 
+                'pa.parent_notes', 
+                 'pa.created_at', 
+                'pa.in', 
+                'pa.type',
+                'pa.guardian_id', 
+                'g.name as guard', 
+                'pa.out']);
+
         $out = Child::general($general_conditions)
             ->presence('present_out')
             ->logs('out')
             ->type(array("type" => [$this->type]))
+            ->guards()
             ->groupBy('pa.id')
             ->orderBy('children.name')
-            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
-        
+            ->get([
+                'children.name',
+                'children.date_of_birth', 
+                'children.potty_trained',
+                'children.pictures', 
+                'children.id as child_id',
+                'pa.id', 
+                'pa.parent_notes', 
+                'pa.created_at', 
+                'pa.in', 
+                'pa.type',
+                'pa.guardian_id', 
+                'g.name as guard', 
+                'pa.out']);
+
 
         $toCome = Child::general($general_conditions)
             ->presence('present_registered')
             ->groupBy('children.name')
             ->type(array("type" => [$this->type]))
+            ->guards()
             ->groupBy('pa.id')
             ->orderBy('children.name')
-            ->get();
+            ->get([
+                'children.name',
+                'children.date_of_birth', 
+                'children.potty_trained',
+                'children.pictures', 
+                'children.id as child_id',
+                'pa.id', 
+                'pa.parent_notes',
+                'pa.created_at',  
+                'pa.in', 
+                'pa.type',
+                'pa.guardian_id', 
+                'g.name as guard', 
+                'pa.out']);
 
         return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children', 'count']));
     }    
@@ -131,8 +185,23 @@ class IndexController extends Controller
             ->presence('present_present')
             ->type($type_conditions)
             ->logs('in')
-            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
-
+            ->guards()
+            ->groupBy('pa.id')
+            ->orderBy('children.name')
+            ->get([
+                'children.name',
+                'children.date_of_birth', 
+                'children.potty_trained',
+                'children.pictures', 
+                'children.id as child_id',
+                'pa.id', 
+                'pa.parent_notes', 
+                'pa.in', 
+                'pa.type',
+                'pa.created_at', 
+                'pa.guardian_id', 
+                'g.name as guard', 
+                'pa.out']);
         return view('home.partials.in', compact('in'));
     }    
 
@@ -155,7 +224,23 @@ class IndexController extends Controller
             ->presence('present_out')
             ->type($type_conditions)
             ->logs('out')
-            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id']);
+            ->guards()
+            ->groupBy('pa.id')
+            ->orderBy('children.name')
+            ->get([
+                'children.name',
+                'children.date_of_birth', 
+                'children.potty_trained',
+                'children.pictures', 
+                'children.id as child_id',
+                'pa.id', 
+                'pa.parent_notes', 
+                'pa.created_at', 
+                'pa.in', 
+                'pa.type',
+                'pa.guardian_id', 
+                'g.name as guard', 
+                'pa.out']);
        
        return view('home.partials.out', compact('out'));
     }   
@@ -177,8 +262,23 @@ class IndexController extends Controller
 
         $leftOver = Child::general($general_conditions)
             ->type($type_conditions_leftover)
-            ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id', 'pa.in', 'pa.out']);
-
+            ->guards()
+            ->groupBy('pa.id')
+            ->orderBy('children.name')
+            ->get([
+                'children.name',
+                'children.date_of_birth', 
+                'children.potty_trained',
+                'children.pictures', 
+                'children.id as child_id',
+                'pa.id', 
+                'pa.parent_notes',
+                'pa.created_at',  
+                'pa.in', 
+                'pa.type',
+                'pa.guardian_id', 
+                'g.name as guard', 
+                'pa.out']);
         return view('home.partials.leftOvers', compact('leftOver'));
 
     }
@@ -199,7 +299,23 @@ class IndexController extends Controller
 
         $leftOver = Child::general($general_conditions)
             ->type($type_conditions_leftover)
-           ->get(['children.name', 'pa.id', 'pa.parent_notes', 'children.id as child_id', 'pa.in', 'pa.out']);
+            ->guards()
+            ->groupBy('pa.id')
+            ->orderBy('children.name')
+            ->get([
+                'children.name',
+                'children.date_of_birth', 
+                'children.potty_trained',
+                'children.pictures', 
+                'children.id as child_id',
+                'pa.id', 
+                'pa.parent_notes', 
+                'pa.in', 
+                'pa.type',
+                'pa.guardian_id', 
+                'pa.created_at', 
+                'g.name as guard', 
+                'pa.out']);
 
         return view('home.partials.leftOvers', compact('leftOver'));
     }
