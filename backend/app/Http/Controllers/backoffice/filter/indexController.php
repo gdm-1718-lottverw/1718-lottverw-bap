@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\Auth;
 class IndexController extends Controller
 {
 
-    /**
-     * 
-     * @TODO Maak alle functies aan om waarden te controlleren in de modellen. 
-     * Vervolgens kijk je naar het post object of een waarde geselecteerd is met isset(). 
-     * 
-     */
     private $date = "";  private $organization_id;
 
     function helper_loggedInOrganization(){

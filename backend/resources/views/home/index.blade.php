@@ -26,7 +26,7 @@
         <i onClick="showHide('hide', '#overlay')" class="fa fa-times btn-fab top pink flex-child center" aria-hidden="true"></i>
       </div>
       {{Form::open(array('action' => 'Backoffice\Home\IndexController@storeChild', 'class' => 'form flex-child center'))}}
-        <h1 class="title">Kind toevoegen</h1>
+        <h1 class="title">Extra inschrijving</h1>
         {{-- TOKEN --}}
         {{ Form::hidden('_token', csrf_token() )}}
         {{ Form::hidden('_date', Carbon\Carbon::now() )}}

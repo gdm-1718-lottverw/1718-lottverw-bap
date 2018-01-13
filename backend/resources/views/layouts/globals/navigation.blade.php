@@ -17,6 +17,7 @@
     <a href="/add/parents" class="{{ Route::currentRouteNamed('parents') ? 'active' : '' }} admin">
         <i class="fa fa-user-plus" aria-hidden="true"></i>
     </a>
+
     <a href="/settings" class="{{ Route::currentRouteNamed('settings') ? 'active' : '' }} admin">
         <i class="fa fa-cog" aria-hidden="true"></i>
     </a>
