@@ -4916,7 +4916,7 @@ body .navigation a :hover {
   .log table {
     width: 98%;
     margin: 1%;
-    margin-top: 70px;
+    margin-top: 75px;
   }
 }
 
@@ -4937,7 +4937,7 @@ body .navigation a :hover {
   .log table {
     width: 98%;
     margin: 1%;
-    margin-top: 70px;
+    margin-top: 75px;
   }
 }
 
@@ -5226,8 +5226,8 @@ body .navigation a :hover {
 }
 
 .login img {
-  margin: 170px calc((100% - 50rem)/2);
-  width: 50rem;
+  margin: 100px calc((100% - 70%)/2);
+  width: 70%;
 }
 
 .login .flex-item:nth-child(1) {
@@ -5253,6 +5253,10 @@ body .navigation a :hover {
   margin-top: 20px;
 }
 
+.login .content .form .form-group {
+  margin: 20px 0;
+}
+
 .login .content .form .description {
   background: white;
   padding: 25px;
@@ -5272,36 +5276,109 @@ body .navigation a :hover {
 }
 
 @media screen and (max-width: 37.5em) {
-  .intro {
-    display: none;
+  .login {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
-  .content {
-    padding: 20px;
+  .login .intro {
+    height: 100px;
+  }
+
+  .login .intro img {
+    height: 80px;
+    width: auto;
+  }
+
+  .login .content {
     width: 100%;
-    margin: 5px;
+  }
+
+  .login .content form {
+    padding: 0 20px;
+  }
+
+  .login .content form .form-group {
+    margin: 10px 0;
+  }
+
+  .login .content form .description {
+    padding: 5px 25px;
   }
 }
 
 @media screen and (min-width: 37.5em) {
-  .intro {
-    display: none;
+  .login {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
-  .content {
+  .login .intro {
+    height: 100px;
+  }
+
+  .login .intro img {
+    height: 80px;
+    width: auto;
+  }
+
+  .login .content {
     width: 100%;
-    margin: 0 50px;
+  }
+
+  .login .content form {
+    padding: 0 20px;
+  }
+
+  .login .content form .form-group {
+    margin: 10px 0;
+  }
+
+  .login .content form .description {
+    padding: 5px 25px;
   }
 }
 
 @media screen and (min-width: 50em) {
-  .intro {
-    width: 50%;
-    display: block;
+  .login {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    min-height: calc(100vh);
   }
 
-  .content {
+  .login .intro {
     width: 50%;
+    height: 100vh;
+  }
+
+  .login .intro img {
+    margin: 100px calc((100% - 70%)/2);
+    width: 70%;
+    height: auto;
+  }
+
+  .login .content {
+    width: 50%;
+    height: 100vh;
+  }
+
+  .login .content form {
+    padding: 0 35px;
   }
 }
 
@@ -5388,6 +5465,81 @@ body .navigation a :hover {
     left: 70px;
     right: 0;
     margin: 0 20px;
+  }
+}
+
+.settings {
+  position: absolute;
+}
+
+.settings .settings-nav {
+  background: #F7F7F7;
+}
+
+.settings .settings-nav a {
+  color: #3B4250;
+  text-decoration: none;
+}
+
+.settings .settings-nav a.active {
+  color: #FFF;
+  background: #3F68BC;
+}
+
+@media screen and (max-width: 37.5em) {
+  .settings {
+    top: 45px;
+    left: 0;
+    right: 0;
+  }
+
+  .settings .settings-nav {
+    height: 45px;
+  }
+
+  .settings .settings-nav a {
+    width: 70px;
+    border: none;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .settings {
+    top: 45px;
+    left: 0;
+    right: 0;
+  }
+
+  .settings .settings-nav {
+    height: 45px;
+  }
+
+  .settings .settings-nav a {
+    width: 70px;
+    border: none;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .settings {
+    top: 0;
+    left: 70px;
+    right: 0;
+    width: calc(100% - 70px);
+  }
+
+  .settings .settings-nav {
+    height: 35px;
+  }
+
+  .settings .settings-nav a {
+    width: 70px;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
   }
 }
 

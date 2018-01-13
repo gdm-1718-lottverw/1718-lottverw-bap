@@ -1,0 +1,76 @@
+.settings {
+	position: absolute;
+	.settings-nav {
+		background: $lightgray;
+		a {
+			color: $darkgray;
+			text-decoration: none;
+			&.active {
+				color: $white;
+				background: $darkblue;
+			}
+		}
+	}
+}
+
+@include breakpoint(xs){
+	.settings {
+		top: 45px;
+		left: 0;
+		right: 0;
+		.settings-nav {
+			height: 45px;
+			a {
+				width: 70px;
+				border: none;
+				border-right: 1px solid white;
+				border-left: 1px solid white;
+			}
+		}
+	}
+}
+
+@include breakpoint(sm){
+	.settings {
+		top: 45px;
+		left: 0;
+		right: 0;
+		.settings-nav {
+			height: 45px;
+			a {
+				width: 70px;
+				border: none;
+				border-right: 1px solid white;
+				border-left: 1px solid white;
+			}
+		}
+	}
+}
+
+@include breakpoint(md){
+	.settings {
+		top: 0;
+		left: 70px;
+		right: 0;
+		width: calc(100% - 70px);
+		.settings-nav {
+			height: 35px;
+			a {
+				width: 70px;
+				border-right: 1px solid white;
+				border-left: 1px solid white;
+			}
+		}
+	}
+}
+
+@include breakpoint(xl){
+	.settings {
+	}
+
+}
+
+@include breakpoint(xxl){
+	 .settings {
+	}
+}

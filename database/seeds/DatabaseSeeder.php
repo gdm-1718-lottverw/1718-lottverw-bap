@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ActionTableSeeder::class,
             LogTableSeeder::class,
             DoctorTableSeeder::class,
+            VacationTableSeeder::class,
          ]);
     }
 }

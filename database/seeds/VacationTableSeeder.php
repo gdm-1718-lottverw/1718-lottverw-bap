@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class OpeningHourTableSeeder extends Seeder
+class VacationTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class OpeningHourTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Models\Vacation::class, 360)->create();
     }
 }
