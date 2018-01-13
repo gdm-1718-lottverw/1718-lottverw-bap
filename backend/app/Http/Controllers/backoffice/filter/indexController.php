@@ -86,9 +86,9 @@ class IndexController extends Controller
             ->birthday($birthday) 
             ->allergies($allergie_conditions)
             ->groupBy('children.id')
-            ->get();
-
-       // return $children;
+            ->get(['children.name as name', 'children.date_of_birth', 'children.id', 'children.pictures', 'children.potty_trained', 'pa.type as day_type', 'al.gravity', 'al.description', 'al.type as allergie', 'pa.parent_notes']);
+        
+      
         return view('filter.children', compact('children'));
     }
 

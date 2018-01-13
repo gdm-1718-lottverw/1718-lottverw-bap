@@ -160,7 +160,7 @@ class IndexController extends Controller
                 'pa.guardian_id', 
                 'g.name as guard', 
                 'pa.out']);
-
+        $count = Count($in);
         return view('home.index', compact(['toCome', 'in', 'out', 'leftOver', 'children', 'count']));
     }    
 
@@ -202,7 +202,9 @@ class IndexController extends Controller
                 'pa.guardian_id', 
                 'g.name as guard', 
                 'pa.out']);
-        return view('home.partials.in', compact('in'));
+
+        $count = Count($in);
+        return view('home.partials.in', compact('in', 'count'));
     }    
 
     public function signOut(request $request){
@@ -279,6 +281,7 @@ class IndexController extends Controller
                 'pa.guardian_id', 
                 'g.name as guard', 
                 'pa.out']);
+        
         return view('home.partials.leftOvers', compact('leftOver'));
 
     }

@@ -17,9 +17,11 @@
          <p class="guard">Kind wordt opgehaald door {{$lo->guard}}</p>
       @endif
        <div class="icons flex row flex-child end "> 
-          @if($lo->pictures == true)
-           <span class="icon flex justified-c centered">
-            <i class="fa fa-camera" aria-hidden="true"></i></span>
+          @if($lo->pictures == false)
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-camera fa-stack-1x"></i>
+              <i class="fa fa-ban fa-stack-2x red"></i>
+              </span>
           @endif
           @if($lo->potty_trained == true)
              <span class="icon flex justified-c centered"><i class="fa fa-tint" aria-hidden="true"></i></span>

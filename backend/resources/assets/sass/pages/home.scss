@@ -25,6 +25,19 @@
                 position: absolute;
                 bottom: 16px;
                 right: 16px;
+                .fa-stack {
+                    border-radius: 100%;
+                    width: 22px;
+                    height: 22px;
+                    font-size: 11px;
+                    margin: 0 3px;
+                    background: $darkgray;
+                    color: white;
+                    .red {
+                        color: red;
+                        opacity: 0.8;
+                    }
+                }
                 .icon {
                     margin: 0 3px;
                     background: $darkgray;
@@ -106,9 +119,10 @@
 
     .tip {
         color: $darkgray;
-        position: absolute;
-        right: 83px;
-        bottom: 84px;
+        position: fixed;
+        z-index: 4;
+        bottom: 103px;
+        right: 85px;
         background: $lightgray;
         padding: 8px 15px;
         border-radius: 7px;
@@ -120,8 +134,9 @@
             @include animation(shakeThatBooty 0.5s 1);       
             @include transition-timing-function(ease-in-out);       
         }  
-        &.hide {
-            display: none;
+        &.out {
+            opacity: 0;
+            @include transition(opacity 0.2s ease-in-out);
         }
     }
 
@@ -131,6 +146,7 @@
         bottom: 0;
         background: $lightgray;
         right: 0;
+        z-index: 10;
         .form {
             .title {
                 font-weight: 100;
@@ -155,10 +171,10 @@
 
 @keyframes shakeThatBooty {
     0% {
-        @include transform(translate(10px));
+        @include transform(translate(25px));
     }
     33% {
-        @include transform(translate(-10px));
+        @include transform(translate(-20px));
     }
     100% {
         @include transform(translate(0px));

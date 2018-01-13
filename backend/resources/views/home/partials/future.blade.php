@@ -12,8 +12,11 @@
            <p class="guard">Kind wordt opgehaald door {{$tc->guard}}</p>
           @endif
           <div class="icons flex-child end flex row"> 
-          @if($tc->pictures == true)
-            <span class="icon flex justified-c centered"><i class="fa fa-camera" aria-hidden="true"></i></span>
+          @if($tc->pictures == false)
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-camera fa-stack-1x"></i>
+              <i class="fa fa-ban fa-stack-2x red"></i>
+              </span>
           @endif
           @if($tc->potty_trained == true)
             <span class="icon flex justified-c centered"><i class="fa fa-tint" aria-hidden="true"></i></span>

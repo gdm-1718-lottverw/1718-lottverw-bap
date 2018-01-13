@@ -284,6 +284,7 @@ class Child extends Model
     public function scopeAllergies($query, $conditions)
     {  
         $query = $query->leftJoin('allergies As al', 'children.id', '=', 'al.children_id');
+        
         foreach($conditions as $column => $value){
             $query->whereIn('al.type', $value);
         }
