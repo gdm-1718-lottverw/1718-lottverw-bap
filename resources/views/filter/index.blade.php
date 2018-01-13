@@ -42,12 +42,9 @@
         @foreach($planned as $child)
             <div class="filter-results-item flex column justified-start">
                 <span class="child-name">{{$child->name}}</span>
-                <span class="child-care">
-
-                </span>
-                <div class="icons flex row flex-child end">
-                    @if($child->potty_trained == false)
-                       <span class="icon flex justified-c centered">  <i class="fa fa-tint" aria-hidden="true"></i></span>
+                <div class="child-care">
+                    @if($child->parent_notes != null)
+                       <p class="description">{{$child->parent_notes}}</p>
                     @endif
                 </div>
             </div>

@@ -3236,6 +3236,7 @@
   height: 55px;
   padding: 14px 20px;
   color: white;
+  z-index: 4;
   -webkit-box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.8);
           box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.8);
 }
@@ -3287,6 +3288,7 @@
   height: 55px;
   padding: 15px 17px;
   color: white;
+  z-index: 4;
   -webkit-box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.8);
           box-shadow: 0px 1px 2px rgba(200, 200, 200, 0.8);
 }
@@ -3843,6 +3845,27 @@ body .navigation a :hover {
   right: 16px;
 }
 
+.home #to-come .child-card .icons .fa-stack,
+.home #in .child-card .icons .fa-stack,
+.home #out .child-card .icons .fa-stack,
+.home #leftover .child-card .icons .fa-stack {
+  border-radius: 100%;
+  width: 22px;
+  height: 22px;
+  font-size: 11px;
+  margin: 0 3px;
+  background: #3B4250;
+  color: white;
+}
+
+.home #to-come .child-card .icons .fa-stack .red,
+.home #in .child-card .icons .fa-stack .red,
+.home #out .child-card .icons .fa-stack .red,
+.home #leftover .child-card .icons .fa-stack .red {
+  color: red;
+  opacity: 0.8;
+}
+
 .home #to-come .child-card .icons .icon,
 .home #in .child-card .icons .icon,
 .home #out .child-card .icons .icon,
@@ -3970,9 +3993,10 @@ body .navigation a :hover {
 
 .home .tip {
   color: #3B4250;
-  position: absolute;
-  right: 83px;
-  bottom: 84px;
+  position: fixed;
+  z-index: 4;
+  bottom: 103px;
+  right: 85px;
   background: #F7F7F7;
   padding: 8px 15px;
   border-radius: 7px;
@@ -3991,8 +4015,10 @@ body .navigation a :hover {
   transition-timing-function: ease-in-out;
 }
 
-.home .tip.hide {
-  display: none;
+.home .tip.out {
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .home #overlay {
@@ -4001,6 +4027,7 @@ body .navigation a :hover {
   bottom: 0;
   background: #F7F7F7;
   right: 0;
+  z-index: 10;
 }
 
 .home #overlay .form {
@@ -4029,19 +4056,19 @@ body .navigation a :hover {
 
 @-webkit-keyframes shakeThatBooty {
   0% {
-    transform: translate(10px);
-    -webkit-transform: translate(10px);
-    -moz-transform: translate(10px);
-    -o-transform: translate(10px);
-    -ms-transform: translate(10px);
+    transform: translate(25px);
+    -webkit-transform: translate(25px);
+    -moz-transform: translate(25px);
+    -o-transform: translate(25px);
+    -ms-transform: translate(25px);
   }
 
   33% {
-    transform: translate(-10px);
-    -webkit-transform: translate(-10px);
-    -moz-transform: translate(-10px);
-    -o-transform: translate(-10px);
-    -ms-transform: translate(-10px);
+    transform: translate(-20px);
+    -webkit-transform: translate(-20px);
+    -moz-transform: translate(-20px);
+    -o-transform: translate(-20px);
+    -ms-transform: translate(-20px);
   }
 
   100% {
@@ -4055,19 +4082,19 @@ body .navigation a :hover {
 
 @keyframes shakeThatBooty {
   0% {
-    transform: translate(10px);
-    -webkit-transform: translate(10px);
-    -moz-transform: translate(10px);
-    -o-transform: translate(10px);
-    -ms-transform: translate(10px);
+    transform: translate(25px);
+    -webkit-transform: translate(25px);
+    -moz-transform: translate(25px);
+    -o-transform: translate(25px);
+    -ms-transform: translate(25px);
   }
 
   33% {
-    transform: translate(-10px);
-    -webkit-transform: translate(-10px);
-    -moz-transform: translate(-10px);
-    -o-transform: translate(-10px);
-    -ms-transform: translate(-10px);
+    transform: translate(-20px);
+    -webkit-transform: translate(-20px);
+    -moz-transform: translate(-20px);
+    -o-transform: translate(-20px);
+    -ms-transform: translate(-20px);
   }
 
   100% {
@@ -4376,7 +4403,7 @@ body .navigation a :hover {
 
 .filter .search-content .filter-results .filter-results-item {
   background: #fafafa;
-  height: 120px;
+  height: 160px;
   padding: 8px;
   position: relative;
 }
@@ -4391,12 +4418,34 @@ body .navigation a :hover {
   margin-bottom: 4px;
 }
 
+.filter .search-content .filter-results .filter-results-item .child-care .description {
+  font-size: 0.7em;
+  font-weight: 100;
+  margin: 2px 0;
+}
+
 .filter .search-content .filter-results .filter-results-item .icons {
   text-align: right;
   margin-top: 6px;
   position: absolute;
   bottom: 8px;
   right: 8px;
+}
+
+.filter .search-content .filter-results .filter-results-item .icons .fa-stack {
+  border-radius: 100%;
+  margin: 0 3px;
+  height: 20px;
+  width: 20px;
+  font-size: 9px;
+  padding: 1px;
+  background: #3B4250;
+  color: white;
+}
+
+.filter .search-content .filter-results .filter-results-item .icons .fa-stack .red {
+  color: red;
+  opacity: 0.8;
 }
 
 .filter .search-content .filter-results .filter-results-item .icons .icon {
