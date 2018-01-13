@@ -4139,6 +4139,10 @@ body .navigation a :hover {
     padding: 70px 30px;
   }
 
+  #overlay .flex .btn-fab {
+    position: absolute;
+  }
+
   #overlay .form {
     width: 100%;
     height: auto;
@@ -4176,6 +4180,10 @@ body .navigation a :hover {
   #overlay {
     width: 100%;
     padding: 70px 30px;
+  }
+
+  #overlay .flex .btn-fab {
+    position: absolute;
   }
 
   #overlay .form {
