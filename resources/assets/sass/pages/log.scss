@@ -5,17 +5,14 @@
     .title {
         font-weight: 100;
         border-bottom: 1px solid $darkgray;
-        padding: 30px 0;
         width: 100%;
         background: $white;
         text-align: center;
         margin: 0;
+        position: fixed;
     }
     table {
         background: $white;
-        width: 96%;
-        padding: 30px;
-        margin: 2%;
         thead {
             td{
                 height: 55px;
@@ -96,12 +93,120 @@
     .log{
         top: 45px;
         width: 100%;
+        .title {
+            font-size: 0.9em;
+            padding: 10px 0;
+        }
+        table {
+            width: 100%;
+            margin: 0;
+            margin-top: 38px;
+            thead tr td {
+                height: auto;
+                padding: 3px;
+                font-weight: 700;
+                font-size: 0.5em;
+            } 
+            tbody tr td {
+                padding: 5px;
+                font-size: 0.5em;
+                &#btn-edit
+                {
+                    padding: 0;
+                    i{
+                        height: 20px;
+                        width: 20px;
+                        padding: 4px;
+                        font-size: 1.35em;
+                    }
+                }
+                #delete .btn
+                {
+                    padding: 0;
+                    height: 20px;
+                    width: 20px;
+                    margin: 8px 0;
+                    font-size: 1.35em;
+                }
+                #edit{
+                    input {
+                        font-size: 1.5em;
+                    }
+                    .btn {
+                        padding: 0;
+                        height: 20px;
+                        width: 20px;
+                        margin: 8px 0;
+                        font-size: 1.35em;
+                        &.cancel {
+                            margin: 0;
+                            padding: 5px;
+                            background: $deeppink;
+                        }
+                    }
+                }   
+            }
+        }
     }
 }
 @include breakpoint(sm){
-    .log{
+   .log{
         top: 45px;
-        width: 100% ;
+        width: 100%;
+        .title {
+            font-size: 0.9em;
+            padding: 10px 0;
+        }
+        table {
+            width: 100%;
+            margin: 0;
+            margin-top: 38px;
+            thead tr td {
+                height: auto;
+                padding: 3px;
+                font-weight: 700;
+                font-size: 0.7em;
+            } 
+            tbody tr td {
+                padding: 5px;
+                font-size: 0.7em;
+                &#btn-edit
+                {
+                    padding: 0;
+                    i{
+                        height: 25px;
+                        width: 25px;
+                        padding: 4px;
+                        font-size: 1.5em;
+                    }
+                }
+                #delete .btn
+                {
+                    padding: 0;
+                    height: 25px;
+                    width: 25px;
+                    margin: 8px 0;
+                    font-size: 1.5em;
+                }
+                #edit{
+                    input {
+                        font-size: 1.5em;
+                    }
+                    .btn {
+                        padding: 0;
+                        height: 25px;
+                        width: 25px;
+                        margin: 8px 0;
+                        font-size: 1.35em;
+                        &.cancel {
+                            margin: 0;
+                            padding: 5px;
+                            background: $deeppink;
+                        }
+                    }
+                }   
+            }
+        }
     }
 }
 @include breakpoint(md){
@@ -109,13 +214,32 @@
         z-index: 0;
         top: 0;
         height: 100%;
-        width: calc(100vw - 70px);
+        width: calc(100% - 70px);
         left: 70px;
+         table {
+            width: 98%;
+            margin: 1%;
+            margin-top: 75px;
+        }
     }
-
 }
 @include breakpoint(lg){
-
+     .log{
+        z-index: 0;
+        top: 0;
+        height: 100%;
+        width: calc(100% - 70px);
+        left: 70px;
+        .title {
+            font-size: 1.5em;
+            padding: 20px 0;
+        }
+         table {
+            width: 98%;
+            margin: 1%;
+            margin-top: 75px;
+        }
+    }
 }
 @include breakpoint(xl){
 

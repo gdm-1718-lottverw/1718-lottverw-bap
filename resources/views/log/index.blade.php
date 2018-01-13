@@ -5,6 +5,7 @@
   @if(count($log)  == 0)
   <h1 class="title">Er zijn nog geen items voor vandaag.</h1>
   @else 
+  <h1 class="title">Logboek</h1>
     <table>
         <thead>
           <tr>

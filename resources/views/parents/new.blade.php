@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	<div class="add-parent">
+	<section class="add-parent">
 		@if ($errors->any())
 		    <div class="alert alert-danger">
 		        <ul>
@@ -184,6 +184,6 @@
 		</div>
 		{!! Form::submit('Volgende', array('class'=>'btn')) !!}
 		{{Form::close()}}
-	</div>
+	</section>
 	
 @endsection('content')

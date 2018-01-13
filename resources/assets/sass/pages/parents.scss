@@ -1,0 +1,41 @@
+.add-parent {
+	position: absolute;
+}
+
+@include breakpoint(xs){
+	.add-parent {
+		top: 0;
+		left: 0;
+		right: 0;
+		margin: 50px 0;
+	}
+}
+
+@include breakpoint(sm){
+	.add-parent {
+		top: 0;
+		left: 0;
+		right: 0;
+		margin: 50px 0;
+	}
+}
+
+@include breakpoint(md){
+	.add-parent {
+		top: 0;
+		left: 70px;
+		right: 0;
+		margin: 0 20px;
+	}
+}
+
+@include breakpoint(xl){
+	.add-parent {
+	}
+
+}
+
+@include breakpoint(xxl){
+	 .add-parent {
+	}
+}

@@ -3805,6 +3805,25 @@ body .navigation a :hover {
   background-color: #3B4250;
 }
 
+#error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #3F68BC;
+}
+
+#error img {
+  width: 40%;
+  margin-bottom: 40px;
+}
+
+#error .message {
+  font-weight: 400;
+  color: white;
+}
+
 .home {
   position: absolute;
   z-index: 0;
@@ -4667,18 +4686,15 @@ body .navigation a :hover {
 .log .title {
   font-weight: 100;
   border-bottom: 1px solid #3B4250;
-  padding: 30px 0;
   width: 100%;
   background: #FFF;
   text-align: center;
   margin: 0;
+  position: fixed;
 }
 
 .log table {
   background: #FFF;
-  width: 96%;
-  padding: 30px;
-  margin: 2%;
 }
 
 .log table thead td {
@@ -4759,12 +4775,132 @@ body .navigation a :hover {
     top: 45px;
     width: 100%;
   }
+
+  .log .title {
+    font-size: 0.9em;
+    padding: 10px 0;
+  }
+
+  .log table {
+    width: 100%;
+    margin: 0;
+    margin-top: 38px;
+  }
+
+  .log table thead tr td {
+    height: auto;
+    padding: 3px;
+    font-weight: 700;
+    font-size: 0.5em;
+  }
+
+  .log table tbody tr td {
+    padding: 5px;
+    font-size: 0.5em;
+  }
+
+  .log table tbody tr td#btn-edit {
+    padding: 0;
+  }
+
+  .log table tbody tr td#btn-edit i {
+    height: 20px;
+    width: 20px;
+    padding: 4px;
+    font-size: 1.35em;
+  }
+
+  .log table tbody tr td #delete .btn {
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    margin: 8px 0;
+    font-size: 1.35em;
+  }
+
+  .log table tbody tr td #edit input {
+    font-size: 1.5em;
+  }
+
+  .log table tbody tr td #edit .btn {
+    padding: 0;
+    height: 20px;
+    width: 20px;
+    margin: 8px 0;
+    font-size: 1.35em;
+  }
+
+  .log table tbody tr td #edit .btn.cancel {
+    margin: 0;
+    padding: 5px;
+    background: #9A3450;
+  }
 }
 
 @media screen and (min-width: 37.5em) {
   .log {
     top: 45px;
     width: 100%;
+  }
+
+  .log .title {
+    font-size: 0.9em;
+    padding: 10px 0;
+  }
+
+  .log table {
+    width: 100%;
+    margin: 0;
+    margin-top: 38px;
+  }
+
+  .log table thead tr td {
+    height: auto;
+    padding: 3px;
+    font-weight: 700;
+    font-size: 0.7em;
+  }
+
+  .log table tbody tr td {
+    padding: 5px;
+    font-size: 0.7em;
+  }
+
+  .log table tbody tr td#btn-edit {
+    padding: 0;
+  }
+
+  .log table tbody tr td#btn-edit i {
+    height: 25px;
+    width: 25px;
+    padding: 4px;
+    font-size: 1.5em;
+  }
+
+  .log table tbody tr td #delete .btn {
+    padding: 0;
+    height: 25px;
+    width: 25px;
+    margin: 8px 0;
+    font-size: 1.5em;
+  }
+
+  .log table tbody tr td #edit input {
+    font-size: 1.5em;
+  }
+
+  .log table tbody tr td #edit .btn {
+    padding: 0;
+    height: 25px;
+    width: 25px;
+    margin: 8px 0;
+    font-size: 1.35em;
+  }
+
+  .log table tbody tr td #edit .btn.cancel {
+    margin: 0;
+    padding: 5px;
+    background: #9A3450;
   }
 }
 
@@ -4773,8 +4909,35 @@ body .navigation a :hover {
     z-index: 0;
     top: 0;
     height: 100%;
-    width: calc(100vw - 70px);
+    width: calc(100% - 70px);
     left: 70px;
+  }
+
+  .log table {
+    width: 98%;
+    margin: 1%;
+    margin-top: 70px;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .log {
+    z-index: 0;
+    top: 0;
+    height: 100%;
+    width: calc(100% - 70px);
+    left: 70px;
+  }
+
+  .log .title {
+    font-size: 1.5em;
+    padding: 20px 0;
+  }
+
+  .log table {
+    width: 98%;
+    margin: 1%;
+    margin-top: 70px;
   }
 }
 
@@ -5195,5 +5358,36 @@ body .navigation a :hover {
 
 .register a:hover {
   text-decoration: underline;
+}
+
+.add-parent {
+  position: absolute;
+}
+
+@media screen and (max-width: 37.5em) {
+  .add-parent {
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 50px 0;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .add-parent {
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 50px 0;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .add-parent {
+    top: 0;
+    left: 70px;
+    right: 0;
+    margin: 0 20px;
+  }
 }
 
