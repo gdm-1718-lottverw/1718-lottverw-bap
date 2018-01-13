@@ -1,6 +1,6 @@
 #slider {
-	height: 170px;
-	margin: 22px 30px 5px;
+	height: 150px;
+	margin: 35px auto;
 	background: none !important;
 	border-radius: 0 !important;
 	border: none !important;
@@ -9,24 +9,36 @@
 		width: 4px;
 	}
 	.noUi-handle {
-		width: 34px;
-		height: 34px;
-		left: -16px;
+		width: 27px;
+		height: 27px;
+		left: -12px;
+		top: -17px;
 		top: -17px;
 		border-radius: 100%;
 		box-shadow: none;
+		box-shadow: inset 0 0px 4px #EBEBEB;
 		outline: none;
-		border: 1px solid $darkgray;
+		border: 1px solid #CBCBCB;
 		&::after, &::before {
 			background: none;
 		}
 		.noUi-tooltip {
 			left: 120%;
 			right: auto;
+			display: block;
+			position: absolute;
+			border: none;
+			background: none;
+			color: $darkgray;
+			padding: 5px;
+			text-align: center;
+			white-space: nowrap;
+			margin-left: 2px;
+			font-size: 15px;
 		}
 	}
 	.noUi-connect {
-		background-color: $deeppink;
+		background-color: $darkgray;
 	}
 	
 }
