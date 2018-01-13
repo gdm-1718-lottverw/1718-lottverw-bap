@@ -13,17 +13,16 @@ class CreateOpeningHoursTable extends Migration
      */
     public function up()
     {
-        Schema::create('opening_hours', function (Blueprint $table) {
+        Schema::create('vacations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
-            $table->time('from');
-            $table->string('until');
-            $table->string('day'); // of the week.
+            $table->string('occasion');
+            $table->date('day');
             $table->unsignedInteger('organization_id');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('opening_hours', function (Blueprint $table) {
+        Schema::table('vacations', function (Blueprint $table) {
             $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }

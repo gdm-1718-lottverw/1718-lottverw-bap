@@ -2,12 +2,10 @@
     min-height: calc(100vh);
     .intro {
         background-image: url("../images/achtergrond.png");
-       // background: #6F9DFA;
     }    
     img {
-        margin: 170px calc((100% - 50rem)/2);
-        width: 50rem;
-
+        margin: 100px calc((100% - 70%)/2);
+        width: 70%;
     }
     .flex-item:nth-child(1) {
         -webkit-order: 0;
@@ -29,6 +27,9 @@
             width: 100%;
             border: none;
             margin-top: 20px;
+            .form-group {
+                margin: 20px 0;
+            }
              .description{
                 background: white;
                 padding: 25px;
@@ -50,36 +51,78 @@
 
 
 @include breakpoint(xs){
-    .intro {
-        display: none;
-        
-    }
-    .content {
-        padding: 20px;
-        width: 100%;
-        margin: 5px;
+    .login { 
+        display: flex;
+        flex-direction: column;
+        .intro {
+            height: 100px;
+            img {
+                height: 80px;
+                width: auto;
+            }
+        }
+        .content {
+            width: 100%;
+            form {
+                padding: 0 20px;
+                .form-group {
+                    margin: 10px 0;
+                }
+                .description {
+                    padding: 5px 25px;
+                }
+            }
+        }
     }
 }
 
 @include breakpoint(sm){
-    .intro {
-        display: none;
-        
-    }
-    .content {
-        width: 100%;
-        margin: 0 50px;
+    .login { 
+        display: flex;
+        flex-direction: column;
+        .intro {
+            height: 100px;
+            img {
+                height: 80px;
+                width: auto;
+            }
+        }
+        .content {
+            width: 100%;
+            form {
+                padding: 0 20px;
+                .form-group {
+                    margin: 10px 0;
+                }
+                .description {
+                    padding: 5px 25px;
+                }
+            }
+        }
     }
 }
 
 @include breakpoint(md){
-    .intro {
-        width: 50%;
-        display: block;
-       
-    }
-    .content {
-        width: 50%;
+    .login {
+        display: flex;
+        flex-direction: row;
+        min-height: calc(100vh);
+        .intro {
+            width: 50%;
+            height: 100vh;
+            img {
+                margin: 100px calc((100% - 70%)/2);
+                width: 70%;
+                height: auto;
+            }
+        }
+        .content {
+            width: 50%;
+            height: 100vh;
+            form {
+                padding: 0 35px;
+            }
+        }
     }
 }
 
