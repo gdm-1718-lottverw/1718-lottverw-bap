@@ -1,17 +1,13 @@
 .register {
 	background: $lightgray;
-	height: 100vh;
+	height: 100%;
 	.title {
 		font-weight: 100;
 		border-bottom: 1px solid $darkgray;
-		padding-bottom: 30px;
-		width: 70%;
 		text-align: center;
 	}
 	.form {
 		background: $white;
-		width: 70%;
-		padding: 70px;
 		.form-group {
 			margin: 20px;
 			width: 100%;
@@ -38,15 +34,51 @@
 
 
 @include breakpoint(xs){
-
+	.register {
+ 		.title {
+			font-size: 1em;
+			padding: 15px;
+			width: 85%;
+		}
+		.form {
+			width: 85%;
+			padding: 10px
+		}
+		a {
+			padding: 5px;
+			font-size: 0.6em;
+			text-decoration: underline;
+		}
+ 	}
+	
 }
 
 @include breakpoint(sm){
- 
+ 	.register {
+	 	.title {
+			font-size: 1.4em;
+			padding: 25px;
+			width: 85%;
+		}
+		.form {
+			width: 85%;
+			padding: 10px
+		}
+	}
 }
 
 @include breakpoint(md){
- 
+ 	.register{
+ 		.title {
+			font-size: 2em;
+			padding: 40px;
+			width: 70%;
+		}
+		.form {
+			padding: 70px;
+			width: 70%;
+		}
+	}
 }
 
 @include breakpoint(xl){

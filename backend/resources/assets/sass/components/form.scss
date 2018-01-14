@@ -51,12 +51,10 @@
 		padding-bottom: 3px;
 	}
 	.form-group {
-		margin: 30px 0;
   		position: relative;
 		label {
 			color: $darkgray;
 			font-family: $main-font;
-			font-size: 13px;
 			font-weight: $bold;
 		}
 		input{
@@ -101,7 +99,6 @@
 			}
 			margin-right: 10px;
 		}
-
 		.select-dropdown {
 		  position: relative;
 		  width: auto;
@@ -196,15 +193,49 @@
 			
 }
 @include breakpoint(xs){
-
+	.form {
+		padding: 5px 15px;
+		.flex {
+			flex-direction: column;
+			.form-group {
+				margin: 5px 0;
+				label, input {
+					font-size: 0.6em;
+				}
+			}
+			.btn {
+				font-size: 0.6em;
+				padding-bottom: 4px;
+				height: 30px;
+				margin: 5px 0;
+			}
+		}
+	}
 }
 
 @include breakpoint(sm){
- 
+ 	.form {
+		padding: 10px 15px;
+		.form-group {
+			label, input {
+				font-size: 0.8em;
+			}
+			input {
+				margin-top: 5px;
+			}
+		}
+	}
 }
 
 @include breakpoint(md){
- 
+ 	.form {
+		padding: 25px 40px;
+		.form-group {
+			label, input {
+				font-size: 1em;
+			}
+		}
+	}
 }
 
 @include breakpoint(xl){
