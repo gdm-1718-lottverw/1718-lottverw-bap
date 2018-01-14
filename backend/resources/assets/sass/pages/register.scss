@@ -1,21 +1,17 @@
 .register {
 	background: $lightgray;
-	height: 100vh;
+	height: 100%;
 	.title {
 		font-weight: 100;
 		border-bottom: 1px solid $darkgray;
-		padding-bottom: 30px;
-		width: 70%;
 		text-align: center;
 	}
 	.form {
 		background: $white;
-		width: 70%;
-		padding: 70px;
 		.form-group {
 			margin: 20px;
 			width: 100%;
-			&.btn{
+			&.btn {
 				margin-right: 70px;
 			}
 		}
@@ -31,22 +27,37 @@
         text-decoration: none;
         font-size: 12px;
         &:hover {
-        	text-decoration: underline;
+        text-decoration: underline;
         }
 	}
 }
 
 
 @include breakpoint(xs){
-
+	.register {
+	 	.title {
+			font-size: 1em;
+			padding: 15px;
+			width: 85%;
+		}
+		.form {
+			width: 85%;
+			padding: 10px
+		}
+		a {
+			padding: 5px;
+			font-size: 0.6em;
+			text-decoration: underline;
+		}
+ 	}
 }
 
 @include breakpoint(sm){
- 
+ 	
 }
 
 @include breakpoint(md){
- 
+ 	
 }
 
 @include breakpoint(xl){
