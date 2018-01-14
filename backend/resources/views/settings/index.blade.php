@@ -45,9 +45,9 @@
   </div>
   <div class="content flex row wrap">
   	@foreach($vacations as $v)
-  	<div class="item flex row justified-start">
-  		<p>{{$v->occasion}}</p>
-  		<p>{{$v->day}}</p>
+  	<div class="item flex row centered justified-start">
+  		<p class="o">{{$v->occasion}}</p>
+  		<p class="d">{{$v->day}}</p>
         {{ Form::open(array('action' => 'Backoffice\Settings\IndexController@delete', 'class' => 'trash')) }} 
         {{ Form::hidden('_id', $v->id )}}
         {{ Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['type' => 'submit']) }}

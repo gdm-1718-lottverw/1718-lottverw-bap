@@ -14,7 +14,7 @@
 	.add {
 		margin-bottom: 4px;
 		border-top: 1px solid $white;
-		background: $lightgray;
+		background: rgb(250, 250, 250);
       	.error {
       			padding: 5px 50px;
       			p {
@@ -23,16 +23,6 @@
     				font-size: 0.6em;
     				color: $pink;
     				font-weight: $bold;
-    				width: 200px;
-      			}
-      			.trash {
-      				border: none;
-					color: $deeppink;
-					box-shadow: none;
-					margin: 0 10px;
-					height: 16px;
-					padding: 0;
-					background: none;
       			}
       		}
       	form {
@@ -69,8 +59,25 @@
 			color: $darkgray;
 			p {
 				margin: 0 3px;
+				width: 200px;
 				font-size: 0.7em;
 			}
+			.trash button {
+      				border: none;
+					color: $deeppink;
+					box-shadow: none;
+					margin: 0 10px;
+					height: 16px;
+					padding: 0;
+					background: none;
+					opacity: 0.9;
+					i {
+						font-size: 1.3em;
+					}
+					&:hover {
+						opacity: 1;
+					}
+      			}
 		}
 	}
 }
