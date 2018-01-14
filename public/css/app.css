@@ -5489,7 +5489,7 @@ body .navigation a :hover {
 .settings .add {
   margin-bottom: 4px;
   border-top: 1px solid #FFF;
-  background: #F7F7F7;
+  background: #fafafa;
 }
 
 .settings .add .error {
@@ -5546,7 +5546,28 @@ body .navigation a :hover {
 
 .settings .content .item p {
   margin: 0 3px;
+  width: 200px;
   font-size: 0.7em;
+}
+
+.settings .content .item .trash button {
+  border: none;
+  color: #9A3450;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  margin: 0 10px;
+  height: 16px;
+  padding: 0;
+  background: none;
+  opacity: 0.9;
+}
+
+.settings .content .item .trash button i {
+  font-size: 1.3em;
+}
+
+.settings .content .item .trash button:hover {
+  opacity: 1;
 }
 
 @media screen and (max-width: 37.5em) {
