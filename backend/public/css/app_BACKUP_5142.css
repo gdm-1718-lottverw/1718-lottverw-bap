@@ -3385,14 +3385,20 @@
 }
 
 .form .form-group {
+<<<<<<< HEAD
+=======
   margin: 30px 0;
+>>>>>>> c71074ec18eb64f8c96702332ff3c0b451132271
   position: relative;
 }
 
 .form .form-group label {
   color: #3B4250;
   font-family: Ubuntu, "Helvetica", "Arial";
+<<<<<<< HEAD
+=======
   font-size: 13px;
+>>>>>>> c71074ec18eb64f8c96702332ff3c0b451132271
   font-weight: 800;
 }
 
@@ -3583,6 +3589,64 @@
   font-weight: 300;
 }
 
+<<<<<<< HEAD
+@media screen and (max-width: 37.5em) {
+  .form {
+    padding: 5px 10px;
+  }
+
+  .form .flex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .form .flex .form-group {
+    margin: 5px 0;
+  }
+
+  .form .flex .form-group label,
+  .form .flex .form-group input {
+    font-size: 0.6em;
+  }
+
+  .form .flex .btn {
+    font-size: 0.5em;
+    padding-bottom: 4px;
+    height: 25px;
+    margin: 5px 0;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .form {
+    padding: 10px 15px;
+  }
+
+  .form .form-group label,
+  .form .form-group input {
+    font-size: 0.8em;
+  }
+
+  .form .form-group input {
+    margin-top: 5px;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .form {
+    padding: 25px 40px;
+  }
+
+  .form .form-group label,
+  .form .form-group input {
+    font-size: 1em;
+  }
+}
+
+=======
+>>>>>>> c71074ec18eb64f8c96702332ff3c0b451132271
 * {
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -5395,21 +5459,31 @@ body .navigation a :hover {
 
 .register {
   background: #F7F7F7;
+<<<<<<< HEAD
+  height: 100%;
+=======
   height: 100vh;
+>>>>>>> c71074ec18eb64f8c96702332ff3c0b451132271
 }
 
 .register .title {
   font-weight: 100;
   border-bottom: 1px solid #3B4250;
+<<<<<<< HEAD
+=======
   padding-bottom: 30px;
   width: 70%;
+>>>>>>> c71074ec18eb64f8c96702332ff3c0b451132271
   text-align: center;
 }
 
 .register .form {
   background: #FFF;
+<<<<<<< HEAD
+=======
   width: 70%;
   padding: 70px;
+>>>>>>> c71074ec18eb64f8c96702332ff3c0b451132271
 }
 
 .register .form .form-group {
@@ -5437,6 +5511,54 @@ body .navigation a :hover {
   text-decoration: underline;
 }
 
+<<<<<<< HEAD
+@media screen and (max-width: 37.5em) {
+  .register .title {
+    font-size: 1em;
+    padding: 15px;
+    width: 85%;
+  }
+
+  .register .form {
+    width: 85%;
+    padding: 10px;
+  }
+
+  .register a {
+    padding: 5px;
+    font-size: 0.6em;
+    text-decoration: underline;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .register .title {
+    font-size: 1.4em;
+    padding: 25px;
+    width: 85%;
+  }
+
+  .register .form {
+    width: 85%;
+    padding: 10px;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .register .title {
+    font-size: 2em;
+    padding: 40px;
+    width: 70%;
+  }
+
+  .register .form {
+    padding: 70px;
+    width: 70%;
+  }
+}
+
+=======
+>>>>>>> c71074ec18eb64f8c96702332ff3c0b451132271
 .add-parent {
   position: absolute;
 }

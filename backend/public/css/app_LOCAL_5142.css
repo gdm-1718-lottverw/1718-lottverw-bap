@@ -3385,14 +3385,12 @@
 }
 
 .form .form-group {
-  margin: 30px 0;
   position: relative;
 }
 
 .form .form-group label {
   color: #3B4250;
   font-family: Ubuntu, "Helvetica", "Arial";
-  font-size: 13px;
   font-weight: 800;
 }
 
@@ -3581,6 +3579,61 @@
   font-style: italic;
   opacity: 0.7;
   font-weight: 300;
+}
+
+@media screen and (max-width: 37.5em) {
+  .form {
+    padding: 5px 10px;
+  }
+
+  .form .flex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .form .flex .form-group {
+    margin: 5px 0;
+  }
+
+  .form .flex .form-group label,
+  .form .flex .form-group input {
+    font-size: 0.6em;
+  }
+
+  .form .flex .btn {
+    font-size: 0.5em;
+    padding-bottom: 4px;
+    height: 25px;
+    margin: 5px 0;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .form {
+    padding: 10px 15px;
+  }
+
+  .form .form-group label,
+  .form .form-group input {
+    font-size: 0.8em;
+  }
+
+  .form .form-group input {
+    margin-top: 5px;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .form {
+    padding: 25px 40px;
+  }
+
+  .form .form-group label,
+  .form .form-group input {
+    font-size: 1em;
+  }
 }
 
 * {
@@ -5395,21 +5448,17 @@ body .navigation a :hover {
 
 .register {
   background: #F7F7F7;
-  height: 100vh;
+  height: 100%;
 }
 
 .register .title {
   font-weight: 100;
   border-bottom: 1px solid #3B4250;
-  padding-bottom: 30px;
-  width: 70%;
   text-align: center;
 }
 
 .register .form {
   background: #FFF;
-  width: 70%;
-  padding: 70px;
 }
 
 .register .form .form-group {
@@ -5435,6 +5484,51 @@ body .navigation a :hover {
 
 .register a:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 37.5em) {
+  .register .title {
+    font-size: 1em;
+    padding: 15px;
+    width: 85%;
+  }
+
+  .register .form {
+    width: 85%;
+    padding: 10px;
+  }
+
+  .register a {
+    padding: 5px;
+    font-size: 0.6em;
+    text-decoration: underline;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .register .title {
+    font-size: 1.4em;
+    padding: 25px;
+    width: 85%;
+  }
+
+  .register .form {
+    width: 85%;
+    padding: 10px;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .register .title {
+    font-size: 2em;
+    padding: 40px;
+    width: 70%;
+  }
+
+  .register .form {
+    padding: 70px;
+    width: 70%;
+  }
 }
 
 .add-parent {
