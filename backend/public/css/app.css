@@ -3615,10 +3615,24 @@
   }
 
   .form .flex {
+    -ms-flex-direction: row;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: row;
             flex-direction: row;
+  }
+
+  .form .flex.row {
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+
+  .form .flex.column {
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
 
   .form .flex .form-group {
@@ -3641,6 +3655,27 @@
 @media screen and (min-width: 50em) {
   .form {
     padding: 10px 30px;
+  }
+
+  .form .flex {
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+
+  .form .flex.row {
+    -ms-flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-direction: row;
+  }
+
+  .form .flex.column {
+    -ms-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
   }
 
   .form .form-group {
@@ -5084,16 +5119,6 @@ body .navigation a :hover {
   margin: 10px;
 }
 
-.add-child {
-  position: absolute;
-  z-index: 0;
-  bottom: 0;
-}
-
-.add-child form {
-  border: none;
-}
-
 @media screen and (max-width: 37.5em) {
   .child {
     top: 45px;
@@ -5106,11 +5131,6 @@ body .navigation a :hover {
 
   .child .grid .column .item {
     margin-bottom: 5px;
-  }
-
-  .addChild {
-    top: 45px;
-    width: 100%;
   }
 }
 
@@ -5145,14 +5165,6 @@ body .navigation a :hover {
   .grid .column .item {
     margin-bottom: 15px;
   }
-
-  .add-child {
-    overflow: scroll;
-    z-index: 0;
-    top: 35px;
-    height: 100%;
-    width: calc(100% - 70px);
-  }
 }
 
 @media screen and (min-width: 64em) {
@@ -5172,15 +5184,6 @@ body .navigation a :hover {
   .child .grid .column .item {
     margin-bottom: 15px;
   }
-
-  .add-child {
-    overflow: scroll;
-    z-index: 0;
-    top: 0;
-    height: 100%;
-    left: 70px;
-    width: calc(100% - 70px);
-  }
 }
 
 @media screen and (min-width: 70em) {
@@ -5198,15 +5201,6 @@ body .navigation a :hover {
 
   .child .grid .column .item {
     margin-bottom: 15px;
-  }
-
-  .add-child {
-    overflow: scroll;
-    z-index: 0;
-    top: 0;
-    left: 70px;
-    height: 100%;
-    width: calc(100% - 70px);
   }
 }
 
@@ -5226,15 +5220,6 @@ body .navigation a :hover {
 
   .child .grid .column .item {
     margin-bottom: 15px;
-  }
-
-  .add-child {
-    overflow: scroll;
-    z-index: 0;
-    left: 70px;
-    top: 0;
-    height: 100%;
-    width: calc(100% - 70px);
   }
 }
 
@@ -5569,34 +5554,66 @@ body .navigation a :hover {
   }
 }
 
-.add-parent {
+.add-parent,
+.add-child {
   position: absolute;
 }
 
+.add-parent .title,
+.add-child .title {
+  font-weight: 100;
+  border-bottom: 1px solid #3B4250;
+  text-align: center;
+  margin: 0;
+}
+
 @media screen and (max-width: 37.5em) {
-  .add-parent {
+  .add-parent,
+  .add-child {
+    padding: 10px;
     top: 0;
     left: 0;
     right: 0;
     margin: 50px 0;
+  }
+
+  .add-parent .title,
+  .add-child .title {
+    font-size: 1em;
+    padding: 15px;
   }
 }
 
 @media screen and (min-width: 37.5em) {
-  .add-parent {
+  .add-parent,
+  .add-child {
+    padding: 20px;
     top: 0;
     left: 0;
     right: 0;
     margin: 50px 0;
   }
+
+  .add-parent .title,
+  .add-child .title {
+    font-size: 1.2em;
+    padding: 25px;
+  }
 }
 
 @media screen and (min-width: 50em) {
-  .add-parent {
+  .add-parent,
+  .add-child {
     top: 0;
     left: 70px;
     right: 0;
     margin: 0 20px;
+  }
+
+  .add-parent .title,
+  .add-child .title {
+    font-size: 1.4em;
+    padding: 25px;
   }
 }
 

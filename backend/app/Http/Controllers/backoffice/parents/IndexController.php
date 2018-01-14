@@ -128,14 +128,14 @@ class IndexController extends Controller
                 } else { $i = 5;}
             }    
         }
-        $parentCount > 1? null: $parent2->id = null;
-       
+        $parentCount > 1? null: $parent2['id'] = null;
+        
         $parent_data = array(
             'guard' => $guards, 
             'auth_key' => $key->id,
             'parents' => array(
                 0 => $parent->id, 
-                1 => $parent2->id,
+                1 => $parent2['id'],
             )
         );
         return redirect('add/parents/new/child')->with('data', $parent_data);

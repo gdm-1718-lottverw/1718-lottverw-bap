@@ -214,6 +214,18 @@
  	.form {
 		padding: 10px 20px;
 		.flex {
+			&.row {
+				-webkit-flex-direction: row;
+			    -ms-flex-direction: row;
+			    flex-direction: row;
+			}
+			&.column {
+				-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			}
+			-webkit-flex-direction: row;
+			-ms-flex-direction: row;
 			flex-direction: row;
 		.form-group {
 			margin: 15px 10px;
@@ -234,6 +246,21 @@
 @include breakpoint(md){
 	.form {
 		padding: 10px 30px;
+		.flex {
+			&.row {
+				-webkit-flex-direction: row;
+			    -ms-flex-direction: row;
+			    flex-direction: row;
+			}
+			&.column {
+				-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			    flex-direction: column;
+			}
+			-webkit-flex-direction: row;
+			-ms-flex-direction: row;
+			flex-direction: row;
+		}
 		.form-group {
 			margin: 15px 15px;
 			label, input {

@@ -54,14 +54,7 @@
         }
     }
 }
-.add-child {
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-    form {
-        border: none;
-    }
-}
+
 
 @include breakpoint(xs){
     .child{
@@ -75,10 +68,6 @@
                 }
             }
         }
-    }
-    .addChild{
-        top: 45px;
-        width: 100% ;
     }
 }
 
@@ -112,13 +101,6 @@
             }
         }
     }
-    .add-child{
-       overflow: scroll;
-        z-index: 0;
-        top: 35px;
-        height: 100%;
-        width: calc(100% - 70px);
-    }
 }
 
 @include breakpoint(lg){
@@ -138,14 +120,6 @@
             }
         }
     }
-    .add-child{
-        overflow: scroll;
-        z-index: 0;
-        top: 0;
-        height: 100%;
-         left: 70px;
-        width: calc(100% - 70px);
-    }
 }
 
 @include breakpoint(xl){
@@ -164,14 +138,7 @@
             }
         }
     }
-    .add-child {
-        overflow: scroll;
-        z-index: 0;
-        top: 0;
-         left: 70px;
-         height: 100%;
-        width: calc(100% - 70px);
-    }
+
 }
 @include breakpoint(xxl){
     .child {
@@ -189,13 +156,5 @@
                 }
             }
         }
-    }
-    .add-child {
-        overflow: scroll;
-        z-index: 0;
-         left: 70px;
-        top: 0;
-         height: 100%;
-        width: calc(100% - 70px);
     }
 }

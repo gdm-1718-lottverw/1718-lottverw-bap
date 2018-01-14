@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 	<section class="add-parent">
+		<p class="title">Registreer ouders en kinderen</p>
 		@if ($errors->any())
 		    <div class="alert alert-danger">
 		        <ul>
