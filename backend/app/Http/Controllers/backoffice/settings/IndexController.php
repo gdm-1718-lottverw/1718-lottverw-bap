@@ -26,5 +26,21 @@ class IndexController extends Controller
 
         return view('settings.index', compact(['vacations']));
     }
+
+    public function store(Request $request){
+    	$validatedData = $request->validate([
+            'occasion' => 'required|string',
+            'day' => 'required|date',
+        ]);
+
+        $this->helper_loggedInOrganization();
+        $v = new Vacation;
+        $v->occasion = $request->occasion;
+        $v->organization_id = $this->organization_id;
+        $v->day = Carbon::parse($request->day)->format('Y-m-d');
+        $v->save();
+
+        return redirect('settings');
+    }
     
 }

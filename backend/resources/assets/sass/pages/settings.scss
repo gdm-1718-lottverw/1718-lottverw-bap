@@ -11,12 +11,52 @@
 			}
 		}
 	}
+	.add {
+		margin-bottom: 4px;
+		border-top: 1px solid $white;
+		background: $lightgray;
+      	.error {
+      			padding: 5px 50px;
+      			p {
+      				margin: 2px;
+    				text-align: center;
+    				font-size: 0.6em;
+    				color: $pink;
+    				font-weight: $bold;
+      			}
+      		}
+      	form {
+			.title {
+				margin: 5px 0;
+		        font-weight: 100;
+		        color: $darkgray;
+		        width: 100%;
+		        font-size: 0.9em;
+      		}	
+      		padding: 10px 50px;
+      		.form-group {
+      			margin: 15px 5px;
+      			width: 100%;
+      			input {
+      				background: $lightgray;
+      			}
+      		}
+      		.btn {
+      			font-size: 0.7em;
+      			height: 25px;
+      			margin-bottom: 10px;
+      		}
+      	}
+	}
 	.content {
 		height: 0;
 		width: 100%;
 		.item {
-			background: rgb(250, 250, 250);
+			padding: 10px 50px;
 			padding: 10px;
+			width: calc((100% / 3) - 6px);
+			margin: 3px;
+			color: $darkgray;
 			p {
 				margin: 0 3px;
 				font-size: 0.7em;

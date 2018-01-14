@@ -14,9 +14,33 @@
     </a>
   </div>
   <div class="add">
-  	{{Form::open(array('action' => 'Backoffice\Parents\IndexController@store', 'class' => 'form'))}}
+  		@if ($errors->any())
+	    <div class="error flex column">
+		     @foreach ($errors->all() as $error)
+		            <p>{{ $error }}</p>
+		        @endforeach
+		    </div>
+		@endif
+  	{{Form::open(array('action' => 'Backoffice\Settings\IndexController@store', 'class' => 'form'))}}
 		{{-- TOKEN --}}
 		{{ Form::hidden('_token', csrf_token() )}}
+	
+		<p class="title">Vakantie dag toevoegen</p>
+		<div class="flex row">
+			<div class="form-group flex column">
+					{{ Form::label('occasion', 'Rede')}}
+					{{ Form::text('occasion', null, ['placeholder' => 'Korte beschrijving'])}}
+					<div class="border"></div>
+			</div>
+			<div class="form-group flex column">
+					{{ Form::label('day', 'Datum')}}
+					{{ Form::text('day', null, ['placeholder' => 'voorbeeld: 01/02/2019'])}}
+					<div class="border"></div>
+			</div>
+		</div>
+		<div class="flex justified-end">
+			{!! Form::submit('Toevoegen', array('class'=>'btn')) !!}
+		</div>
 	{{Form::close()}}
   </div>
   <div class="content flex row wrap">

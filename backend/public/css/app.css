@@ -5486,14 +5486,62 @@ body .navigation a :hover {
   background: #3F68BC;
 }
 
+.settings .add {
+  margin-bottom: 4px;
+  border-top: 1px solid #FFF;
+  background: #F7F7F7;
+}
+
+.settings .add .error {
+  padding: 5px 50px;
+}
+
+.settings .add .error p {
+  margin: 2px;
+  text-align: center;
+  font-size: 0.6em;
+  color: #E64E78;
+  font-weight: 800;
+}
+
+.settings .add form {
+  padding: 10px 50px;
+}
+
+.settings .add form .title {
+  margin: 5px 0;
+  font-weight: 100;
+  color: #3B4250;
+  width: 100%;
+  font-size: 0.9em;
+}
+
+.settings .add form .form-group {
+  margin: 15px 5px;
+  width: 100%;
+}
+
+.settings .add form .form-group input {
+  background: #F7F7F7;
+}
+
+.settings .add form .btn {
+  font-size: 0.7em;
+  height: 25px;
+  margin-bottom: 10px;
+}
+
 .settings .content {
   height: 0;
   width: 100%;
 }
 
 .settings .content .item {
-  background: #fafafa;
+  padding: 10px 50px;
   padding: 10px;
+  width: calc((100% / 3) - 6px);
+  margin: 3px;
+  color: #3B4250;
 }
 
 .settings .content .item p {
