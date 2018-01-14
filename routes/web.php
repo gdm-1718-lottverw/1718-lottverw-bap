@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/log', 'Backoffice\Log\IndexController@index')->name('log');
 
 	Route::get('/settings', 'Backoffice\Settings\IndexController@index')->name('settings');
+	Route::post('/settings/add/date', 'Backoffice\Settings\IndexController@store')->name('addDate');
 
 	Route::get('/add/parents', 'Backoffice\Parents\IndexController@create')->name('parents');
 	Route::post('/add/parents/new', 'Backoffice\Parents\IndexController@store')->name('addParent');
