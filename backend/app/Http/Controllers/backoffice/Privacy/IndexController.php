@@ -1,20 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Backoffice\Parents;
+namespace App\Http\Controllers\Backoffice\Privacy;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
-use App\Models\AuthKey;
-use App\Models\Organization;
-use App\Models\Parents;
-use App\Models\Guardian;
-use App\Models\Address;
-use App\Models\Role;
-
-use Carbon\Carbon;
-
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller; 
 
 class IndexController extends Controller
