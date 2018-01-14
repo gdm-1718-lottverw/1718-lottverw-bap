@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/log', 'Backoffice\Log\IndexController@index')->name('log');
 
+	Route::get('/log', 'Backoffice\Privacy\IndexController@index')->name('privacy');
+
 	Route::get('/settings', 'Backoffice\Settings\IndexController@index')->name('settings');
 	Route::post('/settings/add/date', 'Backoffice\Settings\IndexController@store')->name('addDate');
 	Route::post('/settings/delete/date', 'Backoffice\Settings\IndexController@delete')->name('deleteDate');
