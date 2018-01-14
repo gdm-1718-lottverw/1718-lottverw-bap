@@ -1,0 +1,45 @@
+{
+  "name": "frontend",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "moment": "^2.19.4",
+    "prop-types": "^15.6.0",
+    "react": "16.0.0",
+    "react-native": "0.51.0",
+    "react-native-calendars": "^1.15.0",
+    "react-native-checkbox": "^2.0.0",
+    "react-native-prompt": "^1.0.0",
+    "react-native-prompt-android": "^0.3.1",
+    "react-native-radio-buttons": "^1.0.0",
+    "react-native-router-flux": "^4.0.0-beta.24",
+    "react-native-simple-radio-button": "^2.7.1",
+    "react-native-tabs": "^1.0.9",
+    "react-native-vector-icons": "^4.4.2",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-logger": "^2.10.2",
+    "redux-observable": "^0.17.0",
+    "redux-promise-middleware": "^4.4.2",
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0",
+    "rxjs": "^5.5.2"
+  },
+  "devDependencies": {
+    "babel-jest": "21.2.0",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-preset-react-native": "^2.1.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "21.2.1",
+    "react-test-renderer": "16.0.0",
+    "redux-devtools": "^3.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
