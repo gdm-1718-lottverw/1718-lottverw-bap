@@ -23,6 +23,16 @@
     				font-size: 0.6em;
     				color: $pink;
     				font-weight: $bold;
+    				width: 200px;
+      			}
+      			.trash {
+      				border: none;
+					color: $deeppink;
+					box-shadow: none;
+					margin: 0 10px;
+					height: 16px;
+					padding: 0;
+					background: none;
       			}
       		}
       	form {

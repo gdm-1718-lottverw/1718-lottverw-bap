@@ -40,7 +40,20 @@ class IndexController extends Controller
         $v->day = Carbon::parse($request->day)->format('Y-m-d');
         $v->save();
 
-        return redirect('settings');
+        return redirect()->route('settings');
     }
-    
+    /**
+     * Soft delete.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(request $request)
+    {   
+    	$v = Vacation::find($request->_id);
+        $v->deleted_at = Carbon::now();
+        $v->save();
+
+        return redirect()->route('settings');
+    }
 }
