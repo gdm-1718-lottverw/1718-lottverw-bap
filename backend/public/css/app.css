@@ -3343,7 +3343,6 @@
 }
 
 .form .section .form-group {
-  margin: 20px;
   width: 100%;
 }
 
@@ -3385,14 +3384,12 @@
 }
 
 .form .form-group {
-  margin: 30px 0;
   position: relative;
 }
 
 .form .form-group label {
   color: #3B4250;
   font-family: Ubuntu, "Helvetica", "Arial";
-  font-size: 13px;
   font-weight: 800;
 }
 
@@ -3581,6 +3578,86 @@
   font-style: italic;
   opacity: 0.7;
   font-weight: 300;
+}
+
+@media screen and (max-width: 37.5em) {
+  .form {
+    padding: 5px 15px;
+  }
+
+  .form .flex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .form .flex .form-group {
+    margin: 5px 0;
+  }
+
+  .form .flex .form-group label,
+  .form .flex .form-group input {
+    font-size: 0.6em;
+  }
+
+  .form .flex .btn {
+    font-size: 0.6em;
+    padding-bottom: 4px;
+    height: 30px;
+    margin: 5px 0;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .form {
+    padding: 10px 20px;
+  }
+
+  .form .flex {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+
+  .form .flex .form-group {
+    margin: 15px 10px;
+  }
+
+  .form .flex .form-group label,
+  .form .flex .form-group input {
+    font-size: 0.7em;
+  }
+
+  .form .flex .btn {
+    font-size: 0.7em;
+    padding-bottom: 4px;
+    height: 30px;
+    margin: 5px 10px;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .form {
+    padding: 10px 30px;
+  }
+
+  .form .form-group {
+    margin: 15px 15px;
+  }
+
+  .form .form-group label,
+  .form .form-group input {
+    font-size: 0.8em;
+  }
+
+  .form .btn {
+    font-size: 0.8em;
+    padding-bottom: 4px;
+    height: 30px;
+    margin: 5px 15px;
+  }
 }
 
 * {
@@ -5395,25 +5472,22 @@ body .navigation a :hover {
 
 .register {
   background: #F7F7F7;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
+  max-height: 100%;
 }
 
 .register .title {
   font-weight: 100;
   border-bottom: 1px solid #3B4250;
-  padding-bottom: 30px;
-  width: 70%;
   text-align: center;
 }
 
 .register .form {
   background: #FFF;
-  width: 70%;
-  padding: 70px;
 }
 
 .register .form .form-group {
-  margin: 20px;
   width: 100%;
 }
 
@@ -5422,19 +5496,77 @@ body .navigation a :hover {
 }
 
 .register a {
-  width: 70%;
-  padding: 25px 70px;
   border-radius: 7px;
-  margin-top: 30px;
   opacity: 0.9;
   text-align: center;
   color: #3B4250;
-  text-decoration: none;
-  font-size: 12px;
 }
 
 .register a:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 37.5em) {
+  .register .title {
+    font-size: 1em;
+    padding: 15px;
+    width: 85%;
+  }
+
+  .register .form {
+    width: 85%;
+    padding: 10px;
+  }
+
+  .register a {
+    padding: 5px;
+    font-size: 0.6em;
+    width: 85%;
+    text-decoration: underline;
+    margin: 10px;
+  }
+}
+
+@media screen and (min-width: 37.5em) {
+  .register .title {
+    font-size: 1.3em;
+    padding: 20px;
+    width: 85%;
+  }
+
+  .register .form {
+    width: 85%;
+    padding: 15px;
+  }
+
+  .register a {
+    padding: 5px;
+    font-size: 0.6em;
+    width: 85%;
+    text-decoration: underline;
+    margin: 10px;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  .register .title {
+    font-size: 1.5em;
+    padding: 30px;
+    width: 70%;
+  }
+
+  .register .form {
+    width: 70%;
+    padding: 30px 40px;
+  }
+
+  .register a {
+    padding: 6px;
+    font-size: 0.6em;
+    width: 70%;
+    text-decoration: underline;
+    margin: 30px;
+  }
 }
 
 .add-parent {
