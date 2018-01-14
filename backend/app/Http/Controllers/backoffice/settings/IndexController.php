@@ -50,7 +50,7 @@ class IndexController extends Controller
      */
     public function delete(request $request)
     {   
-    	$v = Vacation::find($request->_sid);
+    	$v = Vacation::find($request->_id);
         $v->deleted_at = Carbon::now();
         $v->save();
 
