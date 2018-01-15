@@ -60,7 +60,7 @@
       		}
       	}
 	}
-	> .title {
+    .title {
 			width: 100%;
 			font-size: 0.9em;
 			padding: 10px 13px;
@@ -130,8 +130,12 @@
 			top: 90px;
 			font-size: 1.2em;
 		}
+		.title{
+			&.marginTop {
+				margin-top: 110px;
+			}
+		}
 		.add {
-			margin-top: 100px;
 			form {
 				padding: 10px;
 				.title {
@@ -175,8 +179,12 @@
 			top: 90px;
 			font-size: 1.2em;
 		}
+		.title{
+			&.marginTop {
+				margin-top: 110px;
+			}
+		}
 		.add {
-			margin-top: 110px;
 			.form {
 				.title {
 					margin: 10px 0 0 0;
@@ -213,6 +221,11 @@
 				width: 70px;
 				border-right: 1px solid white;
 				border-left: 1px solid white;
+			}
+		}
+		.title{
+			&.marginTop {
+				margin-top: 110px;
 			}
 		}
 		.title-main {

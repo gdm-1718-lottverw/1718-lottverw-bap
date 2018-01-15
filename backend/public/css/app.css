@@ -5740,7 +5740,7 @@ body .navigation a :hover {
   margin-bottom: 10px;
 }
 
-.settings > .title {
+.settings .title {
   width: 100%;
   font-size: 0.9em;
   padding: 10px 13px;
@@ -5821,8 +5821,8 @@ body .navigation a :hover {
     font-size: 1.2em;
   }
 
-  .settings .add {
-    margin-top: 100px;
+  .settings .title.marginTop {
+    margin-top: 110px;
   }
 
   .settings .add form {
@@ -5871,7 +5871,7 @@ body .navigation a :hover {
     font-size: 1.2em;
   }
 
-  .settings .add {
+  .settings .title.marginTop {
     margin-top: 110px;
   }
 
@@ -5910,6 +5910,10 @@ body .navigation a :hover {
     width: 70px;
     border-right: 1px solid white;
     border-left: 1px solid white;
+  }
+
+  .settings .title.marginTop {
+    margin-top: 110px;
   }
 
   .settings .title-main {

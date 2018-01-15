@@ -14,6 +14,7 @@
     </a>
   </div>
   <p class='title-main'>Instellingen</p>
+  <p class="title marginTop">Sluitings dag toevoegen</p>
   <div class="add">
   		@if ($errors->any())
 	    <div class="error flex column">
@@ -25,8 +26,6 @@
   	{{Form::open(array('action' => 'Backoffice\Settings\IndexController@store', 'class' => 'form'))}}
 		{{-- TOKEN --}}
 		{{ Form::hidden('_token', csrf_token() )}}
-	
-		<p class="title">Sluitings dag toevoegen</p>
 		<div class="flex row">
 			<div class="form-group flex column">
 					{{ Form::label('occasion', 'Rede sluiting')}}
