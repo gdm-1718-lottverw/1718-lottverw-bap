@@ -10,34 +10,58 @@
         height: 70px;
         background: $lightgray;
     }
+     .title {
+        font-weight: 100;
+        border-bottom: 1px solid $darkgray;
+        width: 100%;
+        background: $white;
+        text-align: center;
+        margin: 0;
+        position: fixed;
+        padding: 20px;
+    }
     
 }
 
 @include breakpoint(xs){
     .list {
-        top: 47px;
+        top: 45px;
         width: 100% ;
+        .children {
+            margin-top: 55px;
+        }
         .child-item {
             margin: 2px;
             padding: 15px;
             width: calc(100% - 4px);
         }
+        .title {
+            font-size: 0.7em;
+            top: 45px;
+        }
     }
 }
 @include breakpoint(sm){
     .list {
-        top: 48px;
+        top: 45px;
         width: 100% ;
+        .children {
+            margin-top: 65px;
+        }
         .child-item {
             margin: 3px;
             width: calc((100% / 2) - 9px);
+        }
+        .title {
+            top: 45px;
+            font-size: 1.2em;
         }
     }
 }
 @include breakpoint(md){
     .list {
         z-index: 0;
-        top: 4px;
+        top: 0;
         left: 70px;
         height: 100%;
         width: calc(100% - 70px);
@@ -45,7 +69,13 @@
             width: calc((100% / 4) - 6px);
             margin: 3px;
             padding: 10px 15px;
-
+        }
+        .children {
+            margin-top: 70px;
+        }
+        .title {
+            font-size: 1.5em;
+            top:0;
         }
     }
 }

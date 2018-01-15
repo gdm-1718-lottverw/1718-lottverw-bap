@@ -3960,11 +3960,13 @@ body .navigation a :hover {
 .home .title {
   font-weight: 100;
   border-bottom: 1px solid #3B4250;
-  padding-bottom: 30px;
   width: 100%;
-  padding-top: 15px;
-  text-align: center;
   background: #FFF;
+  text-align: center;
+  margin: 0;
+  position: fixed;
+  padding: 20px;
+  font-size: 1.5em;
 }
 
 .home #to-come .child-card,
@@ -5248,10 +5250,25 @@ body .navigation a :hover {
   background: #F7F7F7;
 }
 
+.list .title {
+  font-weight: 100;
+  border-bottom: 1px solid #3B4250;
+  width: 100%;
+  background: #FFF;
+  text-align: center;
+  margin: 0;
+  position: fixed;
+  padding: 20px;
+}
+
 @media screen and (max-width: 37.5em) {
   .list {
-    top: 47px;
+    top: 45px;
     width: 100%;
+  }
+
+  .list .children {
+    margin-top: 55px;
   }
 
   .list .child-item {
@@ -5259,24 +5276,38 @@ body .navigation a :hover {
     padding: 15px;
     width: calc(100% - 4px);
   }
+
+  .list .title {
+    font-size: 0.7em;
+    top: 45px;
+  }
 }
 
 @media screen and (min-width: 37.5em) {
   .list {
-    top: 48px;
+    top: 45px;
     width: 100%;
+  }
+
+  .list .children {
+    margin-top: 65px;
   }
 
   .list .child-item {
     margin: 3px;
     width: calc((100% / 2) - 9px);
   }
+
+  .list .title {
+    top: 45px;
+    font-size: 1.2em;
+  }
 }
 
 @media screen and (min-width: 50em) {
   .list {
     z-index: 0;
-    top: 4px;
+    top: 0;
     left: 70px;
     height: 100%;
     width: calc(100% - 70px);
@@ -5286,6 +5317,15 @@ body .navigation a :hover {
     width: calc((100% / 4) - 6px);
     margin: 3px;
     padding: 10px 15px;
+  }
+
+  .list .children {
+    margin-top: 70px;
+  }
+
+  .list .title {
+    font-size: 1.5em;
+    top: 0;
   }
 }
 
