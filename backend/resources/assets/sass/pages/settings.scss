@@ -1,7 +1,20 @@
 .settings {
 	position: absolute;
+	 .title-main {
+        font-weight: 100;
+        border-bottom: 1px solid $darkgray;
+        width: 100%;
+        background: $white;
+        text-align: center;
+        margin: 0;
+        position: fixed;
+        padding: 20px;
+        z-index: 10;
+    }
 	.settings-nav {
 		background: $lightgray;
+		position: fixed;
+		z-index: 10;
 		a {
 			color: $darkgray;
 			text-decoration: none;
@@ -24,7 +37,7 @@
     				color: $pink;
     				font-weight: $bold;
       			}
-      		}
+      	}
       	form {
 			.title {
 				margin: 5px 0;
@@ -33,7 +46,6 @@
 		        width: 100%;
 		        font-size: 0.9em;
       		}	
-      		padding: 10px 50px;
       		.form-group {
       			margin: 15px 5px;
       			width: 100%;
@@ -48,6 +60,14 @@
       		}
       	}
 	}
+	> .title {
+			width: 100%;
+			font-size: 0.9em;
+			padding: 10px 13px;
+			margin: 0 6px 0 1px;
+			color: $darkgray;
+			border-bottom: 1px solid $darkgray;
+		}
 	.content {
 		height: 0;
 		width: 100%;
@@ -63,16 +83,22 @@
 				font-size: 0.7em;
 			}
 			.trash button {
-      				border: none;
-					color: $deeppink;
+      				border: none; 
 					box-shadow: none;
 					margin: 0 10px;
 					height: 16px;
 					padding: 0;
 					background: none;
 					opacity: 0.9;
+					border-radius: 100%;
+					color: white;
+					height: 36px;
+					width: 36px;
+					padding: 6px 3px;
+					background: $pink;
 					i {
 						font-size: 1.3em;
+						color: white;
 					}
 					&:hover {
 						opacity: 1;
@@ -89,16 +115,39 @@
 		right: 0;
 		.settings-nav {
 			height: 45px;
+			left: 0;
+			right: 0;
+			top: 45px;
+			z-index: 3;
 			a {
 				width: 70px;
 				border: none;
 				border-right: 1px solid white;
-				border-left: 1px solid white;
+				border-left: none;
 			}
+		}
+		.title-main {
+			top: 90px;
+			font-size: 1.2em;
+		}
+		.add {
+			margin-top: 100px;
+			form {
+				padding: 10px;
+				.title {
+					margin: 10px 0 0 0;
+					font-weight: 100;
+					color: #3B4250;
+					width: 100%;
+					text-align: right;
+					text-transform: uppercase;
+					font-size: 0.7em;
+				}
+			} 
 		}
 		.content {
 			.item {
-				width: calc((100% / 1) - 6px);
+				width: calc(100% - 6px);
 				margin: 3px;
 			}
 		}
@@ -112,11 +161,32 @@
 		right: 0;
 		.settings-nav {
 			height: 45px;
+			top: 45px;
+			left: 0;
+			right: 0;
 			a {
 				width: 70px;
 				border: none;
 				border-right: 1px solid white;
-				border-left: 1px solid white;
+				border-left: none;
+			}
+		}
+		.title-main {
+			top: 90px;
+			font-size: 1.2em;
+		}
+		.add {
+			margin-top: 110px;
+			.form {
+				.title {
+					margin: 10px 0 0 0;
+					font-weight: 100;
+					color: #3B4250;
+					width: 100%;
+					text-align: right;
+					text-transform: uppercase;
+					font-size: 0.7em;
+				}
 			}
 		}
 		.content {
@@ -136,12 +206,20 @@
 		width: calc(100% - 70px);
 		.settings-nav {
 			height: 35px;
+			top: 0px;
+			left: 70px;
+			right: 0;
 			a {
 				width: 70px;
 				border-right: 1px solid white;
 				border-left: 1px solid white;
 			}
 		}
+		.title-main {
+			top: 35px;
+			font-size: 1.5em;
+		}
+		.add .form .title { text-align: left;}
 		.content {
 			.item {
 				width: calc((100% / 3) - 6px);

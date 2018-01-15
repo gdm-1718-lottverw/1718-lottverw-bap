@@ -5671,8 +5671,22 @@ body .navigation a :hover {
   position: absolute;
 }
 
+.settings .title-main {
+  font-weight: 100;
+  border-bottom: 1px solid #3B4250;
+  width: 100%;
+  background: #FFF;
+  text-align: center;
+  margin: 0;
+  position: fixed;
+  padding: 20px;
+  z-index: 10;
+}
+
 .settings .settings-nav {
   background: #F7F7F7;
+  position: fixed;
+  z-index: 10;
 }
 
 .settings .settings-nav a {
@@ -5703,10 +5717,6 @@ body .navigation a :hover {
   font-weight: 800;
 }
 
-.settings .add form {
-  padding: 10px 50px;
-}
-
 .settings .add form .title {
   margin: 5px 0;
   font-weight: 100;
@@ -5730,6 +5740,15 @@ body .navigation a :hover {
   margin-bottom: 10px;
 }
 
+.settings > .title {
+  width: 100%;
+  font-size: 0.9em;
+  padding: 10px 13px;
+  margin: 0 6px 0 1px;
+  color: #3B4250;
+  border-bottom: 1px solid #3B4250;
+}
+
 .settings .content {
   height: 0;
   width: 100%;
@@ -5751,7 +5770,6 @@ body .navigation a :hover {
 
 .settings .content .item .trash button {
   border: none;
-  color: #9A3450;
   -webkit-box-shadow: none;
           box-shadow: none;
   margin: 0 10px;
@@ -5759,10 +5777,17 @@ body .navigation a :hover {
   padding: 0;
   background: none;
   opacity: 0.9;
+  border-radius: 100%;
+  color: white;
+  height: 36px;
+  width: 36px;
+  padding: 6px 3px;
+  background: #E64E78;
 }
 
 .settings .content .item .trash button i {
   font-size: 1.3em;
+  color: white;
 }
 
 .settings .content .item .trash button:hover {
@@ -5778,17 +5803,44 @@ body .navigation a :hover {
 
   .settings .settings-nav {
     height: 45px;
+    left: 0;
+    right: 0;
+    top: 45px;
+    z-index: 3;
   }
 
   .settings .settings-nav a {
     width: 70px;
     border: none;
     border-right: 1px solid white;
-    border-left: 1px solid white;
+    border-left: none;
+  }
+
+  .settings .title-main {
+    top: 90px;
+    font-size: 1.2em;
+  }
+
+  .settings .add {
+    margin-top: 100px;
+  }
+
+  .settings .add form {
+    padding: 10px;
+  }
+
+  .settings .add form .title {
+    margin: 10px 0 0 0;
+    font-weight: 100;
+    color: #3B4250;
+    width: 100%;
+    text-align: right;
+    text-transform: uppercase;
+    font-size: 0.7em;
   }
 
   .settings .content .item {
-    width: calc((100% / 1) - 6px);
+    width: calc(100% - 6px);
     margin: 3px;
   }
 }
@@ -5802,13 +5854,35 @@ body .navigation a :hover {
 
   .settings .settings-nav {
     height: 45px;
+    top: 45px;
+    left: 0;
+    right: 0;
   }
 
   .settings .settings-nav a {
     width: 70px;
     border: none;
     border-right: 1px solid white;
-    border-left: 1px solid white;
+    border-left: none;
+  }
+
+  .settings .title-main {
+    top: 90px;
+    font-size: 1.2em;
+  }
+
+  .settings .add {
+    margin-top: 110px;
+  }
+
+  .settings .add .form .title {
+    margin: 10px 0 0 0;
+    font-weight: 100;
+    color: #3B4250;
+    width: 100%;
+    text-align: right;
+    text-transform: uppercase;
+    font-size: 0.7em;
   }
 
   .settings .content .item {
@@ -5827,12 +5901,24 @@ body .navigation a :hover {
 
   .settings .settings-nav {
     height: 35px;
+    top: 0px;
+    left: 70px;
+    right: 0;
   }
 
   .settings .settings-nav a {
     width: 70px;
     border-right: 1px solid white;
     border-left: 1px solid white;
+  }
+
+  .settings .title-main {
+    top: 35px;
+    font-size: 1.5em;
+  }
+
+  .settings .add .form .title {
+    text-align: left;
   }
 
   .settings .content .item {

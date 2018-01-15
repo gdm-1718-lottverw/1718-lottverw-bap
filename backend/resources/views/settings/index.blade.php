@@ -13,6 +13,7 @@
         <i class="fa fa-sitemap" aria-hidden="true"></i>
     </a>
   </div>
+  <p class='title-main'>Instellingen</p>
   <div class="add">
   		@if ($errors->any())
 	    <div class="error flex column">
@@ -25,11 +26,11 @@
 		{{-- TOKEN --}}
 		{{ Form::hidden('_token', csrf_token() )}}
 	
-		<p class="title">Vakantie dag toevoegen</p>
+		<p class="title">Sluitings dag toevoegen</p>
 		<div class="flex row">
 			<div class="form-group flex column">
-					{{ Form::label('occasion', 'Korte beschrijving')}}
-					{{ Form::text('occasion', null, ['placeholder' => 'Korte beschrijving'])}}
+					{{ Form::label('occasion', 'Rede sluiting')}}
+					{{ Form::text('occasion', null, ['placeholder' => 'bv. Permanente vorming.'])}}
 					<div class="border"></div>
 			</div>
 			<div class="form-group flex column">
@@ -43,6 +44,7 @@
 		</div>
 	{{Form::close()}}
   </div>
+  <p class="title">Overzicht sluitingsdagen</p>
   <div class="content flex row wrap">
   	@foreach($vacations as $v)
   	<div class="item flex row centered justified-start">
