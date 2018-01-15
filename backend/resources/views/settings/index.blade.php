@@ -28,7 +28,7 @@
 		<p class="title">Vakantie dag toevoegen</p>
 		<div class="flex row">
 			<div class="form-group flex column">
-					{{ Form::label('occasion', 'Rede')}}
+					{{ Form::label('occasion', 'Korte beschrijving')}}
 					{{ Form::text('occasion', null, ['placeholder' => 'Korte beschrijving'])}}
 					<div class="border"></div>
 			</div>

@@ -3957,6 +3957,16 @@ body .navigation a :hover {
   font-size: 18px;
 }
 
+.home .title {
+  font-weight: 100;
+  border-bottom: 1px solid #3B4250;
+  padding-bottom: 30px;
+  width: 100%;
+  padding-top: 15px;
+  text-align: center;
+  background: #FFF;
+}
+
 .home #to-come .child-card,
 .home #in .child-card,
 .home #out .child-card,
@@ -5671,7 +5681,7 @@ body .navigation a :hover {
 }
 
 .settings .add form .form-group input {
-  background: #F7F7F7;
+  background: #fafafa;
 }
 
 .settings .add form .btn {

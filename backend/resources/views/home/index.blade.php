@@ -9,6 +9,14 @@
       @include('home.partials.leftOvers')
     </div> 
     @endif
+     @if(Count($leftOver) == 0 && Count($in) == 0 && Count($out) == 0 && Count($toCome) == 0)
+    <p class="title">Geen inschrijvingen voor
+      @if(Carbon\Carbon::now()->format('h:i:s') < \Carbon\Carbon::create(2017, 12, 23, 12, 01, 00)->format('H:i:s')) 
+        deze namiddag
+        @else 
+        deze voormiddag
+      @endif</p>
+    @endif
     <i onClick="showHide('show', '#overlay')" class="fa fa-plus btn-fab blue" aria-hidden="true"></i>
     <div id="container-future">
       @include('home.partials.future')
@@ -19,7 +27,6 @@
     <div id="container-out">
       @include('home.partials.out')
     </div>
-
 
     <div id="overlay" class="hide flex justified-c">
       <div class="flex justified-end">

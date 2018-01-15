@@ -15,6 +15,15 @@
             font-size: 18px;
         }
     }
+    .title {
+        font-weight: 100;
+        border-bottom: 1px solid $darkgray;
+        padding-bottom: 30px;
+        width: 100%;
+        padding-top: 15px;
+        text-align: center;
+        background: $white;
+    }
     #to-come, #in, #out, #leftover {
         .child-card {
             height: 155px;
