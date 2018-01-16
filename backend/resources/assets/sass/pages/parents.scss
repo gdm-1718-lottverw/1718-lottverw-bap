@@ -1,39 +1,43 @@
 .add-parent, .add-child {
 	position: absolute;
 	.title {
-		font-weight: 100;
-		border-bottom: 1px solid $darkgray;
-		text-align: center;
-		margin: 0;
-	}
+        font-weight: 100;
+        border-bottom: 1px solid $darkgray;
+        width: 100%;
+        background: $white;
+        text-align: center;
+        margin: 0;
+        position: fixed;
+        padding: 20px;
+        z-index: 10;
+    }
 }
 
 @include breakpoint(xs){
 	.add-parent, .add-child {
-		padding: 10px;
 		top: 0;
 		left: 0;
 		right: 0;
-		margin: 50px 0;
 		.title {
-			font-size: 1em;
+			top: 45px;
+			font-size: 0.7em;
 			padding: 15px;
 		}
+		.form {margin: 92px 15px;}
 	}
 }
 
 @include breakpoint(sm){
 	.add-parent, .add-child {
-		padding: 20px;
 		top: 0;
 		left: 0;
 		right: 0;
-		margin: 50px 0;
 		.title {
-			font-size: 1.2em;
-			padding: 25px;
+			top: 45px;
+			font-size: 1em;
+			padding: 15px;
 		}
-
+		.form {margin: 100px 15px;}
 	}
 }
 
@@ -42,12 +46,14 @@
 		top: 0;
 		left: 70px;
 		right: 0;
-		margin: 0 20px;
 		.title {
 			font-size: 1.4em;
 			padding: 25px;
+			top:0;
 		}
-
+		.form {
+			margin: 80px 10px;
+		}
 	}
 }
 

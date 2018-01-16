@@ -35,6 +35,6 @@
       @endif
   </div>  
   @endforeach
-    <div id="headCount" class="out info-fab deeppink bottom">{{$count}}</div>
+    <div id="headCount" class="out info-fab deeppink bottom flex centered justified-c row">{{$count}}</div>
     <span class="tip">Aanwezigen</span>
 </div>

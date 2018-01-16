@@ -159,7 +159,7 @@
         right: 0;
         z-index: 10;
         .form {
-            .title {
+            .overlay-title {
                 font-weight: 100;
                 border-bottom: 1px solid $darkgray;
                 padding-bottom: 30px;
@@ -168,6 +168,7 @@
             }
             background: $white;
             .form-group {
+                margin: 10px 0;
                 width: 100%;
                 &.btn{
                     margin-right: 70px;
