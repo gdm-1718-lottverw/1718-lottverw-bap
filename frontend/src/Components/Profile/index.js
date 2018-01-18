@@ -35,7 +35,7 @@ class ProfileService extends Component {
   }
   
   validatePhone = (tel) => {
-    var re = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/;
+    var re = /(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)/;
     return re.test(tel);
   }
 
@@ -120,12 +120,14 @@ class ProfileService extends Component {
               if(!this.validateEmail(e.email)){
                 this.setState({error: e.email + ' is niet geldig.'})
               } else if (!this.validatePhone(e.tel)){
-                 this.setState({error: e.tel + this.validatePhone(e.tel) +' is geen geldig telefoonnummer'})
+                 this.setState({error: e.tel + ' is geen geldig telefoonnummer'})
+              } else {
+                this.props.UpdateProfile(this.props.token, result);
+               this.state.edit['parents'] = false;
+               this.setState({ edit: this.state.edit});
               }
             })
-            this.props.UpdateProfile(this.props.token, result);
-            this.state.edit['parents'] = false;
-            this.setState({ edit: this.state.edit});}}>
+            }}>
             <Text style={styles.btnText}>SAVE</Text> 
           </TouchableOpacity>: null
         }
@@ -330,7 +332,7 @@ class ProfileService extends Component {
                               multiline={true}
                               onChangeText={(description) => {
                                 a.description = description;
-                                !this.validateDescription(description)? this.setState({'error': description + ' is niet uitgebreid genoeg.'}): this.state.error = "";
+                                !this.validateDescription(description)? this.setState({'error':  'Zorg voor een beschrijving tussen 20 en 40 karakters.'}): this.state.error = "";
                                 this.setState({
                                   data: this.state.data
                                 });
@@ -358,7 +360,7 @@ class ProfileService extends Component {
                            multiline={true}
                            onChangeText={(description) => {
                             m.description = description;
-                            !this.validateDescription(description)? this.setState({'error': description + ' is niet uitgebreid genoeg.'}): this.state.error = "";
+                            !this.validateDescription(description)? this.setState({'error': 'Zorg voor een beschrijving tussen 20 en 40 karakters.'}): this.state.error = "";
                             this.setState({
                               data: this.state.data
                             });
@@ -387,7 +389,7 @@ class ProfileService extends Component {
                               multiline={true}
                               onChangeText={(description) => {
                                 p.description = description;
-                                !this.validateDescription(description)? this.setState({'error': description + ' is niet uitgebreid genoeg.'}): this.setState({'error': ""});
+                                !this.validateDescription(description)? this.setState({'error': 'Zorg voor een beschrijving tussen 20 en 40 karakters.'}): this.setState({'error': ""});
                                 this.setState({
                                   data: this.state.data
                                 });
@@ -419,7 +421,8 @@ class ProfileService extends Component {
                               multiline={true}
                               onChangeText={(description) => {
                                 p.description = description;
-                                !this.validateDescription(description)? this.setState({'error': description + ' is niet uitgebreid genoeg.'}): this.setState({'error': ""});
+                                !this.validateDescription(description)? this.setState({'error': 'Zorg voor een beschrijving tussen 20 en 40 karakters.'
+                              }): this.setState({'error': ""});
                                 this.setState({
                                   data: this.state.data
                                 });
@@ -541,6 +544,7 @@ class ProfileService extends Component {
                 <View style={styles.description}>
                 { this.state.data.guardians != undefined && this.state.edit.guardians == false? 
                   this.state.data.guardians.map((g, i) => {
+                    if(g['delete'] != true){
                     return (
                       <View key={i}>
                          <View style={[styles.row ]}>
@@ -548,11 +552,11 @@ class ProfileService extends Component {
                           <Text style={[styles.stretch, styles.alignRight]}>Tel. {g.tel}</Text>
                         </View>
                       </View>
-                    )})
+                    )}})
                 :null}
                 { this.state.data.guardians != undefined && this.state.edit.guardians == true? 
                   this.state.data.guardians.map((g, i) => {
-                    if(g['delete'] == undefined){
+                    if(g['delete'] != true){
                       return (
                       <View key={i}>           
                         <View style={styles.row}>                   
@@ -592,7 +596,7 @@ class ProfileService extends Component {
 
                 :null}
                 {this.state.edit['guardians'] == true? <TouchableOpacity style={styles.add} onPress={() => {
-                  this.state.data.guardians == undefined? this.state.data.guardians = [{name: '', tel: ''}]: this.state.data.guardians.push({name: '', tel: ''});
+                  this.state.data.guardians == undefined? this.state.data.guardians = [{name: '', tel: ''}]: this.state.data.guardians.push({name: '', tel: ''}), this.setState({'data': this.state.data});
                 }}> 
                   <Text style={[styles.addText]}>Voogd Toevoegen</Text>
                 </TouchableOpacity> :null}

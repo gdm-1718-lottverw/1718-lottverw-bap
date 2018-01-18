@@ -3,35 +3,25 @@ import Colors from '../../Config/theme';
 
 const styles = StyleSheet.create({
     container: {
-        alignSelf: "stretch",
-        justifyContent: 'flex-start',
-        flexDirection: 'row',
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 24,
         backgroundColor: Colors.darkgrey,
+        paddingVertical: 8,
+        paddingHorizontal: 20,
+        height: 35,
         maxHeight: 35,
+        minHeight: 35,
     },
     text: {
-        textAlign: 'left',
-        padding: 9,
-        paddingLeft: 20,
-        fontSize: 14,
         color: Colors.white,
-        fontWeight: '700',
-        fontFamily: "Roboto",
-        alignSelf: "stretch",
-        justifyContent: 'flex-start',
-        flex: 5,
+        fontSize: 13,
     },
     icon: {
-        alignSelf: "stretch",
-        justifyContent: 'flex-end',
-        flex: 1,
-        textAlign: 'right',
-        paddingTop: 10,
-        paddingRight: 20,
-        fontSize: 15,
         color: Colors.white,
-        width: 50
+        fontSize: 13,
+        marginTop: 3,
     },
 });
 export default styles;

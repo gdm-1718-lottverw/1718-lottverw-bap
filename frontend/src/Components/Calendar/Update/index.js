@@ -6,7 +6,6 @@ import styles from './styles';
 import moment from 'moment';
 import 'moment/locale/nl-be';
 import Colors from '../../../Config/theme';
-import { RadioButtons } from 'react-native-radio-buttons'
 import GenerateIcon from '../../Icon/index';
 import GenerateLoading from '../../Loading/index'; 
 

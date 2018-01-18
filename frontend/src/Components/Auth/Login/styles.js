@@ -10,10 +10,13 @@ const styles = StyleSheet.create({
     label: {
         fontWeight: '800',
         color: Colors.darkgrey,
-        marginBottom:0
+        marginBottom: 0, 
     },
     textInput: {
         marginBottom: 15,
+        paddingHorizontal: 5,
+        paddingVertical: 7,
+        borderBottomColor: Colors.darkgrey
     },
     btn: {
         backgroundColor: Colors.darkgrey,

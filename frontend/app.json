@@ -1,4 +1,15 @@
 {
-  "name": "frontend",
-  "displayName": "frontend"
+  "name": "rhinoregister",
+  "displayName": "rhino",
+  "expo": {
+   "name": "rhinoregister",
+   "icon": "./src/Assets/logo.png",
+   "version": "1.1.0",
+   "slug": "rhino",
+   "sdkVersion": "23.0.0",
+   "android": {
+     "package": "com.verwerftlotte.rhinoregister",
+   }
+  }
+
 }

@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
         paddingLeft: 12,
     },
     label: {
-        fontWeight: '900',
         backgroundColor: Colors.white,
         marginLeft: 35,
         marginRight: 10,
@@ -113,8 +112,10 @@ const styles = StyleSheet.create({
     textInput: {
         margin: 0,
         padding: 0,
-        paddingBottom: 7,
-        paddingLeft: 3
+        marginBottom: 15,
+        paddingHorizontal: 5,
+        paddingVertical: 7,
+        borderBottomColor: Colors.darkgrey
     },
     white: {
         color: Colors.white

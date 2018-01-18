@@ -3,6 +3,7 @@ import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { connect }from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import styles from './styles';
+import Colors from '../../../Config/theme';
 import GenerateLoading from '../../Loading/index';
 
 class LoginService extends Component {
@@ -33,12 +34,14 @@ class LoginService extends Component {
             <Text style={styles.label}>username</Text>
             <TextInput
                 style={styles.textInput}
+                underlineColorAndroid={Colors.darkgrey}
                 onChangeText={(username) => {this.setState({username})}}
                 value={this.state.username}/>
 
             <Text style={styles.label}>password</Text>
             <TextInput
                 style={styles.textInput}
+                underlineColorAndroid={Colors.darkgrey}
                 secureTextEntry={true}
                 onChangeText={(password) => this.setState({password})}
                 value={this.state.password}/>
