@@ -6,12 +6,12 @@
      <a href="/settings" class="{{ Route::currentRouteNamed('settings') ? 'active' : '' }} flex justified-c centered">
         <i class="fa fa-calendar" aria-hidden="true"></i>
     </a>
-    <a href="/parents" class="{{ Route::currentRouteNamed('parents') ? 'active' : '' }} flex justified-c centered">
+    <!--a href="/parents" class="{{ Route::currentRouteNamed('parents') ? 'active' : '' }} flex justified-c centered">
         <i class="fa fa-users" aria-hidden="true"></i>
     </a>
     <a href="/organizations" class="{{ Route::currentRouteNamed('organizations') ? 'active' : '' }} flex justified-c centered">
         <i class="fa fa-sitemap" aria-hidden="true"></i>
-    </a>
+    </a-->
   </div>
   <p class='title-main'>Instellingen</p>
   <p class="title marginTop">Sluitings dag toevoegen</p>
