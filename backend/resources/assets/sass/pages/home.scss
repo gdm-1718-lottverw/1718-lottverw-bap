@@ -27,6 +27,16 @@
         font-size: 1.5em;
     }
     #to-come, #in, #out, #leftover {
+        .title-over {
+                display: block;
+            width: 100%;
+            margin: 0;
+            font-size: 20px;
+            font-weight: 100;
+            text-transform: uppercase;
+            border-bottom: 1px solid $darkgray;
+            margin-bottom: 15px;
+        }
         .child-card {
             height: 155px;
             position: relative;

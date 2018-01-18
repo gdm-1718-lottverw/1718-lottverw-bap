@@ -1,5 +1,5 @@
-<h3 class='title'>Ochtend</h3>
 <div id="leftover" class="flex wrap justified-start">
+  <h3 class='title-over'>Ochtend</h3>
   @foreach($leftOver as $lo) 
   <div class="child-card flex">
     <div class="flex column btn justified-s">

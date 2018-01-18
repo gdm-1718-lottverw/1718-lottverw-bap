@@ -3969,6 +3969,20 @@ body .navigation a :hover {
   font-size: 1.5em;
 }
 
+.home #to-come .title-over,
+.home #in .title-over,
+.home #out .title-over,
+.home #leftover .title-over {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 100;
+  text-transform: uppercase;
+  border-bottom: 1px solid #3B4250;
+  margin-bottom: 15px;
+}
+
 .home #to-come .child-card,
 .home #in .child-card,
 .home #out .child-card,
