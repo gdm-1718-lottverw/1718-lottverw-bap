@@ -23,11 +23,6 @@ use Illuminate\Support\Facades\Auth;
 class IndexController extends Controller
 {
     private $organization_id;
-    function helper_loggedInOrganization(){
-        $key = Auth::id();
-        $o= Organization::where('auth_key_id', $key)->first();
-        $this->organization_id = $o->id;  
-    }
 
     public function index(int $child_id){
         $this->child_id = $child_id;
@@ -97,7 +92,7 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     { 
-        $this->helper_loggedInOrganization();
+        $this->organization_id = helper_loggedInOrganization();
         
         $validatedData = $request->validate([
             'doctor' => 'required|string',

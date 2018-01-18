@@ -19,11 +19,6 @@ class IndexController extends Controller
 {
     private $organization_id;
 
-    function helper_loggedInOrganization(){
-        $key = Auth::id();
-        $o= Organization::where('auth_key_id', $key)->first();
-        $this->organization_id = $o->id; 
-    }
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +26,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $this->helper_loggedInOrganization();
+        $this->organization_id = helper_loggedInOrganization();
         $general_conditions = [
             'organization_id' => $this->organization_id,
             'deleted_at' => null,

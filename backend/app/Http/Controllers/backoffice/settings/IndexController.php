@@ -14,14 +14,9 @@ class IndexController extends Controller
 
     private $organization_id;
 
-    function helper_loggedInOrganization(){
-        $key = Auth::id();
-        $o= Organization::where('auth_key_id', $key)->first();
-        $this->organization_id = $o->id;  
-    }
 
     public function index(){
-    	$this->helper_loggedInOrganization();
+    	$this->organization_id = helper_loggedInOrganization();
     	$vacations = Vacation::where([['organization_id', $this->organization_id], ['deleted_at', null]])->orderBy('day', 'ASC')->get();
 
         return view('settings.index', compact(['vacations']));
@@ -33,7 +28,7 @@ class IndexController extends Controller
             'day' => 'required|date',
         ]);
 
-        $this->helper_loggedInOrganization();
+        $this->organization_id = helper_loggedInOrganization();
         $v = new Vacation;
         $v->occasion = $request->occasion;
         $v->organization_id = $this->organization_id;

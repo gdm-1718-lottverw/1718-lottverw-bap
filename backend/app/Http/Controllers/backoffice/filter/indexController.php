@@ -17,15 +17,9 @@ class IndexController extends Controller
 
     private $date = "";  private $organization_id;
 
-    function helper_loggedInOrganization(){
-        $key = Auth::id();
-        $o= Organization::where('auth_key_id', $key)->first();
-        $this->organization_id = $o->id;  
-    }
-
     public function index(){
+        $this->organization_id = helper_loggedInOrganization();
         $or = Organization::where('id', $this->organization_id)->orWhere('main_organization');
-        $this->helper_loggedInOrganization();
         $conditions = [
             'organization_id' =>  $this->organization_id, 
             'date' => Carbon::today()
@@ -37,7 +31,7 @@ class IndexController extends Controller
     }
     
     public function create(request $request){    
-        $this->helper_loggedInOrganization();   
+        $this->organization_id = helper_loggedInOrganization();  
         $data = $request->data; $date = $request->date; $age = $request->age[0]['age'];
         $general_conditions = [
             'organization_id' => $this->organization_id,  
