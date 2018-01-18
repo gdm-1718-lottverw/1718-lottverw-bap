@@ -16,53 +16,19 @@ use App\Models\Guardian;
 use App\Models\Action;
 use Carbon\Carbon;
 
+use App\Http\Helpers;
+
 class IndexController extends Controller
 {
     private $type; private $type_inverse; private $organization_id;
 
-    function helper_CheckTime(){
-        Carbon::setlocale(LC_TIME, 'German');
-        $now = Carbon::now()->format('H:i:s');   
-        $middag  = Carbon::create(2017, 12, 23, 12, 01, 00)->format('H:i:s');
-        if($now < $middag){
-            $this->type = 'voormiddag';
-            $this->type_inverse = 'namiddag';
-        } else {
-            $this->type = 'namiddag';
-            $this->type_inverse = 'voormiddag';
-        }
-    }
-
-    function helper_SaveChild(string $action, int $id, string $type){
-        $child = PlannedAttendance::find($id);
-        $child->$action = true;
-        $child->save();
-
-        return $child;
-    }
-
-    function helper_loggedInOrganization(){
-        $key = Auth::id();
-        $o = Organization::where('auth_key_id', $key)->first();
-        $this->organization_id = $o->id;
-    }
-    
-    function helper_NewLog($attendance, $action){
-        $action = Action::where('name', $action)->first();
-        $log = new Log;
-        $log->planned_attendance_id = $attendance;
-        $log->organization_id = $this->organization_id;
-        $log->action_time = date('H:i:s');
-        $log->deleted_at = NULL;
-        $log->action_id = $action->id;
-        $log->save();
-    }
-
     public function index(){
         // Check the time.
-        $this->helper_CheckTime();
-        $this->helper_loggedInOrganization();
-        
+        $types = helper_CheckTime();
+        $this->type_inverse = $types->type_inverse;
+        $this->type = $types->type;
+
+        $this->organization_id = helper_loggedInOrganization();
         $general_conditions = [
             'organization_id' => $this->organization_id, 
             'date' => Carbon::today()
@@ -166,12 +132,15 @@ class IndexController extends Controller
 
     public function signIn(request $request){
         // GET TYPE AND ORGANIZATION
-        $this->helper_CheckTime();
-        $this->helper_loggedInOrganization();
+        $types = helper_CheckTime();
+        $this->type_inverse = $types->type_inverse;
+        $this->type = $types->type;
+        
+        $this->organization_id = helper_loggedInOrganization();
         // UPDATE PLANNED ATTENDANXE
-        $child = $this->helper_SaveChild('in', $request->id, $this->type);
+        $child = helper_SaveChild('in', $request->id, $this->type);
         // SAVE NEW LOG
-        $this->helper_NewLog($request->id, 'in');
+        helper_NewLog($request->id, 'in', $this->organization_id);
         // DEFINE GENERAL CONDITIONS
         $general_conditions = [
             'organization_id' => $this->organization_id, 
@@ -209,10 +178,13 @@ class IndexController extends Controller
 
     public function signOut(request $request){
         // GET TYPE AND ORGANIZATION
-        $this->helper_CheckTime();
-        $this->helper_loggedInOrganization();
-        $child = $this->helper_SaveChild('out', $request->id, $this->type);
-        $this->helper_NewLog($request->id, 'out');
+        $types = helper_CheckTime();
+        $this->type_inverse = $types->type_inverse;
+        $this->type = $types->type;
+
+        $this->organization_id = helper_loggedInOrganization();
+        $child = helper_SaveChild('out', $request->id, $this->type);
+        helper_NewLog($request->id, 'out', $this->organization_id);
     
         $general_conditions = [
             'organization_id' => $this->organization_id, 
@@ -249,10 +221,13 @@ class IndexController extends Controller
 
     public function leftOverIn(request $request) {
         // GET TYPE AND ORGANIZATION
-        $this->helper_CheckTime();
-        $this->helper_loggedInOrganization();
-        $child = $this->helper_SaveChild('in', $request->id, $this->type_inverse);
-        $this->helper_NewLog($request->id, 'in');
+        $types = helper_CheckTime();
+        $this->type_inverse = $types->type_inverse;
+        $this->type = $types->type;
+
+        $this->organization_id = helper_loggedInOrganization();
+        $child = helper_SaveChild('in', $request->id, $this->type_inverse);
+        helper_NewLog($request->id, 'in', $this->organization_id);
 
         $general_conditions = [
             'organization_id' => $this->organization_id, 
@@ -287,10 +262,13 @@ class IndexController extends Controller
     }
     public function leftOverOut(request $request) {
         // GET TYPE AND ORGANIZATION
-        $this->helper_CheckTime();
-        $this->helper_loggedInOrganization();
-        $child = $this->helper_SaveChild('out', $request->id, $this->type_inverse);
-        $this->helper_NewLog($request->id, 'out');
+        $types = helper_CheckTime();
+        $this->type_inverse = $types->type_inverse;
+        $this->type = $types->type;
+
+        $this->organization_id = helper_loggedInOrganization();
+        $child = helper_SaveChild('out', $request->id, $this->type_inverse);
+        helper_NewLog($request->id, 'out', $this->organization_id);
 
         $general_conditions = [
             'organization_id' => $this->organization_id, 
@@ -327,7 +305,7 @@ class IndexController extends Controller
         // request = data
         $data = $request;
         // Get the or_id
-        $this->helper_loggedInOrganization();   
+        $this->organization_id = helper_loggedInOrganization();
         // New Entry
         $pa = new PlannedAttendance;
         $pa->organization_id = $this->organization_id;
@@ -338,7 +316,7 @@ class IndexController extends Controller
         $pa->child_id = $data['child_id'];
         $pa->save();
         // New log entry
-        $this->helper_NewLog($pa->id, 'in');
+        helper_NewLog($pa->id, 'in', $this->organization_id);
 
         
         return redirect()->route('home');
