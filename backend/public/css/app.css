@@ -5127,9 +5127,10 @@ body .navigation a :hover {
 }
 
 .child .grid .column .item .label {
-  margin: 10px 0 5px 0;
+  margin: 10px 0 10px 0;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 500;
+  font-size: 0.7em;
   text-transform: uppercase;
 }
 
@@ -5138,9 +5139,11 @@ body .navigation a :hover {
 }
 
 .child .grid .column .item p.separation {
-  padding-bottom: 5px;
+  padding-bottom: 8px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #afafaf;
+  border-bottom: 1px solid #F7F7F7;
+  font-weight: 100;
+  font-size: 0.7em;
 }
 
 .child .grid .column .item p.alert {
@@ -5154,11 +5157,16 @@ body .navigation a :hover {
   }
 
   .child .grid .column {
-    width: calc((100% - 60px) / 3);
+    width: calc((100% - 60px) / 1);
   }
 
   .child .grid .column .item {
     margin-bottom: 5px;
+  }
+
+  .child .grid .column .item .label,
+  .child .grid .column .item p.separation {
+    font-size: 0.9em;
   }
 }
 
@@ -5169,11 +5177,16 @@ body .navigation a :hover {
   }
 
   .child .grid .column {
-    width: calc((100% - 60px) / 3);
+    width: calc((100% - 60px) / 1);
   }
 
   .child .grid .column .item {
     margin-bottom: 5px;
+  }
+
+  .child .grid .column .item .label,
+  .child .grid .column .item p.separation {
+    font-size: 0.8em;
   }
 }
 
@@ -5191,7 +5204,13 @@ body .navigation a :hover {
   }
 
   .grid .column .item {
+    padding: 5px;
     margin-bottom: 15px;
+  }
+
+  .grid .column .item .label,
+  .grid .column .item p.separation {
+    font-size: 0.8em;
   }
 }
 

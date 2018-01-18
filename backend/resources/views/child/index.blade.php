@@ -2,7 +2,7 @@
 @section('content')
   <section class="child">
     <a href='/' class="close"><i class="fa fa-angle-left"></i></a>
-    <div class="grid flex row justified-s">
+    <div class="grid flex row wrap">
       <div class="column">   
         <div class="item">
           <h1>algemene info</h1>
@@ -21,7 +21,7 @@
           <h1>ouders</h1>
           @foreach($parents as $parent)
           <p class='label'>{{$parent->relation}}</p>
-          <p>{{$parent->name}}</p>
+          <p class="separation">{{$parent->name}}</p>
           <p class='label'>contact</p>
           <p class="separation">{{$parent->phone}}</p>
           @endforeach
@@ -45,7 +45,7 @@
             <p class="separation">{{$guardian->phone}}</p>
             @endforeach
             @else 
-             <p>Naast de ouders is niemand bevoegd dit kind op te halen.</p>
+             <p class="separation text-align-c">Naast de ouders is niemand bevoegd dit kind op te halen.</p>
           @endif
          
         </div>
@@ -63,9 +63,9 @@
             </div>
             <p class='label'>omschrijving</p>
             @if($allergy->medication != null) 
-              <p>{{$allergy->description}}</p>
+              <p class="separation">{{$allergy->description}}</p>
               <p class='label'>medicatie</p>
-              <p>{{$allergy->medication}}</p>
+              <p class="separation">{{$allergy->medication}}</p>
               <p class='label'>voorschrift</p>
               <p class='separation'>{{$allergy->prescription}}</p>
             @else 
@@ -73,7 +73,7 @@
             @endif
             @endforeach
           @else 
-            <p class='alert text-align-c'>Dit kind heeft <span class="bold underline">geen</span> gekende allergieën</p>
+            <p class=' separation alert text-align-c'>Dit kind heeft <span class="bold underline">geen</span> gekende allergieën</p>
           @endif
         </div>
 
@@ -94,7 +94,7 @@
         <div class="item">
         <h1>Pedagogische aandacht</h1>
         @if(count($pedagogic) == 0 )
-        <p class='alert text-align-c'>Dit kind heeft <span class="bold underline">geen</span> pedagogische problemen</p>
+        <p class='separation alert text-align-c'>Dit kind heeft <span class="bold underline">geen</span> pedagogische problemen</p>
         @endif
         @foreach($pedagogic as $peda)
           <p class='label'>omschrijving</p>
