@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 	<div class="add-child">
+			<p class="title">Voeg een kind toe</p>
 		@if ($errors->any())
 		    <div class="alert alert-danger">
 		        <ul>

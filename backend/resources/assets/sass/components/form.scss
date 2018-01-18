@@ -31,7 +31,7 @@
 		background: $darkgray;
 		padding: 5px 10px;
 		font-size: 10px;
-		margin: -10px 20px 10px 20px;
+		margin: -10px 13px 10px 10px;
 		display: block;
 		color: white;
 		opacity: 0.8;
@@ -42,11 +42,12 @@
 		}
 	}
 	.section-header {
-		border-bottom: 1px solid $darkgray;
-		font-size: 15px;
-		margin: 25px 20px 0 20px;
-		width: 100%;
-		padding-bottom: 3px;
+	    border-bottom: 1px solid #3B4250;
+	    font-size: 15px;
+	    margin: 15px 10px;
+	    padding-bottom: 2px;
+	    width: 100%;
+	    padding-bottom: 4px;	
 	}
 	.form-group {
 	 	position: relative;

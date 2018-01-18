@@ -3363,7 +3363,7 @@
   background: #3B4250;
   padding: 5px 10px;
   font-size: 10px;
-  margin: -10px 20px 10px 20px;
+  margin: -10px 13px 10px 10px;
   display: block;
   color: white;
   opacity: 0.8;
@@ -3378,9 +3378,10 @@
 .form .section-header {
   border-bottom: 1px solid #3B4250;
   font-size: 15px;
-  margin: 25px 20px 0 20px;
+  margin: 15px 10px;
+  padding-bottom: 2px;
   width: 100%;
-  padding-bottom: 3px;
+  padding-bottom: 4px;
 }
 
 .form .form-group {
@@ -5635,6 +5636,11 @@ body .navigation a :hover {
   position: fixed;
   padding: 20px;
   z-index: 10;
+}
+
+.add-parent .form .section:nth-of-type(2),
+.add-child .form .section:nth-of-type(2) {
+  margin-top: -50px;
 }
 
 @media screen and (max-width: 37.5em) {
