@@ -131,6 +131,14 @@ $(document).ready(function () {
             tip.removeClass('out');
         }
     });
+    $("#target").focus(function () {
+        console.log("Handler for .focus() called.");
+    });
+
+    validatePhone = function validatePhone(tel) {
+        var re = /(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)/;
+        return re.test(tel);
+    };
 
     deleteConfirm = function deleteConfirm(item, url, data, id) {
         console.log(item, url, data);

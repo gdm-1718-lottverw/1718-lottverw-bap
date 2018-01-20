@@ -11,7 +11,10 @@
         padding: 20px;
         z-index: 10;
     }
-
+    .alert ul {
+    	margin: 10px;
+    	padding: 0;
+    }
     .form .section:nth-of-type(2) {
     	margin-top: -50px;
     }
@@ -27,6 +30,15 @@
 			font-size: 0.7em;
 			padding: 15px;
 		}
+		.alert {
+			border: 2px solid red;
+			margin: 135px 40px -70px;
+			text-align: center;
+			ul li {
+				list-style: none;
+				font-size: 0.7em;
+			}
+		}
 		.form {margin: 92px 15px;}
 	}
 }
@@ -40,6 +52,15 @@
 			top: 45px;
 			font-size: 1em;
 			padding: 15px;
+		}
+		.alert {
+			border: 2px solid red;
+			margin: 135px 40px -70px;
+			text-align: center;
+			ul li {
+				font-size: 0.9em;
+				list-style: none;
+			}
 		}
 		.form {margin: 100px 15px;}
 	}

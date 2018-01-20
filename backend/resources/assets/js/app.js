@@ -51,6 +51,14 @@ $(document).ready(function(){
            
          } 
     })
+    $( "#target" ).focus(function() {
+      console.log( "Handler for .focus() called." );
+    });
+
+    validatePhone = (tel) => {
+        var re = /(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)/;
+        return re.test(tel);
+    }
 
     deleteConfirm = (item, url, data, id) => {
         console.log(item, url, data)

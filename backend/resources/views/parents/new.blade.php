@@ -82,7 +82,7 @@
 					<div class="form-group flex column">
 						{{-- PHONE NUMBER --}}
 						{{ Form::label('parent_1_phone_number', 'Telefoon nummer')}}
-						{{ Form::text('parent_1_phone_number')}} 
+						{{ Form::text('parent_1_phone_number', null, array('id' => 'focus'))}} 
 						<div class="border"></div>
 					</div>
 				</div>
