@@ -6,7 +6,7 @@
       </div>
       <a href="/child/{{$o->child_id}}"  class="child-info flex column justified-start">
         <span class="name">{{$o->name}}</span>
-        <p class="description">{{$o->parent_notes}}</p>
+        <p class="description">Opmerking: {{$o->parent_notes}}</p>
          @if($o->guardian_id != null)
           <p class="guard">Kind wordt opgehaald door {{$o->guard}}</p>
       @endif

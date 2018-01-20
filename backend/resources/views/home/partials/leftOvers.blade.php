@@ -12,7 +12,7 @@
     </div>
     <a href="/child/{{$lo->child_id}}" class="child-info flex column justified-start">
       <span class="name">{{$lo->name}} </span>
-      <p class="description">{{$lo->parent_notes}}</p>
+      <p class="description">Opmerking: {{$lo->parent_notes}}</p>
        @if($lo->guardian_id != null)
          <p class="guard">Kind wordt opgehaald door {{$lo->guard}}</p>
       @endif
