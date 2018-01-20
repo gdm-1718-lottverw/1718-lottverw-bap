@@ -135,7 +135,7 @@
 							{{-- ALLERGIE --}}
 							{{ Form::label('allergie_gravity_0', 'Ernst')}}
 							<div class="select-dropdown">
-								<select name="allergie_type_0" id="type" class="form-control">
+								<select name="allergie_gravity_0" id="type" class="form-control">
 						            <option disabled selected value="">Selecteer de ernst...</option>
 						            <option value="light">heel oppervlakkig</option>
 						            <option value="medium">matig</option>
