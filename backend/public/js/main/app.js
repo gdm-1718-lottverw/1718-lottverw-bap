@@ -191,7 +191,7 @@ $(document).ready(function () {
             console.log('a: ', a);
         } else {
             if (a == 1) {
-                $('.section').append(node);
+                $('#parent-section').append(node);
                 a--;
                 console.log('a: ', a);
             }

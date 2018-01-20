@@ -87,6 +87,8 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div id='parent-section' class="section">
 			<div id="parent-1">
 					<div class="flex row">
 						<div class="form-group flex column">
@@ -125,6 +127,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<i class="fa fa-globe" aria-hidden="true"></i>
 		<div id="general" class="section">
