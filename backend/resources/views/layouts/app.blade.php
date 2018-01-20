@@ -17,14 +17,6 @@
     <body>
         @guest
         @else
-           <!--  <div class="header">
-                <span class="location">{{ Auth::user()->username }}</span>
-                <span class="date">
-                    <?php $mytime = Carbon\Carbon::now();
-                        echo $mytime->format('d/m/y, H:i');
-                    ?>
-                </span>
-            </div> --> 
             @include('layouts.globals.navigation')
         @endguest
         @yield('content')

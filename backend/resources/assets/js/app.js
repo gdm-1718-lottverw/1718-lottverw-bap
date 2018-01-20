@@ -22,7 +22,7 @@ $(document).ready(function(){
         $.ajax({
             method: "POST",
             url: "/leftover/" + action,
-               data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
+            data: {'id': e.target.id, '_token': $('input[name=_token]').val()},
            }).done(function( msg ) {
                 $('div#'+oldContainer).load(document.URL +  " div#"+oldContainer);
            })
@@ -51,6 +51,22 @@ $(document).ready(function(){
            
          } 
     })
+
+    deleteConfirm = (item, url, data, id) => {
+        console.log(item, url, data)
+        var c = confirm('Bent u zeker dat u ' + item + ' wilt verwijderen?');
+
+        if(c == true){
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: data,
+            }).done(function(){
+                $("#row-"+ id).hide();
+            })
+        }
+    }
+
     function signInOut(action, oldContainer, newContainer, oldId, newId, e){
         $.ajax({
             method: "POST",
@@ -99,9 +115,9 @@ $(document).ready(function(){
     // ADD CONDITION WHEN CLICKED
     addNode = (condition) => {
         count[condition]++;
-                            if(count[condition] == 4){
-            $('#' + condition).replaceWith(stop);
-        }
+            if(count[condition] == 4){
+                $('#' + condition).replaceWith(stop);
+            }
          else if(count[condition] < 4){
              // Node we want to clone
             node =  $('#container_' + condition);

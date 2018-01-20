@@ -20,7 +20,7 @@
         </thead>
         <tbody>
           @foreach($log as $l) 
-          <tr> 
+          <tr id='row-{{$l->id}}'> 
             <td class="row-2">{{ Carbon\Carbon::parse($l->updated_at)->format('D d, H:i') }}</td>
             <td class="row-3">{{$l->name}}</td>
             <td class="row-2">{{$l->type}}</td>
@@ -37,9 +37,7 @@
               <i class="fa fa-pencil" id="{{$l->id}}" aria-hidden="true"></i>
             </td>
             <td class="row-1 text-align-c">
-            {{ Form::open(array('url' => 'log/' . $l->id . '/delete', 'method' => 'post','id' => 'delete')) }} 
-            {{ Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn', 'type' => 'submit']) }}
-            {{ Form::close() }}
+              <a class="btn-delete" onClick="deleteConfirm('Log item van {{$l->name}} met actie {{$l->action}} en type {{$l->type}}', '/log/{{$l->id}}/delete', {'_token': '{{ csrf_token() }}'}, '{{$l->id}}' )"><i class="fa fa-trash" aria-hidden="true"></i></a>
             </td>
           </tr>
           @endforeach

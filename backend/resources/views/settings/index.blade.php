@@ -46,13 +46,10 @@
   <p class="title">Overzicht sluitingsdagen</p>
   <div class="content flex row wrap">
   	@foreach($vacations as $v)
-  	<div class="item flex row centered justified-start">
+  	<div id="row-{{$v->id}}" class="item flex row centered justified-start">
   		<p class="o">{{$v->occasion}}</p>
   		<p class="d">{{$v->day}}</p>
-        {{ Form::open(array('action' => 'Backoffice\Settings\IndexController@delete', 'class' => 'trash')) }} 
-        {{ Form::hidden('_id', $v->id )}}
-        {{ Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['type' => 'submit']) }}
-        {{ Form::close()}}
+      <a  class="trash" onClick="deleteConfirm('{{$v->occasion}}', '/settings/delete/date', {'_token': '{{ csrf_token() }}', '_id': '{{$v->id}}'}, '{{$v->id}}' )"><button><i class="fa fa-trash" aria-hidden="true"></i></button></a>
   	</div>
   	@endforeach
   </div>

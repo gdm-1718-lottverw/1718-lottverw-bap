@@ -9,6 +9,9 @@
          @if($o->parent_notes != null)
         <p class="description">Opmerking: {{$o->parent_notes}}</p>
          @endif
+          @if($o->go_home_alone == true)
+          <p class="description">{{$o->name}} mag zelfstandig naar huis.</p>
+         @endif
          @if($o->guardian_id != null)
           <p class="guard">Kind wordt opgehaald door {{$o->guard}}</p>
       @endif

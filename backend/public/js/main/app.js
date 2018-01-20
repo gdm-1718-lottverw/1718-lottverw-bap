@@ -131,6 +131,22 @@ $(document).ready(function () {
             tip.removeClass('out');
         }
     });
+
+    deleteConfirm = function deleteConfirm(item, url, data, id) {
+        console.log(item, url, data);
+        var c = confirm('Bent u zeker dat u ' + item + ' wilt verwijderen?');
+
+        if (c == true) {
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: data
+            }).done(function () {
+                $("#row-" + id).hide();
+            });
+        }
+    };
+
     function signInOut(action, oldContainer, newContainer, oldId, newId, e) {
         $.ajax({
             method: "POST",

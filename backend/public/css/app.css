@@ -4865,7 +4865,7 @@ body .navigation a :hover {
   padding: 8px;
 }
 
-.log #delete .btn {
+.log .btn-delete i {
   border: none;
   background: none;
   font-size: 18px;
@@ -4873,10 +4873,7 @@ body .navigation a :hover {
   height: 35px;
   color: #FFF;
   background: #E64E78;
-}
-
-.log #delete .btn:hover {
-  background: #9A3450;
+  padding: 8px;
 }
 
 .log #edit input {
@@ -4939,22 +4936,16 @@ body .navigation a :hover {
     font-size: 0.5em;
   }
 
-  .log table tbody tr td#btn-edit {
+  .log table tbody tr td#btn-edit,
+  .log table tbody tr td .btn-delete {
     padding: 0;
   }
 
-  .log table tbody tr td#btn-edit i {
+  .log table tbody tr td#btn-edit i,
+  .log table tbody tr td .btn-delete i {
     height: 20px;
     width: 20px;
     padding: 4px;
-    font-size: 1.35em;
-  }
-
-  .log table tbody tr td #delete .btn {
-    padding: 0;
-    height: 20px;
-    width: 20px;
-    margin: 8px 0;
     font-size: 1.35em;
   }
 
@@ -5006,22 +4997,16 @@ body .navigation a :hover {
     font-size: 0.7em;
   }
 
-  .log table tbody tr td#btn-edit {
+  .log table tbody tr td#btn-edit,
+  .log table tbody tr td .btn-delete {
     padding: 0;
   }
 
-  .log table tbody tr td#btn-edit i {
+  .log table tbody tr td#btn-edit i,
+  .log table tbody tr td .btn-delete i {
     height: 25px;
     width: 25px;
     padding: 4px;
-    font-size: 1.5em;
-  }
-
-  .log table tbody tr td #delete .btn {
-    padding: 0;
-    height: 25px;
-    width: 25px;
-    margin: 8px 0;
     font-size: 1.5em;
   }
 
@@ -5057,6 +5042,28 @@ body .navigation a :hover {
     width: 98%;
     margin: 1%;
     margin-top: 75px;
+  }
+
+  .log table #btn-edit i {
+    border: none;
+    background: none;
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    color: #FFF;
+    background: #44DEA3;
+    padding: 8px;
+  }
+
+  .log table .btn-delete i {
+    border: none;
+    background: none;
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    color: #FFF;
+    background: #E64E78;
+    padding: 8px;
   }
 }
 

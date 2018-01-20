@@ -30,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/filter', 'Backoffice\Filter\IndexController@create');
 
 	Route::get('/log', 'Backoffice\Log\IndexController@index')->name('log');
+	Route::post('/log/{id}/delete', 'Backoffice\Log\IndexController@delete');
+	Route::post('/log/{id}/edit', 'Backoffice\Log\IndexController@update');
 
 	Route::get('/settings', 'Backoffice\Settings\IndexController@index')->name('settings');
 	Route::post('/settings/add/date', 'Backoffice\Settings\IndexController@store')->name('addDate');
@@ -40,8 +42,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/add/parents/new/child', 'Backoffice\Child\IndexController@create')->name('createChild');
 	Route::post('/add/parents/new/child', 'Backoffice\Child\IndexController@store')->name('addChild');
 	
-	Route::post('/log/{id}/delete', 'Backoffice\Log\IndexController@delete');
-	Route::post('/log/{id}/edit', 'Backoffice\Log\IndexController@update');
+
 
 });
 

@@ -10,9 +10,13 @@
                  @if($tc->parent_notes != null)
         <p class="description">Opmerking: {{$tc->parent_notes}}</p>
          @endif
+          @if($tc->go_home_alone == true)
+          <p class="description">{{$tc->name}} mag zelfstandig naar huis.</p>
+         @endif
           @if($tc->guardian_id != null)
            <p class="guard">Kind wordt opgehaald door {{$tc->guard}}</p>
           @endif
+
           <div class="icons flex-child end flex row"> 
           @if($tc->pictures == false)
             <span class="fa-stack fa-lg">

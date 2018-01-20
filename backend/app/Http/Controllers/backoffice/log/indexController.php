@@ -119,6 +119,6 @@ class IndexController extends Controller
             $pa->save();
         }
 
-        return redirect()->action('Backoffice\Log\IndexController@index');
+        return redirect()->route('log');
     }
 }

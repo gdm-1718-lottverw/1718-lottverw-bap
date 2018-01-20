@@ -1,4 +1,4 @@
-<div id="in"  class="flex wrap justified-start">
+<div id="in" class="flex wrap justified-start">
   @foreach($in as $i) 
   <div class="child-card flex">
     <div class="flex column btn justified-s">
@@ -8,12 +8,16 @@
     <a href="/child/{{$i->child_id}}"  class="child-info flex justified-start column">
       <span class="name">{{$i->name}}</span>
 
-              @if($i->parent_notes != null)
-        <p class="description">Opmerking: {{$i->parent_notes}}</p>
-         @endif
-      @if($i->guardian_id != null)
-        <p class="guard">Kind wordt opgehaald door {{$i->guard}}</p>
-      @endif
+        @if($i->parent_notes != null)
+          <p class="description">Opmerking: {{$i->parent_notes}}</p>
+        @endif
+        @if($i->go_home_alone == true)
+          <p class="description">{{$i->name}} mag zelfstandig naar huis.</p>
+        @endif
+        @if($i->guardian_id != null)
+          <p class="guard">Kind wordt opgehaald door {{$i->guard}}</p>
+        @endif
+         
       <div class="icons flex row flex-child end"> 
           @if($i->pictures == false)
             <span class="fa-stack fa-lg">

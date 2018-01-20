@@ -44,19 +44,15 @@
         background: $green;
         padding: 8px;
     }
-    #delete {
-        .btn {
-            border: none;
-            background: none;
-            font-size: 18px; 
-            width: 35px;
-            height: 35px;
-            color: $white;
-            background: $pink;
-            &:hover {
-                background: $deeppink;
-            }
-        }
+    .btn-delete i{
+        border: none;
+        background: none;
+        font-size: 18px; 
+        width: 35px;
+        height: 35px;
+        color: $white;
+        background: $pink;
+        padding: 8px;
     }
     #edit{
         input {
@@ -110,7 +106,7 @@
             tbody tr td {
                 padding: 5px;
                 font-size: 0.5em;
-                &#btn-edit
+                &#btn-edit, .btn-delete
                 {
                     padding: 0;
                     i{
@@ -119,14 +115,6 @@
                         padding: 4px;
                         font-size: 1.35em;
                     }
-                }
-                #delete .btn
-                {
-                    padding: 0;
-                    height: 20px;
-                    width: 20px;
-                    margin: 8px 0;
-                    font-size: 1.35em;
                 }
                 #edit{
                     input {
@@ -170,7 +158,7 @@
             tbody tr td {
                 padding: 5px;
                 font-size: 0.7em;
-                &#btn-edit
+                &#btn-edit, .btn-delete
                 {
                     padding: 0;
                     i{
@@ -179,14 +167,6 @@
                         padding: 4px;
                         font-size: 1.5em;
                     }
-                }
-                #delete .btn
-                {
-                    padding: 0;
-                    height: 25px;
-                    width: 25px;
-                    margin: 8px 0;
-                    font-size: 1.5em;
                 }
                 #edit{
                     input {
@@ -220,6 +200,26 @@
             width: 98%;
             margin: 1%;
             margin-top: 75px;
+             #btn-edit i{
+        border: none;
+        background: none;
+        font-size: 18px; 
+        width: 35px;
+        height: 35px;
+        color: $white;
+        background: $green;
+        padding: 8px;
+    }
+    .btn-delete i{
+        border: none;
+        background: none;
+        font-size: 18px; 
+        width: 35px;
+        height: 35px;
+        color: $white;
+        background: $pink;
+        padding: 8px;
+    }
         }
     }
 }

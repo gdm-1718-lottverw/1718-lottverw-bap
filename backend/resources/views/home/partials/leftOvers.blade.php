@@ -15,6 +15,9 @@
                @if($lo->parent_notes != null)
         <p class="description">Opmerking: {{$lo->parent_notes}}</p>
          @endif
+          @if($lo->go_home_alone == true)
+          <p class="description">{{$lo->name}} mag zelfstandig naar huis.</p>
+         @endif
        @if($lo->guardian_id != null)
          <p class="guard">Kind wordt opgehaald door {{$lo->guard}}</p>
       @endif
