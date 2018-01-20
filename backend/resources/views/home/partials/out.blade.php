@@ -17,7 +17,7 @@
               <i class="fa fa-ban fa-stack-2x red"></i>
               </span>
           @endif
-          @if($o->potty_trained == true)
+          @if($o->potty_trained == false)
              <span class="icon flex justified-c centered"><i class="fa fa-tint" aria-hidden="true"></i></span>
           @endif
 

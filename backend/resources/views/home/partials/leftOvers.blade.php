@@ -23,7 +23,7 @@
               <i class="fa fa-ban fa-stack-2x red"></i>
               </span>
           @endif
-          @if($lo->potty_trained == true)
+          @if($lo->potty_trained == false)
              <span class="icon flex justified-c centered"><i class="fa fa-tint" aria-hidden="true"></i></span>
           @endif
           @if(\Carbon\Carbon::parse($lo->date_of_birth)->format('m-d') == \Carbon\Carbon::now()->format('m-d'))
