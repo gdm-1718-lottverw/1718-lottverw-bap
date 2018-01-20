@@ -47,11 +47,11 @@
 						{{-- Child gender --}}
 						{{ Form::label('gender', 'Geslacht')}}
 						<div class="select-dropdown">
-						{{ Form::select('gender', array(
-							null => 'selecteer een geslacht...', 
-							'man' => 'man', 
-							'vrouw' => 'vrouw',
-						))}} 
+							 <select name="gender" id="type" class="form-control">
+					            <option disabled selected value="">Selecteer een geslacht...</option>
+					             <option value="vrouw">vrouw</option>
+					            <option value="man">man</option>
+				             </select>
 						<div class="border"></div>
 					</div>
 					</div>
@@ -121,14 +121,13 @@
 							{{-- ALLERGIE --}}
 							{{ Form::label('allergie_type_0', 'Type')}}
 							<div class="select-dropdown">
-							{{ Form::select('allergie_type_0', array(
-								null => 'selecteer een type...', 
-								'insect' => 'insecten', 
-								'food' => 'voedsel',
-								'latex' => 'latex',
-								'animal' => 'dieren',
-								'other' => 'andere',
-							))}} 
+							<select name="allergie_type_0" id="type" class="form-control">
+					            <option disabled selected value="">Selecteer een type...</option>
+					            <option value="food">voedsel</option>
+					            <option value="insects">insecten</option>
+					            <option value="animals">dieren</option>
+					            <option value="other">andere</option>
+				             </select>
 							<div class="border"></div>
 						</div>
 						</div>
@@ -136,13 +135,13 @@
 							{{-- ALLERGIE --}}
 							{{ Form::label('allergie_gravity_0', 'Ernst')}}
 							<div class="select-dropdown">
-								{{ Form::select('allergie_gravity_0', array(
-									null => 'selecteer een ernst...', 
-									'light' => 'heel oppervlakkig', 
-									'medium' => 'matig',
-									'severe' => 'zeer ernstig',
-									'deadly' => 'dodelijk',
-								))}} 
+								<select name="allergie_type_0" id="type" class="form-control">
+						            <option disabled selected value="">Selecteer de ernst...</option>
+						            <option value="light">heel oppervlakkig</option>
+						            <option value="medium">matig</option>
+						            <option value="severe">ernstig</option>
+						            <option value="deadly">extreem gevaarlijk</option>
+					            </select>
 								<div class="border"></div>
 							</div>
 						</div>
@@ -150,7 +149,7 @@
 					<div class="flex row">
 						<div class="form-group flex column">
 							{{-- ALLERGIE --}}
-							{{ Form::label('allergie_0', 'Beschrijving allergie')}}
+							{{ Form::label('allergie_0', 'Omschrijf de allergie')}}
 							{{ Form::text('allergie_0')}} 
 							<div class="border"></div>
 						</div>
@@ -163,7 +162,7 @@
 				<div class="flex row"  id='container_pedagogic'>		
 					<div class="form-group flex column">
 						{{-- PEDAGOGIC CARE --}}
-						{{ Form::label('pedagogic_care_0', 'Beschrijving padagogische aandacht')}}
+						{{ Form::label('pedagogic_care_0', 'Omschrijf de aandacht')}}
 						{{ Form::text('pedagogic_care_0')}} 
 						<div class="border"></div>
 						
@@ -176,7 +175,7 @@
 				<div class="flex row" id='container_medical'>
 					<div class="form-group flex column">
 						{{-- MEDICAL CARE --}}
-						{{ Form::label('medical_care_0', 'Beschrijving medische aandacht')}}
+						{{ Form::label('medical_care_0', 'Omschrijf de klacht')}}
 						{{ Form::text('medical_care_0')}} 
 						<div class="border"></div>
 					</div>

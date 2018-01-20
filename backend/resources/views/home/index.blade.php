@@ -45,7 +45,7 @@
             {{ Form::label('type', 'Selecteer een dagtype')}}
             <div class="select-dropdown">
               <select name="type" id="type" class="form-control">
-                <option value=""> -- Selecteer een dagtype --</option>
+                <option disabled selected value="">Selecteer een dagtype...</option>
                 <option value="voormiddag">Voormiddag</option>
                 <option value="namiddag">Namiddag</option>
               </select>
@@ -55,7 +55,7 @@
             {{ Form::label('child_id', 'Selecteer een kind')}}
             <div class="select-dropdown">
               <select name="child_id" id="child" class="form-control">
-                <option value=""> -- Selecteer een kind --</option>
+                <option disabled selected value="">Selecteer een kind...</option>
                 @foreach ($children as $child)
                   <option value="{{ $child->id }}">{{ $child->name }}</option>
                 @endforeach 

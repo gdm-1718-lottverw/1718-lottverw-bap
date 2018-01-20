@@ -5038,6 +5038,11 @@ body .navigation a :hover {
     left: 70px;
   }
 
+  .log .title {
+    font-size: 1.5em;
+    padding: 20px;
+  }
+
   .log table {
     width: 98%;
     margin: 1%;
@@ -5721,9 +5726,22 @@ body .navigation a :hover {
 
   .add-parent .title,
   .add-child .title {
-    font-size: 1.4em;
-    padding: 25px;
+    font-size: 1.5em;
+    padding: 20px;
     top: 0;
+  }
+
+  .add-parent .alert,
+  .add-child .alert {
+    border: 2px solid red;
+    margin: 100px 40px -70px;
+    text-align: center;
+  }
+
+  .add-parent .alert ul li,
+  .add-child .alert ul li {
+    font-size: 0.9em;
+    list-style: none;
   }
 
   .add-parent .form,

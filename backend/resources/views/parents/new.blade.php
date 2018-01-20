@@ -41,12 +41,13 @@
 					{{-- FAMILY TYPE --}}
 					{{ Form::label('family_type', 'Familie type')}}
 					<div class="select-dropdown">
-					{{ Form::select('family_type', array(
-						'kerngezin' => 'kerngezin', 
-						'nieuw samengesteld gezin' => 'nieuw samengesteld gezin',
-						'alleenstaande ouder' => 'alleenstaande ouder',
-						'adoptie gezin' => 'adoptie gezin',
-					))}} 
+					 	<select name="family_type" id="family_type" class="form-control">
+					        <option disabled value="">Selecteer een familie type...</option>
+					        <option value="kerngezin">kerngezin</option>
+			                <option value="nieuw samengesteld gezin">nieuw samengesteld gezin</option>
+				            <option value="alleenstaande ouder">alleenstaande ouder</option>
+			                <option value="adoptie gezin">adoptie gezin</option>
+			             </select>
 					<div class="border"></div> 
 				</div>	</div>
 			</div>
@@ -61,23 +62,23 @@
 					<div class="form-group flex column">
 						{{ Form::label('parent_1_relation', 'Relatie tot het kind')}}
 						<div class="select-dropdown">
-						{{ Form::select( 'parent_1_relation', array(
-							'mama' => 'mama', 
-							'papa' => 'papa',
-							'plus mama' => 'plus mama', 
-							'plus papa' => 'plus papa',
-							'voogd' => 'voogd',
-						))}} 
-						<div class="border"></div></div>
+					        <select name="parent_1_relation" id="parent_1_relation" class="form-control">
+					            <option disabled selected value="">Selecteer een relatie...</option>
+					            <option value="mama">mama</option>
+			                    <option value="papa">papa</option>
+				                <option value="plus mama">plus mama</option>
+				                <option value="plus papa">plus papa</option>
+				             </select>
+					         <div class="border"></div></div>
+				        </div>
 					</div>
-				</div>
 				<div class="flex row">
 					<div class="form-group flex column">
 						{{-- EMAIL --}}
 						{{ Form::label('parent_1_email', 'Email adres')}}
 						{{ Form::email('parent_1_email')}} 
 						<div class="border"></div>
-				</div>
+					</div>
 					<div class="form-group flex column">
 						{{-- PHONE NUMBER --}}
 						{{ Form::label('parent_1_phone_number', 'Telefoon nummer')}}
@@ -86,8 +87,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="section">
 			<div id="parent-1">
 					<div class="flex row">
 						<div class="form-group flex column">
@@ -99,16 +98,16 @@
 						<div class="form-group flex column">
 							{{-- PARENT CHILD RELATIONSHIP --}}
 							{{ Form::label('parent_2_relation', 'Relatie tot het kind')}}
-								<div class="select-dropdown">
-								{{ Form::select( 'parent_2_relation', array(
-									'mama' => 'mama', 
-									'papa' => 'papa',
-									'plus mama' => 'plus mama', 
-									'plus papa' => 'plus papa',
-									'voogd' => 'voogd',
-								))}} 
-							<div class="border"></div></div>
-						</div>
+							<div class="select-dropdown">
+					            <select name="parent_2_relation" id="type" class="form-control">
+					                <option disabled selected value="">Selecteer een relatie...</option>
+					                <option value="mama">mama</option>
+					                <option value="papa">papa</option>
+					                <option value="plus mama">plus mama</option>
+					                <option value="plus papa">plus papa</option>
+		         	            </select>
+				          <div class="border"></div></div>
+					    </div>
 					</div>
 					<div class="flex row">
 						<div class="form-group flex column">
@@ -126,6 +125,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		<i class="fa fa-globe" aria-hidden="true"></i>
 		<div id="general" class="section">
 			<div class="flex row">

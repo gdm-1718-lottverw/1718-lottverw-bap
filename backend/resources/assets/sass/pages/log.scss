@@ -196,6 +196,11 @@
         height: 100%;
         width: calc(100% - 70px);
         left: 70px;
+        .title {
+            font-size: 1.5em;
+            padding: 20px;
+
+        }
          table {
             width: 98%;
             margin: 1%;

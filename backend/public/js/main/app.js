@@ -180,14 +180,21 @@ $(document).ready(function () {
     var node;
     var count = { medical: 0, pedagogic: 0, allergies: 0, guardian: 0 };
     var stop = "<p class='disabled'>Er kunnen maar 3 extra items worden toegevoegd</p>";
+    var a = 0;
     // ADD PARENT DEPENDING ON SELECTED FAMILY TYPE
     $("#family_type").change(function (e) {
         var selected = e.target.selectedOptions[0].value;
+        console.log('selected:', selected);
         if (selected == "alleenstaande ouder") {
-            console.log('selected:', selected);
+            a++;
             node = $('#parent-1').detach();
+            console.log('a: ', a);
         } else {
-            $('.section').append(node);
+            if (a == 1) {
+                $('.section').append(node);
+                a--;
+                console.log('a: ', a);
+            }
         }
     });
 
@@ -208,17 +215,20 @@ $(document).ready(function () {
             var selects = updated_node.find('select');
             var labels = updated_node.find('label');
             $.each(inputs, function (i, e) {
-                name = $(e).prop('name');
+                var name = $(e).prop('name');
                 name = name.slice(0, -1);
                 $(e).attr("name", name + count[condition]);
+                $(e).val('');
             });
+
             $.each(labels, function (i, e) {
-                name = $(e).prop('for');
+                var ame = $(e).prop('for');
                 name = name.slice(0, -1);
+
                 $(e).attr("for", name + count[condition]);
             });
             $.each(selects, function (i, e) {
-                name = $(e).prop('name');
+                var name = $(e).prop('name');
                 name = name.slice(0, -1);
                 $(e).attr("name", name + count[condition]);
             });
@@ -257,6 +267,7 @@ $(document).ready(function () {
     $('.date').change(function () {
         filterItems();
     });
+
     filterItems = function filterItems() {
         var data = [];
         // Init new data array     

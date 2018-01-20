@@ -11,6 +11,7 @@
         padding: 20px;
         z-index: 10;
     }
+
     .form .section:nth-of-type(2) {
     	margin-top: -50px;
     }
@@ -50,9 +51,18 @@
 		left: 70px;
 		right: 0;
 		.title {
-			font-size: 1.4em;
-			padding: 25px;
+			font-size: 1.5em;
+			padding: 20px;
 			top:0;
+		}
+		.alert {
+			border: 2px solid red;
+			margin: 100px 40px -70px;
+			text-align: center;
+			ul li {
+				font-size: 0.9em;
+				list-style: none;
+			}
 		}
 		.form {
 			margin: 80px 10px;
