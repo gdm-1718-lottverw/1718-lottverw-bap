@@ -8,7 +8,9 @@
     <a href="/child/{{$i->child_id}}"  class="child-info flex justified-start column">
       <span class="name">{{$i->name}}</span>
 
-      <p class="description">Opmerking: {{$i->parent_notes}}</p>
+              @if($i->parent_notes != null)
+        <p class="description">Opmerking: {{$i->parent_notes}}</p>
+         @endif
       @if($i->guardian_id != null)
         <p class="guard">Kind wordt opgehaald door {{$i->guard}}</p>
       @endif
