@@ -38,6 +38,9 @@
                       <i class="fa fa-ban fa-stack-2x red"></i>
                     </span>
                 @endif
+                @if($child->pedagogic_description != null)
+                    <span class="icon flex justified-c centered"><i class="fa fa-exclamation" aria-hidden="true"></i></span>
+                @endif
                 @if($child->potty_trained == false)
                     <span class="icon flex justified-c centered"><i class="fa fa-tint" aria-hidden="true"></i></span>
                 @endif

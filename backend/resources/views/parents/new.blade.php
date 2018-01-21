@@ -66,6 +66,7 @@
 					            <option disabled selected value="">Selecteer een relatie...</option>
 					            <option value="mama">mama</option>
 			                    <option value="papa">papa</option>
+			                    <option value="voogd">voogd</option>
 				                <option value="plus mama">plus mama</option>
 				                <option value="plus papa">plus papa</option>
 				             </select>
@@ -105,6 +106,7 @@
 					                <option disabled selected value="">Selecteer een relatie...</option>
 					                <option value="mama">mama</option>
 					                <option value="papa">papa</option>
+					                <option value="voogd">voogd</option>
 					                <option value="plus mama">plus mama</option>
 					                <option value="plus papa">plus papa</option>
 		         	            </select>
