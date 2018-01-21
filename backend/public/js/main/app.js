@@ -131,6 +131,7 @@ $(document).ready(function () {
             tip.removeClass('out');
         }
     });
+
     $("#target").focus(function () {
         console.log("Handler for .focus() called.");
     });

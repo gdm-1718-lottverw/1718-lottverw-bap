@@ -38,7 +38,7 @@ class IndexController extends Controller
             'date' => $date
         ];
         $type_conditions = []; $allergie_conditions = [];
-        $present = ''; $birthday = false; $picture = ''; $potty_trained = '';  $pedagogic = false;
+        $present = ''; $birthday = false; $picture = ''; $potty_trained = '';  $pedagogic = false;$medical = false;
 
         foreach($data as $d){
             $key = array_keys($d)[0];
@@ -63,6 +63,9 @@ class IndexController extends Controller
                 case 'picture':
                     $picture = $value;
                     break; 
+                case 'medical':
+                    $medical = $value[0];
+                    break; 
                 case 'pedagogic':
                     $pedagogic = $value[0];
 
@@ -85,8 +88,9 @@ class IndexController extends Controller
             ->birthday($birthday) 
             ->allergies($allergie_conditions)
             ->pedagogic($pedagogic)
+            ->medical($medical)
             ->groupBy('children.id')
-            ->get(['children.name as name', 'children.date_of_birth', 'children.id', 'children.pictures', 'children.potty_trained', 'pa.type as day_type', 'al.gravity', 'al.description', 'al.type as allergie', 'pa.parent_notes', 'pr.description as pedagogic_description']);
+            ->get(['children.name as name', 'children.date_of_birth', 'children.id', 'children.pictures', 'children.potty_trained', 'pa.type as day_type', 'al.gravity', 'al.description', 'al.type as allergie', 'pa.parent_notes', 'pr.description as pedagogic_description', 'ma.description as medical_description']);
     
         return view('filter.children', compact('children'));
     }

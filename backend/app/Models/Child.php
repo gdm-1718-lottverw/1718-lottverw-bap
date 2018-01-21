@@ -223,6 +223,26 @@ class Child extends Model
             })->get();
         }
     }
+
+     /**
+     * Scope a query to only include users of a given type.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $date
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeMedical($query, $conditions)
+    { 
+        $query = $query->leftJoin('medical_attention As ma', 'children.id', '=', 'ma.children_id');
+        if($conditions == true) {
+            $query->whereExists(function ($query) {
+                $query->select('*')
+                      ->from('medical_attention')
+                      ->whereRaw('medical_attention.children_id = children.id');
+            })->get();
+        }
+    }
+
    /**
      * Scope a query to only include users of a given type.
      *

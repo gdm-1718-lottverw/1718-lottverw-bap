@@ -4580,7 +4580,7 @@ body .navigation a :hover {
 
 .filter .search-content .filter-results .filter-results-item {
   background: #fafafa;
-  height: 160px;
+  height: 180px;
   padding: 8px;
   position: relative;
 }
@@ -4598,7 +4598,11 @@ body .navigation a :hover {
 .filter .search-content .filter-results .filter-results-item .child-care .description {
   font-size: 0.7em;
   font-weight: 100;
-  margin: 2px 0;
+  margin: 4px 0;
+}
+
+.filter .search-content .filter-results .filter-results-item .child-care .description.small {
+  font-size: 0.65em;
 }
 
 .filter .search-content .filter-results .filter-results-item .icons {
@@ -4690,6 +4694,7 @@ body .navigation a :hover {
     overflow: scroll;
     bottom: 0;
     padding-bottom: 80px;
+    height: calc(100% - 100px);
   }
 
   .filter .search-content .filter-results {
@@ -4746,6 +4751,7 @@ body .navigation a :hover {
     overflow: scroll;
     padding-bottom: 80px;
     bottom: 0;
+    height: calc(100% - 100px);
   }
 
   .filter .search-content .filter-results {
@@ -4771,8 +4777,9 @@ body .navigation a :hover {
 
   .filter .filter-topbar {
     min-height: 70px;
-    position: absolute;
+    position: fixed;
     top: 0;
+    left: 70px;
   }
 
   .filter .filter-topbar form .item {
@@ -4791,22 +4798,23 @@ body .navigation a :hover {
     font-family: Ubuntu, "Helvetica", "Arial";
   }
 
-  .filter .search-content {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 70px;
-  }
-
   .filter .search-content .search {
-    position: absolute;
-    top: 0;
-    overflow: hidden;
+    position: fixed;
+    left: 70px;
+    z-index: 10;
+    top: 70px;
+    overflow: scroll;
+    padding-bottom: 80px;
+    bottom: 0;
+    height: calc(100% - 70px);
   }
 
   .filter .search-content .filter-results {
+    position: absolute;
+    left: 135px;
+    right: 0;
     width: calc(100% - 135px);
-    top: 0;
+    top: 70px;
   }
 
   .filter .search-content .filter-results .filter-results-item {
@@ -4816,11 +4824,6 @@ body .navigation a :hover {
 }
 
 @media screen and (min-width: 70em) {
-  .filter .search-content .filter-results {
-    width: calc(100% - 135px);
-    top: 0;
-  }
-
   .filter .search-content .filter-results .filter-results-item {
     width: calc((100%/4) - 4px);
     margin: 2px;

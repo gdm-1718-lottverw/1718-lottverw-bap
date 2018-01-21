@@ -4,10 +4,16 @@
             <span class="child-name">{{$child->name}}</span>
             <div class="child-care">
                 @if($child->parent_notes != null)
-                   <p class="description">{{$child->parent_notes}}</p>
+                   <p class="description small">{{$child->parent_notes}}</p>
                 @endif
                  @if($child->allergie != null)
-                   <p class="description">{{$child->type}} {{$child->gravity}} {{$child->description}}</p>
+                   <p class="description small">Omschrijving: {{$child->description}}</p>
+                @endif
+                @if($child->pedagogic_description != null)
+                    <p class="description small">pedagogische aandacht: {{$child->pedagogic_description}}</p>
+                @endif
+                @if($child->medical_description != null)
+                    <p class="description small">medische aandacht:{{$child->medical_description}}</p>
                 @endif
             </div>
             <div class="icons flex row flex-child end">
@@ -40,6 +46,9 @@
                 @endif
                 @if($child->pedagogic_description != null)
                     <span class="icon flex justified-c centered"><i class="fa fa-exclamation" aria-hidden="true"></i></span>
+                @endif
+                @if($child->medical_description != null)
+                    <span class="icon flex justified-c centered"><i class="fa fa-medkit" aria-hidden="true"></i></span>
                 @endif
                 @if($child->potty_trained == false)
                     <span class="icon flex justified-c centered"><i class="fa fa-tint" aria-hidden="true"></i></span>

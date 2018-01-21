@@ -33,8 +33,14 @@
                     <span class="item flex row centered jutified-c"> {{Form::checkbox('allergie', 'other')}} {{ Form::label('allergie', 'Ander')}} </span>
                 </div>
                  <div class="part flex column">
-                    <h4 class="sub-title">Pedagogische aandacht</h4>
+                    <h4 class="sub-title">Pedagogie</h4>
                     <span class="item flex row centered jutified-c"> {{Form::checkbox('pedagogic', 'true')}} {{ Form::label('pedagogic', 'pedagogische aandacht')}} </span>
+                    <span class="item flex row centered jutified-c"></span>
+                </div>
+                 <div class="part flex column">
+                    <h4 class="sub-title">Medische aandacht</h4>
+                    <span class="item flex row centered jutified-c"> {{Form::checkbox('medical', 'true')}} {{ Form::label('medical', 'medische aandacht')}} </span>
+                    <span class="item flex row centered jutified-c"></span>
                 </div>
                 <div class="part flex column">
                     <h4 class="sub-title">Leeftijd</h4>
