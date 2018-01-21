@@ -51,6 +51,7 @@ $(document).ready(function(){
            
          } 
     })
+    
     $( "#target" ).focus(function() {
       console.log( "Handler for .focus() called." );
     });

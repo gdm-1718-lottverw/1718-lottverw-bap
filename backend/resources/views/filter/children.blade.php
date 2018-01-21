@@ -41,7 +41,7 @@
                 @if($child->potty_trained == false)
                     <span class="icon flex justified-c centered"><i class="fa fa-tint" aria-hidden="true"></i></span>
                 @endif
-                @if(\Carbon\Carbon::parse($child->date_of_birth)->format('m-d') == \Carbon\Carbon::now()->format('m-d'))
+                @if(\Carbon\Carbon::parse($child->date_of_birth)->format('m') == \Carbon\Carbon::now()->format('m'))
                     <span class="icon flex justified-c centered"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
                 @endif
             </div>
