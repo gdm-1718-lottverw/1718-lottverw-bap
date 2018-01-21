@@ -46,6 +46,13 @@ class IndexController extends Controller
             switch($key){
                 case 'present':
                     $present = $value[0];
+                    if($value[0] == 'present_all'){
+                        $general_conditions = [
+                            'organization_id' => $this->organization_id,  
+                        ]; 
+                    } else {
+                         $general_conditions =  $general_conditions;
+                    }
                     break;
                 case 'birthday':
                     $birthday = $value[0];
