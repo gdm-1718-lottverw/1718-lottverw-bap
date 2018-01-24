@@ -24,6 +24,7 @@
                     <h4 class="sub-title">Opvang type</h4>
                     <span class="item flex row centered jutified-c"> {{Form::checkbox('type', 'voormiddag', null, ['class' => 'checko'])}} {{ Form::label('type', 'Voormiddag')}} </span>
                     <span class="item flex row centered jutified-c"> {{Form::checkbox('type', 'namiddag', null, ['class' => 'checko'])}} {{ Form::label('type', 'Namiddag')}} </span>
+                    <span class="item flex row centered jutified-c"> {{Form::checkbox('type', 'voormiddag', null, ['class' => 'checko'])}} {{ Form::label('type', 'voormiddag')}} </span>
                 </div>
                <div class="part flex column">
                     <h4 class="sub-title">Allergie</h4>
@@ -34,7 +35,7 @@
                 </div>
                  <div class="part flex column">
                     <h4 class="sub-title">Pedagogie</h4>
-                    <span class="item flex row centered jutified-c"> {{Form::checkbox('pedagogic', 'true')}} {{ Form::label('pedagogic', 'pedagogische aandacht')}} </span>
+                    <span class="item flex row centered jutified-c"> {{Form::checkbox('pedagogic', 'true')}} {{ Form::label('pedagogic', 'extra aandacht')}} </span>
                     <span class="item flex row centered jutified-c"></span>
                 </div>
                  <div class="part flex column">

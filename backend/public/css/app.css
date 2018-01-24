@@ -4510,7 +4510,7 @@ body .navigation a :hover {
 
 .filter input[type=checkbox],
 .filter input[type=radio] {
-  width: 25px;
+  min-width: 25px;
   margin: 0 8px 0 0;
   height: 25px;
 }
@@ -4569,7 +4569,7 @@ body .navigation a :hover {
 .filter .search-content .search form .part .item label {
   height: 25px;
   padding: 4px;
-  font-size: 13px;
+  font-size: 12px;
   text-transform: lowercase;
 }
 
