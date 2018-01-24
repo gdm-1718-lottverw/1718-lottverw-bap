@@ -65,7 +65,7 @@
             </div>      
             <div class="form-group">
                 <label for="password-confirm" class="col-md-4 control-label">Herhaal wachtwoord</label>
-                <input id="password-confirm" placeholder="Wachtwoord" type="Herhaal wachtwoord" class="form-control" name="password_confirmation">
+                <input id="password-confirm" placeholder="Wachtwoord" type="password" class="form-control" name="password_confirmation">
                 <div class="border"></div>
             </div>
         </div>

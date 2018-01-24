@@ -30,7 +30,7 @@ class HistoryController extends Controller
             ->historyAttendance()
             ->orderBy('pa.date', 'desc')
             ->get(['pa.date as date', 'children.name', 'pa.in', 'pa.out', 'pa.type']);
-          
+        
         return $history;
         
     }

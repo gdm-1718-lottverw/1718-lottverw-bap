@@ -31,7 +31,7 @@ class ChildController extends Controller
         $guardians = Guardian::whereIn('id', $ids)->get(['id', 'name']);
         $default = array("id" => null, "name" => "Ouders", "selected" => true);
         $guardians[Count($guardians)] = $default;
-
+        
         $result = [
             'children' => $children,
             'guardians' => $guardians,
