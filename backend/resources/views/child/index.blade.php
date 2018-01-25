@@ -30,7 +30,7 @@
 
       <div class="column">   
         <div class="item">
-          <h1>Bevoegd om top te halen</h1>
+          <h1>Bevoegd om op te halen</h1>
           @if(count($guardians) > 0)
             @foreach($guardians as $guardian)
             <p class='label'>{{$guardian->name}}</p>
