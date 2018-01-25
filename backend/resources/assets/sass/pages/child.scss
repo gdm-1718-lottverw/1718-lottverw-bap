@@ -6,32 +6,28 @@
     .close {
         background: $pink;
         border-radius: 50px;
-        height: 30px;
-        width: 50px;
         outline: none;
         position: absolute;
-        left: 40px;
-        top: 10px;
-        padding: 0 17px;
+        height: 35px;
+        width: 35px;
+        padding: 4px 8px;
         i {
             color: $white;
-            font-size: 1.8em;
+            font-size: 1.5em;
         }
     }   
     .grid {
-        margin: 50px 40px;
         .column .item {
+            background: $lightgray;
             padding: 20px;
             h1 {
-               text-transform: uppercase;
-                font-size: 16px;
-                font-weight: 100;
-                margin: -20px;
-                margin-bottom: -20px;
+                background: $darkgray;
+                font-size: 0.9em;
+                font-weight: 500;
+                margin: -15px;
                 margin-bottom: 20px;
                 padding: 14px;
-                border-bottom: 1px solid $darkgray;
-                background: #FFF;
+               color: white;
                 text-align: center;
             }
             .label {
@@ -62,10 +58,16 @@
 @include breakpoint(xs){
     .child{
         top: 45px;
-        width: 100% ;
+        width: 100%;
+        .close {
+            right: 18px;
+            top: 18px;
+        }
         .grid {
+            margin: 0;
             .column {
                 width: calc((100% - 60px) / 1);
+                margin: 30px;
                 .item {
                     margin-bottom: 5px;
                     .label, p.separation {
@@ -80,10 +82,16 @@
 @include breakpoint(sm){
     .child{
         top: 45px;
-        width: 100% ;
+        width: 100%;
+        .close {
+            right: 12px;
+            top: 12px;
+        }
         .grid {
+            margin: 5px 0px;
             .column {
-                width: calc((100% - 60px) / 1);
+                width: calc((100% - 60px) / 2);
+                margin: 15px;
                 .item {
                     margin-bottom: 5px;
                     .label, p.separation {
@@ -101,10 +109,20 @@
         height: 100%;
         left: 70px;
         width: calc(100% - 70px);
+        .close {
+            right: 33px !important;
+            top: 33px !important;
+            height: 45px !important;
+            width: 45px !important;
+            padding: 8px 11px !important;
+            font-size: 1.2em !important;
+        }
     }
     .grid {
+        margin: 30px;
         .column {
             width: calc((100% - 30px) / 3);
+            margin: 5px;
             .item {
                 padding: 5px;
                 margin-bottom: 15px;
@@ -122,11 +140,13 @@
         z-index: 0;
         top: 0;
         height: 100%;
-         left: 70px;
+        left: 70px;
         width: calc(100% - 70px);
         .grid {
+            margin: 50px 45px;
             .column {
                 width: calc((100% - 30px) / 3);
+                margin: 5px;
                 .item {
                     margin-bottom: 15px;
                 }
@@ -141,10 +161,12 @@
         z-index: 0;
         top: 0;
          height: 100%;
-        width: calc(100M - 70px);
+        width: calc(100% - 70px);
         .grid {
+            margin: 50px 45px;
             .column {
                 width: calc((100% - 30px) / 3);
+                margin: 5px;
                 .item {
                     margin-bottom: 15px;
                 }

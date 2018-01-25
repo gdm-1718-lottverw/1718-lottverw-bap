@@ -24,8 +24,7 @@
                     <h4 class="sub-title">Opvang type</h4>
                     <span class="item flex row centered jutified-c"> {{Form::checkbox('type', 'voormiddag', null, ['class' => 'checko'])}} {{ Form::label('type', 'Voormiddag')}} </span>
                     <span class="item flex row centered jutified-c"> {{Form::checkbox('type', 'namiddag', null, ['class' => 'checko'])}} {{ Form::label('type', 'Namiddag')}} </span>
-                    <span class="item flex row centered jutified-c"> {{Form::checkbox('type', 'voormiddag', null, ['class' => 'checko'])}} {{ Form::label('type', 'voormiddag')}} </span>
-                </div>
+                 </div>
                <div class="part flex column">
                     <h4 class="sub-title">Allergie</h4>
                     <span class="item flex row centered jutified-c"> {{Form::checkbox('allergie', 'food')}} {{ Form::label('allergie', 'Voedsel')}} </span>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
   <section class="child">
-    <a href='/' class="close"><i class="fa fa-angle-left"></i></a>
+    <a href='/' class="close"><i class="fa fa-times"></i></a>
     <div class="grid flex row wrap">
       <div class="column">   
         <div class="item">
@@ -26,14 +26,6 @@
           <p class="separation">{{$parent->phone}}</p>
           @endforeach
         </div>
-
-        <div class="item">
-          <h1>dokter</h1>
-          <p class='label'>dokter</p>
-          <p class="separation">{{$child->doctor}}</p>
-          <p class='label'>telefoonnummer</p>
-          <p class="separation">Tel. {{$child->doctor_phone}}</p>
-        </div>
       </div>
 
       <div class="column">   
@@ -49,6 +41,14 @@
           @endif
          
         </div>
+          <div class="item">
+          <h1>dokter</h1>
+          <p class='label'>dokter</p>
+          <p class="separation">{{$child->doctor}}</p>
+          <p class='label'>telefoonnummer</p>
+          <p class="separation">Tel. {{$child->doctor_phone}}</p>
+        </div>
+        
 
         <div class="item allergy">
           <h1>Allergieën</h1>
@@ -73,10 +73,14 @@
             @endif
             @endforeach
           @else 
-            <p class=' separation alert text-align-c'>Dit kind heeft <span class="bold underline">geen</span> gekende allergieën</p>
+            <p class='separation alert text-align-c'>Dit kind heeft <span class="bold underline">geen</span> gekende allergieën</p>
           @endif
         </div>
 
+       
+      </div>
+
+      <div class="column">   
         <div class="item">
           <h1>Andere opmerkingen</h1>
           @if(count($other_information) > 0 )
@@ -84,13 +88,9 @@
               <p class="separation">{{$info->message}}</p>
             @endforeach
           @else
-            <p class="text-align-c"><span class="bold underline">Geen</span> opmerkingen</p>
+            <p class="separation alert text-align-c"><span class="bold underline">Geen</span> opmerkingen</p>
           @endif
         </div>
-      </div>
-
-      <div class="column">   
-
         <div class="item">
         <h1>Pedagogische aandacht</h1>
         @if(count($pedagogic) == 0 )
